@@ -188,7 +188,7 @@
         ],
         "url": "techniques/T0110.html",
         "description": "An Advertise Malicious Artifact attack is a type of cyber attack in which an attacker distributes a malicious package or container image to a broader audience, typically by advertising it on popular repositories or registries.\nThe goal of this attack is to entice users into downloading and using the malicious artifact, thereby compromising their systems.\nIn this attack, the attacker may create a fake developer account or use an existing legitimate account to upload the malicious artifact to popular repositories or registries such as PyPI or DockerHub.\nThe attacker may then use various techniques to promote the malicious artifact, such as forum promotion, commenting, using misleading descriptions, tags, or keywords, or by hijacking popular package names.\nOnce users download and install the malicious package or container image, it can compromise their systems and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 18
+        "incidentCount": 19
       },
       {
         "id": "T0111",
@@ -428,7 +428,7 @@
         ],
         "url": "techniques/T0136.html",
         "description": "Brandjacking is a type of attack where an attacker impersonates a legitimate brand or project in an attempt to trick users into downloading and installing a malicious container or package. \nThis can happen when an attacker creates a package or container with a similar name or logo to a well-known and trusted brand or project, and then distributes it through public repositories.\nBrandjacking can be particularly dangerous in the context of container and open source security, as many developers and users rely on public repositories and may not take the time to thoroughly verify the authenticity of packages they download.\nOnce a malicious package is installed, it can be difficult to detect and can lead to serious security breaches.\n",
-        "incidentCount": 31
+        "incidentCount": 32
       },
       {
         "id": "T0137",
@@ -563,7 +563,7 @@
         ],
         "url": "techniques/T0197.html",
         "description": "It is possible to install a package not from an official package repository - but rather install directly using a URL. Packages from official repositories are usually vetted for security vulnerabilities. Installing from an unverified URL can expose your system to malicious software, including viruses, malware, or other security threats.\n",
-        "incidentCount": 5
+        "incidentCount": 6
       },
       {
         "id": "T0205",
@@ -690,7 +690,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 43
+        "incidentCount": 44
       },
       {
         "id": "T0166",
@@ -1134,7 +1134,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 94
+        "incidentCount": 95
       },
       {
         "id": "T0185",

@@ -1,4 +1,23 @@
 entries:
+- date: '2026-09-27'
+  id: revstealer-morphisec
+  title: RevStealer fake-Claude Electron stealer added (AS290)
+  items:
+  - 'AS290 RevStealer (Morphisec Threat Labs, 31 Aug): Windows infostealer inside
+    trojanized Electron apps distributed from GitHub repositories and game-cheat
+    sites; notable lure a fake “Claude Opus 5 Free Desktop” project impersonating
+    Anthropic and advertising free access to a paid model. Platforms
+    git/windows/ai-agents; T0110/T0136/T0197 for the distribution stage,
+    T0159/T0184 for the victim machine. Encrypted exfil and self-deletion
+    recorded as gaps, not force-mapped.'
+  - 'Re-walked every track:true source. Everything else this window was already
+    mapped (SafeDep actions-cool reinfection on AS197, Checkmarx npm btree on
+    AS25, CrowdStrike PhantomRaven September follow-up and PyPI twin on AS26,
+    SafeDep OpenAI-agents RubyDoc proxy on AS37, sckit MemTensor 23 Sept on AS39,
+    PolinRider Packagist on AS35, tw-pkgprobe-7731 on AS38, WeaselBiscuit on
+    AS32, Brevo Cloudflare Worker on AS19, Rust targeted-attacks on AS18) or is
+    product posts, show episodes, defensive research, and advisory items,
+    already classified.'
 - date: '2026-09-26'
   id: defcon-2021-2025-talks
   title: DEF CON 29–33 supply-chain and AI talks scanned

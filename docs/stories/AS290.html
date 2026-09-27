@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevStealer trojanized Electron apps via fake Claude desktop and cheat sites · OSC&amp;R</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">OSC&R Matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS290</p>
+
+        <p class="meta">AS290 · 2026-08</p>
+        <h1>RevStealer trojanized Electron apps via fake Claude desktop and cheat sites</h1>
+        <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a></p>
+        <p>Morphisec Threat Labs documented RevStealer, a Windows infostealer<br>delivered inside trojanized Electron desktop applications distributed<br>through GitHub repositories and game-cheat-themed sites. The notable<br>lure is a fake &quot;Claude Opus 5 Free Desktop&quot; project impersonating<br>Anthropic and advertising free access to a paid AI model. The theft<br>itself is ordinary — browser databases, session cookies,<br>cryptocurrency wallets, password-manager artifacts, and VPN<br>configurations — but every stage is engineered around the assumption<br>that something is watching: exfiltration is in encrypted typed<br>records and the stealer deletes itself after the haul.</p>
+        <h2>Mapped OSC&amp;R elements</h2>
+        <ul><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> trojanized desktop distribution</h2><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>Game-cheat-themed sites and the fake Claude desktop project<br>advertise free access to a paid AI model.</p></div><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>Impersonates Anthropic; the &quot;Claude Opus 5 Free Desktop&quot; project<br>borrows the vendor&#x27;s name to pass cursory inspection.</p></div><div class="card"><p class="meta"><a href="../techniques/T0197.html">T0197</a> · Initial Access · Use code from untrusted source</p><p>Distributed from GitHub repositories and cheat sites, outside<br>any vetted package registry.</p></div><h2><span class="stage">post-supply-chain</span> Windows victims executing the stealer</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>The trojanized Electron application runs the stealer when the<br>victim installs and launches it.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Browser databases, session cookies, wallet material,<br>password-manager artifacts, and VPN configurations.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Encrypted typed-record exfiltration and post-haul self-deletion are not named OSC&amp;R techniques; recorded as stealth behaviours.</li><li>A fake AI-model desktop application as a lure has no dedicated technique beyond T0136 brandjacking.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.morphisec.com/blog/revstealer-silence-is-its-greatest-weapon/" rel="noopener">https://www.morphisec.com/blog/revstealer-silence-is-its-greatest-weapon/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
+      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
+      <a href="../about.html">About & attribution</a>.</p>
+    </footer>
+</body>
+</html>

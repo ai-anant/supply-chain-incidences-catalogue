@@ -1,0 +1,73 @@
+id: AS290
+type: Attack Story
+date: 2026-08
+platforms:
+  - git
+  - windows
+  - ai-agents
+
+summary: RevStealer trojanized Electron apps via fake Claude desktop and cheat sites
+description: |
+  Morphisec Threat Labs documented RevStealer, a Windows infostealer
+  delivered inside trojanized Electron desktop applications distributed
+  through GitHub repositories and game-cheat-themed sites. The notable
+  lure is a fake "Claude Opus 5 Free Desktop" project impersonating
+  Anthropic and advertising free access to a paid AI model. The theft
+  itself is ordinary — browser databases, session cookies,
+  cryptocurrency wallets, password-manager artifacts, and VPN
+  configurations — but every stage is engineered around the assumption
+  that something is watching: exfiltration is in encrypted typed
+  records and the stealer deletes itself after the haul.
+
+attacks:
+  - attack: trojanized desktop distribution
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          Game-cheat-themed sites and the fake Claude desktop project
+          advertise free access to a paid AI model.
+      - techniqueID: T0136
+        techName: Brandjacking
+        tactic: Initial Access
+        comment: |
+          Impersonates Anthropic; the "Claude Opus 5 Free Desktop" project
+          borrows the vendor's name to pass cursory inspection.
+      - techniqueID: T0197
+        techName: Use code from untrusted source
+        tactic: Initial Access
+        comment: |
+          Distributed from GitHub repositories and cheat sites, outside
+          any vetted package registry.
+  - attack: Windows victims executing the stealer
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          The trojanized Electron application runs the stealer when the
+          victim installs and launches it.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          Browser databases, session cookies, wallet material,
+          password-manager artifacts, and VPN configurations.
+
+gaps:
+  - Encrypted typed-record exfiltration and post-haul self-deletion are
+    not named OSC&R techniques; recorded as stealth behaviours.
+  - A fake AI-model desktop application as a lure has no dedicated
+    technique beyond T0136 brandjacking.
+
+links:
+  - https://www.morphisec.com/blog/revstealer-silence-is-its-greatest-weapon/
