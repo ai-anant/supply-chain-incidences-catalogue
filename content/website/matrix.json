@@ -188,7 +188,7 @@
         ],
         "url": "techniques/T0110.html",
         "description": "An Advertise Malicious Artifact attack is a type of cyber attack in which an attacker distributes a malicious package or container image to a broader audience, typically by advertising it on popular repositories or registries.\nThe goal of this attack is to entice users into downloading and using the malicious artifact, thereby compromising their systems.\nIn this attack, the attacker may create a fake developer account or use an existing legitimate account to upload the malicious artifact to popular repositories or registries such as PyPI or DockerHub.\nThe attacker may then use various techniques to promote the malicious artifact, such as forum promotion, commenting, using misleading descriptions, tags, or keywords, or by hijacking popular package names.\nOnce users download and install the malicious package or container image, it can compromise their systems and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 19
+        "incidentCount": 20
       },
       {
         "id": "T0111",
@@ -213,7 +213,7 @@
         ],
         "url": "techniques/T0121.html",
         "description": "A compromised legitimate artifact attack is a type of cyber attack in which an attacker replaces a legitimate package or container image with a malicious version, often without the knowledge of the original developer or distributor. \nThis attack takes advantage of the trust that users place in legitimate packages or container images, which are often used to deploy software across multiple environments.\nIn this attack, the attacker may gain access to the repository or registry where the legitimate artifact is stored, either by exploiting a vulnerability or through social engineering tactics. \nThe attacker then replaces the legitimate artifact with a malicious version that contains malware or other harmful code. \nOnce the compromised artifact is downloaded and deployed, it can compromise the system and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 65
+        "incidentCount": 66
       },
       {
         "id": "T0141",
@@ -428,7 +428,7 @@
         ],
         "url": "techniques/T0136.html",
         "description": "Brandjacking is a type of attack where an attacker impersonates a legitimate brand or project in an attempt to trick users into downloading and installing a malicious container or package. \nThis can happen when an attacker creates a package or container with a similar name or logo to a well-known and trusted brand or project, and then distributes it through public repositories.\nBrandjacking can be particularly dangerous in the context of container and open source security, as many developers and users rely on public repositories and may not take the time to thoroughly verify the authenticity of packages they download.\nOnce a malicious package is installed, it can be difficult to detect and can lead to serious security breaches.\n",
-        "incidentCount": 32
+        "incidentCount": 33
       },
       {
         "id": "T0137",
@@ -526,7 +526,7 @@
         ],
         "url": "techniques/T0180.html",
         "description": "Services (servers) compromise attack in the supply chain is a type of attack that targets the servers hosting the software development and distribution infrastructure. \nThis attack can happen when an attacker gains access to the server through a vulnerability, misconfiguration, or social engineering attack. \nOnce the attacker gains access to the server, they can modify the source code or software packages being distributed to include malicious code or backdoors. \nThis attack can compromise multiple software projects and potentially all users who download or use the compromised software.\n",
-        "incidentCount": 4
+        "incidentCount": 5
       },
       {
         "id": "T0181",
@@ -590,9 +590,22 @@
         "url": "techniques/T0209.html",
         "description": "Instead of publishing a malicious version under a stolen maintainer\naccount, the attacker tampers with the registry or the CDN origin pool\nthat serves it. Consumers still resolve the real hostname. Coder's\nregistry.coder.com incident (GHSA-vx42-ghc9-gw65) is the type case:\nrogue origin IPs were added to a Cloudflare pool so a legitimate CDN\nserved stolen-credential Terraform modules. Distinct from T0205 (third-party\nweb asset) and T0109 (publish to the registry as a user).\n",
         "incidentCount": 28
+      },
+      {
+        "id": "T0212",
+        "name": "Subvert network routing to intercept update traffic",
+        "tooltip": "Subvert network routing to intercept update traffic",
+        "tags": [
+          "Artifact Security",
+          "Infrastructure as code",
+          "SCM Posture"
+        ],
+        "url": "techniques/T0212.html",
+        "description": "The attacker manipulates network routing \u2014 BGP route hijacking, DNS\nhijacking, or ARP spoofing \u2014 so that traffic to a legitimate hostname\n(a vendor update server, billing backend, package registry, or mirror)\nis delivered to attacker-controlled servers instead. Consumers keep\ntalking to the correct hostname; only the path through the network\nchanges. Because the malicious server is not the vendor's, the vendor\nhas no server-side logs of who was served, and hostname/origin-based\nallowlists and TLS to a correctly-named host do not by themselves stop\nthe interception. Distinct from T0209 (compromising the registry or\nCDN origin itself) and T0205 (compromising a third-party CDN or hosted\nweb asset): here the routing layer is subverted while the destination\ninfrastructure stays untouched.\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 28,
+    "amount": 29,
     "tooltip": "Initial Access",
     "tacticid": "TA03"
   },
@@ -690,7 +703,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 44
+        "incidentCount": 46
       },
       {
         "id": "T0166",
@@ -795,7 +808,7 @@
         ],
         "url": "techniques/T0148.html",
         "description": "In this attack, the attacker gains access to a self-hosted runner, which is a server or a virtual machine that runs the CI/CD pipelines for an organization. \nOnce access is gained, the attacker creates a scheduled task or job that runs at regular intervals, even after the initial attack has been detected and removed.\nThe scheduled task or job can be programmed to perform a variety of malicious activities, such as downloading and executing additional malware or maintaining a persistent backdoor for future attacks. \n",
-        "incidentCount": 1
+        "incidentCount": 3
       },
       {
         "id": "T0161",
@@ -976,7 +989,7 @@
         ],
         "url": "techniques/T0176.html",
         "description": "Attackers disable or misconfigure security controls so that later activity is\nnot observed or blocked. In software supply chains this is more often a\ncomplete disablement than a subtle misconfiguration: turning off a GitHub\nAction required-review check, uninstalling an endpoint agent on a build\nrunner, skipping a signing gate, or emptying a security-group rule.\nMisconfiguration (over-permissive logging, broken audit settings) remains\nin scope as the quieter variant of the same Defense Evasion technique.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0182",
@@ -1038,7 +1051,7 @@
         ],
         "url": "techniques/T0207.html",
         "description": "Consumers are supposed to verify packages, containers, and third-party\nscripts (checksums, signatures, Sigstore, Subresource Integrity). The\nattacker relies on that check never running, or supplies a matching but\nattacker-controlled signature. OWASP CICD-SEC-9 names the control gap;\nthis technique is the attacker side. Polyfill.io hotlinks without SRI and\nunsigned CI helper scripts are typical realizations.\n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0208",
@@ -1134,7 +1147,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 95
+        "incidentCount": 97
       },
       {
         "id": "T0185",

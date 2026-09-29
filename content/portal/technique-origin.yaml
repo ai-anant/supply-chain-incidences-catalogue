@@ -967,3 +967,12 @@ techniques:
     - https://safedep.io/openai-agents-rubygems-attack
     - https://www.rubyhack.ai/
     - https://blog.rubygems.org/2026/09/11/update-may-spam-publishing-campaign.html
+  T0212:
+    summary: Subvert network routing to intercept update traffic
+    tactic: Initial Access
+    kind: incident
+    note: This fork, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer
+      write-up; Softaculous confirmed and now signs all packages).
+    sources:
+    - https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/
+    - https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0212 Subvert network routing to intercept update traffic · OSC&amp;R</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">OSC&R Matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">OSC&amp;R / <a href="index.html">Techniques</a> / T0212</p>
+
+        <p class="meta">T0212 · Initial Access · TA03 · observed in 1 incident(s)</p>
+        <h1>Subvert network routing to intercept update traffic</h1>
+        <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Infrastructure as code</span> <span class="chip">SCM Posture</span></div>
+        <p>The attacker manipulates network routing — BGP route hijacking, DNS<br>hijacking, or ARP spoofing — so that traffic to a legitimate hostname<br>(a vendor update server, billing backend, package registry, or mirror)<br>is delivered to attacker-controlled servers instead. Consumers keep<br>talking to the correct hostname; only the path through the network<br>changes. Because the malicious server is not the vendor&#x27;s, the vendor<br>has no server-side logs of who was served, and hostname/origin-based<br>allowlists and TLS to a correctly-named host do not by themselves stop<br>the interception. Distinct from T0209 (compromising the registry or<br>CDN origin itself) and T0205 (compromising a third-party CDN or hosted<br>web asset): here the routing layer is subverted while the destination<br>infrastructure stays untouched.</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This fork, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer write-up; Softaculous confirmed and now signs all packages).</p><ul class='refs'><li><a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" rel="noopener">https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/</a></li><li><a href="https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/" rel="noopener">https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Detections</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS291.html">Virtualizor panel update delivered via BGP hijack of Softaculous update/billing infrastructure</a></li></ul>
+        <h2>References</h2>
+        <p class='muted'>None listed.</p>
+        
+</main>
+
+    <footer>
+      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
+      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
+      <a href="../about.html">About & attribution</a>.</p>
+    </footer>
+</body>
+</html>

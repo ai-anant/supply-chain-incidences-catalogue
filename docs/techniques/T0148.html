@@ -32,7 +32,7 @@
 <main>
 <p class="crumb">OSC&amp;R / <a href="index.html">Techniques</a> / T0148</p>
 
-        <p class="meta">T0148 · Persistence · TA05 · observed in 1 incident(s)</p>
+        <p class="meta">T0148 · Persistence · TA05 · observed in 3 incident(s)</p>
         <h1>Scheduled tasks on self hosted runner</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span></div>
         <p>In this attack, the attacker gains access to a self-hosted runner, which is a server or a virtual machine that runs the CI/CD pipelines for an organization. <br>Once access is gained, the attacker creates a scheduled task or job that runs at regular intervals, even after the initial attack has been detected and removed.<br>The scheduled task or job can be programmed to perform a variety of malicious activities, such as downloading and executing additional malware or maintaining a persistent backdoor for future attacks.</p>
@@ -42,7 +42,7 @@
         <ul><li><span class="id">M1480</span> Limit the privileges of the runner</li><li><span class="id">M1481</span> Avoid using self-hosted runners for public repositories</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1590</span> Implement continuous monitoring and logging of the CI/CD process</li></ul>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS24.html">Self-hosted GitHub Actions runners (Praetorian Gato)</a></li></ul>
+        <h2>Observed in incidents (3)</h2><ul><li><a href="../incidents/AS24.html">Self-hosted GitHub Actions runners (Praetorian Gato)</a></li><li><a href="../incidents/AS291.html">Virtualizor panel update delivered via BGP hijack of Softaculous update/billing infrastructure</a></li><li><a href="../incidents/AS292.html">Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://www.praetorian.com/blog/introducing-gato-for-ci-cd-exploitation/" rel="noopener">https://www.praetorian.com/blog/introducing-gato-for-ci-cd-exploitation/</a></li></ul>
         

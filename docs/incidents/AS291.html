@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtualizor panel update delivered via BGP hijack of Softaculous update/billing infrastructure · OSC&amp;R</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">OSC&R Matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS291</p>
+
+        <p class="meta">AS291 · 2026-08</p>
+        <h1>Virtualizor panel update delivered via BGP hijack of Softaculous update/billing infrastructure</h1>
+        <p><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
+        <p>BleepingComputer documented (and Softaculous confirmed in its own<br>advisory) a BGP route hijack that rerouted a Hetzner IP block between<br>28 and 30 August 2026 so that Virtualizor&#x27;s automatic update and<br>billing requests — which Softaculous infrastructure serves — hit<br>attacker-controlled servers. A malicious Virtualizor update package was<br>delivered to installs from those servers; persistence IoC<br>/etc/systemd/system/java-jre-update.service. The attacker-controlled<br>server means the vendor has no server-side logs of who received it.<br>Softaculous committed to cryptographically signing packages; as of 21<br>September 2026 all Softaculous packages including core and script are<br>signed and verified. Remediation guidance: rotate/restrict API<br>credentials, audit SSH keys, accounts, and scheduled tasks, and revoke<br>the bogus certificate. Distinct from T0209/T0205 (registry/CDN origin<br>compromise): here the routing layer itself was subverted, so consumers<br>talked to the correct hostname that resolved to the wrong network.</p>
+        <h2>Mapped OSC&amp;R elements</h2>
+        <ul><li><a href="../techniques/T0212.html">T0212</a> Subvert network routing to intercept update traffic</li><li><a href="../techniques/T0180.html">T0180</a> Compromise services / servers</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0148.html">T0148</a> Scheduled tasks on self hosted runner</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> Softaculous update/billing infrastructure via BGP hijack</h2><div class="card"><p class="meta"><a href="../techniques/T0212.html">T0212</a> · Initial Access · Subvert network routing to intercept update traffic</p><p>BGP route hijack of a Hetzner IP block (28–30 August 2026)<br>rerouted update/billing requests to attacker servers.</p></div><div class="card"><p class="meta"><a href="../techniques/T0180.html">T0180</a> · Initial Access · Compromise services / servers</p><p>The update/billing backend answered from attacker-controlled<br>servers; the vendor sees no logs of who was served.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>A malicious Virtualizor update package was delivered through the<br>panel&#x27;s own automatic update channel.</p></div><h2><span class="stage">post-supply-chain</span> Virtualizor hosts applying the update</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Installs applied the malicious update automatically, without<br>user interaction, as the panel does for every update.</p></div><div class="card"><p class="meta"><a href="../techniques/T0148.html">T0148</a> · Persistence · Scheduled TaskJob on self hosted runner</p><p>Persistence IoC: /etc/systemd/system/java-jre-update.service<br>survived on the host.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Dumping credentials from files</p><p>Remediation guidance tells operators to rotate API credentials<br>and audit SSH keys, accounts, and scheduled tasks.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>BGP hijacking as a first-class OSC&amp;R technique does not exist; T0212 records this fork&#x27;s network-routing technique.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" rel="noopener">https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/</a></li><li><a href="https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/" rel="noopener">https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
+      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
+      <a href="../about.html">About & attribution</a>.</p>
+    </footer>
+</body>
+</html>

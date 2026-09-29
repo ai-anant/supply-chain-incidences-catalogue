@@ -1,0 +1,95 @@
+id: AS292
+type: Attack Story
+date: 2026-09
+platforms:
+  - windows
+  - cdn
+
+summary: Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download
+description: |
+  Microsoft Defender Experts documented (1 September 2026) an active
+  campaign of counterfeit software-download websites impersonating
+  trusted vendors — Razer, Microsoft Edge, Kaspersky, Baidu Netdisk,
+  Calibre, and others — that distribute malicious installer archives,
+  primarily affecting China-based operations of multinational
+  organizations and Chinese-speaking users. Microsoft assesses with
+  moderate confidence that the activity is consistent with the publicly
+  reported Silver Fox (Yinhu) fake-software campaign. The defining
+  delivery characteristic: archive families (app_setup.*, zinst.*,
+  zintall.*, intsoft.*, innstll.*) keep the same filename while the
+  contents change on every download — server-side payload regeneration
+  (two content-distinct copies of app_setup.6653004.zip observed written
+  within roughly 69 seconds) — which defeats URL-reputation and static
+  hash blocklists. A wrapped installer drops a randomized-path stage-one
+  payload (stable SHA-256 676a2a7b94ca… under many names), masqueraded
+  with fabricated version metadata including an unfilled build-template
+  "TODO: <Product name>" placeholder; a repurposed Indigo Rose TrueUpdate
+  client runtime fetches further payloads from attacker-controlled
+  Alibaba Cloud OSS over TLS. Same fake-installer class as AS88/AS61
+  (brandjacked download pages), not a registry hijack.
+
+attacks:
+  - attack: counterfeit download-site distribution
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0136
+        techName: Brandjacking
+        tactic: Initial Access
+        comment: |
+          High-fidelity clones of vendor sites on .com.cn/.hl.cn
+          look-alike domains with prominent "Download now" buttons.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          The spoofed download pages advertise the impersonated vendors'
+          popular products.
+      - techniqueID: T0207
+        techName: Skip or forge artifact integrity verification
+        tactic: Defense Evasion
+        comment: |
+          Hashes change on every download while the filename stays
+          constant; static hash blocklists cannot key on the payload.
+  - attack: Windows victims executing the installers
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          The wrapped installer launches the stage-one payload from a
+          randomized path under C:\Users\Public or Program Files (x86).
+      - techniqueID: T0148
+        techName: Scheduled TaskJob on self hosted runner
+        tactic: Persistence
+        comment: |
+          The persistent payload (c6100166e2d3…) is launched repeatedly by
+          the Task Scheduler service and disables Windows Update services
+          (wuauserv / UsoSvc / WaaSMedicSvc).
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          Registry keys set for Defender exclusions and Windows Update
+          policy; vssadmin delete shadows /all /quiet removes recovery.
+      - techniqueID: T0184
+        techName: Dumping credentials from files
+        tactic: Credential Access
+        comment: |
+          Attempted SMB remote file access to additional hosts; implants
+          communicate with attacker-controlled infrastructure.
+
+gaps:
+  - Server-side per-download payload regeneration has no dedicated
+    OSC&R technique; T0212 is the closest existing technique (routing)
+    and this story records the behaviour explicitly instead of
+    force-mapping it.
+
+links:
+  - https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/

@@ -1,4 +1,33 @@
 entries:
+- date: '2026-09-29'
+  id: virtualizor-bgp-hijack
+  title: Virtualizor BGP-hijack update attack and Microsoft counterfeit installers added (AS291, AS292)
+  items:
+  - 'AS291 Virtualizor/Softaculous BGP hijack (BleepingComputer, 28–30 Aug; Softaculous
+    advisory): a BGP route hijack of a Hetzner IP block rerouted Virtualizor update/billing
+    requests to attacker servers, delivering a malicious update package with persistence
+    at /etc/systemd/system/java-jre-update.service; Softaculous now signs all packages.
+    Platforms linux/windows; new technique T0212 (Subvert network routing to intercept
+    update traffic) added with technique-origin entry, plus T0180/T0121 for the supply-chain
+    stage and T0159/T0148/T0184 on the host.'
+  - 'AS292 Microsoft counterfeit-installer campaign (Microsoft Defender Experts, 1 Sep):
+    vendor-look-alike download sites (.com.cn/.hl.cn, Razer/Edge/Kaspersky/Baidu et al.,
+    moderate-confidence Silver Fox/Yinhu) deliver installer archives whose families
+    (app_setup.*, zinst.*, zintall.*, intsoft.*, innstll.*) keep the same filename while
+    contents regenerate server-side per download, defeating URL/hash reputation; randomized-path
+    stage-one with stable hash, fabricated version metadata with unfilled TODO placeholder,
+    repurposed TrueUpdate runtime fetching from Alibaba Cloud OSS. Platforms windows/cdn;
+    T0136/T0110/T0207 for the distribution stage, T0159/T0148/T0176/T0184 on the victim
+    machine. Server-side regeneration recorded as a gap, not force-mapped.'
+  - 'Re-walked every track:true source. Everything else this window was already mapped
+    (Aikido Shai-Hulud 111-day reactivation and Clean-Release resurfaces on AS48/AS16,
+    OX PhantomSub Baileys spam-subscribe on AS85, ReversingLabs OpenAI/HF mob-agent
+    postmortem on AS16/TanStack + AS26/PhantomRaven references, StepSecurity sckit/MemTensor
+    on AS39, CloudSEK BRIDGEHEAD/TXTBOOK/LiteLLM on AS114/AS115/AS17, Wiz Artifactory
+    on AS190, Aikido Graphalgo on AS40, Aikido XCSSET Flutter on AS116, Socket PolinRider
+    Packagist on AS35, Morphisec polymorphic/fortibleed essays and product posts, GitHub
+    changelog platform security defaults, CISA advisories, RubyGems/Rust blog items)
+    or is defensive research, show episodes, and advisory items, already classified.'
 - date: '2026-09-27'
   id: revstealer-morphisec
   title: RevStealer fake-Claude Electron stealer added (AS290)

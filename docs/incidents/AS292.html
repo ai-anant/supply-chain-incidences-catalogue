@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download · OSC&amp;R</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">OSC&R Matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS292</p>
+
+        <p class="meta">AS292 · 2026-09</p>
+        <h1>Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</h1>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/cdn.html">CDN / web assets</a></p>
+        <p>Microsoft Defender Experts documented (1 September 2026) an active<br>campaign of counterfeit software-download websites impersonating<br>trusted vendors — Razer, Microsoft Edge, Kaspersky, Baidu Netdisk,<br>Calibre, and others — that distribute malicious installer archives,<br>primarily affecting China-based operations of multinational<br>organizations and Chinese-speaking users. Microsoft assesses with<br>moderate confidence that the activity is consistent with the publicly<br>reported Silver Fox (Yinhu) fake-software campaign. The defining<br>delivery characteristic: archive families (app_setup.*, zinst.*,<br>zintall.*, intsoft.*, innstll.*) keep the same filename while the<br>contents change on every download — server-side payload regeneration<br>(two content-distinct copies of app_setup.6653004.zip observed written<br>within roughly 69 seconds) — which defeats URL-reputation and static<br>hash blocklists. A wrapped installer drops a randomized-path stage-one<br>payload (stable SHA-256 676a2a7b94ca… under many names), masqueraded<br>with fabricated version metadata including an unfilled build-template<br>&quot;TODO: &lt;Product name&gt;&quot; placeholder; a repurposed Indigo Rose TrueUpdate<br>client runtime fetches further payloads from attacker-controlled<br>Alibaba Cloud OSS over TLS. Same fake-installer class as AS88/AS61<br>(brandjacked download pages), not a registry hijack.</p>
+        <h2>Mapped OSC&amp;R elements</h2>
+        <ul><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0148.html">T0148</a> Scheduled tasks on self hosted runner</li><li><a href="../techniques/T0176.html">T0176</a> Disable or misconfigure security measures</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> counterfeit download-site distribution</h2><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>High-fidelity clones of vendor sites on .com.cn/.hl.cn<br>look-alike domains with prominent &quot;Download now&quot; buttons.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>The spoofed download pages advertise the impersonated vendors&#x27;<br>popular products.</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>Hashes change on every download while the filename stays<br>constant; static hash blocklists cannot key on the payload.</p></div><h2><span class="stage">post-supply-chain</span> Windows victims executing the installers</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>The wrapped installer launches the stage-one payload from a<br>randomized path under C:\Users\Public or Program Files (x86).</p></div><div class="card"><p class="meta"><a href="../techniques/T0148.html">T0148</a> · Persistence · Scheduled TaskJob on self hosted runner</p><p>The persistent payload (c6100166e2d3…) is launched repeatedly by<br>the Task Scheduler service and disables Windows Update services<br>(wuauserv / UsoSvc / WaaSMedicSvc).</p></div><div class="card"><p class="meta"><a href="../techniques/T0176.html">T0176</a> · Defense Evasion · Disable or misconfigure security measures</p><p>Registry keys set for Defender exclusions and Windows Update<br>policy; vssadmin delete shadows /all /quiet removes recovery.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Dumping credentials from files</p><p>Attempted SMB remote file access to additional hosts; implants<br>communicate with attacker-controlled infrastructure.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Server-side per-download payload regeneration has no dedicated OSC&amp;R technique; T0212 is the closest existing technique (routing) and this story records the behaviour explicitly instead of force-mapping it.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/01/counterfeit-installers-system-compromise-tracking-deceptive-software-download-campaign/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
+      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
+      <a href="../about.html">About & attribution</a>.</p>
+    </footer>
+</body>
+</html>

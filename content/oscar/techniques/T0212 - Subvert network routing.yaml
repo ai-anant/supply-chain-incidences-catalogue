@@ -1,0 +1,25 @@
+id: T0212
+type: Technique
+
+tactic: Initial Access
+
+realm:
+  - Artifact Security
+  - Infrastructure as code
+  - SCM Posture
+
+summary: Subvert network routing to intercept update traffic
+
+description: |
+  The attacker manipulates network routing — BGP route hijacking, DNS
+  hijacking, or ARP spoofing — so that traffic to a legitimate hostname
+  (a vendor update server, billing backend, package registry, or mirror)
+  is delivered to attacker-controlled servers instead. Consumers keep
+  talking to the correct hostname; only the path through the network
+  changes. Because the malicious server is not the vendor's, the vendor
+  has no server-side logs of who was served, and hostname/origin-based
+  allowlists and TLS to a correctly-named host do not by themselves stop
+  the interception. Distinct from T0209 (compromising the registry or
+  CDN origin itself) and T0205 (compromising a third-party CDN or hosted
+  web asset): here the routing layer is subverted while the destination
+  infrastructure stays untouched.

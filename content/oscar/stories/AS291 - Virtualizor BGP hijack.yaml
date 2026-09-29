@@ -1,0 +1,82 @@
+id: AS291
+type: Attack Story
+date: 2026-08
+platforms:
+  - linux
+  - windows
+
+summary: Virtualizor panel update delivered via BGP hijack of Softaculous update/billing infrastructure
+description: |
+  BleepingComputer documented (and Softaculous confirmed in its own
+  advisory) a BGP route hijack that rerouted a Hetzner IP block between
+  28 and 30 August 2026 so that Virtualizor's automatic update and
+  billing requests — which Softaculous infrastructure serves — hit
+  attacker-controlled servers. A malicious Virtualizor update package was
+  delivered to installs from those servers; persistence IoC
+  /etc/systemd/system/java-jre-update.service. The attacker-controlled
+  server means the vendor has no server-side logs of who received it.
+  Softaculous committed to cryptographically signing packages; as of 21
+  September 2026 all Softaculous packages including core and script are
+  signed and verified. Remediation guidance: rotate/restrict API
+  credentials, audit SSH keys, accounts, and scheduled tasks, and revoke
+  the bogus certificate. Distinct from T0209/T0205 (registry/CDN origin
+  compromise): here the routing layer itself was subverted, so consumers
+  talked to the correct hostname that resolved to the wrong network.
+
+attacks:
+  - attack: Softaculous update/billing infrastructure via BGP hijack
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0212
+        techName: Subvert network routing to intercept update traffic
+        tactic: Initial Access
+        comment: |
+          BGP route hijack of a Hetzner IP block (28–30 August 2026)
+          rerouted update/billing requests to attacker servers.
+      - techniqueID: T0180
+        techName: Compromise services / servers
+        tactic: Initial Access
+        comment: |
+          The update/billing backend answered from attacker-controlled
+          servers; the vendor sees no logs of who was served.
+      - techniqueID: T0121
+        techName: Compromised legitimate artifact
+        tactic: Resource Development
+        comment: |
+          A malicious Virtualizor update package was delivered through the
+          panel's own automatic update channel.
+  - attack: Virtualizor hosts applying the update
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          Installs applied the malicious update automatically, without
+          user interaction, as the panel does for every update.
+      - techniqueID: T0148
+        techName: Scheduled TaskJob on self hosted runner
+        tactic: Persistence
+        comment: |
+          Persistence IoC: /etc/systemd/system/java-jre-update.service
+          survived on the host.
+      - techniqueID: T0184
+        techName: Dumping credentials from files
+        tactic: Credential Access
+        comment: |
+          Remediation guidance tells operators to rotate API credentials
+          and audit SSH keys, accounts, and scheduled tasks.
+
+gaps:
+  - BGP hijacking as a first-class OSC&R technique does not exist;
+    T0212 records this fork's network-routing technique.
+
+links:
+  - https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/
+  - https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/
