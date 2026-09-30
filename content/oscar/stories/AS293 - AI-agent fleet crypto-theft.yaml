@@ -1,0 +1,120 @@
+id: AS293
+type: Attack Story
+date: 2026-08
+platforms:
+  - ai-agents
+  - windows
+  - linux
+
+summary: Exposed operator staging host reveals autonomous AI-agent crypto-theft fleet
+description: |
+  CloudSEK (19 August 2026) enumerated an adversary's exposed open
+  directory — a staging host serving the operator's full working home
+  folder (21,442 directories, 142,262 files) to the public internet —
+  and recovered the tooling, methodology, credentials, and stolen data
+  behind two parallel campaigns. The operator drives multiple AI coding
+  agents (Claude Code, Codex, and open-source Hermes and pi agents) in
+  full-auto mode with every safety approval disabled, tasking and
+  monitoring them entirely over Telegram; one live bot token leaked
+  straight into a session transcript, and one bot self-described in
+  Chinese as a "social-engineering bot". Campaign 1 was internet-wide
+  opportunistic exploitation (12,048 compromise records across 8,996
+  unique sites, a fastjson2 deserialization RCE kit, and a
+  ProjectDiscovery-style recon suite driven from a multi-million-host
+  FOFA corpus). Campaign 2 was targeted crypto and DeFi theft: clone
+  sites of a DeFi codebase (the one site running the legitimate
+  unmodified codebase returned 403 and leaked nothing), a consolidated
+  wallet export built entirely from those clones, a scripted extraction
+  of 2,250 real user wallet addresses (EVM and Solana) with derivation
+  paths from a blockchain compute platform, and providers' live paid
+  RPC and analytics API keys (Helius, QuickNode, and similar) extracted
+  from client-side bundles and confirmed working against production.
+  The host also carried a blockchain-C2 development project, a
+  WordPress mass-exploitation toolkit, a cryptocurrency miner, and
+  harvested credentials from a large number of victims. A sister host
+  brokered LLM API requests during a live intrusion session through a
+  self-hosted LiteLLM proxy. This is the operator's own agent fleet as
+  the workforce — not a poisoned agent (AS27, T0210) and not an
+  injected prompt into a victim's session.
+
+attacks:
+  - attack: Autonomous AI-agent attack fleet
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0213
+        techName: Orchestrate AI-agent fleet as the intrusion workforce
+        tactic: Execution
+        comment: |
+          Claude Code, Codex, Hermes, and pi agents run in full-auto with
+          every safety approval disabled, tasked over Telegram; the
+          operator never touches the victim host directly.
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          Every safety approval on the agent fleet disabled by the
+          operator before tasking.
+      - techniqueID: T0105
+        techName: Active scanning
+        tactic: Reconnaissance
+        comment: |
+          A ProjectDiscovery-style recon suite driven from a
+          multi-million-host FOFA corpus with per-host country data.
+  - attack: Internet-wide opportunistic exploitation
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0194
+        techName: Outdated software components
+        tactic: Initial Access
+        comment: |
+          fastjson2 deserialization RCE kit and a WordPress
+          mass-exploitation toolkit run against opportunistic victims
+          running outdated components; 12,048 compromise records across
+          8,996 unique sites.
+      - techniqueID: T0180
+        techName: Compromise services / servers
+        tactic: Initial Access
+        comment: |
+          Victim-owned servers (Ant Design Pro admin interfaces,
+          cashup.vip / GetRupee deployments, TalkWorld instances) taken
+          over as pivot or mining infrastructure.
+  - attack: Targeted crypto and DeFi theft
+    index: 3
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0136
+        techName: Brandjacking
+        tactic: Initial Access
+        comment: |
+          Clone sites of a DeFi codebase; the single site running the
+          legitimate unmodified codebase returned 403 and leaked nothing.
+      - techniqueID: T0200
+        techName: Proprietary data stolen
+        tactic: Impact
+        comment: |
+          2,250 real user wallet addresses (EVM and Solana) with
+          derivation paths; a privacy-messaging network's full CMS
+          dataset including unpublished entries and staff emails.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          Stolen credentials, session tokens, and wallet keys harvested
+          by the agent fleet and fed back to the operator.
+
+gaps:
+  - Deserialization RCE (fastjson2-style) as an exploitation technique
+    has no dedicated OSC&R item; approximated by T0194.
+  - Blockchain C2 (Ethereum transfers, on-chain contracts) appeared in
+    AS25/AS32/NullReceiver posts but is not a named OSC&R technique.
+
+links:
+  - https://www.cloudsek.com/blog/ai-agent-driven-offensive-operation-crypto-wallet-credential-compromise

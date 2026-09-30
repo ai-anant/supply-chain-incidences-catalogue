@@ -74,7 +74,7 @@
         ],
         "url": "techniques/T0105.html",
         "description": "This technique involves actively scanning an organization's cloud infrastructure for vulnerabilities and misconfigurations that can be exploited by attackers to gain unauthorized access or cause system disruption.\nAn attacker can use this technique to identify vulnerable assets within an organization's cloud infrastructure and develop an understanding of the target's attack surface.\nBy conducting active scanning, an attacker can gather information about an organization's network topology, application architecture, and security controls, and use this information to plan and execute more effective attacks.\n",
-        "incidentCount": 1
+        "incidentCount": 2
       },
       {
         "id": "T0106",
@@ -428,7 +428,7 @@
         ],
         "url": "techniques/T0136.html",
         "description": "Brandjacking is a type of attack where an attacker impersonates a legitimate brand or project in an attempt to trick users into downloading and installing a malicious container or package. \nThis can happen when an attacker creates a package or container with a similar name or logo to a well-known and trusted brand or project, and then distributes it through public repositories.\nBrandjacking can be particularly dangerous in the context of container and open source security, as many developers and users rely on public repositories and may not take the time to thoroughly verify the authenticity of packages they download.\nOnce a malicious package is installed, it can be difficult to detect and can lead to serious security breaches.\n",
-        "incidentCount": 33
+        "incidentCount": 34
       },
       {
         "id": "T0137",
@@ -526,7 +526,7 @@
         ],
         "url": "techniques/T0180.html",
         "description": "Services (servers) compromise attack in the supply chain is a type of attack that targets the servers hosting the software development and distribution infrastructure. \nThis attack can happen when an attacker gains access to the server through a vulnerability, misconfiguration, or social engineering attack. \nOnce the attacker gains access to the server, they can modify the source code or software packages being distributed to include malicious code or backdoors. \nThis attack can compromise multiple software projects and potentially all users who download or use the compromised software.\n",
-        "incidentCount": 5
+        "incidentCount": 6
       },
       {
         "id": "T0181",
@@ -551,7 +551,7 @@
         ],
         "url": "techniques/T0194.html",
         "description": "Outdated software components can impact various aspects of security. \nThe obvious one is, of course, outdated software usually means unpatched vulnerabilities. \nBut it also means that in case of an incident it will be harder for an organization to react and patch because it has higher risk of breaking functionality.\n",
-        "incidentCount": 1
+        "incidentCount": 2
       },
       {
         "id": "T0197",
@@ -764,9 +764,22 @@
         "url": "techniques/T0211.html",
         "description": "The attacker publishes a package whose files are executed not by a\ndownstream installer, but by a registry-adjacent worker that trusts\npackage contents: documentation builders (YARD `--load` on RubyDoc.info),\npreview environments, webhook handlers, or similar jobs that treat\n`.yardopts`, `setup.py`, Makefiles, or lifecycle scripts as commands.\nThe publisher never needs a victim to `gem install` / `npm install`.\nDistinct from T0151 (install hooks on the consumer host) and T0166\n(poisoning the victim project's own CI). Observed in the 2026 GemStuffer\nRubyGems campaign reconstructed by RubyHack, SafeDep, and JFrog.\n",
         "incidentCount": 1
+      },
+      {
+        "id": "T0213",
+        "name": "Orchestrate AI-agent fleet as the intrusion workforce",
+        "tooltip": "Orchestrate AI-agent fleet as the intrusion workforce",
+        "tags": [
+          "AI Posture",
+          "Code Security",
+          "SCM Posture"
+        ],
+        "url": "techniques/T0213.html",
+        "description": "The attacker drives multiple AI coding agents (Claude Code, Codex,\nOpenClaw forks, Hermes, pi, and similar) in full-auto mode with every\nsafety approval disabled, tasking and monitoring them over a messaging\nchannel such as Telegram. The agents run the intrusion lifecycle\nunattended \u2014 reconnaissance, exploitation, credential theft, wallet\nand session collection \u2014 and feed results back to the operator, who\nnever touches a shell on the victim. The agent runtime is the\nexecution vector; the human retains only tasking and monetization.\nDistinct from T0210 (poisoning an existing agent's config or\nworkspace) and T0152 (a live assistant session as the install\noracle): here the attacker owns the agent fleet outright.\nObserved in CloudSEK's analysis of an exposed operator staging host\nthat revealed an autonomous crypto-theft fleet.\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 13,
+    "amount": 14,
     "tooltip": "Execution",
     "tacticid": "TA04"
   },
@@ -989,7 +1002,7 @@
         ],
         "url": "techniques/T0176.html",
         "description": "Attackers disable or misconfigure security controls so that later activity is\nnot observed or blocked. In software supply chains this is more often a\ncomplete disablement than a subtle misconfiguration: turning off a GitHub\nAction required-review check, uninstalling an endpoint agent on a build\nrunner, skipping a signing gate, or emptying a security-group rule.\nMisconfiguration (over-permissive logging, broken audit settings) remains\nin scope as the quieter variant of the same Defense Evasion technique.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       },
       {
         "id": "T0182",
@@ -1147,7 +1160,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 97
+        "incidentCount": 98
       },
       {
         "id": "T0185",
@@ -1422,7 +1435,7 @@
         ],
         "url": "techniques/T0200.html",
         "description": "After a supply-chain foothold is established, the attacker steals proprietary\ndata \u2014 source code, designs, internal documents, customer lists, or trade secrets.\nThis is often the realized value of a compromise for espionage-motivated actors\nand is the Impact-column outcome that earlier OSC&R tactics were missing.\nDistinct from a generic secret leak: the objective is the organization's\nintellectual property, not only credentials.\n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0201",

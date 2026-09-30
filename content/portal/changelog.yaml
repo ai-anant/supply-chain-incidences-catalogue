@@ -1,4 +1,39 @@
 entries:
+- date: '2026-09-30'
+  id: cloudsek-agent-fleet
+  title: Autonomous AI-agent crypto-theft fleet added (AS293, T0213)
+  items:
+  - 'AS293 CloudSEK AI-Agent-Driven Offensive Operation (19 Aug): an exposed operator
+    staging host serving the full working home folder (21,442 directories, 142,262
+    files) revealed two campaigns driven by an autonomous AI-agent fleet — Claude
+    Code, Codex, and open-source Hermes and pi agents in full-auto mode with every
+    safety approval disabled, tasked and monitored entirely over Telegram. Campaign
+    1: internet-wide opportunistic exploitation (12,048 compromise records, 8,996
+    sites, fastjson2 deserialization RCE kit, FOFA-corpus recon). Campaign 2: targeted
+    crypto/DeFi theft (clone sites of a DeFi codebase — the one legitimate unmodified
+    site returned 403 and leaked nothing; 2,250 real EVM/Solana wallet addresses with
+    derivation paths; live paid Helius/QuickNode RPC keys extracted from client-side
+    bundles and confirmed working in production). Platforms ai-agents/windows/linux;
+    new technique T0213 (Orchestrate AI-agent fleet as the intrusion workforce) added
+    with technique-origin entry — distinct from T0210 (poisoned agent config) and
+    T0152 (hijacked live session). Deserialization RCE and blockchain C2 recorded
+    as gaps, not force-mapped.'
+  - 'Re-walked every track:true source. Everything else this window was already mapped
+    or is defensive/product content: SafeDep Jev/Gryph agent-detection and Mini Shai-Hulud
+    reinfection on AS197, sckit/MemTensor on AS39, OpenAI-agents RubyDoc proxy on
+    AS37; ReversingLabs npm/Twilio campaign on AS38, Claude Code Security/agentic-permissioning/
+    AI-cyber-spending essays; Checkmarx btree on AS25, JSX-to-SVG/React2Shell2 CVE
+    product posts; OpenSourceMalware WeaselBiscuit on AS32, PolinRider A/B testing
+    on AS35, show episodes; Morphisec polymorphic/fortibleed/signed-sealed essays
+    and product posts; Wiz Artifactory on AS190, AWS sign-up/LiteLLM Off Guard/agent-intent
+    engine and honeypot product/research; Google Threat Intelligence topics feed (ShinyHunters
+    Oracle PeopleSoft/PeopleSoft war, GTIG AI tracker, UNC7005/UNC5976 phishing) is
+    credential/endpoint activity, not software-supply-chain attacks; GitHub changelog
+    platform features (proof-of-presence, stage-only npm tokens, workflow execution
+    protections, credential inventory exports); CISA KEV catalog adds and token-protection
+    publications; Sansec ClickFix clipboard hijacker (endpoint, same class as AS289/AS194);
+    Rust and RubyGems blog items (Cargo CVE advisories, May spam-publishing campaign
+    update already on AS37); CrowdStrike ClickFix explainer and SafeMind product posts.'
 - date: '2026-09-29'
   id: virtualizor-bgp-hijack
   title: Virtualizor BGP-hijack update attack and Microsoft counterfeit installers added (AS291, AS292)

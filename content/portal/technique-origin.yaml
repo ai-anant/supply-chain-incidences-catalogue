@@ -976,3 +976,13 @@ techniques:
     sources:
     - https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/
     - https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/
+  T0213:
+    summary: Orchestrate AI-agent fleet as the intrusion workforce
+    tactic: Execution
+    kind: incident
+    note: This fork, from CloudSEK's analysis of an exposed operator staging host
+      revealing an autonomous AI-agent crypto-theft fleet (Claude Code, Codex,
+      Hermes, pi agents in full-auto, tasked over Telegram with every safety
+      approval disabled).
+    sources:
+    - https://www.cloudsek.com/blog/ai-agent-driven-offensive-operation-crypto-wallet-credential-compromise

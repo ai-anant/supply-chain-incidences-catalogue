@@ -1,0 +1,43 @@
+id: T0213
+type: Technique
+
+tactic: Execution
+
+realm:
+  - AI Posture
+  - Code Security
+  - SCM Posture
+
+summary: Orchestrate AI-agent fleet as the intrusion workforce
+
+description: |
+  The attacker drives multiple AI coding agents (Claude Code, Codex,
+  OpenClaw forks, Hermes, pi, and similar) in full-auto mode with every
+  safety approval disabled, tasking and monitoring them over a messaging
+  channel such as Telegram. The agents run the intrusion lifecycle
+  unattended — reconnaissance, exploitation, credential theft, wallet
+  and session collection — and feed results back to the operator, who
+  never touches a shell on the victim. The agent runtime is the
+  execution vector; the human retains only tasking and monetization.
+  Distinct from T0210 (poisoning an existing agent's config or
+  workspace) and T0152 (a live assistant session as the install
+  oracle): here the attacker owns the agent fleet outright.
+  Observed in CloudSEK's analysis of an exposed operator staging host
+  that revealed an autonomous crypto-theft fleet.
+
+mitigations:
+  - M1450
+  - M1110
+  - M1120
+  - M1550
+
+detections:
+  - D1510
+  - D1590
+
+references:
+  - https://www.cloudsek.com/blog/ai-agent-driven-offensive-operation-crypto-wallet-credential-compromise
+
+metadata:
+  version: 0.1
+  state: draft
