@@ -136,6 +136,16 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .meta { color: var(--muted); font-size: 0.9rem; }
 .card { background: var(--panel); border: 1px solid var(--line); padding: 1rem 1.1rem; margin: 0.8rem 0; }
 .card h3 { margin-top: 0; }
+.plat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr)); gap: 0.75rem; margin-top: 1.2rem; }
+@media (max-width: 36rem) {
+  .plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.plat-box { display: flex; flex-direction: column; justify-content: space-between; min-height: 6.4rem;
+  background: var(--panel); border: 1px solid var(--line); padding: 0.85rem 0.95rem; color: inherit; }
+.plat-box:hover { border-color: var(--copper); text-decoration: none; }
+.plat-box h3 { margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.25; color: var(--ink); }
+.plat-box .n { display: block; font-size: 1.35rem; font-weight: 650; color: var(--copper); line-height: 1.1; }
+.plat-box .lbl { color: var(--muted); font-size: 0.75rem; }
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;

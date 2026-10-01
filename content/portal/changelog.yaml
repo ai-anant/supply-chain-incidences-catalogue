@@ -1,5 +1,12 @@
 entries:
 - date: '2026-10-01'
+  id: platform-boxes
+  title: Platform index is a responsive grid of boxes
+  items:
+  - '/platforms/ is no longer a stack of full-width cards. Each platform is a box
+    with its incident count. The grid wraps from one column on a phone to as many
+    as fit.'
+- date: '2026-10-01'
   id: drop-naked-counts
   title: Homepage no longer shows mitigation, detection, or platform counts
   items:

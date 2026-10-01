@@ -289,6 +289,16 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .meta { color: var(--muted); font-size: 0.9rem; }
 .card { background: var(--panel); border: 1px solid var(--line); padding: 1rem 1.1rem; margin: 0.8rem 0; }
 .card h3 { margin-top: 0; }
+.plat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr)); gap: 0.75rem; margin-top: 1.2rem; }
+@media (max-width: 36rem) {
+  .plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.plat-box { display: flex; flex-direction: column; justify-content: space-between; min-height: 6.4rem;
+  background: var(--panel); border: 1px solid var(--line); padding: 0.85rem 0.95rem; color: inherit; }
+.plat-box:hover { border-color: var(--copper); text-decoration: none; }
+.plat-box h3 { margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.25; color: var(--ink); }
+.plat-box .n { display: block; font-size: 1.35rem; font-weight: 650; color: var(--copper); line-height: 1.1; }
+.plat-box .lbl { color: var(--muted); font-size: 0.75rem; }
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;
@@ -818,17 +828,16 @@ def build(dest):
     for p in used_plats:
         items = by_plat[p]
         agg_cards.append(
-            f'<a class="card" href="{html.escape(p)}.html" style="display:block">'
+            f'<a class="plat-box" href="{html.escape(p)}.html">'
             f'<h3>{html.escape(plat_labels.get(p, p))}</h3>'
-            f'<p class="muted"><b>{len(items)}</b> incidents</p></a>'
+            f'<span><span class="n">{len(items)}</span> <span class="lbl">incidents</span></span></a>'
         )
     plat_index = f"""
     <h1>Incidents by platform</h1>
-    <p class="lede">Group aggregates — open a platform to see every mapped incident that hit it
-    (npm, PyPI, GitHub Actions, Terraform, and the rest).</p>
-    {''.join(agg_cards)}
+    <p class="lede">Open a platform to see every mapped incident that hit it.</p>
+    <div class="plat-grid">{''.join(agg_cards)}</div>
     """
-    write(os.path.join(dest, "platforms", "index.html"), page("Platforms", plat_index, "../", "OSC&amp;R / Platforms"))
+    write(os.path.join(dest, "platforms", "index.html"), page("Platforms", plat_index, "../", "SCIC / Platforms"))
     for p in used_plats:
         items = by_plat[p]
         other = "".join(
@@ -847,7 +856,7 @@ def build(dest):
         """
         write(
             os.path.join(dest, "platforms", f"{p}.html"),
-            page(plat_labels.get(p, p), body, "../", f'OSC&amp;R / <a href="index.html">Platforms</a> / {html.escape(plat_labels.get(p, p))}'),
+            page(plat_labels.get(p, p), body, "../", f'SCIC / <a href="index.html">Platforms</a> / {html.escape(plat_labels.get(p, p))}'),
         )
 
     for s in stories.values():
