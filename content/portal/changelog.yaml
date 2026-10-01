@@ -1,5 +1,12 @@
 entries:
 - date: '2026-10-01'
+  id: drop-naked-counts
+  title: Homepage no longer shows mitigation, detection, or platform counts
+  items:
+  - 'Those numbers had no page that explained the items. Mitigations and detections
+    are IDs on technique pages only. The platform chart and /platforms/ lists stay;
+    the bare count does not.'
+- date: '2026-10-01'
   id: no-oscar-callouts
   title: Stop calling OSC&R out in site chrome
   items:

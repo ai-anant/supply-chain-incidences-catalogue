@@ -501,9 +501,6 @@ def build(dest):
       <div class="stat"><b>{n_tech}</b> techniques</div>
       <div class="stat"><b>{n_observed}</b> observed in incidents</div>
       <div class="stat"><b>{n_identified}</b> identified from research</div>
-      <div class="stat"><b>{n_mit}</b> mitigations</div>
-      <div class="stat"><b>{n_det}</b> detections</div>
-      <div class="stat"><b>{len(per_plat)}</b> platforms</div>
     </div>
 
     <div class="dash">
@@ -565,8 +562,6 @@ def build(dest):
     Techniques × tactics, heat-mapped by how many incidents use each technique.</p>
     <div class="stats">
       <div class="stat"><b>{n_tech}</b> techniques</div>
-      <div class="stat"><b>{n_mit}</b> mitigations</div>
-      <div class="stat"><b>{n_det}</b> detections</div>
       <div class="stat"><b>{n_story}</b> mapped incidents</div>
     </div>
     <p><input class="search" id="q" placeholder="Filter techniques… empty columns hide"></p>
