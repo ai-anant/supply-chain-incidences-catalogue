@@ -1,6 +1,6 @@
-# Contributing to this OSC&R fork
+# Contributing to the Supply Chain Incidences Catalogue
 
-This repository is an **AI-maintained continuation** of [pbom-dev/OSCAR](https://github.com/pbom-dev/OSCAR). Original authors retain credit; see [NOTICE](NOTICE) and [about](https://ai-anant.github.io/OSCAR/about.html).
+This catalogue is AI-generated. OSC&R is the technique framework inside it, not the whole project. Original OSC&R authors retain credit for that corpus; see [NOTICE](NOTICE).
 
 ## How to contribute
 

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0205 Compromise third-party CDN or hosted web asset · OSC&amp;R</title>
+<title>T0205 Compromise third-party CDN or hosted web asset · SCIC</title>
 <link rel="stylesheet" href="../assets/style.css">
 
 </head>
 <body>
 
     <header class="top">
-      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>. OSC&amp;R is one part of it — the technique framework — not the whole project.</div>
       <div class="bar">
         <a class="brand" href="../index.html">SCIC</a>
         <nav>
@@ -36,7 +36,7 @@
         <h1>Compromise third-party CDN or hosted web asset</h1>
         <div class="chips"><span class="chip">Open Source Security</span> <span class="chip">Artifact Security</span> <span class="chip">Cloud Security</span></div>
         <p>Instead of poisoning a package registry or source repository, the attacker<br>takes over a widely embedded CDN hostname, tag manager, or hosted JavaScript<br>asset (domain expiry, registrar hijack, or operator acquisition) and serves<br>malicious content to every site that loads it. Polyfill.io (2024) is the<br>reference case: a trusted script URL became a drive-by supply-chain implant<br>for hundreds of thousands of properties. OSC&amp;R previously had no technique<br>that named this web-asset supply chain.</p>
-        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This fork, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33: abandoned S3 buckets still referenced by software (Shudrak).</p><ul class='refs'><li><a href="https://sansec.io/research/polyfill-supply-chain-attack" rel="noopener">https://sansec.io/research/polyfill-supply-chain-attack</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack" rel="noopener">https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack</a></li><li><a href="https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312" rel="noopener">https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33: abandoned S3 buckets still referenced by software (Shudrak).</p><ul class='refs'><li><a href="https://sansec.io/research/polyfill-supply-chain-attack" rel="noopener">https://sansec.io/research/polyfill-supply-chain-attack</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack" rel="noopener">https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack</a></li><li><a href="https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312" rel="noopener">https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312</a></li></ul>
         
         <h2>Mitigations</h2>
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li></ul>
@@ -49,10 +49,11 @@
 </main>
 
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="../about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
     </footer>
 </body>
 </html>

@@ -1,8 +1,8 @@
-OSC&R (Open Software Supply Chain Attack Reference)
-====================================================
+Supply Chain Incidences Catalogue
+==================================
 
-This product includes software and content originally developed by the
-PBOM / OSC&R project:
+This catalogue includes the OSC&R technique corpus originally developed
+by the PBOM / OSC&R project:
 
     https://github.com/pbom-dev/OSCAR
 
@@ -10,9 +10,9 @@ Original contributors include (among others) rubtoa, maxiozer,
 secvladimir, NaorPenso, vaq130, and 6mile. See the Git history of
 pbom-dev/OSCAR for the full author list.
 
-This fork (https://github.com/ai-anant/OSCAR) is an AI-maintained
-continuation of that work. It is not the original pbom-dev project.
-Attribution to the original authors is required; claiming original
-authorship of their content is not permitted.
+OSC&R is one part of this catalogue. The catalogue is not a continuation
+of the OSCAR project, and it is not an official pbom-dev release.
+Attribution to the original authors is required for the OSC&R content;
+claiming original authorship of that content is not permitted.
 
 Licensed under the Apache License, Version 2.0. See LICENSE.

@@ -858,7 +858,7 @@ techniques:
     summary: Proprietary data stolen
     tactic: Impact
     kind: original
-    note: 'This fork, from upstream issue #84 (Impact: proprietary data stolen).'
+    note: 'This catalogue, from upstream issue #84 (Impact: proprietary data stolen).'
     sources:
     - https://attack.mitre.org/tactics/TA0010/
     - https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a
@@ -867,7 +867,7 @@ techniques:
     summary: Customers compromised
     tactic: Impact
     kind: original
-    note: 'This fork, from upstream issue #84 (Impact: customers compromised).'
+    note: 'This catalogue, from upstream issue #84 (Impact: customers compromised).'
     sources:
     - https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a
     - https://www.mandiant.com/solarwinds-break-resource-center
@@ -876,7 +876,7 @@ techniques:
     summary: Inadequate CI/CD workflow permissions
     tactic: Persistence
     kind: guidance
-    note: 'This fork, from upstream issue #42 and OWASP CICD-SEC-5 (pipeline-based access controls).'
+    note: 'This catalogue, from upstream issue #42 and OWASP CICD-SEC-5 (pipeline-based access controls).'
     sources:
     - https://docs.github.com/en/actions/security-guides/automatic-token-authentication
     - https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066
@@ -885,7 +885,7 @@ techniques:
     summary: Discover localized out-of-band deployments
     tactic: Reconnaissance
     kind: guidance
-    note: 'This fork, from upstream issue #23; cited OWASP Top 10 CI/CD.'
+    note: 'This catalogue, from upstream issue #23; cited OWASP Top 10 CI/CD.'
     sources:
     - https://owasp.org/www-project-top-10-ci-cd-security-risks/
     - https://github.com/pbom-dev/OSCAR/issues/23
@@ -893,7 +893,7 @@ techniques:
     summary: Compromise third-party CDN or hosted web asset
     tactic: Initial Access
     kind: incident
-    note: 'This fork, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33:
+    note: 'This catalogue, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33:
       abandoned S3 buckets still referenced by software (Shudrak).'
     sources:
     - https://sansec.io/research/polyfill-supply-chain-attack
@@ -903,7 +903,7 @@ techniques:
     summary: Forge or omit build provenance
     tactic: Defense Evasion
     kind: guidance
-    note: This fork, from NIST SSDF PS.3.2 and SLSA build threats (forge/omit provenance).
+    note: This catalogue, from NIST SSDF PS.3.2 and SLSA build threats (forge/omit provenance).
     sources:
     - https://slsa.dev/spec/v1.0/threats
     - https://csrc.nist.gov/pubs/sp/800/218/final
@@ -962,7 +962,7 @@ techniques:
     summary: Abuse registry-adjacent builders as remote execution
     tactic: Execution
     kind: incident
-    note: This fork, from GemStuffer / RubyDoc.info YARD --load (SafeDep, RubyHack, RubyGems).
+    note: This catalogue, from GemStuffer / RubyDoc.info YARD --load (SafeDep, RubyHack, RubyGems).
     sources:
     - https://safedep.io/openai-agents-rubygems-attack
     - https://www.rubyhack.ai/
@@ -971,7 +971,7 @@ techniques:
     summary: Subvert network routing to intercept update traffic
     tactic: Initial Access
     kind: incident
-    note: This fork, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer
+    note: This catalogue, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer
       write-up; Softaculous confirmed and now signs all packages).
     sources:
     - https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/
@@ -980,7 +980,7 @@ techniques:
     summary: Orchestrate AI-agent fleet as the intrusion workforce
     tactic: Execution
     kind: incident
-    note: This fork, from CloudSEK's analysis of an exposed operator staging host
+    note: This catalogue, from CloudSEK's analysis of an exposed operator staging host
       revealing an autonomous AI-agent crypto-theft fleet (Claude Code, Codex,
       Hermes, pi agents in full-auto, tasked over Telegram with every safety
       approval disabled).

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0211 Abuse registry-adjacent builders as remote execution · OSC&amp;R</title>
+<title>T0211 Abuse registry-adjacent builders as remote execution · SCIC</title>
 <link rel="stylesheet" href="../assets/style.css">
 
 </head>
 <body>
 
     <header class="top">
-      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>. OSC&amp;R is one part of it — the technique framework — not the whole project.</div>
       <div class="bar">
         <a class="brand" href="../index.html">SCIC</a>
         <nav>
@@ -36,7 +36,7 @@
         <h1>Abuse registry-adjacent builders as remote execution</h1>
         <div class="chips"><span class="chip">Open Source Security</span> <span class="chip">CI/CD Posture</span> <span class="chip">Artifact Security</span></div>
         <p>The attacker publishes a package whose files are executed not by a<br>downstream installer, but by a registry-adjacent worker that trusts<br>package contents: documentation builders (YARD <code>--load</code> on RubyDoc.info),<br>preview environments, webhook handlers, or similar jobs that treat<br><code>.yardopts</code>, <code>setup.py</code>, Makefiles, or lifecycle scripts as commands.<br>The publisher never needs a victim to <code>gem install</code> / <code>npm install</code>.<br>Distinct from T0151 (install hooks on the consumer host) and T0166<br>(poisoning the victim project&#x27;s own CI). Observed in the 2026 GemStuffer<br>RubyGems campaign reconstructed by RubyHack, SafeDep, and JFrog.</p>
-        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This fork, from GemStuffer / RubyDoc.info YARD --load (SafeDep, RubyHack, RubyGems).</p><ul class='refs'><li><a href="https://safedep.io/openai-agents-rubygems-attack" rel="noopener">https://safedep.io/openai-agents-rubygems-attack</a></li><li><a href="https://www.rubyhack.ai/" rel="noopener">https://www.rubyhack.ai/</a></li><li><a href="https://blog.rubygems.org/2026/09/11/update-may-spam-publishing-campaign.html" rel="noopener">https://blog.rubygems.org/2026/09/11/update-may-spam-publishing-campaign.html</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from GemStuffer / RubyDoc.info YARD --load (SafeDep, RubyHack, RubyGems).</p><ul class='refs'><li><a href="https://safedep.io/openai-agents-rubygems-attack" rel="noopener">https://safedep.io/openai-agents-rubygems-attack</a></li><li><a href="https://www.rubyhack.ai/" rel="noopener">https://www.rubyhack.ai/</a></li><li><a href="https://blog.rubygems.org/2026/09/11/update-may-spam-publishing-campaign.html" rel="noopener">https://blog.rubygems.org/2026/09/11/update-may-spam-publishing-campaign.html</a></li></ul>
         
         <h2>Mitigations</h2>
         <ul><li><span class="id">M1500</span> Verify third-party artifacts and open-source libraries</li><li><span class="id">M1660</span> Isolate pipeline for unreviewed code</li><li><span class="id">M1720</span> Implement regular patches and updates</li></ul>
@@ -49,10 +49,11 @@
 </main>
 
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="../about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
     </footer>
 </body>
 </html>

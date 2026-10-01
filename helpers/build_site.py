@@ -47,8 +47,8 @@ TACTIC_IDS = {
 }
 
 BANNER = (
-    "This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, "
-    "preserving the original PBOM / pbom-dev work and carrying the project forward."
+    "This catalogue is <strong>AI-generated</strong>. "
+    "OSC&amp;R is one part of it — the technique framework — not the whole project."
 )
 
 
@@ -130,17 +130,18 @@ def page(title, body, root_prefix, crumb, extra_head=""):
     </header>"""
     footer = f"""
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="{root_prefix}about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="{root_prefix}about.html">About</a>.</p>
     </footer>"""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} · OSC&amp;R</title>
+<title>{html.escape(title)} · SCIC</title>
 <link rel="stylesheet" href="{root_prefix}assets/style.css">
 {extra_head}
 </head>
@@ -497,13 +498,11 @@ def build(dest):
 
     dash = f"""
     <h1>Supply Chain Incidences Catalogue</h1>
-    <p class="lede">An AI-maintained continuation of the Open Software Supply Chain Attack
-    Reference (OSC&R): {n_story} documented incidents, {n_tech} techniques, and the
-    ecosystems they hit — analogous to MITRE ATT&CK, scoped to source, build, artifacts,
-    and the CI/CD path into production.</p>
-    <div class="notice">{BANNER} Original project:
-    <a href="https://github.com/pbom-dev/OSCAR">github.com/pbom-dev/OSCAR</a>.
-    This catalogue is published from
+    <p class="lede">An AI-generated catalogue of software supply-chain incidents:
+    {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.
+    OSC&amp;R is the technique framework inside the catalogue. Incidents, platforms,
+    conference talks, and sources sit beside it.</p>
+    <div class="notice">{BANNER} Published from
     <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a>.</div>
     <div class="stats">
       <div class="stat"><b>{n_story}</b> incidents</div>
@@ -570,9 +569,8 @@ def build(dest):
 
     matrix_body = f"""
     <h1>OSC&R Matrix</h1>
-    <p class="lede">Open Software Supply Chain Attack Reference — techniques × tactics.
-    The matrix is heat-mapped by how many incidents in this catalogue map to each technique.</p>
-    <div class="notice">{BANNER}</div>
+    <p class="lede">The technique framework inside this catalogue — techniques × tactics,
+    heat-mapped by how many incidents map to each technique. OSC&amp;R is one part of the catalogue.</p>
     <div class="stats">
       <div class="stat"><b>{n_tech}</b> techniques</div>
       <div class="stat"><b>{n_mit}</b> mitigations</div>
@@ -948,12 +946,12 @@ def build(dest):
             f'<h3>{html.escape(e.get("title") or "")}</h3><ul>{lis}</ul></div>'
         )
     changelog_body = f"""
-    <h1>Portal changelog</h1>
-    <p class="lede">What this fork adds to the OSC&amp;R portal — public, dated, and meant to be
-    skimmed. Git history remains the audit trail; this page is the human one.</p>
+    <h1>Changelog</h1>
+    <p class="lede">What changed in this catalogue. Dated, meant to be skimmed.
+    Git history remains the audit trail.</p>
     {''.join(cl_blocks) or '<p class="muted">No entries yet.</p>'}
     """
-    write(os.path.join(dest, "changelog.html"), page("Changelog", changelog_body, "", "OSC&amp;R / Changelog"))
+    write(os.path.join(dest, "changelog.html"), page("Changelog", changelog_body, "", "SCIC / Changelog"))
 
     origin_groups = {}
     for tid, o in origins.items():
@@ -987,7 +985,7 @@ def build(dest):
     ATT&amp;CK, OWASP, SLSA, or research analog that justifies them.</p>
     {''.join(og_html)}
     """
-    write(os.path.join(dest, "origins.html"), page("Origins", origins_body, "", "OSC&amp;R / Origins"))
+    write(os.path.join(dest, "origins.html"), page("Origins", origins_body, "", "SCIC / Origins"))
 
     src_doc = {}
     src_path = os.path.join(portal, "sources.yaml")
@@ -1013,7 +1011,7 @@ def build(dest):
     <h2>Guidance baselines (not polled daily)</h2>
     {''.join(reference) or '<p class="muted">None.</p>'}
     """
-    write(os.path.join(dest, "sources.html"), page("Sources", sources_body, "", "OSC&amp;R / Sources"))
+    write(os.path.join(dest, "sources.html"), page("Sources", sources_body, "", "SCIC / Sources"))
 
     talks_doc = {}
     talks_path = os.path.join(portal, "talks.yaml")
@@ -1048,7 +1046,7 @@ def build(dest):
     ID fits — a wrong mapping is worse than a gap.</p>
     {''.join(talk_cards) or '<p class="muted">No talks yet.</p>'}
     """
-    write(os.path.join(dest, "talks.html"), page("Talks", talks_body, "", "OSC&amp;R / Talks"))
+    write(os.path.join(dest, "talks.html"), page("Talks", talks_body, "", "SCIC / Talks"))
 
     unused_n = sum(1 for tid in techs if usage[tid] == 0)
     doc_blocks = []
@@ -1091,40 +1089,33 @@ def build(dest):
     <h2>Techniques added from this review</h2>
     <ul>{new_lis or '<li class="muted">None</li>'}</ul>
     """
-    write(os.path.join(dest, "guidance.html"), page("Guidance", guidance_body, "", "OSC&amp;R / Guidance"))
+    write(os.path.join(dest, "guidance.html"), page("Guidance", guidance_body, "", "SCIC / Guidance"))
 
     about = f"""
-    <h1>About, attribution, and stewardship</h1>
-    <div class="notice"><strong>AI-maintained project.</strong> This repository and website
-    are a continuation of OSC&amp;R, maintained with AI assistance, so the framework does not
-    stall after the original pbom.dev site went dark.</div>
-    <h2>What OSC&amp;R is</h2>
-    <p>OSC&amp;R (Open Software Supply Chain Attack Reference) catalogues how adversaries
-    reconnoiter, infiltrate, persist in, and profit from software supply chains — source control,
-    CI/CD, artifacts, and the path into customer environments.</p>
-    <h2>Original work</h2>
-    <p>The framework, YAML content model, matrix, attack stories, and much of the technique
-    corpus were created by the <a href="https://github.com/pbom-dev/OSCAR">pbom-dev/OSCAR</a>
-    project under the Apache License 2.0. Principal original contributors include
-    <strong>rubtoa</strong>, <strong>maxiozer</strong>, <strong>secvladimir</strong>,
-    <strong>NaorPenso</strong>, <strong>vaq130</strong>, and <strong>6mile</strong>,
-    along with other GitHub contributors. That authorship stands. This fork does not claim it.</p>
-    <p>The original public site at pbom.dev is no longer the OSC&amp;R project. GitHub Pages
-    for the upstream repo only rendered the README. This fork publishes the full matrix,
-    technique pages, and incident mappings.</p>
-    <h2>This fork</h2>
+    <h1>About</h1>
+    <div class="notice"><strong>AI-generated.</strong> This is the Supply Chain Incidences Catalogue.
+    It is not a continuation of OSCAR. OSC&amp;R is one part of it.</div>
+    <h2>What this catalogue is</h2>
+    <p>Incidents, the platforms they hit, conference talks, the sources those came from,
+    and a technique framework those incidents are mapped onto.</p>
+    <h2>OSC&amp;R, one part</h2>
+    <p>OSC&amp;R (Open Software Supply Chain Attack Reference) is the technique matrix:
+    how adversaries reconnoiter, infiltrate, persist in, and profit from software supply chains.
+    The framework, the YAML content model, and the original technique corpus were created by
+    <a href="https://github.com/pbom-dev/OSCAR">pbom-dev/OSCAR</a> under the Apache License 2.0.
+    Principal original contributors include <strong>rubtoa</strong>, <strong>maxiozer</strong>,
+    <strong>secvladimir</strong>, <strong>NaorPenso</strong>, <strong>vaq130</strong>, and
+    <strong>6mile</strong>. That authorship stands for the OSC&amp;R corpus. This catalogue does not claim it.</p>
+    <h2>This catalogue</h2>
     <ul>
-      <li>Hosted at <a href="https://github.com/ai-anant/OSCAR">github.com/ai-anant/OSCAR</a></li>
-      <li>Website: <a href="https://ai-anant.github.io/OSCAR/">ai-anant.github.io/OSCAR</a></li>
-      <li>License: Apache-2.0 (unchanged)</li>
-      <li>NOTICE file records attribution required by the license</li>
+      <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>
+      <li>Site: <a href="https://ai-anant.github.io/supply-chain-incidences-catalogue/">ai-anant.github.io/supply-chain-incidences-catalogue</a></li>
+      <li>License: Apache-2.0, including for the OSC&amp;R corpus included here</li>
+      <li>NOTICE records the attribution the license requires</li>
     </ul>
-    <p>Content updates in this fork fold in unmerged upstream pull requests (typos, YAML
-    attribute names, HTML cleanup), open-issue fixes, new Impact / CI/CD techniques, a
-    content linter, and incident→technique mappings for cases the original stories did not cover.</p>
     <p class="muted">Generated {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}.</p>
     """
-    write(os.path.join(dest, "about.html"), page("About", about, "", "OSC&amp;R / About"))
+    write(os.path.join(dest, "about.html"), page("About", about, "", "SCIC / About"))
 
     print(
         f"Built site → {dest} ({n_tech} techniques, {n_story} incidents)"

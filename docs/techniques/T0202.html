@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0202 Inadequate CI/CD workflow permissions · OSC&amp;R</title>
+<title>T0202 Inadequate CI/CD workflow permissions · SCIC</title>
 <link rel="stylesheet" href="../assets/style.css">
 
 </head>
 <body>
 
     <header class="top">
-      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>. OSC&amp;R is one part of it — the technique framework — not the whole project.</div>
       <div class="bar">
         <a class="brand" href="../index.html">SCIC</a>
         <nav>
@@ -36,7 +36,7 @@
         <h1>Inadequate CI/CD workflow permissions</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span> <span class="chip">SCM Posture</span> <span class="chip">Secrets Hygiene</span></div>
         <p>Pipelines that grant overly broad tokens (for example GitHub Actions<br><code>GITHUB_TOKEN</code> with <code>contents: write</code>, <code>id-token: write</code>, or pull-request<br>jobs that can push to default branches) let an attacker persist after the<br>first poisoned workflow run. Persistence takes the form of a new workflow<br>file, a deploy key, a self-hosted runner registration, or a long-lived<br>cloud credential minted by the job. This is distinct from overprivileged<br>runners (T0132) and from creating an access token after account takeover<br>(T0165): the weakness is the workflow permission set itself.</p>
-        <h2>Where this idea came from</h2><p class="meta">Standard or guidance</p><p>This fork, from upstream issue #42 and OWASP CICD-SEC-5 (pipeline-based access controls).</p><ul class='refs'><li><a href="https://docs.github.com/en/actions/security-guides/automatic-token-authentication" rel="noopener">https://docs.github.com/en/actions/security-guides/automatic-token-authentication</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066" rel="noopener">https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066</a></li><li><a href="https://github.com/pbom-dev/OSCAR/issues/42" rel="noopener">https://github.com/pbom-dev/OSCAR/issues/42</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Standard or guidance</p><p>This catalogue, from upstream issue #42 and OWASP CICD-SEC-5 (pipeline-based access controls).</p><ul class='refs'><li><a href="https://docs.github.com/en/actions/security-guides/automatic-token-authentication" rel="noopener">https://docs.github.com/en/actions/security-guides/automatic-token-authentication</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066" rel="noopener">https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066</a></li><li><a href="https://github.com/pbom-dev/OSCAR/issues/42" rel="noopener">https://github.com/pbom-dev/OSCAR/issues/42</a></li></ul>
         
         <h2>Mitigations</h2>
         <ul><li><span class="id">M1220</span> Use only trusted third-party Github actions from reputable sources</li><li><span class="id">M1221</span> Review the Github action source code</li><li><span class="id">M1222</span> Limit the permissions granted to third-party Github actions</li><li><span class="id">M1120</span> Store credentials in vault</li></ul>
@@ -49,10 +49,11 @@
 </main>
 
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="../about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
     </footer>
 </body>
 </html>

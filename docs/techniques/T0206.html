@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0206 Forge or omit build provenance · OSC&amp;R</title>
+<title>T0206 Forge or omit build provenance · SCIC</title>
 <link rel="stylesheet" href="../assets/style.css">
 
 </head>
 <body>
 
     <header class="top">
-      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>. OSC&amp;R is one part of it — the technique framework — not the whole project.</div>
       <div class="bar">
         <a class="brand" href="../index.html">SCIC</a>
         <nav>
@@ -36,7 +36,7 @@
         <h1>Forge or omit build provenance</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span> <span class="chip">Artifact Security</span> <span class="chip">SCM Posture</span></div>
         <p>The attacker ships an artifact without truthful provenance — no SBOM, a<br>forged SLSA attestation, or a provenance document that names the wrong<br>source repo, builder, or commit. NIST SSDF PS.3.2 and SLSA Build L2+<br>exist so consumers can reject unofficial builds; forging or skipping that<br>paperwork is how a SolarWinds-style implant still looks like a legitimate<br>vendor release. Distinct from malicious code in the artifact (T0191): this<br>technique is about lying about *how* the artifact was produced.</p>
-        <h2>Where this idea came from</h2><p class="meta">Standard or guidance</p><p>This fork, from NIST SSDF PS.3.2 and SLSA build threats (forge/omit provenance).</p><ul class='refs'><li><a href="https://slsa.dev/spec/v1.0/threats" rel="noopener">https://slsa.dev/spec/v1.0/threats</a></li><li><a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener">https://csrc.nist.gov/pubs/sp/800/218/final</a></li><li><a href="https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form" rel="noopener">https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Standard or guidance</p><p>This catalogue, from NIST SSDF PS.3.2 and SLSA build threats (forge/omit provenance).</p><ul class='refs'><li><a href="https://slsa.dev/spec/v1.0/threats" rel="noopener">https://slsa.dev/spec/v1.0/threats</a></li><li><a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener">https://csrc.nist.gov/pubs/sp/800/218/final</a></li><li><a href="https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form" rel="noopener">https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form</a></li></ul>
         
         <h2>Mitigations</h2>
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li><li><span class="id">M1291</span> Verify package or container sources</li></ul>
@@ -49,10 +49,11 @@
 </main>
 
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="../about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
     </footer>
 </body>
 </html>

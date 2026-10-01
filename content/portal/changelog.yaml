@@ -1,4 +1,11 @@
 entries:
+- date: '2026-10-01'
+  id: not-an-oscar-continuation
+  title: Catalogue is not a continuation of OSCAR
+  items:
+  - 'Public copy no longer calls this project a continuation or fork of OSCAR. It stays
+    AI-generated. OSC&R remains the technique framework, one part of the catalogue.
+    Apache-2.0 attribution for that corpus stays in NOTICE and About.'
 - date: '2026-09-30'
   id: cloudsek-agent-fleet
   title: Autonomous AI-agent crypto-theft fleet added (AS293, T0213)
@@ -508,9 +515,10 @@ entries:
   - Mapped previously unused techniques onto those cases where the fit was honest.
 - date: 2026-09-21
   id: fork-launch
-  title: AI-maintained fork and first public site
+  title: First public site, including the OSC&R corpus
   items:
-  - Forked pbom-dev/OSCAR to ai-anant/OSCAR. Attribution retained (Apache-2.0, NOTICE).
+  - Started from the OSC&R corpus in pbom-dev/OSCAR. Attribution retained (Apache-2.0, NOTICE).
+    This catalogue is not a continuation of that project.
   - Published matrix, technique pages, and incident mappings on GitHub Pages.
   - Applied unmerged upstream PRs
   - Added T0200–T0203, T0205 and stories AS7–AS15.

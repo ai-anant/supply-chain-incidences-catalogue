@@ -13,8 +13,7 @@ Public portal changelog, guidance gap-fill, technique provenance.
 
 # v0.2.0 (2026-09-21)
 
-AI-maintained fork of pbom-dev/OSCAR. Website published at
-https://ai-anant.github.io/OSCAR/
+First public site, including the OSC&R corpus from pbom-dev/OSCAR.
 
 ## Features
 
@@ -32,7 +31,7 @@ https://ai-anant.github.io/OSCAR/
 
 ## Miscellaneous
 
-* NOTICE and README mark this as an AI-maintained continuation
+* NOTICE and README record OSC&R attribution. The catalogue is not a continuation of OSCAR.
 * CONTRIBUTING.md rewritten (issues #10, #12)
 
 # v0.0.1 (2023-02-11)

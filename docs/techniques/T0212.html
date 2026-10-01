@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0212 Subvert network routing to intercept update traffic · OSC&amp;R</title>
+<title>T0212 Subvert network routing to intercept update traffic · SCIC</title>
 <link rel="stylesheet" href="../assets/style.css">
 
 </head>
 <body>
 
     <header class="top">
-      <div class="ai-banner">This is an <strong>AI-maintained continuation</strong> of OSC&amp;R, preserving the original PBOM / pbom-dev work and carrying the project forward.</div>
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>. OSC&amp;R is one part of it — the technique framework — not the whole project.</div>
       <div class="bar">
         <a class="brand" href="../index.html">SCIC</a>
         <nav>
@@ -36,7 +36,7 @@
         <h1>Subvert network routing to intercept update traffic</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Infrastructure as code</span> <span class="chip">SCM Posture</span></div>
         <p>The attacker manipulates network routing — BGP route hijacking, DNS<br>hijacking, or ARP spoofing — so that traffic to a legitimate hostname<br>(a vendor update server, billing backend, package registry, or mirror)<br>is delivered to attacker-controlled servers instead. Consumers keep<br>talking to the correct hostname; only the path through the network<br>changes. Because the malicious server is not the vendor&#x27;s, the vendor<br>has no server-side logs of who was served, and hostname/origin-based<br>allowlists and TLS to a correctly-named host do not by themselves stop<br>the interception. Distinct from T0209 (compromising the registry or<br>CDN origin itself) and T0205 (compromising a third-party CDN or hosted<br>web asset): here the routing layer is subverted while the destination<br>infrastructure stays untouched.</p>
-        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This fork, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer write-up; Softaculous confirmed and now signs all packages).</p><ul class='refs'><li><a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" rel="noopener">https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/</a></li><li><a href="https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/" rel="noopener">https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from the Virtualizor/Softaculous BGP route hijack (BleepingComputer write-up; Softaculous confirmed and now signs all packages).</p><ul class='refs'><li><a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" rel="noopener">https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/</a></li><li><a href="https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/" rel="noopener">https://www.softaculous.com/blog/security-incident-bgp-hijacking-update/</a></li></ul>
         
         <h2>Mitigations</h2>
         <p class='muted'>None linked yet.</p>
@@ -49,10 +49,11 @@
 </main>
 
     <footer>
-      <p>The Open Software Supply Chain Attack Reference (OSC&R) was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a> and its original contributors.
-      This catalogue is AI-maintained to continue that legacy. Apache-2.0. See
-      <a href="../about.html">About & attribution</a>.</p>
+      <p>AI-generated catalogue of software supply-chain incidents.
+      OSC&amp;R, the technique framework inside it, was created by
+      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
+      This project is not a continuation of OSCAR. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
     </footer>
 </body>
 </html>
