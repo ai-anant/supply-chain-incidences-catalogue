@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS78</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS78</p>
 
         <p class="meta">AS78 · 2026-07</p>
         <h1>@velora-dex/sdk 9.4.1 build-pipeline backdoor</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>OpenSourceMalware found only @velora-dex/sdk 9.4.1 (Velora / formerly<br>ParaSwap) carrying a base64 child_process.exec in dist/index.js that<br>curls http://89.36.224.5/troubleshoot/mac/install.sh and runs it under<br>nohup. Dev tags 9.4.1-dev.1/2 and every other 9.x release were clean,<br>which OSM reads as a surgical build/release compromise, not a git<br>takeover. Payload runs on import. npm removed 9.4.1 after GitHub issue<br>233; 9.4.2 is clean.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0206.html">T0206</a> Forge or omit build provenance</li><li><a href="../techniques/T0190.html">T0190</a> Weak encryption</li></ul>
         <h2><span class="stage">supply-chain</span> single-version dist implant</h2><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Only the 9.4.1 tarball; source/dev builds clean.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Runs on import via child_process.exec.</p></div><div class="card"><p class="meta"><a href="../techniques/T0206.html">T0206</a> · Defense Evasion · Forge or omit build provenance</p><p>Implant appeared in the published dist, not matching dev tags.</p></div><div class="card"><p class="meta"><a href="../techniques/T0190.html">T0190</a> · Collection · Weak encryption</p><p>C2 over unencrypted HTTP; base64 is not encryption.</p></div>
         

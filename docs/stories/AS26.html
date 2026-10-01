@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS26</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS26</p>
 
         <p class="meta">AS26 · 2026-09</p>
         <h1>PhantomRaven hidden HTTP npm dependencies</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>CrowdStrike described PhantomRaven, an LLM-generated npm info-stealer.<br>The typosquat package looks like Hello-world; the malware is an HTTP<br>remote dependency that npm fetches at install and that the npm web UI<br>does not show. A preinstall hook then runs and harvests GitHub Actions,<br>GitLab, Jenkins, and CircleCI environment variables. PyPI&#x27;s similar-name<br>policy stopped a Python twin; npm did not.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0193.html">T0193</a> Sensitive information in environment variables</li></ul>
         <h2><span class="stage">supply-chain</span> npm typosquat + remote HTTP dependency</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>The visible package is a typosquat; it is not where the payload lives.</p></div><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>Operator accounts published the typosquats and remote-dep hosts.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>preinstall runs after npm fetches the hidden HTTP dependency.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>Harvests CI env vars across GitHub Actions, GitLab, Jenkins, CircleCI.</p></div><div class="card"><p class="meta"><a href="../techniques/T0193.html">T0193</a> · Collection · Sensitive information in environment variables</p><p>CI secrets in the job environment were the collection target.</p></div>
         <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Hidden HTTP remote dependencies that the registry UI does not display are only implied by T0151.</li></ul></div>

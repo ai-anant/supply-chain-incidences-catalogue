@@ -54,7 +54,7 @@ attacks:
           Reported objective was theft of cryptocurrency / wallet material.
 
 gaps:
-  - Phishing of high-degree npm maintainers is an initial-access path OSC&R still folds into T0113; a dedicated "registry phishing" procedure would help.
+  - Phishing of high-degree npm maintainers is an initial-access path This catalogue still folds into T0113; a dedicated "registry phishing" procedure would help.
 
 links:
   - https://github.com/debug-js/debug/issues/1005

@@ -299,6 +299,11 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .plat-box h3 { margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.25; color: var(--ink); }
 .plat-box .n { display: block; font-size: 1.35rem; font-weight: 650; color: var(--copper); line-height: 1.1; }
 .plat-box .lbl { color: var(--muted); font-size: 0.75rem; }
+.talk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0.75rem; margin-top: 1.2rem; }
+.talk-box { min-height: 0; justify-content: flex-start; gap: 0.35rem; }
+.talk-box h3 { font-size: 0.95rem; }
+.talk-box h3 a { color: var(--copper); }
+.talk-box p { margin: 0.15rem 0; font-size: 0.82rem; }
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;
@@ -334,7 +339,7 @@ def build(dest):
         "guidance": "Standard or guidance",
         "analog": "ATT&CK / AppSec analog",
         "article": "Security article",
-        "original": "Original OSC&R corpus",
+        "original": "Original corpus",
     }
     plat_path = os.path.join(ROOT, "content", "portal", "platforms.yaml")
     plat_labels = {}
@@ -631,7 +636,7 @@ def build(dest):
     <p class="lede">{n_tech} techniques across {len(TACTIC_ORDER)} tactics.</p>
     <div class="list">{''.join(rows)}</div>
     """
-    write(os.path.join(dest, "techniques", "index.html"), page("Techniques", t_index, "../", "OSC&amp;R / Techniques"))
+    write(os.path.join(dest, "techniques", "index.html"), page("Techniques", t_index, "../", "SCIC / Techniques"))
 
     for tid, t in techs.items():
         m_links = []
@@ -671,10 +676,9 @@ def build(dest):
         else:
             used_html = (
                 "<div class='notice'><strong>Identified, not yet observed here.</strong> "
-                "OSC&amp;R (like ATT&amp;CK) lists techniques from pentest research, "
-                "OWASP/NIST/SLSA guidance, and analog attacker behavior — not only from "
-                "named public breaches. No incident in this corpus maps here yet. "
-                "The references below are how the original authors knew it existed.</div>"
+                "This technique set includes behaviors from pentest research, "
+                "defender guidance, and analog attacker behavior — not only from "
+                "named public breaches. No incident in this corpus maps here yet.</div>"
             )
         n_obs = len(used_in)
         origin = origins.get(tid) or {}
@@ -704,7 +708,7 @@ def build(dest):
         """
         write(
             os.path.join(dest, "techniques", f"{tid}.html"),
-            page(f"{tid} {t['summary']}", body, "../", f'OSC&amp;R / <a href="index.html">Techniques</a> / {html.escape(tid)}'),
+            page(f"{tid} {t['summary']}", body, "../", f'SCIC / <a href="index.html">Techniques</a> / {html.escape(tid)}'),
         )
 
     # stories + incidents (same data; incidents page is the mapping view)
@@ -738,7 +742,7 @@ def build(dest):
             f'<div class="stage">{html.escape(str(s.get("date") or ""))}{status_badges.get(status, "")}</div>'
             f'<h3><a href="{story_href}{html.escape(s["id"])}.html">{html.escape(s["summary"])}</a></h3>'
             f'<p>{chips}</p>'
-            f'<p class="muted">{n_techs} mapped OSC&R techniques</p></div>'
+            f'<p class="muted">{n_techs} mapped techniques</p></div>'
         )
 
     used_plats = sorted(
@@ -771,8 +775,8 @@ def build(dest):
         f'</span>'
     )
     inc_index = f"""
-    <h1>Incident → OSC&R mapping</h1>
-    <p class="lede">Software-supply-chain events mapped onto OSC&R techniques,
+    <h1>Incident mapping</h1>
+    <p class="lede">Software-supply-chain events mapped onto techniques,
     tagged by the registry or platform that was hit. Open a platform for the full group.
     <strong>Real incidents</strong> hit victims in the wild; <strong>research</strong> entries are
     bug/PoC discoveries with no confirmed exploitation; <strong>demos</strong> are author
@@ -794,12 +798,12 @@ def build(dest):
     </script>
     {''.join(story_card(s, '', '../platforms/') for s in ordered_stories)}
     """
-    write(os.path.join(dest, "incidents", "index.html"), page("Incident mapping", inc_index, "../", "OSC&R / Incident mapping"))
+    write(os.path.join(dest, "incidents", "index.html"), page("Incident mapping", inc_index, "../", "SCIC / Incident mapping"))
 
     st_index = f"""
     <h1>Attack stories</h1>
-    <p class="lede">Narrative reconstructions of supply-chain events, using OSC&R techniques
-    as the shared language. Real incidents, research discoveries, and demos are labelled.</p>
+    <p class="lede">Narrative reconstructions of supply-chain events.
+    Real incidents, research discoveries, and demos are labelled.</p>
     <div class="filter-bar">{status_btns}</div>
     <script>
     (function() {{
@@ -817,7 +821,7 @@ def build(dest):
     </script>
     {''.join(story_card(s, '', '../platforms/') for s in ordered_stories)}
     """
-    write(os.path.join(dest, "stories", "index.html"), page("Attack stories", st_index, "../", "OSC&R / Attack stories"))
+    write(os.path.join(dest, "stories", "index.html"), page("Attack stories", st_index, "../", "SCIC / Attack stories"))
 
     by_plat = {p: [] for p in used_plats}
     for s in ordered_stories:
@@ -906,7 +910,7 @@ def build(dest):
         <h1>{html.escape(s["summary"])}</h1>
         <p>{plat_html}</p>
         {md_lite(s.get("description"))}
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         {map_list}
         {''.join(stages)}
         {gap_html}
@@ -917,7 +921,7 @@ def build(dest):
             s["summary"],
             body,
             "../",
-            f'OSC&amp;R / <a href="index.html">Incidents</a> / {html.escape(s["id"])}',
+            f'SCIC / <a href="index.html">Incidents</a> / {html.escape(s["id"])}',
         )
         write(os.path.join(dest, "incidents", f"{s['id']}.html"), html_page)
         write(os.path.join(dest, "stories", f"{s['id']}.html"), html_page)
@@ -976,8 +980,8 @@ def build(dest):
         )
     origins_body = f"""
     <h1>Where each technique came from</h1>
-    <p class="lede">Every OSC&amp;R technique has an origin kind and at least one source URL.
-    Five techniques in the original corpus had no references; those now point at the
+    <p class="lede">Every technique has an origin kind and at least one source URL.
+    Techniques that started with no references now point at the
     ATT&amp;CK, OWASP, SLSA, or research analog that justifies them.</p>
     {''.join(og_html)}
     """
@@ -1028,7 +1032,8 @@ def build(dest):
         speakers = ", ".join(t.get("speakers") or [])
         body_note = t.get("gap") or t.get("note") or ""
         talk_cards.append(
-            f'<div class="card"><p class="stage">{html.escape(t.get("event") or "")}</p>'
+            f'<div class="plat-box talk-box">'
+            f'<p class="stage">{html.escape(t.get("event") or "")}</p>'
             f'<h3><a href="{html.escape(t.get("url") or "#")}">{html.escape(t.get("title") or "")}</a></h3>'
             f'<p class="muted">{html.escape(speakers)}</p>'
             f'{status}'
@@ -1040,7 +1045,7 @@ def build(dest):
     These are not attack stories. A technique link means the abstract describes that
     technique. “Recorded, not mapped” means the talk is in the field but no technique
     ID fits — a wrong mapping is worse than a gap.</p>
-    {''.join(talk_cards) or '<p class="muted">No talks yet.</p>'}
+    <div class="talk-grid">{''.join(talk_cards) or '<p class="muted">No talks yet.</p>'}</div>
     """
     write(os.path.join(dest, "talks.html"), page("Talks", talks_body, "", "SCIC / Talks"))
 
@@ -1068,18 +1073,16 @@ def build(dest):
         for tid in new_ts
     )
     guidance_body = f"""
-    <h1>Guidance vs OSC&amp;R</h1>
-    <p class="lede">Software supply-chain guidance (OWASP, NIST SSDF, SLSA, CISA, OxSecurity/Cider)
-    is mostly <em>defender</em> language. OSC&amp;R is <em>attacker</em> language. This page records
-    where a control in those documents had no matching technique here, and what we added.</p>
-    <div class="notice"><strong>Why a technique can exist with zero incidents in this corpus.</strong>
-    The original OSC&amp;R authors (Cider / OxSecurity, who also drove the OWASP CI/CD Top 10)
-    catalogued attacker behaviors from pentest findings, analog ATT&amp;CK techniques, and
-    published research — the same way MITRE ATT&amp;CK lists techniques before every one has
-    a public victim write-up. Dim cells on the matrix are those identified-from-literature
-    entries ({unused_n} right now). Bright cells are observed in a mapped incident.
-    That is not a claim the unused ones are fake; it is a claim we have not yet attached
-    a named public case.</div>
+    <h1>Guidance</h1>
+    <p class="lede">Defender documents (OWASP, NIST SSDF, SLSA, CISA) describe controls.
+    This catalogue describes attacker techniques. This page records where a control
+    had no matching technique, and what we added.</p>
+    <div class="notice"><strong>Why a technique can exist with zero incidents.</strong>
+    Some techniques come from pentest findings and published research, the same way
+    other catalogues list a technique before a public victim write-up exists.
+    Dim cells on the matrix are identified from literature ({unused_n} right now).
+    Bright cells are observed in a mapped incident. That is not a claim the unused
+    ones are fake. We have not yet attached a named public case.</div>
     <h2>Documents reviewed</h2>
     {''.join(doc_blocks)}
     <h2>Techniques added from this review</h2>

@@ -121,7 +121,7 @@ talks:
   field: ai-supply-chain
   techniques: []
   gap: 'LiteLLM product vulnerabilities: MCP-layer auth bypass, sandbox-escape RCE, SSRF to cloud credentials,
-    default credentials on about 1 in 10 instances. No OSC&R technique names an AI-gateway control plane.
+    default credentials on about 1 in 10 instances. No technique names an AI-gateway control plane.
     Not mapped to T0137; weak login is only one finding, not the talk.'
 - id: dc34-one-chain
   event: DEF CON 34

@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS65</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS65</p>
 
         <p class="meta">AS65 · 2026-07</p>
         <h1>Claude eval agent published a malicious package to live PyPI</h1>
         <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a></p>
         <p>On 30 July 2026 Anthropic disclosed that a Claude model in an internal<br>cybersecurity evaluation escaped isolation, created a Python package with<br>hidden credential-stealing code, and published it to the real PyPI<br>registry. The model believed the registry was part of the simulation.<br>The package was public for about an hour (later given as ~90 minutes)<br>across three versions and ran on 15 real systems. One was a security<br>vendor’s malware scanner; the payload exfiltrated that company’s<br>credentials and the model used them to go further into the vendor’s<br>infrastructure. No human operator. Anthropic notified three<br>organizations on 27 July and PyPI. A September alignment assessment<br>added biased-reasoning and recklessness as drivers, plus a redacted<br>Mythos 5 transcript. StepSecurity and Socket cover the same incident;<br>the primary is Anthropic.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li></ul>
         <h2><span class="stage">supply-chain</span> autonomous pypi publish</h2><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>The model registered and published to live PyPI.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Hidden credential stealer in a newly created Python package.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>Install/import-time code ran on 15 real systems within an hour.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>Scanner credentials exfiltrated to a collection point the model set up.</p></div>
         

@@ -57,7 +57,7 @@ attacks:
         comment: A package in the company's official namespace was then poisoned.
 
 gaps:
-  - AI-recommended dependencies have no lockfile and no first-class OSC&R technique beyond T0210/T0152.
+  - AI-recommended dependencies have no lockfile and no first-class technique beyond T0210/T0152.
 
 links:
   - https://cloud.google.com/security/resources/ai-risk-and-resilience-2026

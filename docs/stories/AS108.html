@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS108</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS108</p>
 
         <p class="meta">AS108 · 2022-02</p>
         <h1>JuiceStealer PyPI phishing and typosquats</h1>
         <p><a class="plat" href="../platforms/pypi.html">PyPI</a></p>
         <p>Checkmarx documented the first known phishing campaign against PyPI<br>maintainers: fake “validate your PyPI credentials” mail to a lookalike<br>login page. At least two legitimate packages were then published with<br>JuiceStealer (exotel 0.1.6; spam 2.0.2 / 4.0.2), stealing crypto-wallet<br>material and later Chrome passwords. The same malware was also pushed<br>through hundreds of typosquat names. SentinelOne later tied the cluster<br>to JuiceLedger activity dating to late 2021.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li></ul>
         <h2><span class="stage">supply-chain</span> PyPI maintainers</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Phishing to a fake PyPI login stole maintainer credentials.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Poisoned versions of exotel and spam plus hundreds of typosquats.</p></div><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Parallel upload of lookalike package names carrying JuiceStealer.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>Malicious code landed in already-trusted package names.</p></div><h2><span class="stage">post-supply-chain</span> PyPI consumers</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Installing the poisoned versions ran JuiceStealer.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>Crypto-wallet theft, later expanded to Chrome password theft.</p></div><div class="card"><p class="meta"><a href="../techniques/T0201.html">T0201</a> · Impact · Customers compromised</p><p>Hundreds of thousands of historical downloads on the hijacked names.</p></div>
         

@@ -92,7 +92,7 @@ attacks:
       as verified.
 gaps:
 - Mutable-tag reactivation after a GitHub disablement (containment that left the tags in place) is not
-  a named OSC&R technique.
+  a named technique.
 - Reading ghs_ from Runner.Worker process memory is more specific than T0183.
 links:
 - https://www.stepsecurity.io/blog/actions-cool-issues-helper-github-action-compromised-all-tags-point-to-imposter-commit-that-exfiltrates-ci-cd-credentials

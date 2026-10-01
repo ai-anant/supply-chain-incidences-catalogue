@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS87</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS87</p>
 
         <p class="meta">AS87 · 2026-07</p>
         <h1>nodemon-sudo backdoor via tslint-conf (no install script)</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>SafeDep: nodemon-sudo copies real nodemon byte for byte and adds one<br>extra dependency, tslint-conf — a repackaged pino logger carrying a<br>backdoor. No install hook. Payload fires only at runtime, one hop<br>away from the package the developer typed. Same “clean lure + dirty<br>transitive” pattern as axios/plain-crypto-js (AS22) and Mastra<br>easy-day-js (AS70).</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li></ul>
         <h2><span class="stage">supply-chain</span> clean lure dirty transitive</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>nodemon-sudo impersonates nodemon.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>tslint-conf is the actual backdoor package.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>No postinstall; runs when the logger is required.</p></div>
         

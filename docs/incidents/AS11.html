@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS11</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS11</p>
 
         <p class="meta">AS11 · 2021-10</p>
         <h1>ua-parser-js npm account takeover</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>In October 2021 the npm account of the ua-parser-js maintainer was<br>compromised. Three versions of the widely used user-agent parser were<br>published with malware that installed a cryptominer and a password<br>stealer (depending on OS). GitHub/npm yanked the versions within hours.<br>This is account-takeover → malicious publish, a pattern repeated in later<br>npm incidents (Qix/chalk, 2025).</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li></ul>
         <h2><span class="stage">supply-chain</span> ua-parser-js on npm</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>The maintainer npm account was taken over; MFA on publishing was not<br>in place at the time.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Versions 0.7.29, 0.8.0, and 1.0.0 were published with a preinstall payload.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Consumers pulling the same well-known package name received malware.</p></div><h2><span class="stage">post-supply-chain</span> Downstream applications</h2><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>A preinstall script fetched and ran OS-specific binaries.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>Linux/macOS victims ran a cryptominer; Windows victims received a stealer.</p></div>
         <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Registry-enforced 2FA for high-impact maintainers is a mitigation (M1530) that this incident showed was not universally applied.</li></ul></div>

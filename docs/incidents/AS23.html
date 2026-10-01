@@ -30,16 +30,16 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS23</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS23</p>
 
         <p class="meta">AS23 · 2022-10</p>
         <h1>GitHub repo jacking (dependency URL takeover)</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
         <p>Security Innovation documented dependency repository hijacking (repo<br>jacking): when a GitHub user renames or deletes their account, the old<br>owner/repo URL can be re-registered. Projects that pin dependencies by<br>GitHub URL, submodule, or git+ protocol then fetch attacker-controlled<br>code. Their analysis found over 70,000 impacted open-source projects.<br>GitHub&#x27;s popular-namespace retirement mitigates some cases; it does not<br>cover smaller repos that popular projects still clone. This is how T0115<br>was identified — systematic research, not a single headline breach.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0115.html">T0115</a> Repojacking</li><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li></ul>
         <h2><span class="stage">supply-chain</span> GitHub username / repo namespace reuse</h2><div class="card"><p class="meta"><a href="../techniques/T0115.html">T0115</a> · Initial Access · Repojacking</p><p>Re-registering a vacated GitHub owner name breaks the redirect and<br>serves a replacement repository at the old URL.</p></div><div class="card"><p class="meta"><a href="../techniques/T0197.html">T0197</a> · Initial Access · Use code from untrusted source</p><p>Direct GitHub URL dependencies (and git+https in manifests) are the<br>fetch path that makes jacking reach builds.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>The recreated repository can publish whatever the new owner wants<br>under a name consumers already trust.</p></div>
-        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>GitHub later retired some popular namespaces; OSC&amp;R still treats jacking of non-popular names as in scope.</li></ul></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>GitHub later retired some popular namespaces; This catalogue still treats jacking of non-popular names as in scope.</li></ul></div>
         <h2>Sources</h2>
         <ul class='refs'><li><a href="https://blog.securityinnovation.com/repo-jacking-exploiting-the-dependency-supply-chain" rel="noopener">https://blog.securityinnovation.com/repo-jacking-exploiting-the-dependency-supply-chain</a></li><li><a href="https://github.blog/2018-04-18-new-tools-for-open-source-maintainers/#popular-repository-namespace-retirement" rel="noopener">https://github.blog/2018-04-18-new-tools-for-open-source-maintainers/#popular-repository-namespace-retirement</a></li><li><a href="https://cloud.google.com/blog/topics/threat-intelligence/3cx-software-supply-chain-compromise" rel="noopener">https://cloud.google.com/blog/topics/threat-intelligence/3cx-software-supply-chain-compromise</a></li></ul>
         

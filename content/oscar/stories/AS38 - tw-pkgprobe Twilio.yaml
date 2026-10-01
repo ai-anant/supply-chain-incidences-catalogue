@@ -55,7 +55,7 @@ attacks:
         comment: Host context and Twilio API credentials were posted to a webhook.
 
 gaps:
-  - Claiming HackerOne authorization inside package comments is not a named OSC&R technique.
+  - Claiming HackerOne authorization inside package comments is not a named technique.
   - Injecting a PoC package into local node_modules on SID-named folders is not a named technique.
   - The AWS IMDS fetch in a late version was unused; not mapped as credential theft.
 

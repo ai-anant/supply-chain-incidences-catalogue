@@ -9,7 +9,7 @@ description: |
   CircleCI disclosed that an attacker used malware on a CircleCI employee's
   laptop, bypassed 2FA, and accessed production systems. Session cookies and
   customer secrets stored in CircleCI (environment variables, contexts)
-  were at risk; customers were told to rotate all secrets. OSC&R already
+  were at risk; customers were told to rotate all secrets. The technique set already
   had T0165 (Create access token) written against this incident; the story
   itself was never added.
 

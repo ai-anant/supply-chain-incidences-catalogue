@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS287</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS287</p>
 
         <p class="meta">AS287 · 2020-04</p>
         <h1>fwupd dangling S3 bucket and CVE-2020-10759 signature-verification bypass</h1>
         <p><a class="plat" href="../platforms/linux.html">Linux distro / packages</a></p>
         <p>Justin Steven’s April 2020 advisory covered two related fwupd findings:<br>an abandoned Amazon S3 bucket that fwupd metadata could be redirected<br>to (a dangling- infrastructure takeover opportunity), and<br>CVE-2020-10759, a bypass of fwupd’s PGP signature verification that let<br>a malicious metadata file make unsigned firmware look authentic. Both<br>are researcher bug discovery: the bucket was never used to ship malware<br>to fwupd users, and the bypass had no documented victims. Included as<br>research, not a real-world incident — it demonstrates that update<br>infrastructure and artifact verification are attacker targets<br>(T0209/T0207 class), but no in-the-wild exploitation is known.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0209.html">T0209</a> Compromise package registry or CDN origin</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li></ul>
         <h2><span class="stage">supply-chain</span> researcher findings</h2><div class="card"><p class="meta"><a href="../techniques/T0209.html">T0209</a> · Initial Access · Compromise package registry or CDN origin</p><p>Dangling S3 bucket as a metadata-redirect opportunity (not exploited).</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>CVE-2020-10759 PGP verification bypass PoC.</p></div>
         

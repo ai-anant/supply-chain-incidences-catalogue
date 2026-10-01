@@ -74,7 +74,7 @@ attacks:
           and audit SSH keys, accounts, and scheduled tasks.
 
 gaps:
-  - BGP hijacking as a first-class OSC&R technique does not exist;
+  - BGP hijacking as a first-class technique does not exist;
     T0212 records this catalogue's network-routing technique.
 
 links:

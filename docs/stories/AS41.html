@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS41</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS41</p>
 
         <p class="meta">AS41 · 2023-01</p>
         <h1>DPRK Contagious Interview (BeaverTail / npm + git)</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/vscode.html">VS Code / IDE</a></p>
         <p>OpenSourceMalware’s 2026 analysis of Lazarus Group’s Contagious Interview<br>campaign (tracked since 2023): fake recruiters on LinkedIn, Fiverr and<br>Upwork send developers a “coding test” that is malware. Delivery includes<br>npm packages (e.g. tailwindcss-forms-kit), git repos, and PyPI. OSM was<br>tracking 373 npm packages, 405 git repos, 988 threats and 4285 IOCs for<br>this cluster. Later waves hid loaders in VS Code tasks and fake fonts.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0154.html">T0154</a> Malicious IDE extension</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li></ul>
         <h2><span class="stage">supply-chain</span> Fake-recruiter delivery</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Packages named like legitimate developer utilities (tailwindcss-forms-kit).</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Hundreds of npm (and PyPI) packages plus git repos as droppers.</p></div><div class="card"><p class="meta"><a href="../techniques/T0197.html">T0197</a> · Initial Access · Use code from untrusted source</p><p>Victims were asked to clone or npm-install the “interview” project.</p></div><div class="card"><p class="meta"><a href="../techniques/T0154.html">T0154</a> · Initial Access · Malicious IDE extension</p><p>Later waves abused VS Code tasks.json and fake font/dictionary files.</p></div><h2><span class="stage">post-supply-chain</span> Developer workstations</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>npm install / running the test executed BeaverTail-class stealers.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>Crypto-wallet theft and persistent backdoors on developer machines.</p></div>
         

@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS44</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS44</p>
 
         <p class="meta">AS44 · 2026-08</p>
         <h1>StubMaker RubyGems (and npm) Windows infostealer</h1>
         <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>On 15 August 2026 OpenSourceMalware found newly published RubyGems<br>typosquats whose extconf.rb fakes a native-extension build (empty make<br>targets / make_stub) while downloading a 22 MB Rust loader from GitHub<br>Releases. The loader carries an 11 MB Go infostealer in its own data<br>section — no second-stage URL after the first fetch. Targets browser<br>passwords (including Chromium ABE), wallets, seed phrases, Telegram.<br>A parallel npm cluster shared IOCs (StubMaker). Hundreds of downloads<br>before takedown.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0198.html">T0198</a> Malicious Build Time Dependencies</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> RubyGems typosquats</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Clumsy typos of popular Ruby gems.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Malicious gems (and later npm twins) published to the registry.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>extconf.rb runs at gem install and fetches the loader.</p></div><div class="card"><p class="meta"><a href="../techniques/T0198.html">T0198</a> · Defense Evasion · Malicious Build Time Dependencies</p><p>Fake native-extension build (StubMaker) so install looks like a routine compile.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Browser creds, wallets, Telegram data stolen on Windows.</p></div>
         

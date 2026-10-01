@@ -87,7 +87,7 @@ attacks:
 
 gaps:
   - Server-side per-download payload regeneration has no dedicated
-    OSC&R technique; T0212 is the closest existing technique (routing)
+    technique; T0212 is the closest existing technique (routing)
     and this story records the behaviour explicitly instead of
     force-mapping it.
 

@@ -112,9 +112,9 @@ attacks:
 
 gaps:
   - Deserialization RCE (fastjson2-style) as an exploitation technique
-    has no dedicated OSC&R item; approximated by T0194.
+    has no dedicated technique; approximated by T0194.
   - Blockchain C2 (Ethereum transfers, on-chain contracts) appeared in
-    AS25/AS32/NullReceiver posts but is not a named OSC&R technique.
+    AS25/AS32/NullReceiver posts but is not a named technique.
 
 links:
   - https://www.cloudsek.com/blog/ai-agent-driven-offensive-operation-crypto-wallet-credential-compromise

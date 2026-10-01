@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS83</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS83</p>
 
         <p class="meta">AS83 · 2026-09</p>
         <h1>ulid-xyz RAT via ioredis-xyz transitive chain</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
         <p>SafeDep reported ulid-xyz (OSV MAL-2026-6672) as a remote-access trojan<br>that reached developers as a third-level transitive of ioredis-xyz, a<br>copy of the real ioredis client planted in 28 attacker-created GitHub<br>repositories. The implant matches the DPRK-linked MicrosoftSystem64<br>cluster. Not a hijack of the real ulid or ioredis packages — a<br>lookalike dependency chain.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> three-deep typosquat chain</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>ioredis-xyz / ulid-xyz lookalikes, not the real packages.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>RAT published as a transitive, not the top-level lure.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>28 attacker GitHub repos depended on ioredis-xyz.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>MicrosoftSystem64-family RAT.</p></div>
         

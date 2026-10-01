@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS115</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS115</p>
 
         <p class="meta">AS115 · 2026-08</p>
         <h1>TXTBOOK dependency confusion against Tinkoff / T-Bank</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/pypi.html">PyPI</a></p>
         <p>CloudSEK tracks TXTBOOK: 993 public npm packages (after a PyPI start)<br>reconstructing Tinkoff / T-Bank internal names (BNPL, business banking,<br>analytics). The second-stage loader resolves the bank’s internal<br>artifact repository and proceeds only if it answers — so it runs inside<br>the target network. Delivery reassembles a Sliver implant from several<br>hundred DNS TXT records instead of an HTTP download.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0120.html">T0120</a> Dependency confusion</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0145.html">T0145</a> Bypass of outbound traffic control</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li><li><a href="../techniques/T0100.html">T0100</a> Discover naming conventions</li></ul>
         <h2><span class="stage">supply-chain</span> private-namespace confusion</h2><div class="card"><p class="meta"><a href="../techniques/T0120.html">T0120</a> · Initial Access · Dependency confusion</p><p>993 packages matching T-Bank private names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>PyPI first, then npm at scale.</p></div><div class="card"><p class="meta"><a href="../techniques/T0145.html">T0145</a> · Exfiltration · Bypass of outbound traffic control</p><p>Implant delivered as DNS TXT records, not HTTP.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>Sliver third stage.</p></div><div class="card"><p class="meta"><a href="../techniques/T0100.html">T0100</a> · Reconnaissance · Discover naming conventions</p><p>Names reproduce T-Bank private package namespaces — recon of internal naming.</p></div>
         

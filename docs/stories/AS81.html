@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS81</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS81</p>
 
         <p class="meta">AS81 · 2026-02</p>
         <h1>XPACK npm install-time crypto extortion (HTTP 402)</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>OSM named XPACK: nine packages from npm user dev.chandra_bose<br>(Feb 4–7 2026), six of them published in three minutes, posing as a<br>Web3 “package monetization” platform (xpack-per-user, xpack-per-device,<br>xpack-subscription, xpack-sui, xpack-arc-gateway). preinstall.js<br>harvested GitHub identity four ways, fingerprinted the host, POSTed to<br>hack-money-xpack.vercel.app, then blocked install for five minutes<br>behind an HTTP 402 paywall (0.1 USDC/ETH) with a fake Next.js wallet<br>UI. Not a silent stealer — extortion dressed as a business model.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> preinstall paywall</h2><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Nine xpack-* packages, six cloned in three minutes.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>Fake Web3 monetization / HTTP 402 legitimacy.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>preinstall.js blocked npm install until payment or timeout.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>GitHub username plus device fingerprint to C2.</p></div>
         

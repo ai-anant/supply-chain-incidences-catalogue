@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS193</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS193</p>
 
         <p class="meta">AS193 · 2026-06</p>
         <h1>Multi-org GitHub PAT campaign mass-cloned repositories</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
         <p>Wiz CIRT (13 Aug 2026): mid-May to early June 2026 campaign used<br>stolen employee GitHub PATs to recon and mass-clone private repos<br>across multiple organizations. Peak 1 June 09:14–14:55 UTC: 102 AWS<br>IPs in ca-central-1, git/2.43.0 user-agent, thousands of clones per<br>org. Follow-on attempts to use secrets found in those repos.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li><li><a href="../techniques/T0186.html">T0186</a> Source code leak</li></ul>
         <h2><span class="stage">supply-chain</span> stolen pat cloning</h2><div class="card"><p class="meta"><a href="../techniques/T0112.html">T0112</a> · Initial Access · Compromised token</p><p>Stolen employee PATs used as valid git credentials.</p></div><div class="card"><p class="meta"><a href="../techniques/T0186.html">T0186</a> · Impact · Source code leak</p><p>Mass git.clone of private organization repositories.</p></div>
         

@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS42</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS42</p>
 
         <p class="meta">AS42 · 2025-11</p>
         <h1>IndonesianFoods npm worm (86k+ packages)</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>OpenSourceMalware identified an npm worm that published at least 86,583<br>packages across 60 user accounts, more than doubling the then-known<br>malicious-package count. Accounts were created for the campaign rather<br>than hijacked. The payload auto-publishes further packages (auto.js /<br>publishScript.js) and pollutes search/infrastructure; it is a volume<br>worm, not a credential stealer. Named for the internal Indonesian-food<br>dictionary. Package list is in 6mile/Indonesian-Foods-Worm.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0169.html">T0169</a> Push implants across repositories</li></ul>
         <h2><span class="stage">supply-chain</span> npm registry</h2><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>Sixty purpose-created npm users, several with 5,250 packages each.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>86k+ packages published over a multi-year staging period.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>Search-result pollution so a human might install one by accident.</p></div><div class="card"><p class="meta"><a href="../techniques/T0169.html">T0169</a> · Lateral Movement · Push implants across repositories</p><p>Worm scripts publish the next generation of packages from the install.</p></div>
         

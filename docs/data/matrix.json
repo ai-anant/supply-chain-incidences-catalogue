@@ -575,7 +575,7 @@
           "Cloud Security"
         ],
         "url": "techniques/T0205.html",
-        "description": "Instead of poisoning a package registry or source repository, the attacker\ntakes over a widely embedded CDN hostname, tag manager, or hosted JavaScript\nasset (domain expiry, registrar hijack, or operator acquisition) and serves\nmalicious content to every site that loads it. Polyfill.io (2024) is the\nreference case: a trusted script URL became a drive-by supply-chain implant\nfor hundreds of thousands of properties. OSC&R previously had no technique\nthat named this web-asset supply chain.\n",
+        "description": "Instead of poisoning a package registry or source repository, the attacker\ntakes over a widely embedded CDN hostname, tag manager, or hosted JavaScript\nasset (domain expiry, registrar hijack, or operator acquisition) and serves\nmalicious content to every site that loads it. Polyfill.io (2024) is the\nreference case: a trusted script URL became a drive-by supply-chain implant\nfor hundreds of thousands of properties. This catalogue previously had no technique\nthat named this web-asset supply chain.\n",
         "incidentCount": 5
       },
       {
@@ -1434,7 +1434,7 @@
           "Secrets Hygiene"
         ],
         "url": "techniques/T0200.html",
-        "description": "After a supply-chain foothold is established, the attacker steals proprietary\ndata \u2014 source code, designs, internal documents, customer lists, or trade secrets.\nThis is often the realized value of a compromise for espionage-motivated actors\nand is the Impact-column outcome that earlier OSC&R tactics were missing.\nDistinct from a generic secret leak: the objective is the organization's\nintellectual property, not only credentials.\n",
+        "description": "After a supply-chain foothold is established, the attacker steals proprietary\ndata \u2014 source code, designs, internal documents, customer lists, or trade secrets.\nThis is often the realized value of a compromise for espionage-motivated actors\nand is the Impact-column outcome that earlier tactics were missing.\nDistinct from a generic secret leak: the objective is the organization's\nintellectual property, not only credentials.\n",
         "incidentCount": 4
       },
       {

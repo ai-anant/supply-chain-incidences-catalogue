@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS33</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS33</p>
 
         <p class="meta">AS33 · 2026-09</p>
         <h1>TeamPCP DUSTMAKER AI workspace poisoning</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a><a class="plat" href="../platforms/mcp.html">MCP</a></p>
         <p>Google Threat Intelligence Group&#x27;s AI Threat Tracker describes DUSTMAKER<br>(TeamPCP / UNC6780) as the JS/CI successor to SANDCLOCK. It drops hidden<br>.claude / .cursor / .vscode content, prompt-injects LLM scanners so they<br>skip the JS underneath, and uses trojanized MCP servers. Packages<br>published with a valid token pass agent trust checks. A separate Q2 case<br>used an AI coding chatbot plus markdown playbooks to build credential<br>harvesting in under six hours after a cloud compromise.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0210.html">T0210</a> Poison AI coding-agent config or workspace</li><li><a href="../techniques/T0154.html">T0154</a> Malicious IDE extension</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0206.html">T0206</a> Forge or omit build provenance</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li></ul>
         <h2><span class="stage">supply-chain</span> AI coding workspaces</h2><div class="card"><p class="meta"><a href="../techniques/T0210.html">T0210</a> · Persistence · Poison AI coding-agent config or workspace</p><p>Hidden .claude/.cursor/.vscode drops and trojanized MCP servers.</p></div><div class="card"><p class="meta"><a href="../techniques/T0154.html">T0154</a> · Initial Access · Malicious IDE extension</p><p>Workspace-dir poisoning looks like developer clutter.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Valid-token packages pass automated agent trust checks.</p></div><div class="card"><p class="meta"><a href="../techniques/T0206.html">T0206</a> · Defense Evasion · Forge or omit build provenance</p><p>Provenance-presence is not trust when the token that published is valid.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>JS payload built for CI credential theft.</p></div>
         

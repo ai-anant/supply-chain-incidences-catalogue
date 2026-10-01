@@ -12,7 +12,7 @@ description: |
   stole environment variables and files from the home directory. Stable
   PyTorch packages were not affected. PyTorch’s own advisory is the
   primary record; they replaced the dependency with pytorch-triton and
-  registered a dummy on PyPI. Original OSC&R mapped this as T0113
+  registered a dummy on PyPI. The inherited mapping treated this as T0113
   (compromised user account); it is T0120.
 
 attacks:

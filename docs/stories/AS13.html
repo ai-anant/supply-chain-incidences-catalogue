@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS13</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS13</p>
 
         <p class="meta">AS13 · 2024-12</p>
         <h1>Ultralytics PyPI compromise</h1>
         <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
         <p>In December 2024 versions of the Ultralytics Python package on PyPI were<br>observed shipping a cryptominer. Investigation pointed at a compromised<br>GitHub Actions workflow used to publish to PyPI, not at a direct PyPI<br>account password theft. The incident sits at the intersection of T0122<br>(third-party / CI action abuse), T0109 (malicious artifact), and T0139<br>(resource hijacking), and shows that &quot;who can publish the package&quot; is<br>often the CI identity.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0122.html">T0122</a> Vulnerability in third-party CI/CD actions</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0198.html">T0198</a> Malicious Build Time Dependencies</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li></ul>
         <h2><span class="stage">supply-chain</span> Ultralytics CI publish path</h2><div class="card"><p class="meta"><a href="../techniques/T0122.html">T0122</a> · Initial Access · Vulnerability in third-party CI/CD actions</p><p>A GitHub Actions publishing workflow was the likely injection point<br>for the malicious release.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Poisoned versions were uploaded to PyPI under the real project name.</p></div><div class="card"><p class="meta"><a href="../techniques/T0198.html">T0198</a> · Defense Evasion · Malicious Build Time Dependencies</p><p>The miner was introduced around the build/publish step rather than<br>as an obvious source-tree commit reviewers would catch.</p></div><h2><span class="stage">post-supply-chain</span> PyPI consumers</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p><code>pip install ultralytics</code> of the affected versions ran the miner.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>CPU/GPU of installing hosts was used for cryptocurrency mining.</p></div>
         

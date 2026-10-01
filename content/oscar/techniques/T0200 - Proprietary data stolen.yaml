@@ -15,7 +15,7 @@ description: |
   After a supply-chain foothold is established, the attacker steals proprietary
   data — source code, designs, internal documents, customer lists, or trade secrets.
   This is often the realized value of a compromise for espionage-motivated actors
-  and is the Impact-column outcome that earlier OSC&R tactics were missing.
+  and is the Impact-column outcome that earlier tactics were missing.
   Distinct from a generic secret leak: the objective is the organization's
   intellectual property, not only credentials.
 

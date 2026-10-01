@@ -146,6 +146,11 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .plat-box h3 { margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.25; color: var(--ink); }
 .plat-box .n { display: block; font-size: 1.35rem; font-weight: 650; color: var(--copper); line-height: 1.1; }
 .plat-box .lbl { color: var(--muted); font-size: 0.75rem; }
+.talk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 0.75rem; margin-top: 1.2rem; }
+.talk-box { min-height: 0; justify-content: flex-start; gap: 0.35rem; }
+.talk-box h3 { font-size: 0.95rem; }
+.talk-box h3 a { color: var(--copper); }
+.talk-box p { margin: 0.15rem 0; font-size: 0.82rem; }
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;

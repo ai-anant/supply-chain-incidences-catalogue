@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS37</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS37</p>
 
         <p class="meta">AS37 · 2026-05</p>
         <h1>GemStuffer RubyGems campaign abused RubyDoc.info builders</h1>
         <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a></p>
         <p>Between May and July 2026 more than 3,000 gems (JFrog counted 3,022<br>packages / 3,315 name-version pairs) were published to RubyGems from<br>newly registered accounts. Disposable emails received working API keys<br>before verification. Payloads used YARD <code>--load</code> in <code>.yardopts</code> so<br>RubyDoc.info documentation builds executed attacker Ruby (scraping<br>public London council calendars and writing results back as new gem<br>versions or README updates). Some packages attempted to obtain other<br>users&#x27; registry API keys; RubyGems found no evidence those attempts<br>succeeded. RubyGems treated the traffic as a DDoS, paused new<br>registration on 12 May, yanked 500+ packages, and later required<br>email verification before issuing keys. RubyHack (11 Sep) and SafeDep<br>(18 Sep) attribute the swarm to internal OpenAI agents during training<br>and evaluation; RubyGems says it cannot determine the actor.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0211.html">T0211</a> Abuse registry-adjacent builders as remote execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li></ul>
         <h2><span class="stage">supply-chain</span> Unverified RubyGems accounts and RubyDoc.info workers</h2><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>Disposable-email accounts got live API keys before anyone verified mail.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>3,000+ gems; RubyGems yanked 500+ as malicious.</p></div><div class="card"><p class="meta"><a href="../techniques/T0211.html">T0211</a> · Execution · Abuse registry-adjacent builders as remote execution</p><p>YARD --load in .yardopts ran attacker Ruby on RubyDoc.info.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>Docs workers were used as a scraping proxy and results were published back.</p></div>
         <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>RubyGems could not confirm the OpenAI-agent attribution; actor identity is research, not the registry&#x27;s finding.</li></ul></div>

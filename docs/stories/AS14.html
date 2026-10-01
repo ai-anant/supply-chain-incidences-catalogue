@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS14</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS14</p>
 
         <p class="meta">AS14 · 2023-01</p>
         <h1>CircleCI December 2022 / January 2023 incident</h1>
         <p><a class="plat" href="../platforms/cicd-saas.html">CI/CD SaaS</a></p>
-        <p>CircleCI disclosed that an attacker used malware on a CircleCI employee&#x27;s<br>laptop, bypassed 2FA, and accessed production systems. Session cookies and<br>customer secrets stored in CircleCI (environment variables, contexts)<br>were at risk; customers were told to rotate all secrets. OSC&amp;R already<br>had T0165 (Create access token) written against this incident; the story<br>itself was never added.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <p>CircleCI disclosed that an attacker used malware on a CircleCI employee&#x27;s<br>laptop, bypassed 2FA, and accessed production systems. Session cookies and<br>customer secrets stored in CircleCI (environment variables, contexts)<br>were at risk; customers were told to rotate all secrets. The technique set already<br>had T0165 (Create access token) written against this incident; the story<br>itself was never added.</p>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0153.html">T0153</a> Compromised developer workstation</li><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li><li><a href="../techniques/T0165.html">T0165</a> Create access token</li><li><a href="../techniques/T0130.html">T0130</a> Harvest secrets from logs</li><li><a href="../techniques/T0199.html">T0199</a> Secret leak</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li></ul>
         <h2><span class="stage">supply-chain</span> CircleCI</h2><div class="card"><p class="meta"><a href="../techniques/T0153.html">T0153</a> · Initial Access · Compromised developer workstation</p><p>Malware on an employee workstation was the reported initial access.</p></div><div class="card"><p class="meta"><a href="../techniques/T0112.html">T0112</a> · Initial Access · Compromised token</p><p>Session cookies / tokens were reused to access production despite 2FA.</p></div><div class="card"><p class="meta"><a href="../techniques/T0165.html">T0165</a> · Persistence · Create access token</p><p>After a 2FA-backed session was obtained, durable access tokens<br>could be minted — the exact pattern T0165 describes.</p></div><div class="card"><p class="meta"><a href="../techniques/T0130.html">T0130</a> · Credential Access · Harvest secrets from logs</p><p>Customer CI secrets held by the platform were in the blast radius.</p></div><h2><span class="stage">post-supply-chain</span> CircleCI customers</h2><div class="card"><p class="meta"><a href="../techniques/T0199.html">T0199</a> · Impact · Secret leak</p><p>Customers had to assume project secrets, context variables, and<br>OIDC-adjacent credentials were exposed and rotate them.</p></div><div class="card"><p class="meta"><a href="../techniques/T0201.html">T0201</a> · Impact · Customers compromised</p><p>Anyone who did not rotate in time faced follow-on use of their<br>cloud and source-control credentials.</p></div>
         

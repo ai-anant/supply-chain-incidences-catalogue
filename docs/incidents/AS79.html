@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS79</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS79</p>
 
         <p class="meta">AS79 · 2026-05</p>
         <h1>CNCF Antrea Jenkins slash-command credential theft</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/jenkins.html">Jenkins</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
         <p>On 2 May 2026 throwaway 0xedgerunner opened antrea PR 8027, posted five<br>/test-* slash commands in three seconds, and iterated 19 commits that<br>planted a Jenkins Job DSL Python-eval gadget plus bash credential<br>scrapers. OSM: the public jenkins.antrea.io UI plus unauthenticated<br>slash-command jobs let the PR author run fork code on self-hosted<br>Jenkins; the payload probed the controller at 35.164.122.165, IMDSv2,<br>and dumped secrets to paste.rs / webhook.site. Commits spoofed<br>CI Bot &lt;ci@antrea.io&gt;. Maintainer closed it as credential exfil; the<br>operator claimed root on the controller. Distinct from the March Trivy<br>window (AS17); Antrea maintainers said they were not hit then.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0147.html">T0147</a> Scan public CI/CD configurations for secrets and vulnerable actions</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li><li><a href="../techniques/T0118.html">T0118</a> Command injection</li><li><a href="../techniques/T0195.html">T0195</a> Spoofed Commits</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0156.html">T0156</a> Exfiltration over webhooks</li></ul>
         <h2><span class="stage">supply-chain</span> slash-command jenkins detonation</h2><div class="card"><p class="meta"><a href="../techniques/T0147.html">T0147</a> · Reconnaissance · Scan public CI/CD configurations for secrets and vulnerable actions</p><p>Public Jenkins UI and slash-command CI mapped without auth.</p></div><div class="card"><p class="meta"><a href="../techniques/T0166.html">T0166</a> · Execution · Trigger pipeline execution</p><p>Five /test-* comments on a fork PR ran Jenkins jobs.</p></div><div class="card"><p class="meta"><a href="../techniques/T0118.html">T0118</a> · Execution · Command injection</p><p>Job DSL !!python/object/apply:eval gadget in 000_payload.yaml.</p></div><div class="card"><p class="meta"><a href="../techniques/T0195.html">T0195</a> · Defense Evasion · Spoofed Commits</p><p>Author set to CI Bot ci@antrea.io, unverified on the throwaway account.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>Env, docker/kube/aws/gcloud creds, Jenkins store, IMDSv2.</p></div><div class="card"><p class="meta"><a href="../techniques/T0156.html">T0156</a> · Exfiltration · Exfiltration over webhooks</p><p>paste.rs and webhook.site collectors.</p></div>
         

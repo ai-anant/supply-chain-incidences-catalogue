@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS84</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS84</p>
 
         <p class="meta">AS84 · 2026-08</p>
         <h1>npm bin-entry harvesting against Google CLIs</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>SafeDep documented 21 malicious npm packages that targeted Google by<br>squatting CLI binary names from scoped packages, not the package names<br>themselves. Installing an unscoped package whose <code>bin</code> field collides<br>with a scoped Google CLI can put attacker code on PATH. Standard<br>dependency-confusion defenses that watch package names miss this.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0120.html">T0120</a> Dependency confusion</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0101.html">T0101</a> Discover technology stacks</li></ul>
         <h2><span class="stage">supply-chain</span> bin name collision</h2><div class="card"><p class="meta"><a href="../techniques/T0120.html">T0120</a> · Initial Access · Dependency confusion</p><p>Collision on bin/CLI names rather than package names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>21 unscoped packages with colliding bin entries.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>Attacker binary lands on PATH at install.</p></div><div class="card"><p class="meta"><a href="../techniques/T0101.html">T0101</a> · Reconnaissance · Discover technology stacks</p><p>Chose a JavaScript library embedded across hundreds of thousands of sites.</p></div>
         

@@ -86,7 +86,7 @@ attacks:
         comment: Python launcher copies os.environ into the child; CI helper can inherit INPUT_PASSWORD.
 
 gaps:
-  - HTTP C2 fronts on skyleen.fr (/config, /status, /batch) are not a named OSC&R technique.
+  - HTTP C2 fronts on skyleen.fr (/config, /status, /batch) are not a named technique.
   - recursivePublish / GitHub Actions implant strings in the binary are intended worm behaviour; extra victim publishes were not shown.
   - Passing the user's memory-recall prompt as SCKIT_EVENT_TEXT is not a named technique.
 

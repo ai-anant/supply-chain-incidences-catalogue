@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS46</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS46</p>
 
         <p class="meta">AS46 · 2018-07</p>
         <h1>eslint-scope and eslint-config-eslint malicious publishes</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
-        <p>On 12 July 2018 the npm accounts for eslint-scope and eslint-config-eslint<br>were compromised and malicious versions published. A postinstall script<br>harvested npm credentials from the developer machine and sent them to<br>an attacker server. ESLint’s official postmortem is the primary record.<br>This is the classic “popular linter as credential harvester” case that<br>original OSC&amp;R never documented.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <p>On 12 July 2018 the npm accounts for eslint-scope and eslint-config-eslint<br>were compromised and malicious versions published. A postinstall script<br>harvested npm credentials from the developer machine and sent them to<br>an attacker server. ESLint’s official postmortem is the primary record.<br>This is the classic “popular linter as credential harvester” case that<br>the inherited corpus never documented.</p>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li></ul>
         <h2><span class="stage">supply-chain</span> eslint-scope on npm</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Maintainer npm accounts for eslint-scope / eslint-config-eslint taken over.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Malicious versions published under the real package names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>postinstall harvested the local npm token.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>npm credentials stolen from the installing developer.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Consumers of the real eslint-scope name received the harvester.</p></div>
         

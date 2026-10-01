@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS106</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS106</p>
 
         <p class="meta">AS106 · 2026-04</p>
         <h1>prt-scan 219 malicious PRs stealing CI secrets</h1>
         <p><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
         <p>SafeDep: a throwaway GitHub account submitted 219+ malicious pull<br>requests in a single day, each carrying a 352-line payload that steals<br>CI secrets. Adjacent to Megalodon (AS91) and hackerbot-claw (AS75).</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0147.html">T0147</a> Scan public CI/CD configurations for secrets and vulnerable actions</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0143.html">T0143</a> External user accounts</li></ul>
         <h2><span class="stage">supply-chain</span> mass malicious prs</h2><div class="card"><p class="meta"><a href="../techniques/T0147.html">T0147</a> · Reconnaissance · Scan public CI/CD configurations for secrets and vulnerable actions</p><p>219+ target repos in one day.</p></div><div class="card"><p class="meta"><a href="../techniques/T0166.html">T0166</a> · Execution · Trigger pipeline execution</p><p>Malicious PRs as the detonation path.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>352-line CI-secret payload.</p></div><div class="card"><p class="meta"><a href="../techniques/T0143.html">T0143</a> · Initial Access · External user accounts</p><p>Throwaway external accounts submitted the malicious PRs.</p></div>
         

@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS80</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS80</p>
 
         <p class="meta">AS80 · 2026-04</p>
         <h1>Contagious Interview stage-2 in Git pre-commit / post-checkout hooks</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>OSM found Lazarus Contagious Interview / TasksJacker lures moving the<br>stage-2 loader out of .vscode/tasks.json into .githooks/pre-commit<br>(and post-checkout). The hook fingerprints uname -s and pipes a curl<br>from precommit.vercel.app into sh or cmd, always exiting 0 so the<br>commit looks fine. Same fake-recruiter coding-assessment social<br>engineering as AS41, earlier in the workflow — fires when the<br>candidate commits, and post-checkout fires on every branch switch.<br>Identical blob SHA seen across several DeFi-themed lure repos.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> git hook loader</h2><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>Lure repos ship .githooks/pre-commit and post-checkout.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>Hook runs automatically on commit or checkout.</p></div><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>precommit.vercel.app impersonates the pre-commit framework.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>Per-OS second stage toward InvisibleFerret-style theft.</p></div>
         

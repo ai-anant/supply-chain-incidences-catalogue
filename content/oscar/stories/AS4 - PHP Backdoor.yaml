@@ -12,7 +12,7 @@ description: |
   HTTP User-Agent started with "zerodium". The official php.net news post
   said the malicious commits were caught before they reached end-user
   releases. PHP paused releases, enabled MFA, and later moved canonical
-  development to GitHub. Original OSC&R text wrongly dated this to 2023.
+  development to GitHub. The inherited text wrongly dated this to 2023.
 
 attacks:
   - attack: git.php.net

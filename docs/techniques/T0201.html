@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Techniques</a> / T0201</p>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0201</p>
 
         <p class="meta">T0201 · Impact · TA12 · observed in 15 incident(s)</p>
         <h1>Customers compromised</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">CI/CD Posture</span> <span class="chip">Open Source Security</span></div>
         <p>The downstream consequence of a software supply-chain attack: customers who<br>consumed a poisoned update, package, or service are themselves breached.<br>SolarWinds Orion, 3CX, Codecov, and Polyfill.io are canonical examples —<br>the supplier is the delivery vehicle; customer environments are the prize.<br>Modeling this as its own Impact technique lets defenders map &quot;what happened<br>to us because we trusted a vendor&quot; without collapsing it into a generic<br>backdoor label.</p>
-        <h2>Where this idea came from</h2><p class="meta">Original OSC&amp;R corpus</p><p>This catalogue, from upstream issue #84 (Impact: customers compromised).</p><ul class='refs'><li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a" rel="noopener">https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a</a></li><li><a href="https://www.mandiant.com/solarwinds-break-resource-center" rel="noopener">https://www.mandiant.com/solarwinds-break-resource-center</a></li><li><a href="https://github.com/pbom-dev/OSCAR/issues/84" rel="noopener">https://github.com/pbom-dev/OSCAR/issues/84</a></li></ul>
+        <h2>Where this idea came from</h2><p class="meta">Original corpus</p><p>This catalogue, from upstream issue #84 (Impact: customers compromised).</p><ul class='refs'><li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a" rel="noopener">https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a</a></li><li><a href="https://www.mandiant.com/solarwinds-break-resource-center" rel="noopener">https://www.mandiant.com/solarwinds-break-resource-center</a></li><li><a href="https://github.com/pbom-dev/OSCAR/issues/84" rel="noopener">https://github.com/pbom-dev/OSCAR/issues/84</a></li></ul>
         
         <h2>Mitigations</h2>
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li><li><span class="id">M1860</span> Implement strong authentication mechanisms</li></ul>

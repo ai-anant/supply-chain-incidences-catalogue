@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS118</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS118</p>
 
         <p class="meta">AS118 · 2026-06</p>
         <h1>codfish/semantic-release-action tag hijack (Miasma)</h1>
         <p><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
         <p>Aikido (24 Jun 2026): an imposter force-push grafted two malicious<br>commits and moved sixteen tags including floating v2–v5 on<br>codfish/semantic-release-action. Composite action still runs the real<br>action (so CI looks green), then setup-bun and an obfuscated index.js.<br>Dead-drop marker thebeautifulsnadsoftime matches the Miasma toolkit<br>(AS50). Workflows on mutable tags pull attacker code on the next run.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0195.html">T0195</a> Spoofed Commits</li><li><a href="../techniques/T0122.html">T0122</a> Vulnerability in third-party CI/CD actions</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0168.html">T0168</a> Exfiltration to code repositories</li></ul>
         <h2><span class="stage">supply-chain</span> floating tag rewrite</h2><div class="card"><p class="meta"><a href="../techniques/T0195.html">T0195</a> · Defense Evasion · Spoofed Commits</p><p>Orphan commits reused a 2023 merge author/date/message.</p></div><div class="card"><p class="meta"><a href="../techniques/T0122.html">T0122</a> · Initial Access · Vulnerability in third-party CI/CD actions</p><p>Mutable major tags v2–v5 repointed.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>GITHUB_TOKEN / NPM_TOKEN on release workflows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0168.html">T0168</a> · Exfiltration · Exfiltration to code repositories</p><p>Miasma GitHub commit-search dead drop.</p></div>
         

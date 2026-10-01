@@ -1,5 +1,12 @@
 entries:
 - date: '2026-10-01'
+  id: drop-oscar-page-copy
+  title: OSC&R named only on the matrix page; talks are boxes
+  items:
+  - 'Guidance, incidents, stories, techniques, and origins no longer frame the site as OSC&R.
+    The matrix page still says the catalogue uses OSC&R and maps incidents onto it.'
+  - 'Conference talks use the same responsive box grid as platforms.'
+- date: '2026-10-01'
   id: platform-boxes
   title: Platform index is a responsive grid of boxes
   items:

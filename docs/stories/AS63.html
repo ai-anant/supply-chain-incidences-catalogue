@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS63</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS63</p>
 
         <p class="meta">AS63 · 2025-12</p>
         <h1>DarkGPT / Codo-AI / bitcoin-auto-trading VS Code extensions</h1>
         <p><a class="plat" href="../platforms/vscode.html">VS Code / IDE</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>SafeDep analyzed Visual Studio Marketplace extensions EffetMer.darkgpt<br>(1.2.0 / 1.2.2), BigBlack.codo-ai 1.0.0 and ozz3dev.bitcoin-auto-trading<br>1.2.0. On activate, extension.js launched scripts/run.bat via hidden<br>PowerShell. The batch file downloaded Lightshot.exe (a signed Windows<br>binary) and Lightshot.dll from syn1112223334445556667778889990.org and<br>ran the exe so it DLL-hijacked the signed host. The DLL then fetched a<br>further payload. Windows-only. Related analysis by Koi Security.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0154.html">T0154</a> Malicious IDE extension</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0208.html">T0208</a> Compromise code-signing identity</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> malicious vscode marketplace extensions</h2><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Three extensions on the Visual Studio Marketplace.</p></div><div class="card"><p class="meta"><a href="../techniques/T0154.html">T0154</a> · Initial Access · Malicious IDE extension</p><p>activate() spawned hidden PowerShell to run run.bat.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>run.bat dropped Lightshot.exe / Lightshot.dll from a remote host.</p></div><div class="card"><p class="meta"><a href="../techniques/T0208.html">T0208</a> · Defense Evasion · Compromise code-signing identity</p><p>Payload hid behind a signed Lightshot.exe via DLL hijack.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Downstream stealer targeted developer-machine data.</p></div>
         

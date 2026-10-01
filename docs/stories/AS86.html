@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS86</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS86</p>
 
         <p class="meta">AS86 · 2026-07</p>
         <h1>@copilot-mcp/apex macOS infostealer republish</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/mcp.html">MCP</a></p>
         <p>npm removed @apexfdn/apex for malware; SafeDep found the operator<br>republished the same postinstall macOS infostealer as @copilot-mcp/apex<br>about 11 hours later. Targets Web3 founders/developers: browser data,<br>20+ crypto wallets, SSH/AWS/Kubernetes creds via osascript and<br>curl|zsh, beacon every 60 seconds. npm removed the republish too;<br>GitHub binaries and C2 stayed live.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> takedown-and-republish</h2><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>@copilot-mcp scope impersonating Copilot/MCP tooling.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Same payload under a new name after npm takedown.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>postinstall osascript / curl|zsh on macOS.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Wallets, SSH, AWS, Kubernetes.</p></div>
         

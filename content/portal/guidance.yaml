@@ -14,7 +14,7 @@ documents:
     publisher: NIST
     gaps_found:
       - id: T0206
-        note: PS.3.2 collect and share provenance for all components of software releases. OSC&R had no technique for omitting or forging that provenance.
+        note: PS.3.2 collect and share provenance for all components of software releases. This catalogue had no technique for omitting or forging that provenance.
   - id: slsa
     name: SLSA Threats and mitigations
     url: https://slsa.dev/spec/v1.0/threats
@@ -27,22 +27,22 @@ documents:
   - id: ox-cider
     name: OxSecurity / Cider CI/CD Top 10 and research
     url: https://owasp.org/www-project-top-10-ci-cd-security-risks/
-    publisher: Cider Security (now OxSecurity); authors of original OSC&R / pbom.dev
+    publisher: Cider Security (now OxSecurity)
     gaps_found:
-      - note: Most OSC&R techniques were identified here first (PPE, PBAC, credential hygiene, 3rd-party services), then published as OWASP. Unused techniques in OSC&R are often this research, not missing incidents.
+      - note: Most techniques in this set were identified in this research first (PPE, PBAC, credential hygiene, 3rd-party services), then published as OWASP. Unused techniques are often this research, not missing incidents.
   - id: cisa
     name: CISA Secure Software Development / EO 14028 artifacts
     url: https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form
     publisher: CISA
     gaps_found:
       - id: T0206
-        note: Attestation and provenance requirements assume producers emit truthful SBOMs; forging that paperwork is an attacker technique OSC&R did not name.
+        note: Attestation and provenance requirements assume producers emit truthful SBOMs; forging that paperwork is an attacker technique this catalogue did not name.
   - id: nist-800-161
     name: NIST SP 800-161r1 Cybersecurity Supply Chain Risk Management
     url: https://csrc.nist.gov/pubs/sp/800/161/r1/final
     publisher: NIST
     gaps_found:
-      - note: 800-161 is organizational C-SCRM (suppliers, contracts, hardware). OSC&R stays on attacker TTPs in software delivery. No extra T-items added; out of tactical scope.
+      - note: 800-161 is organizational C-SCRM (suppliers, contracts, hardware). This catalogue stays on attacker techniques in software delivery. No extra T-items added; out of tactical scope.
 
 new_techniques:
   - T0206

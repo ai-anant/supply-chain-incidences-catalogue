@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS73</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS73</p>
 
         <p class="meta">AS73 · 2025-07</p>
         <h1>got-fetch 5.1.11/5.1.12 Pycoon stealer</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>Checkmarx Zero found got-fetch 5.1.11 and 5.1.12 (~50k weekly downloads)<br>shipping crashreporter.dll, a Pycoon information stealer for Windows.<br>Maintainer @alexghr confirmed the same npnjs.com phishing mail as the<br>eslint-config-prettier wave (AS72), rotated tokens, and deprecated the<br>package. Payload differs from the prettier node-gyp.dll dropper. npm<br>removed the versions; cached copies in internal registries remained a<br>risk.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> phished maintainer publish</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Maintainer phished via npnjs.com lookalike.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>got-fetch 5.1.11 and 5.1.12 on npm.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>Dropped crashreporter.dll (Pycoon) on Windows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Pycoon information stealer.</p></div>
         

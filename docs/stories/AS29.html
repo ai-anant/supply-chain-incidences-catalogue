@@ -30,16 +30,16 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS29</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS29</p>
 
         <p class="meta">AS29 · 2026-08</p>
         <h1>Unclaimed packages in official llms.txt files</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a></p>
         <p>Alon Hertz (Evervault) scanned thousands of official llms.txt instruction<br>files. Many embed pip/npm install lines whose package names were never<br>registered. Registering a handful with a beacon produced a callback from<br>inside a Fortune 500 in under four minutes. Agents given only a vendor<br>name fetched llms.txt themselves and installed the unclaimed package.<br>This is dependency confusion against first-party instruction files, not<br>against a lockfile.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0102.html">T0102</a> Discover used open-source dependencies</li><li><a href="../techniques/T0107.html">T0107</a> Discover internal artifacts names</li><li><a href="../techniques/T0120.html">T0120</a> Dependency confusion</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li></ul>
         <h2><span class="stage">supply-chain</span> Unclaimed names in vendor llms.txt</h2><div class="card"><p class="meta"><a href="../techniques/T0102.html">T0102</a> · Reconnaissance · Discover used open-source dependencies</p><p>Instruction files published the package names agents would install.</p></div><div class="card"><p class="meta"><a href="../techniques/T0107.html">T0107</a> · Reconnaissance · Discover internal artifacts names</p><p>Names were first-party and correctly spelled, never in a public lockfile.</p></div><div class="card"><p class="meta"><a href="../techniques/T0120.html">T0120</a> · Initial Access · Dependency confusion</p><p>Registering the unclaimed name made agents install attacker code.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Names from official docs were registered on PyPI and npm.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>The advertisement was the vendor&#x27;s own HTTPS llms.txt.</p></div>
-        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Agent instruction files as a trust input are not a first-class OSC&amp;R technique.</li></ul></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Agent instruction files as a trust input are not a first-class technique.</li></ul></div>
         <h2>Sources</h2>
         <ul class='refs'><li><a href="https://medium.com/@alonhertz1/data-became-code-we-ran-code-inside-fortune-500s-using-files-they-published-for-ai-agents-0cd67ffbbffc" rel="noopener">https://medium.com/@alonhertz1/data-became-code-we-ran-code-inside-fortune-500s-using-files-they-published-for-ai-agents-0cd67ffbbffc</a></li></ul>
         

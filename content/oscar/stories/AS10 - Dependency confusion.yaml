@@ -13,7 +13,7 @@ description: |
   internal package of the same name. By publishing placeholder packages
   matching internal names discovered in public artifacts, he executed code
   inside dozens of large companies. The technique already exists as T0120;
-  this story records the campaign that made it famous, which OSC&R never
+  this story records the campaign that made it famous, which this catalogue never
   documented as an incident.
 
 attacks:

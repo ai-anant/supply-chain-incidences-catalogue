@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS52</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS52</p>
 
         <p class="meta">AS52 · 2026-08</p>
         <h1>Packagist CMS themes delivering iOS spyware</h1>
         <p><a class="plat" href="../platforms/packagist.html">Packagist / Composer</a><a class="plat" href="../platforms/cdn.html">CDN / web assets</a></p>
         <p>Socket found 13 malicious Composer theme packages on Packagist (five<br>vendor namespaces used by Vietnamese OphimCMS/KKPhim movie sites). The<br>theme injects JS into every page: mobile ad-fraud plus, on iPhones, a<br>WebKit-to-kernel exploit chain (FUNNULL) that installs spyware and<br>steals crypto-wallet seeds. Apple said the kernel escape was already<br>fixed in iOS/macOS 26.1; WebKit bugs were in CISA KEV. Site operators<br>install with composer require.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0119.html">T0119</a> Cross-site scripting</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li></ul>
         <h2><span class="stage">supply-chain</span> Packagist themes</h2><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Thirteen themes across vsmov, vsphim, haiau009, chilltvcms, ophimcms.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Themes for real Laravel CMS stacks.</p></div><div class="card"><p class="meta"><a href="../techniques/T0119.html">T0119</a> · Execution · Cross-site scripting</p><p>Injected JS on every page of sites that installed the theme.</p></div><div class="card"><p class="meta"><a href="../techniques/T0201.html">T0201</a> · Impact · Customers compromised</p><p>Site visitors (especially unpatched iPhones), not only the operator’s build.</p></div>
         

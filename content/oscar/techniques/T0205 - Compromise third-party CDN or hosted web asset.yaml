@@ -16,7 +16,7 @@ description: |
   asset (domain expiry, registrar hijack, or operator acquisition) and serves
   malicious content to every site that loads it. Polyfill.io (2024) is the
   reference case: a trusted script URL became a drive-by supply-chain implant
-  for hundreds of thousands of properties. OSC&R previously had no technique
+  for hundreds of thousands of properties. This catalogue previously had no technique
   that named this web-asset supply chain.
 
 mitigations:

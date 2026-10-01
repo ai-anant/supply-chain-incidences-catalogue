@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS69</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS69</p>
 
         <p class="meta">AS69 · 2025-07</p>
         <h1>npm is 3.3.1 / 5.0.0 via phished old maintainer</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>On 19 July 2025 malicious versions 3.3.1 and 5.0.0 of the widely used<br>type-checking package is were published. Attackers phished an old<br>maintainer, had that account dropped from the package, then emailed<br>current maintainer Jordan Harband claiming npm had removed them for<br>missing 2FA. Re-adding the account let the attackers publish the next<br>morning. Same phishing campaign as eslint-config-prettier. Malicious<br>code sat unnoticed for about six hours. StepSecurity write-up; Harband<br>posted the sequence on Bluesky.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0137.html">T0137</a> Weak authentication methods</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li></ul>
         <h2><span class="stage">supply-chain</span> social-engineered maintainer restore</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Old maintainer npm account phished.</p></div><div class="card"><p class="meta"><a href="../techniques/T0137.html">T0137</a> · Initial Access · Weak authentication methods</p><p>Ownership restore via a 2FA-removal story, no extra verification.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>is 3.3.1 and 5.0.0 on npm.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Published from a restored maintainer session.</p></div>
         

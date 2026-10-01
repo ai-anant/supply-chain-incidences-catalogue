@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS4</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS4</p>
 
         <p class="meta">AS4 · 2021-03</p>
         <h1>php.net git server Zerodium backdoor</h1>
         <p><a class="plat" href="../platforms/packagist.html">Packagist / Composer</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
-        <p>On 28 March 2021 two malicious commits landed on git.php.net impersonating<br>PHP developers. The change would execute attacker-supplied code if the<br>HTTP User-Agent started with &quot;zerodium&quot;. The official php.net news post<br>said the malicious commits were caught before they reached end-user<br>releases. PHP paused releases, enabled MFA, and later moved canonical<br>development to GitHub. Original OSC&amp;R text wrongly dated this to 2023.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <p>On 28 March 2021 two malicious commits landed on git.php.net impersonating<br>PHP developers. The change would execute attacker-supplied code if the<br>HTTP User-Agent started with &quot;zerodium&quot;. The official php.net news post<br>said the malicious commits were caught before they reached end-user<br>releases. PHP paused releases, enabled MFA, and later moved canonical<br>development to GitHub. The inherited text wrongly dated this to 2023.</p>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0180.html">T0180</a> Compromise services / servers</li><li><a href="../techniques/T0195.html">T0195</a> Spoofed Commits</li><li><a href="../techniques/T0137.html">T0137</a> Weak authentication methods</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0191.html">T0191</a> Malicious code in artifacts</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> git.php.net</h2><div class="card"><p class="meta"><a href="../techniques/T0180.html">T0180</a> · Initial Access · Compromise services / servers</p><p>The self-hosted PHP git server was the point of injection.</p></div><div class="card"><p class="meta"><a href="../techniques/T0195.html">T0195</a> · Defense Evasion · Spoofed commits</p><p>Commits impersonated two PHP developers.</p></div><div class="card"><p class="meta"><a href="../techniques/T0137.html">T0137</a> · Initial Access · Weak authentication methods</p><p>Post-incident action was to require MFA; git.php.net was retired.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>Backdoor committed into php-src.</p></div><div class="card"><p class="meta"><a href="../techniques/T0191.html">T0191</a> · Impact · Malicious code in artifacts</p><p>Intended to ship in official PHP tarballs; caught before release.</p></div><h2><span class="stage">post-supply-chain</span> PHP users (if it had shipped)</h2><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>User-Agent zerodium would have run attacker commands on every PHP server.</p></div>
         

@@ -30,16 +30,16 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS9</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS9</p>
 
         <p class="meta">AS9 · 2018-11</p>
         <h1>npm event-stream / flatmap-stream</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
-        <p>The popular npm package event-stream, with millions of weekly downloads,<br>was handed by its original maintainer to a new owner who introduced a<br>dependency, flatmap-stream, that targeted Copay wallets and attempted to<br>steal Bitcoin. This is the textbook &quot;abandoned package + unvetted<br>maintainer transfer&quot; npm incident and predates most of OSC&amp;R&#x27;s original<br>attack stories.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <p>The popular npm package event-stream, with millions of weekly downloads,<br>was handed by its original maintainer to a new owner who introduced a<br>dependency, flatmap-stream, that targeted Copay wallets and attempted to<br>steal Bitcoin. This is the textbook &quot;abandoned package + unvetted<br>maintainer transfer&quot; npm incident and predates most of the original technique set<br>attack stories.</p>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li></ul>
         <h2><span class="stage">supply-chain</span> event-stream maintainer transfer</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Ownership transferred to an attacker-controlled npm account after<br>the original maintainer accepted help.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>flatmap-stream was published to npm as a new dependency of event-stream.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>The malicious dependency was introduced via a pull/version bump that<br>looked like ordinary maintenance.</p></div><h2><span class="stage">post-supply-chain</span> Copay / downstream npm users</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>The payload decrypted and ran only in specific downstream applications.</p></div><div class="card"><p class="meta"><a href="../techniques/T0139.html">T0139</a> · Impact · Resource hijacking</p><p>The objective was theft of Bitcoin from Copay wallets, not a general<br>backdoor.</p></div>
-        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Package-ownership transfer without out-of-band verification is a process gap; OSC&amp;R still has no dedicated &quot;registry account takeover / handover&quot; technique beyond T0113.</li></ul></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Package-ownership transfer without out-of-band verification is a process gap; This catalogue still has no dedicated &quot;registry account takeover / handover&quot; technique beyond T0113.</li></ul></div>
         <h2>Sources</h2>
         <ul class='refs'><li><a href="https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident" rel="noopener">https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident</a></li><li><a href="https://github.com/dominictarr/event-stream/issues/116" rel="noopener">https://github.com/dominictarr/event-stream/issues/116</a></li></ul>
         

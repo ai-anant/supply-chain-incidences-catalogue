@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS68</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS68</p>
 
         <p class="meta">AS68 · 2026-07</p>
         <h1>SleeperGem (git_credential_manager, Dendreo, fastlane plugin)</h1>
         <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a></p>
         <p>On 18–19 July 2026 malicious versions of git_credential_manager<br>(impersonating Microsoft Git Credential Manager), Dendreo, and<br>fastlane-plugin-run_tests_firebase_testlab shipped on RubyGems with no<br>matching git tags. Two gems had been dormant for years. Each is a<br>loader: skip if CI env vars are set, otherwise fetch deploy.sh and a<br>native daemon from a Forgejo host (git.disroot.org), persist via systemd<br>user service and cron, and probe passwordless sudo for a setuid shell.<br>Named by Aikido; StepSecurity detonated under Harden-Runner.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> dormant rubygems loaders</h2><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>git_credential_manager impersonates Microsoft Git Credential Manager.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Dendreo and fastlane plugin versions with no source tags.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Coordinated RubyGems publishes 18–19 July 2026.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Runs on require, not only install; skips CI.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>Native daemon plus systemd/cron persistence.</p></div>
         

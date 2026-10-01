@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS286</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS286</p>
 
         <p class="meta">AS286 · 2026-09</p>
         <h1>J7Tracker / VREO / Orbit Tracker steal Axiom and Padre session and wallet data</h1>
         <p><a class="plat" href="../platforms/browser-extensions.html">Browser extensions</a></p>
         <p>Socket (9 September 2026) documented six Chrome and Firefox extensions<br>in one publisher operation targeting Axiom Trade and Padre (now<br>Terminal) users. Chrome J7Tracker and VREO and Firefox VREO share a<br>byte-identical axiom-fetch-intercept.js module that pulls authenticated<br>user info, wallet bundle data, Firebase access tokens, and app state<br>to attacker Vercel deployments. Firefox Orbit Tracker arrived weeks<br>later with a separate collector and C2 (susi.bonto.run) but the same<br>Axiom fields (sBundles, bundleKey) and leftover J7Tracker popup<br>artifacts; it was still live at publication. Earlier Chrome GhostApe<br>and GhostApe Color in the same publisher portfolio were MockApe<br>brandjacks (even reusing the legitimate MockApe store ID). Chrome<br>listings were removed in July 2026 (J7Tracker/VREO as malware;<br>GhostApe pair as policy). Shared hardcoded id 7680513699 ties<br>J7Tracker/VREO.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> Marketplace extensions</h2><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Chrome Web Store and Firefox Add-ons listings (J7Tracker, VREO, Orbit Tracker, GhostApe).</p></div><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>GhostApe cloned MockApe including the legitimate Chrome store ID; VREO/Orbit pose as trader tools.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Axiom/Padre session tokens, Firebase access tokens, wallet bundle keys, cookies.</p></div>
         

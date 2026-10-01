@@ -11,7 +11,7 @@ description: |
   repositories: stolen personal access tokens, commits impersonating
   Dependabot, a workflow that exfiltrated GitHub secrets on push, and
   JavaScript password stealers in the tree. The Dependabot disguise was
-  meant to survive hurried review. Original OSC&R text was two sentences.
+  meant to survive hurried review. The inherited text was two sentences.
         
 # Techniques used in attack
 attacks:

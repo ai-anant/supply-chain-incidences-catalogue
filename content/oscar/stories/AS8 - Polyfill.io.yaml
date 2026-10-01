@@ -11,7 +11,7 @@ description: |
   place of the expected polyfill, redirecting users and injecting extra
   payloads. CISA and multiple CDNs issued emergency guidance to stop loading
   assets from cdn.polyfill.io. This incident is a web-asset supply-chain
-  compromise, not a package-registry event, and was missing from OSC&R until
+  compromise, not a package-registry event, and was missing from the technique set until
   T0205 was added.
 
 attacks:

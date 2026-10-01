@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS61</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS61</p>
 
         <p class="meta">AS61 · 2026-03</p>
         <h1>Fake corepack.org infostealer and proxyware</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>After Node.js stopped bundling Corepack, Socket documented corepack.org<br>impersonating the Node.js package-manager pin tool. The real project<br>has no official site at that domain and is not distributed as a Windows<br>installer. “Download Free” redirected to an OpenShield landing page and<br>dropped vpnsetup_*.exe — an infostealer plus proxyware that enrolled<br>the machine as a bandwidth-sharing exit node. A second path delivered<br>OperaGXSetup.exe adware. Node.js contributors flagged the domain in<br>nodejs/corepack issue 803 (March 2026); it later started serving<br>executables. Install Corepack only from the npm registry.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0153.html">T0153</a> Compromised developer workstation</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
         <h2><span class="stage">supply-chain</span> brandjacked download site</h2><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>corepack.org impersonating the Node.js Corepack tool.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>Search-result download for developers after Corepack was unbundled.</p></div><div class="card"><p class="meta"><a href="../techniques/T0153.html">T0153</a> · Initial Access · Compromised developer workstation</p><p>Fake installer ran on the developer machine.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Browser profiles and stored SSH keys.</p></div>
         

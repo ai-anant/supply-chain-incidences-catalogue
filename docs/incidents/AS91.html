@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS91</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS91</p>
 
         <p class="meta">AS91 · 2026-05</p>
         <h1>Megalodon mass GitHub repo backdooring via CI</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
         <p>SafeDep named Megalodon: mass backdooring of GitHub repositories<br>through CI workflows (malicious workflow files that steal secrets and<br>persist). Same class as hackerbot-claw (AS75) and Nx s1ngularity<br>(AS74), as a named campaign rather than a single package.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0147.html">T0147</a> Scan public CI/CD configurations for secrets and vulnerable actions</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li></ul>
         <h2><span class="stage">supply-chain</span> mass workflow implant</h2><div class="card"><p class="meta"><a href="../techniques/T0147.html">T0147</a> · Reconnaissance · Scan public CI/CD configurations for secrets and vulnerable actions</p><p>Repos selected for vulnerable or writable workflows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0166.html">T0166</a> · Execution · Trigger pipeline execution</p><p>Implanted GitHub Actions workflows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>CI secrets from the poisoned workflows.</p></div>
         

@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS24</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS24</p>
 
         <p class="meta">AS24 · 2023-01</p>
         <h1>Self-hosted GitHub Actions runners (Praetorian Gato)</h1>
         <p><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
         <p>Praetorian&#x27;s 2022–2023 red-team work, released as Gato (GitHub Attack<br>Toolkit) at ShmooCon 2023, showed that non-ephemeral self-hosted Actions<br>runners are a supply-chain persistence and lateral-movement platform.<br>A job on the runner executes on the underlying host, on the internal<br>network, and can schedule follow-on workflows. GitHub&#x27;s own docs warn<br>against using self-hosted runners on public repos. T0148 was identified<br>from this class of operations, not from one public victim advisory.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0148.html">T0148</a> Scheduled tasks on self hosted runner</li><li><a href="../techniques/T0132.html">T0132</a> Overprivileged CI/CD Runners</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li></ul>
         <h2><span class="stage">supply-chain</span> Self-hosted runner</h2><div class="card"><p class="meta"><a href="../techniques/T0148.html">T0148</a> · Persistence · Scheduled tasks on self hosted runner</p><p>Self-hosted runners persist the environment between jobs; a malicious<br>workflow can leave scheduled tasks or extra runner registrations.</p></div><div class="card"><p class="meta"><a href="../techniques/T0132.html">T0132</a> · Privilege Escalation · Overprivileged CI/CD Runners</p><p>The runner host sits inside the org network and holds deployment<br>credentials the public GitHub-hosted runner never sees.</p></div><div class="card"><p class="meta"><a href="../techniques/T0166.html">T0166</a> · Execution · Trigger pipeline execution</p><p>Gato&#x27;s attack module pushes a workflow or opens a fork PR that<br>executes on the self-hosted runner.</p></div>
         <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Public named-victim write-ups for this pattern exist in later Actions worms; this story records the research identification of T0148.</li></ul></div>

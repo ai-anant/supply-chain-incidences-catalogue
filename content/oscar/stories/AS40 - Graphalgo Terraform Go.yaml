@@ -93,7 +93,7 @@ attacks:
         comment: Shared Slack workspaces and Ethereum key with April npm Graphalgo.
 
 gaps:
-  - Slack workspace plus Arbitrum smart-contract C2 is not a named OSC&R technique.
+  - Slack workspace plus Arbitrum smart-contract C2 is not a named technique.
   - Standing up fake vanity Go ecosystems as social-engineering fronts is only partly covered by T0141.
 
 links:

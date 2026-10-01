@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS117</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS117</p>
 
         <p class="meta">AS117 · 2026-09</p>
         <h1>Miri writes env secrets into target/ readable from PR caches</h1>
         <p><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/crates.html">crates.io</a></p>
         <p>Rust Security Response Team (21 Sep 2026): cargo miri stored all<br>environment variables under target/. Combined with GitHub Actions cache<br>(PRs can read caches written on main), a later PR can recover CI secrets<br>from the cache. Not a registry hijack — a tool+platform pairing. Short<br>term fix: Miri only preserves CARGO_* (except tokens) and OUT_DIR.<br>Nightly 2026-09-22.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0130.html">T0130</a> Harvest secrets from logs</li><li><a href="../techniques/T0193.html">T0193</a> Sensitive information in environment variables</li><li><a href="../techniques/T0162.html">T0162</a> Passwords in CI/CD logs</li></ul>
         <h2><span class="stage">supply-chain</span> cache readable secrets</h2><div class="card"><p class="meta"><a href="../techniques/T0130.html">T0130</a> · Credential Access · Harvest secrets from logs</p><p>Secrets persisted in cached target/ rather than logs, same class.</p></div><div class="card"><p class="meta"><a href="../techniques/T0193.html">T0193</a> · Collection · Sensitive information in environment variables</p><p>Miri dumped the full environment into the cache.</p></div><div class="card"><p class="meta"><a href="../techniques/T0162.html">T0162</a> · Credential Access · Passwords in CI/CD logs</p><p>PR jobs could read the poisoned cache.</p></div>
         

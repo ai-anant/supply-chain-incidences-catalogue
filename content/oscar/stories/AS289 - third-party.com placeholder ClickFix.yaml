@@ -74,7 +74,7 @@ attacks:
 
 gaps:
   - ClickFix / clipboard-poisoning social engineering is not a first-class
-    OSC&R technique; the human-run command is approximated by T0159/T0153.
+    technique; the human-run command is approximated by T0159/T0153.
   - A documentation placeholder as a dependency-trust input (resolved at
     request time) has no dedicated technique beyond T0205.
 

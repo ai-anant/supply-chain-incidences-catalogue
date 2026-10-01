@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS43</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS43</p>
 
         <p class="meta">AS43 · 2026-08</p>
         <h1>WEL1DROPPER / NUL1DROPPER npm slopsquatting</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>In 48 hours a threat actor published 700+ npm packages with AI-slop /<br>random typosquat names (OpenSourceMalware: WEL1DROPPER, also Flooding<br>Dropper / NUL1DROPPER). No preinstall/postinstall. The README tells<br>developers to require() the library; that import loads _helpers.js and<br>starts a cross-platform RAT/infostealer. Primary C2 is three Cloudflare<br>Workers; fallback reconstructs the payload from DNS TXT under wel1.ru.<br>Example package checkout-mobile-bnpl@35.6.9.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li></ul>
         <h2><span class="stage">supply-chain</span> npm slopsquats</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Hundreds of AI-generated / random lookalike names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>700+ packages in two days.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>require() is enough; no install scripts, so npm v12 script blocks miss it.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>README instructs developers to load the fake SDK.</p></div>
         

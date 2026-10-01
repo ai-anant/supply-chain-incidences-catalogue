@@ -11,7 +11,7 @@ description: |
   harvested npm credentials from the developer machine and sent them to
   an attacker server. ESLint’s official postmortem is the primary record.
   This is the classic “popular linter as credential harvester” case that
-  original OSC&R never documented.
+  the inherited corpus never documented.
 
 attacks:
   - attack: eslint-scope on npm

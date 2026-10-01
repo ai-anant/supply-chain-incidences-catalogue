@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS72</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS72</p>
 
         <p class="meta">AS72 · 2025-07</p>
         <h1>eslint-config-prettier phishing (npnjs.com) and node-gyp.dll</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>In July 2025 maintainer JounQin confirmed a phishing mail that added a<br>malicious npm token. Attackers published eslint-config-prettier 8.10.1,<br>9.1.1, 10.1.6 and 10.1.7 plus eslint-plugin-prettier 4.2.2/4.2.3,<br>synckit 0.11.9, @pkgr/core 0.2.8 and napi-postinstall 0.3.1. Affected<br>prettier versions ran install.js which launched node-gyp.dll on Windows<br>(CVE assigned). Same npnjs.com campaign later hit npm is (AS69) and<br>got-fetch (AS73). Dependabot/Renovate PRs upgraded some repos onto the<br>bad versions. StepSecurity investigation.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li></ul>
         <h2><span class="stage">supply-chain</span> phished maintainer token</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Phishing added a new npm token on JounQin’s account.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Multiple prettier-ecosystem packages republished.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>install.js launched node-gyp.dll on Windows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Versions published outside the project’s CI, no provenance.</p></div>
         

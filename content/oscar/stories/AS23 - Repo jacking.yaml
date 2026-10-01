@@ -53,7 +53,7 @@ attacks:
 
       '
 gaps:
-- GitHub later retired some popular namespaces; OSC&R still treats jacking of non-popular names as in
+- GitHub later retired some popular namespaces; This catalogue still treats jacking of non-popular names as in
   scope.
 links:
 - https://blog.securityinnovation.com/repo-jacking-exploiting-the-dependency-supply-chain

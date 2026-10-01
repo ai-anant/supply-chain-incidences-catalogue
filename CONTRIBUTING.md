@@ -22,7 +22,7 @@ python helpers/build_site.py --dest docs
 ## Content rules
 
 - Required technique fields: `id`, `type`, `tactic`, `realm`, `summary`, `description`
-- `tactic` must be one of the 12 OSC&R tactics (same names as MITRE ATT&CK)
+- `tactic` must be one of the 12 tactics (same names as MITRE ATT&CK)
 - Link mitigations (`M####`) and detections (`D####`) by ID; create those YAML files in the same PR if they do not exist
 - Attack stories go in `content/oscar/stories/` and must map at least one existing technique
 - Prefer adding a `gaps:` list on stories when the framework cannot yet name an element

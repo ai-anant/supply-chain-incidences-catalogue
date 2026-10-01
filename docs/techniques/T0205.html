@@ -30,12 +30,12 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Techniques</a> / T0205</p>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0205</p>
 
         <p class="meta">T0205 · Initial Access · TA03 · observed in 5 incident(s)</p>
         <h1>Compromise third-party CDN or hosted web asset</h1>
         <div class="chips"><span class="chip">Open Source Security</span> <span class="chip">Artifact Security</span> <span class="chip">Cloud Security</span></div>
-        <p>Instead of poisoning a package registry or source repository, the attacker<br>takes over a widely embedded CDN hostname, tag manager, or hosted JavaScript<br>asset (domain expiry, registrar hijack, or operator acquisition) and serves<br>malicious content to every site that loads it. Polyfill.io (2024) is the<br>reference case: a trusted script URL became a drive-by supply-chain implant<br>for hundreds of thousands of properties. OSC&amp;R previously had no technique<br>that named this web-asset supply chain.</p>
+        <p>Instead of poisoning a package registry or source repository, the attacker<br>takes over a widely embedded CDN hostname, tag manager, or hosted JavaScript<br>asset (domain expiry, registrar hijack, or operator acquisition) and serves<br>malicious content to every site that loads it. Polyfill.io (2024) is the<br>reference case: a trusted script URL became a drive-by supply-chain implant<br>for hundreds of thousands of properties. This catalogue previously had no technique<br>that named this web-asset supply chain.</p>
         <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33: abandoned S3 buckets still referenced by software (Shudrak).</p><ul class='refs'><li><a href="https://sansec.io/research/polyfill-supply-chain-attack" rel="noopener">https://sansec.io/research/polyfill-supply-chain-attack</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack" rel="noopener">https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack</a></li><li><a href="https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312" rel="noopener">https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312</a></li></ul>
         
         <h2>Mitigations</h2>

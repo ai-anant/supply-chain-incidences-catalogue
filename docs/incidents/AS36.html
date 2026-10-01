@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS36</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS36</p>
 
         <p class="meta">AS36 · 2026-09</p>
         <h1>mathmain / mathsbase encrypted npm RAT (equation trigger)</h1>
         <p><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>SafeDep and JFrog documented an npm campaign that copies mathjs under<br>new names (mathmain, mathsbase, math-universe) and ships an AES-256-GCM<br>loader with no install hooks. The loader stays dormant until a caller<br>runs lusolve() with a 3×3 Pascal matrix; the LU lower factor JSON is<br>the password. Decrypted stages are a remote-access implant that reads<br>a Base/Ethereum Sepolia contract, reports to Slack and Telegram, and<br>runs operator shell commands from Slack. The loader is in the npm<br>tarball, not in the public GitHub source. JFrog recovered the trigger<br>on 21 September 2026; SafeDep reproduced it against mathmain@1.0.0.<br>Reported download counts were inconsistent with dependents and<br>jsDelivr traffic. No public caller of the trigger matrix was found.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0141.html">T0141</a> Fake developer reputation (Starjacking)</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0150.html">T0150</a> Runtime logic bomb</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> npm mathjs copies with encrypted runtime loader</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Packages copy mathjs under different names (mathmain, mathsbase, math-universe).</p></div><div class="card"><p class="meta"><a href="../techniques/T0141.html">T0141</a> · Resource Development · Fake developer reputation (Starjacking)</p><p>Public GitHub repos exist; neither holds the loader that npm ships.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>mathsbase@1.0.1 (27 Aug), math-universe 1.0.0–1.0.2, mathmain@1.0.0 (17 Sep).</p></div><div class="card"><p class="meta"><a href="../techniques/T0150.html">T0150</a> · Execution · Runtime logic bomb</p><p>Payload decrypts only when lusolve() is called with one specific matrix.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>No install hooks; import plus the trigger is required.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>Decrypted agent polls Slack for shell commands; C2 also on-chain.</p></div>
         

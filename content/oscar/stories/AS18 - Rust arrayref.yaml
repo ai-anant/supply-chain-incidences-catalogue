@@ -108,7 +108,7 @@ attacks:
           (~245M downloads). Anyone who built during the window is in scope.
 
 gaps:
-  - Yank-to-herd (deleting safe versions so the only remaining version is malicious) is not a named OSC&R technique.
+  - Yank-to-herd (deleting safe versions so the only remaining version is malicious) is not a named technique.
 
 links:
   - https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref

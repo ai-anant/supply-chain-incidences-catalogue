@@ -10,7 +10,7 @@ description: |
   was handed by its original maintainer to a new owner who introduced a
   dependency, flatmap-stream, that targeted Copay wallets and attempted to
   steal Bitcoin. This is the textbook "abandoned package + unvetted
-  maintainer transfer" npm incident and predates most of OSC&R's original
+  maintainer transfer" npm incident and predates most of the original technique set
   attack stories.
 
 attacks:
@@ -56,7 +56,7 @@ attacks:
           backdoor.
 
 gaps:
-  - Package-ownership transfer without out-of-band verification is a process gap; OSC&R still has no dedicated "registry account takeover / handover" technique beyond T0113.
+  - Package-ownership transfer without out-of-band verification is a process gap; This catalogue still has no dedicated "registry account takeover / handover" technique beyond T0113.
 
 links:
   - https://blog.npmjs.org/post/180565383195/details-about-the-event-stream-incident

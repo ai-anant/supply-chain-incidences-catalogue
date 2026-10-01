@@ -30,13 +30,13 @@
       </div>
     </header>
 <main>
-<p class="crumb">OSC&amp;R / <a href="index.html">Incidents</a> / AS82</p>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS82</p>
 
         <p class="meta">AS82 · 2026-03</p>
         <h1>Neutralinojs org force-push (DPRK / PolinRider)</h1>
         <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/npm.html">npm</a></p>
         <p>On 2 March 2026 at 04:38–04:40 UTC compromised contributor alphagamer7<br>force-pushed four Neutralinojs repos (neutralinojs, neutralino.js,<br>neutralinojs-cli, github.io) in 132 seconds. Commits were backdated<br>5–35 days and attributed to maintainer shalithasuranga or<br>github-actions[bot]; GitHub triggering_actor showed the real pusher.<br>Payloads hid after hundreds of spaces in JS configs, used BeaverTail,<br>and pointed at Vercel C2. OSM tied it to PolinRider and the same<br>obfuscation family in 106+ other repos. OSM opened a cleanup PR;<br>Vercel took down the C2.</p>
-        <h2>Mapped OSC&amp;R elements</h2>
+        <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0195.html">T0195</a> Spoofed Commits</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0169.html">T0169</a> Push implants across repositories</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
         <h2><span class="stage">supply-chain</span> stolen contributor force-push</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Long-time contributor alphagamer7 used to force-push.</p></div><div class="card"><p class="meta"><a href="../techniques/T0195.html">T0195</a> · Defense Evasion · Spoofed Commits</p><p>Backdated timestamps; author spoofed as maintainer or github-actions[bot].</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>Whitespace-hidden JS loaders in four org repos.</p></div><div class="card"><p class="meta"><a href="../techniques/T0169.html">T0169</a> · Lateral Movement · Push implants across repositories</p><p>Four repos plus extra branches in 132 seconds.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>BeaverTail / blockchain C2 family also seen in Joyfill (AS66).</p></div>
         

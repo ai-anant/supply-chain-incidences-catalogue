@@ -65,7 +65,7 @@ attacks:
 
 gaps:
   - Encrypted typed-record exfiltration and post-haul self-deletion are
-    not named OSC&R techniques; recorded as stealth behaviours.
+    not named techniques; recorded as stealth behaviours.
   - A fake AI-model desktop application as a lure has no dedicated
     technique beyond T0136 brandjacking.
 
