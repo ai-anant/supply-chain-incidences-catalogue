@@ -1,11 +1,10 @@
 entries:
 - date: '2026-10-01'
-  id: not-an-oscar-continuation
-  title: Catalogue is not a continuation of OSCAR
+  id: no-oscar-callouts
+  title: Stop calling OSC&R out in site chrome
   items:
-  - 'Public copy no longer calls this project a continuation or fork of OSCAR. It stays
-    AI-generated. OSC&R remains the technique framework, one part of the catalogue.
-    Apache-2.0 attribution for that corpus stays in NOTICE and About.'
+  - 'Banner, footer, homepage, and About no longer explain OSC&R or say it is one part
+    of the catalogue. The matrix page says the catalogue uses OSC&R and maps incidents onto it.'
 - date: '2026-09-30'
   id: cloudsek-agent-fleet
   title: Autonomous AI-agent crypto-theft fleet added (AS293, T0213)

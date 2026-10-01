@@ -1,6 +1,6 @@
 # Contributing to the Supply Chain Incidences Catalogue
 
-This catalogue is AI-generated. OSC&R is the technique framework inside it, not the whole project. Original OSC&R authors retain credit for that corpus; see [NOTICE](NOTICE).
+This catalogue is AI-generated. See [NOTICE](NOTICE) for license attribution.
 
 ## How to contribute
 

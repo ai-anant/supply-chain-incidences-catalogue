@@ -1,8 +1,8 @@
 Supply Chain Incidences Catalogue
 ==================================
 
-This catalogue includes the OSC&R technique corpus originally developed
-by the PBOM / OSC&R project:
+This catalogue includes content originally developed by the
+PBOM / OSC&R project:
 
     https://github.com/pbom-dev/OSCAR
 
@@ -10,9 +10,7 @@ Original contributors include (among others) rubtoa, maxiozer,
 secvladimir, NaorPenso, vaq130, and 6mile. See the Git history of
 pbom-dev/OSCAR for the full author list.
 
-OSC&R is one part of this catalogue. The catalogue is not a continuation
-of the OSCAR project, and it is not an official pbom-dev release.
-Attribution to the original authors is required for the OSC&R content;
-claiming original authorship of that content is not permitted.
+Attribution to those authors is required for that content.
+This is not an official pbom-dev release.
 
 Licensed under the Apache License, Version 2.0. See LICENSE.

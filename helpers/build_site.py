@@ -46,10 +46,7 @@ TACTIC_IDS = {
     "Impact": "TA12",
 }
 
-BANNER = (
-    "This catalogue is <strong>AI-generated</strong>. "
-    "OSC&amp;R is one part of it — the technique framework — not the whole project."
-)
+BANNER = "This catalogue is <strong>AI-generated</strong>."
 
 
 def load_yaml_dir(rel):
@@ -114,7 +111,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
         <a class="brand" href="{root_prefix}index.html">SCIC</a>
         <nav>
           <a href="{root_prefix}index.html">Home</a>
-          <a href="{root_prefix}matrix.html">OSC&R Matrix</a>
+          <a href="{root_prefix}matrix.html">Technique matrix</a>
           <a href="{root_prefix}techniques/index.html">Techniques</a>
           <a href="{root_prefix}incidents/index.html">Incident mapping</a>
           <a href="{root_prefix}platforms/index.html">Platforms</a>
@@ -130,10 +127,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
     </header>"""
     footer = f"""
     <footer>
-      <p>AI-generated catalogue of software supply-chain incidents.
-      OSC&amp;R, the technique framework inside it, was created by
-      <a href="https://github.com/pbom-dev/OSCAR">pbom-dev</a>.
-      This project is not a continuation of OSCAR. Apache-2.0.
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
       <a href="{root_prefix}about.html">About</a>.</p>
     </footer>"""
     return f"""<!DOCTYPE html>
@@ -499,9 +493,7 @@ def build(dest):
     dash = f"""
     <h1>Supply Chain Incidences Catalogue</h1>
     <p class="lede">An AI-generated catalogue of software supply-chain incidents:
-    {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.
-    OSC&amp;R is the technique framework inside the catalogue. Incidents, platforms,
-    conference talks, and sources sit beside it.</p>
+    {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.</p>
     <div class="notice">{BANNER} Published from
     <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a>.</div>
     <div class="stats">
@@ -526,7 +518,7 @@ def build(dest):
         <h3>Most-used techniques</h3>
         <div class="hbar">{top_rows}</div>
         <p class="sub">By number of incidents mapping to each technique. Full list in the
-        <a href="matrix.html">OSC&R matrix</a>.</p>
+        <a href="matrix.html">technique matrix</a>.</p>
       </div>
       <div class="panelbox">
         <h3>Incidents per platform</h3>
@@ -551,7 +543,7 @@ def build(dest):
 
     <div class="dash">
       <div class="panelbox"><h3>Browse</h3>
-        <p><a href="matrix.html">OSC&R matrix</a> — techniques × tactics, heat-mapped by incident count</p>
+        <p><a href="matrix.html">Technique matrix</a> — techniques × tactics, heat-mapped by incident count</p>
         <p><a href="incidents/index.html">Incident mapping</a> — every incident → techniques</p>
         <p><a href="platforms/index.html">Platforms</a> — all incidents for npm, PyPI, GitHub Actions, …</p>
         <p><a href="stories/index.html">Attack stories</a> — chronological list</p>
@@ -569,8 +561,8 @@ def build(dest):
 
     matrix_body = f"""
     <h1>OSC&R Matrix</h1>
-    <p class="lede">The technique framework inside this catalogue — techniques × tactics,
-    heat-mapped by how many incidents map to each technique. OSC&amp;R is one part of the catalogue.</p>
+    <p class="lede">This catalogue uses OSC&amp;R and maps incidents onto it.
+    Techniques × tactics, heat-mapped by how many incidents use each technique.</p>
     <div class="stats">
       <div class="stat"><b>{n_tech}</b> techniques</div>
       <div class="stat"><b>{n_mit}</b> mitigations</div>
@@ -1042,7 +1034,7 @@ def build(dest):
     <h1>Conference talks</h1>
     <p class="lede">Supply-chain and AI talks from conferences we have walked.
     These are not attack stories. A technique link means the abstract describes that
-    technique. “Recorded, not mapped” means the talk is in the field but no OSC&amp;R
+    technique. “Recorded, not mapped” means the talk is in the field but no technique
     ID fits — a wrong mapping is worse than a gap.</p>
     {''.join(talk_cards) or '<p class="muted">No talks yet.</p>'}
     """
@@ -1093,25 +1085,15 @@ def build(dest):
 
     about = f"""
     <h1>About</h1>
-    <div class="notice"><strong>AI-generated.</strong> This is the Supply Chain Incidences Catalogue.
-    It is not a continuation of OSCAR. OSC&amp;R is one part of it.</div>
+    <div class="notice"><strong>AI-generated.</strong> Supply Chain Incidences Catalogue.</div>
     <h2>What this catalogue is</h2>
     <p>Incidents, the platforms they hit, conference talks, the sources those came from,
-    and a technique framework those incidents are mapped onto.</p>
-    <h2>OSC&amp;R, one part</h2>
-    <p>OSC&amp;R (Open Software Supply Chain Attack Reference) is the technique matrix:
-    how adversaries reconnoiter, infiltrate, persist in, and profit from software supply chains.
-    The framework, the YAML content model, and the original technique corpus were created by
-    <a href="https://github.com/pbom-dev/OSCAR">pbom-dev/OSCAR</a> under the Apache License 2.0.
-    Principal original contributors include <strong>rubtoa</strong>, <strong>maxiozer</strong>,
-    <strong>secvladimir</strong>, <strong>NaorPenso</strong>, <strong>vaq130</strong>, and
-    <strong>6mile</strong>. That authorship stands for the OSC&amp;R corpus. This catalogue does not claim it.</p>
+    and the technique matrix those incidents are mapped onto.</p>
     <h2>This catalogue</h2>
     <ul>
       <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>
       <li>Site: <a href="https://ai-anant.github.io/supply-chain-incidences-catalogue/">ai-anant.github.io/supply-chain-incidences-catalogue</a></li>
-      <li>License: Apache-2.0, including for the OSC&amp;R corpus included here</li>
-      <li>NOTICE records the attribution the license requires</li>
+      <li>License: Apache-2.0. See NOTICE.</li>
     </ul>
     <p class="muted">Generated {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}.</p>
     """
