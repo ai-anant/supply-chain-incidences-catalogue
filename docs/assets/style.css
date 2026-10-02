@@ -151,6 +151,18 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .talk-box h3 { font-size: 0.95rem; }
 .talk-box h3 a { color: var(--copper); }
 .talk-box p { margin: 0.15rem 0; font-size: 0.82rem; }
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; margin: 1rem 0 1.4rem; }
+.flow-col { background: var(--panel); border: 1px solid var(--line); padding: 0.75rem 0.8rem; }
+.flow-col h2 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+.flow-col .def { color: var(--muted); font-size: 0.78rem; min-height: 3.2rem; }
+.flow-col .n { font-size: 1.45rem; color: var(--copper); font-weight: 650; line-height: 1.1; }
+.flow-col .lbl { color: var(--muted); font-size: 0.72rem; }
+.flow-col ul { margin: 0.4rem 0 0; padding-left: 1rem; font-size: 0.78rem; }
+.flow-col li { margin: 0.15rem 0; }
+@media (max-width: 64rem) {
+  .flow { grid-template-columns: 1fr; }
+  .flow-col .def { min-height: 0; }
+}
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;

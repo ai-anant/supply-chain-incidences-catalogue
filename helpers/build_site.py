@@ -304,6 +304,18 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .talk-box h3 { font-size: 0.95rem; }
 .talk-box h3 a { color: var(--copper); }
 .talk-box p { margin: 0.15rem 0; font-size: 0.82rem; }
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; margin: 1rem 0 1.4rem; }
+.flow-col { background: var(--panel); border: 1px solid var(--line); padding: 0.75rem 0.8rem; }
+.flow-col h2 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+.flow-col .def { color: var(--muted); font-size: 0.78rem; min-height: 3.2rem; }
+.flow-col .n { font-size: 1.45rem; color: var(--copper); font-weight: 650; line-height: 1.1; }
+.flow-col .lbl { color: var(--muted); font-size: 0.72rem; }
+.flow-col ul { margin: 0.4rem 0 0; padding-left: 1rem; font-size: 0.78rem; }
+.flow-col li { margin: 0.15rem 0; }
+@media (max-width: 64rem) {
+  .flow { grid-template-columns: 1fr; }
+  .flow-col .def { min-height: 0; }
+}
 .gaps { border-left: 3px solid var(--rose); }
 .stage { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--teal); }
 footer { border-top: 1px solid var(--line); padding: 1.2rem; color: var(--muted); font-size: 0.85rem;
@@ -1105,6 +1117,115 @@ def build(dest):
     <p class="muted">Generated {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}.</p>
     """
     write(os.path.join(dest, "about.html"), page("About", about, "", "SCIC / About"))
+
+    # Preview cut: five pipeline stages. Not linked from the nav.
+    stage_meta = [
+        ("dev", "Development environment", "Machine and tools before code is pushed: IDE, agent, workstation."),
+        ("repo", "Code repository", "Source control: commits, review, keys, the repo itself."),
+        ("cicd", "CI/CD", "Pipelines, runners, and the service that builds."),
+        ("artifact", "Artifact / container", "Registries, images, signatures, hosted build outputs."),
+        ("deploy", "Deployment / cloud / exec", "Where it runs: cloud, IaC apply, customer environment."),
+    ]
+    realm_stage = {
+        "SCM Posture": "repo",
+        "CI/CD Posture": "cicd",
+        "Artifact Security": "artifact",
+        "Container Security": "artifact",
+        "Open Source Security": "artifact",
+        "Cloud Security": "deploy",
+        "Infrastructure as code": "deploy",
+        "AI Posture": "dev",
+    }
+    dev_ids = {"T0152", "T0153", "T0154", "T0210", "T0213"}
+    plat_stage = {
+        "vscode": "dev", "ai-agents": "dev", "mcp": "dev", "browser-extensions": "dev",
+        "git": "repo",
+        "github-actions": "cicd", "jenkins": "cicd", "cicd-saas": "cicd",
+        "npm": "artifact", "pypi": "artifact", "rubygems": "artifact", "packagist": "artifact",
+        "crates": "artifact", "golang": "artifact", "maven": "artifact", "nuget": "artifact",
+        "pub": "artifact", "docker": "artifact", "cdn": "artifact",
+        "terraform": "deploy",
+    }
+    os_plats = {"linux", "windows", "macos"}
+
+    def technique_stages(tid, t):
+        realms = t.get("realm") or []
+        if isinstance(realms, str):
+            realms = [realms]
+        found = {realm_stage[r] for r in realms if r in realm_stage}
+        if tid in dev_ids:
+            found.add("dev")
+        return found
+
+    tech_in = {k: [] for k, _, _ in stage_meta}
+    unplaced = []
+    spanning = 0
+    for tid, t in sorted(techs.items()):
+        found = technique_stages(tid, t)
+        if not found:
+            unplaced.append((tid, t.get("summary") or ""))
+        else:
+            if len(found) > 1:
+                spanning += 1
+            for k in found:
+                tech_in[k].append((tid, t.get("summary") or ""))
+    inc_in = {k: set() for k, _, _ in stage_meta}
+    plat_in = {k: {} for k, _, _ in stage_meta}
+    endpoint_only = 0
+    for s in stories.values():
+        plats = [p for p in (s.get("platforms") or []) if p]
+        touched = set()
+        for p in plats:
+            if p in plat_stage:
+                touched.add(plat_stage[p])
+                plat_in[plat_stage[p]][p] = plat_in[plat_stage[p]].get(p, 0) + 1
+        if touched:
+            for k in touched:
+                inc_in[k].add(s["id"])
+        elif plats and all(p in os_plats for p in plats):
+            endpoint_only += 1
+    cols = []
+    for key, title, defin in stage_meta:
+        examples = tech_in[key][:5]
+        lis = "".join(
+            f'<li><a href="techniques/{html.escape(tid)}.html">{html.escape(tid)}</a> {html.escape(name)}</li>'
+            for tid, name in examples
+        )
+        chips = " ".join(
+            f'<span class="plat">{html.escape(plat_labels.get(p, p))} {n}</span>'
+            for p, n in sorted(plat_in[key].items(), key=lambda kv: -kv[1])[:6]
+        )
+        cols.append(
+            f'<div class="flow-col"><h2>{html.escape(title)}</h2>'
+            f'<p class="def">{html.escape(defin)}</p>'
+            f'<div class="n">{len(inc_in[key])}</div><div class="lbl">incidents touch this stage</div>'
+            f'<div class="n">{len(tech_in[key])}</div><div class="lbl">techniques, including ones that also sit elsewhere</div>'
+            f'<p>{chips}</p><ul>{lis}</ul></div>'
+        )
+    un_lis = "".join(
+        f'<li><a href="techniques/{html.escape(tid)}.html">{html.escape(tid)}</a> {html.escape(name)}</li>'
+        for tid, name in unplaced
+    )
+    pipeline = f"""
+    <h1>Five-stage cut</h1>
+    <p class="lede">Not in the nav. A reading of the catalogue as five supply-chain stages,
+    using the platform and realm tags we already have. Nothing was retagged for this page.</p>
+    <div class="flow">{''.join(cols)}</div>
+    <h2>Does this cover the five?</h2>
+    <p>Yes, in pieces. No, not as five sections. Repository, CI/CD, and registries are thick.
+    The developer environment has incident tags (IDE, agents, MCP) and only a handful of techniques,
+    and those techniques are also tagged as CI or source control. Deployment and cloud have many
+    techniques and almost no incident tags: we record the registry or the operating system, not the
+    place it was deployed. {endpoint_only} incidents are tagged only Windows, Linux, or macOS, which
+    is not one of these stages. {spanning} techniques sit in more than one stage already.</p>
+    <p>A flow of these five is a useful second view. It should not replace the matrix until the tags
+    match the stages. Repo-jacking and malicious commits are tagged open-source security, so this
+    cut files them under artifact, not repository.</p>
+    <h2>Not a pipeline stage</h2>
+    <ul>{un_lis}</ul>
+    <p class="muted">Application bugs inherited with the technique set. They are not a sixth stage.</p>
+    """
+    write(os.path.join(dest, "pipeline.html"), page("Five-stage cut", pipeline, "", "SCIC / Preview"))
 
     print(
         f"Built site → {dest} ({n_tech} techniques, {n_story} incidents)"

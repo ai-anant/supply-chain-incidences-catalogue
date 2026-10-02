@@ -1,5 +1,12 @@
 entries:
 - date: '2026-10-02'
+  id: five-stage-preview
+  title: Unlinked preview of a five-stage supply-chain cut
+  items:
+  - '/pipeline.html is not in the nav. It sorts existing platform and realm tags into
+    development environment, code repository, CI/CD, artifact/container, and deployment/cloud/exec.
+    Nothing was retagged. The page states where that cut is thin.'
+- date: '2026-10-02'
   id: dirtyblanket-vhx
   title: DirtyBlanket npm worm and VHX Harvester vast.ai panel added (AS295, AS294, T0214)
   items:

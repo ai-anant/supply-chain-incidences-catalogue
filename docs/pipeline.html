@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five-stage cut · SCIC</title>
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="index.html">SCIC</a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="matrix.html">Technique matrix</a>
+          <a href="techniques/index.html">Techniques</a>
+          <a href="incidents/index.html">Incident mapping</a>
+          <a href="platforms/index.html">Platforms</a>
+          <a href="stories/index.html">Attack stories</a>
+          <a href="guidance.html">Guidance</a>
+          <a href="origins.html">Origins</a>
+          <a href="talks.html">Talks</a>
+          <a href="sources.html">Sources</a>
+          <a href="changelog.html">Changelog</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / Preview</p>
+
+    <h1>Five-stage cut</h1>
+    <p class="lede">Not in the nav. A reading of the catalogue as five supply-chain stages,
+    using the platform and realm tags we already have. Nothing was retagged for this page.</p>
+    <div class="flow"><div class="flow-col"><h2>Development environment</h2><p class="def">Machine and tools before code is pushed: IDE, agent, workstation.</p><div class="n">42</div><div class="lbl">incidents touch this stage</div><div class="n">5</div><div class="lbl">techniques, including ones that also sit elsewhere</div><p><span class="plat">AI coding agents 18</span> <span class="plat">Browser extensions 13</span> <span class="plat">VS Code / IDE 12</span> <span class="plat">MCP 4</span></p><ul><li><a href="techniques/T0152.html">T0152</a> IDE</li><li><a href="techniques/T0153.html">T0153</a> Compromised developer workstation</li><li><a href="techniques/T0154.html">T0154</a> Malicious IDE extension</li><li><a href="techniques/T0210.html">T0210</a> Poison AI coding-agent config or workspace</li><li><a href="techniques/T0213.html">T0213</a> Orchestrate AI-agent fleet as the intrusion workforce</li></ul></div><div class="flow-col"><h2>Code repository</h2><p class="def">Source control: commits, review, keys, the repo itself.</p><div class="n">57</div><div class="lbl">incidents touch this stage</div><div class="n">39</div><div class="lbl">techniques, including ones that also sit elsewhere</div><p><span class="plat">Git / GitHub 57</span></p><ul><li><a href="techniques/T0100.html">T0100</a> Discover naming conventions</li><li><a href="techniques/T0101.html">T0101</a> Discover technology stacks</li><li><a href="techniques/T0102.html">T0102</a> Discover used open-source dependencies</li><li><a href="techniques/T0103.html">T0103</a> Scan public artifacts for secrets</li><li><a href="techniques/T0104.html">T0104</a> Discover coding flaws</li></ul></div><div class="flow-col"><h2>CI/CD</h2><p class="def">Pipelines, runners, and the service that builds.</p><div class="n">37</div><div class="lbl">incidents touch this stage</div><div class="n">56</div><div class="lbl">techniques, including ones that also sit elsewhere</div><p><span class="plat">GitHub Actions 23</span> <span class="plat">CI/CD SaaS 15</span> <span class="plat">Jenkins 1</span></p><ul><li><a href="techniques/T0106.html">T0106</a> Scan configuration on public resources</li><li><a href="techniques/T0112.html">T0112</a> Compromised token</li><li><a href="techniques/T0116.html">T0116</a> Shadow IT</li><li><a href="techniques/T0120.html">T0120</a> Dependency confusion</li><li><a href="techniques/T0121.html">T0121</a> Compromised legitimate artifact</li></ul></div><div class="flow-col"><h2>Artifact / container</h2><p class="def">Registries, images, signatures, hosted build outputs.</p><div class="n">188</div><div class="lbl">incidents touch this stage</div><div class="n">53</div><div class="lbl">techniques, including ones that also sit elsewhere</div><p><span class="plat">npm 126</span> <span class="plat">PyPI 35</span> <span class="plat">Packagist / Composer 11</span> <span class="plat">RubyGems 9</span> <span class="plat">CDN / web assets 7</span> <span class="plat">Go modules 7</span></p><ul><li><a href="techniques/T0100.html">T0100</a> Discover naming conventions</li><li><a href="techniques/T0101.html">T0101</a> Discover technology stacks</li><li><a href="techniques/T0102.html">T0102</a> Discover used open-source dependencies</li><li><a href="techniques/T0103.html">T0103</a> Scan public artifacts for secrets</li><li><a href="techniques/T0107.html">T0107</a> Discover internal artifacts names</li></ul></div><div class="flow-col"><h2>Deployment / cloud / exec</h2><p class="def">Where it runs: cloud, IaC apply, customer environment.</p><div class="n">2</div><div class="lbl">incidents touch this stage</div><div class="n">46</div><div class="lbl">techniques, including ones that also sit elsewhere</div><p><span class="plat">Terraform 2</span></p><ul><li><a href="techniques/T0105.html">T0105</a> Active scanning</li><li><a href="techniques/T0106.html">T0106</a> Scan configuration on public resources</li><li><a href="techniques/T0112.html">T0112</a> Compromised token</li><li><a href="techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="techniques/T0114.html">T0114</a> Compromised service account</li></ul></div></div>
+    <h2>Does this cover the five?</h2>
+    <p>Yes, in pieces. No, not as five sections. Repository, CI/CD, and registries are thick.
+    The developer environment has incident tags (IDE, agents, MCP) and only a handful of techniques,
+    and those techniques are also tagged as CI or source control. Deployment and cloud have many
+    techniques and almost no incident tags: we record the registry or the operating system, not the
+    place it was deployed. 39 incidents are tagged only Windows, Linux, or macOS, which
+    is not one of these stages. 66 techniques sit in more than one stage already.</p>
+    <p>A flow of these five is a useful second view. It should not replace the matrix until the tags
+    match the stages. Repo-jacking and malicious commits are tagged open-source security, so this
+    cut files them under artifact, not repository.</p>
+    <h2>Not a pipeline stage</h2>
+    <ul><li><a href="techniques/T0117.html">T0117</a> SQL injection</li><li><a href="techniques/T0118.html">T0118</a> Command injection</li><li><a href="techniques/T0119.html">T0119</a> Cross-site scripting</li><li><a href="techniques/T0188.html">T0188</a> Cross Site Request Forgery</li></ul>
+    <p class="muted">Application bugs inherited with the technique set. They are not a sixth stage.</p>
+    
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="about.html">About</a>.</p>
+    </footer>
+</body>
+</html>
