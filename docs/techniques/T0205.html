@@ -32,7 +32,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0205</p>
 
-        <p class="meta">T0205 · Initial Access · TA03 · observed in 5 incident(s)</p>
+        <p class="meta">T0205 · Initial Access · TA03 · observed in 6 incident(s)</p>
         <h1>Compromise third-party CDN or hosted web asset</h1>
         <div class="chips"><span class="chip">Open Source Security</span> <span class="chip">Artifact Security</span> <span class="chip">Cloud Security</span></div>
         <p>Instead of poisoning a package registry or source repository, the attacker<br>takes over a widely embedded CDN hostname, tag manager, or hosted JavaScript<br>asset (domain expiry, registrar hijack, or operator acquisition) and serves<br>malicious content to every site that loads it. Polyfill.io (2024) is the<br>reference case: a trusted script URL became a drive-by supply-chain implant<br>for hundreds of thousands of properties. This catalogue previously had no technique<br>that named this web-asset supply chain.</p>
@@ -42,7 +42,7 @@
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li></ul>
-        <h2>Observed in incidents (5)</h2><ul><li><a href="../incidents/AS8.html">Polyfill.io CDN takeover</a></li><li><a href="../incidents/AS119.html">OptinMonster / TrustPulse / PushEngage plugin supply chain</a></li><li><a href="../incidents/AS289.html">Placeholder domain third-party.com turned live ClickFix server</a></li><li><a href="../incidents/AS31.html">Coder registry CDN origin pool compromise</a></li><li><a href="../incidents/AS19.html">Brevo Cloudflare Worker ClickFix</a></li></ul>
+        <h2>Observed in incidents (6)</h2><ul><li><a href="../incidents/AS8.html">Polyfill.io CDN takeover</a></li><li><a href="../incidents/AS119.html">OptinMonster / TrustPulse / PushEngage plugin supply chain</a></li><li><a href="../incidents/AS289.html">Placeholder domain third-party.com turned live ClickFix server</a></li><li><a href="../incidents/AS31.html">Coder registry CDN origin pool compromise</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS19.html">Brevo Cloudflare Worker ClickFix</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://sansec.io/research/polyfill-supply-chain-attack" rel="noopener">https://sansec.io/research/polyfill-supply-chain-attack</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack" rel="noopener">https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack</a></li></ul>
         

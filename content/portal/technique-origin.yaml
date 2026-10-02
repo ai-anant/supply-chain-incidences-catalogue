@@ -986,3 +986,13 @@ techniques:
       approval disabled).
     sources:
     - https://www.cloudsek.com/blog/ai-agent-driven-offensive-operation-crypto-wallet-credential-compromise
+  T0214:
+    summary: Rent co-located containers to scan an isolated network
+    tactic: Reconnaissance
+    kind: incident
+    note: This catalogue, from CloudSEK's analysis of a leaked offensive
+      control panel (VHX Harvester) that rented containers beside vast.ai
+      tenants on the same physical host to scan the Docker bridge and reach
+      unprotected notebooks.
+    sources:
+    - https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface

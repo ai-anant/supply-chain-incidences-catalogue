@@ -1,0 +1,89 @@
+id: AS294
+type: Attack Story
+date: 2026-09
+platforms:
+  - npm
+  - linux
+  - ai-agents
+
+summary: VHX Harvester panel ran npm typosquat recon into a vast.ai GPU-cloud intrusion
+description: |
+  CloudSEK (TOPHIT Part 2, 29 Sep 2026): the @prime0 npm typosquat
+  infrastructure from GTI-TOPHIT (85 packages beaconing to
+  69.48.229.140:8080 on install) hosts a second service on port 80 — a
+  purpose-built offensive panel, VHX Harvester 0.1.0. As of 25 September
+  2026 the panel had enumerated 297 host IPs from the vast.ai public API,
+  scanned 13,368 service endpoints across them, exfiltrated metadata from
+  416 services, deployed 25 bridge agents onto rented GPU instances, and
+  achieved one confirmed root shell on a victim's Jupyter notebook. No
+  miners were planted and the operation is in its development phase. A
+  misconfiguration exposed the panel: 17 API endpoints require no
+  authentication, including agent/code.tar.gz, which serves the complete
+  C2 agent source with hardcoded default credentials. The source reveals
+  an eight-phase kill chain: enumerate GPU hosts from the marketplace API,
+  scan their port ranges, classify and fingerprint services, harvest
+  credentials and metadata, inject stored XSS into vast.ai's Caddy auth
+  portals to steal session tokens, rent cheap containers on the same
+  physical host as the target to scan the Docker bridge, access
+  unprotected Jupyter notebooks for root shells, and deploy miners onto
+  hijacked instances. New technique T0214 (rent co-located containers to
+  scan an isolated network) is recorded for the bridge-agent model;
+  stored XSS into the Caddy auth proxy's error logs and npm typosquats as
+  the discovery vector for GPU infrastructure are recorded as gaps.
+
+attacks:
+  - attack: npm typosquat infrastructure
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0129
+        techName: Typosquatting
+        tactic: Initial Access
+        comment: |
+          85 packages under the @prime0 scope, beaconing to
+          69.48.229.140:8080 at install; the npm typosquats are also the
+          discovery vector that led to the GPU infrastructure.
+      - techniqueID: T0103
+        techName: Scan public artifacts for secrets
+        tactic: Reconnaissance
+        comment: |
+          297 host IPs enumerated from the vast.ai public API and
+          marketplace listings before any victim contact.
+  - attack: vast.ai tenants
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0180
+        techName: Compromise services / servers
+        tactic: Initial Access
+        comment: |
+          One confirmed root shell on a victim's Jupyter notebook;
+          metadata exfiltrated from 416 services.
+      - techniqueID: T0214
+        techName: Rent co-located containers to scan an isolated network
+        tactic: Reconnaissance
+        comment: |
+          25 bridge agents rented legitimate containers on the same
+          physical host as the targets to scan the Docker bridge
+          (172.17.0.0/16) from inside the trust boundary.
+      - techniqueID: T0119
+        techName: Cross-site scripting
+        tactic: Execution
+        comment: |
+          Stored XSS injected into the Caddy auth proxy's error logs to
+          steal tenant session tokens.
+
+gaps:
+  - Stored XSS injected into a reverse-proxy auth portal's error logs has
+    no dedicated technique; T0119 (XSS) records the behaviour here.
+  - npm typosquats used as the discovery vector for cloud infrastructure
+    (rather than code theft) are recorded explicitly instead of
+    force-mapping an existing technique.
+
+links:
+  - https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface
+  - https://cdn.cloudsek.com/cloudsek-blog-pdfs/tophit-part-yisx.pdf

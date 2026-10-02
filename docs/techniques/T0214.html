@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0214 Rent co-located containers to scan an isolated network · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0214</p>
+
+        <p class="meta">T0214 · Reconnaissance · TA01 · observed in 1 incident(s)</p>
+        <h1>Rent co-located containers to scan an isolated network</h1>
+        <div class="chips"><span class="chip">Container Security</span> <span class="chip">Cloud Security</span> <span class="chip">Infrastructure as code</span></div>
+        <p>The attacker rents or deploys a container on the same physical host as<br>the target — a multi-tenant GPU cloud, shared CI runner pool, or<br>co-tenanted PaaS — so that their scanning and exploitation traffic<br>originates from inside the tenant&#x27;s network boundary. Rented<br>infrastructure is a legitimate customer workload: egress filtering,<br>IP reputation, and external attack-surface monitoring see it as normal<br>tenant traffic, and nothing resolves to attacker-owned addresses. From<br>the co-located container the attacker reaches internal-only surfaces —<br>Docker bridge networks, private service endpoints, unauthenticated<br>management ports, or notebooks bound to loopback — that are invisible<br>from the outside. Distinct from T0212 (subverting the routing layer<br>while destination infrastructure stays untouched) and T0205<br>(compromising third-party hosting): here the attacker buys a lawful<br>position adjacent to the victim. Observed in CloudSEK&#x27;s analysis of a<br>leaked offensive control panel that rented containers beside vast.ai<br>tenants to scan the Docker bridge and reach unprotected notebooks.</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from CloudSEK&#x27;s analysis of a leaked offensive control panel (VHX Harvester) that rented containers beside vast.ai tenants on the same physical host to scan the Docker bridge and reach unprotected notebooks.</p><ul class='refs'><li><a href="https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface" rel="noopener">https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Detections</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS294.html">VHX Harvester panel ran npm typosquat recon into a vast.ai GPU-cloud intrusion</a></li></ul>
+        <h2>References</h2>
+        <p class='muted'>None listed.</p>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

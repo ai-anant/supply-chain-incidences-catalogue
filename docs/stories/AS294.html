@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VHX Harvester panel ran npm typosquat recon into a vast.ai GPU-cloud intrusion · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS294</p>
+
+        <p class="meta">AS294 · 2026-09</p>
+        <h1>VHX Harvester panel ran npm typosquat recon into a vast.ai GPU-cloud intrusion</h1>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a></p>
+        <p>CloudSEK (TOPHIT Part 2, 29 Sep 2026): the @prime0 npm typosquat<br>infrastructure from GTI-TOPHIT (85 packages beaconing to<br>69.48.229.140:8080 on install) hosts a second service on port 80 — a<br>purpose-built offensive panel, VHX Harvester 0.1.0. As of 25 September<br>2026 the panel had enumerated 297 host IPs from the vast.ai public API,<br>scanned 13,368 service endpoints across them, exfiltrated metadata from<br>416 services, deployed 25 bridge agents onto rented GPU instances, and<br>achieved one confirmed root shell on a victim&#x27;s Jupyter notebook. No<br>miners were planted and the operation is in its development phase. A<br>misconfiguration exposed the panel: 17 API endpoints require no<br>authentication, including agent/code.tar.gz, which serves the complete<br>C2 agent source with hardcoded default credentials. The source reveals<br>an eight-phase kill chain: enumerate GPU hosts from the marketplace API,<br>scan their port ranges, classify and fingerprint services, harvest<br>credentials and metadata, inject stored XSS into vast.ai&#x27;s Caddy auth<br>portals to steal session tokens, rent cheap containers on the same<br>physical host as the target to scan the Docker bridge, access<br>unprotected Jupyter notebooks for root shells, and deploy miners onto<br>hijacked instances. New technique T0214 (rent co-located containers to<br>scan an isolated network) is recorded for the bridge-agent model;<br>stored XSS into the Caddy auth proxy&#x27;s error logs and npm typosquats as<br>the discovery vector for GPU infrastructure are recorded as gaps.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0103.html">T0103</a> Scan public artifacts for secrets</li><li><a href="../techniques/T0180.html">T0180</a> Compromise services / servers</li><li><a href="../techniques/T0214.html">T0214</a> Rent co-located containers to scan an isolated network</li><li><a href="../techniques/T0119.html">T0119</a> Cross-site scripting</li></ul>
+        <h2><span class="stage">supply-chain</span> npm typosquat infrastructure</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>85 packages under the @prime0 scope, beaconing to<br>69.48.229.140:8080 at install; the npm typosquats are also the<br>discovery vector that led to the GPU infrastructure.</p></div><div class="card"><p class="meta"><a href="../techniques/T0103.html">T0103</a> · Reconnaissance · Scan public artifacts for secrets</p><p>297 host IPs enumerated from the vast.ai public API and<br>marketplace listings before any victim contact.</p></div><h2><span class="stage">post-supply-chain</span> vast.ai tenants</h2><div class="card"><p class="meta"><a href="../techniques/T0180.html">T0180</a> · Initial Access · Compromise services / servers</p><p>One confirmed root shell on a victim&#x27;s Jupyter notebook;<br>metadata exfiltrated from 416 services.</p></div><div class="card"><p class="meta"><a href="../techniques/T0214.html">T0214</a> · Reconnaissance · Rent co-located containers to scan an isolated network</p><p>25 bridge agents rented legitimate containers on the same<br>physical host as the targets to scan the Docker bridge<br>(172.17.0.0/16) from inside the trust boundary.</p></div><div class="card"><p class="meta"><a href="../techniques/T0119.html">T0119</a> · Execution · Cross-site scripting</p><p>Stored XSS injected into the Caddy auth proxy&#x27;s error logs to<br>steal tenant session tokens.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Stored XSS injected into a reverse-proxy auth portal&#x27;s error logs has no dedicated technique; T0119 (XSS) records the behaviour here.</li><li>npm typosquats used as the discovery vector for cloud infrastructure (rather than code theft) are recorded explicitly instead of force-mapping an existing technique.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface" rel="noopener">https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface</a></li><li><a href="https://cdn.cloudsek.com/cloudsek-blog-pdfs/tophit-part-yisx.pdf" rel="noopener">https://cdn.cloudsek.com/cloudsek-blog-pdfs/tophit-part-yisx.pdf</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

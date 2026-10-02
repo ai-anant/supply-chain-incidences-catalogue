@@ -1,4 +1,48 @@
 entries:
+- date: '2026-10-02'
+  id: dirtyblanket-vhx
+  title: DirtyBlanket npm worm and VHX Harvester vast.ai panel added (AS295, AS294, T0214)
+  items:
+  - 'AS295 DirtyBlanket (SafeDep, 29 Sep): nine npm packages from one throwaway account
+    (eight Express lookalikes, one React) whose preinstall hook fetches stage one
+    through the Internet Archive Wayback Machine (network sees trusted web.archive.org,
+    script unversioned and swappable), pulls the worm from Codeberg, installs the
+    open-source CHAOS RAT as a fake systemd font service over a Tor hidden service
+    (renamed config keys, InsecureSkipVerify, immutable root binary), then propagates
+    via SSH keys against known_hosts peers, poisoned AUR package pushes, and npm
+    tokens publishing infected versions before restoring the original package.json.
+    Platforms npm/linux/git.'
+  - 'AS294 VHX Harvester (CloudSEK TOPHIT Part 2, 29 Sep): the @prime0 npm typosquat
+    infrastructure (85 packages beaconing to 69.48.229.140:8080) hosts an offensive
+    panel that, against the vast.ai GPU marketplace, enumerated 297 hosts, scanned
+    13,368 endpoints, exfiltrated metadata from 416 services, deployed 25 bridge
+    agents, and reached one root shell on a Jupyter notebook; a misconfiguration
+    exposed the full agent source with hardcoded credentials. New technique T0214
+    (rent co-located containers to scan an isolated network) added with
+    technique-origin entry; stored XSS into the Caddy auth proxy error logs and
+    npm typosquats as a cloud-recon vector recorded as gaps, not force-mapped.'
+  - 'SafeDep''s PolinRider Ethereum-C2 post (30 Sep) attached to AS45 — same campaign,
+    dead-drop C2 in Ethereum transaction recipients, 35 repos with the loader at
+    HEAD, no new incident.'
+  - 'Re-walked every track:true source. Everything else this window was already
+    mapped or is defensive/product content: Socket GPT-6 Astra AISI report on AS65,
+    Mini Shai-Hulud re-enablement on AS197, Firefox Google ATO on AS141, MemTensor
+    on AS39, PolinRider Packagist on AS35; ReversingLabs retrospective, LLM pen-testing,
+    agentic-permissions, AI-cyber-spending essays and Twilio on AS38; Checkmarx btree
+    on AS25, React2Shell2/CRA/n8n product and vulnerability posts; OpenSourceMalware
+    show episodes and PolinRider A/B testing on AS35; CrowdStrike PhantomRaven on
+    AS26, Forrester and data-classification posts; Morphisec AMTD, polymorphic,
+    ransomware-delivery and FortiBleed essays, RevStealer on AS290; Wiz Blue Agent,
+    Infostealer Incursion, Forrester, WIN/AI-engine posts, Artifactory on AS190;
+    Google Threat Intelligence feed (BREEZE COMET, Flows clusters, UNC6671 vishing,
+    Ghost DPAPI, GTIG AI tracker) is credential/endpoint activity, not
+    software-supply-chain attacks; Batten Down Your Packages is mitigation guidance
+    for already-mapped incidents; GitHub changelog platform features (custom runner
+    settings, Node 20 retirement, SSH security improvements, proof-of-presence,
+    stage-only npm tokens); CISA KEV adds and token-protection publications; Sansec
+    (no new research since the ClickFix explainer on AS289/AS194); Rust blog Cargo
+    maintainer announcement; RubyGems blog (no new security items in 2026).'
+
 - date: '2026-10-01'
   id: drop-oscar-page-copy
   title: OSC&R named only on the matrix page; talks are boxes

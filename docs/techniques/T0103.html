@@ -32,7 +32,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0103</p>
 
-        <p class="meta">T0103 · Reconnaissance · TA01 · observed in 1 incident(s)</p>
+        <p class="meta">T0103 · Reconnaissance · TA01 · observed in 2 incident(s)</p>
         <h1>Scan public artifacts for secrets</h1>
         <div class="chips"><span class="chip">Container Security</span> <span class="chip">SCM Posture</span> <span class="chip">Secrets Hygiene</span></div>
         <p>This technique involves scanning publicly available artifacts, such as code repositories and container images, for sensitive information such as passwords, access keys, and other secrets.<br>By scanning these artifacts, an attacker can gain unauthorized access to the application or underlying system and potentially cause significant damage.<br>For example, an attacker might use this technique to scan a public code repository for hardcoded passwords or access keys, which could then be used to gain unauthorized access to the application or the underlying system.<br>Alternatively, an attacker might scan a public container image for sensitive information such as database credentials, which could be used to gain access to sensitive data.</p>
@@ -42,7 +42,7 @@
         <ul><li><span class="id">M1120</span> Store credentials in vault</li><li><span class="id">M1732</span> Implement code scanning for security risks</li><li><span class="id">M1890</span> Encrypt secrets</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1120</span> Implement source code scanning for credentials and tokens</li><li><span class="id">D1261</span> Implement penetration testing</li><li><span class="id">D1262</span> Implement vulnerability assessment</li></ul>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS3.html">Codecov Breach</a></li></ul>
+        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS3.html">Codecov Breach</a></li><li><a href="../incidents/AS294.html">VHX Harvester panel ran npm typosquat recon into a vast.ai GPU-cloud intrusion</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://cycode.com/introducing-container-secret-scanning/" rel="noopener">https://cycode.com/introducing-container-secret-scanning/</a></li><li><a href="https://docs.gitlab.com/ee/user/application_security/secret_detection/" rel="noopener">https://docs.gitlab.com/ee/user/application_security/secret_detection/</a></li></ul>
         

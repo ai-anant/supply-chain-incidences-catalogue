@@ -51,7 +51,7 @@
         ],
         "url": "techniques/T0103.html",
         "description": "This technique involves scanning publicly available artifacts, such as code repositories and container images, for sensitive information such as passwords, access keys, and other secrets.\nBy scanning these artifacts, an attacker can gain unauthorized access to the application or underlying system and potentially cause significant damage.\nFor example, an attacker might use this technique to scan a public code repository for hardcoded passwords or access keys, which could then be used to gain unauthorized access to the application or the underlying system.\nAlternatively, an attacker might scan a public container image for sensitive information such as database credentials, which could be used to gain access to sensitive data.\n",
-        "incidentCount": 1
+        "incidentCount": 2
       },
       {
         "id": "T0104",
@@ -146,9 +146,22 @@
         "url": "techniques/T0203.html",
         "description": "Attackers look for evidence of an out-of-band or \"localized\" deployment\npath they can hijack \u2014 a `package.json` script that SSHes to production,\na Makefile target that publishes without the main pipeline, a leftover\n`deploy.sh`, or a personal access token used by a developer laptop.\nThese paths are rarely covered by the same reviews, SBOMs, or admission\ncontrols as the official CI/CD system, which makes them high-value\nreconnaissance targets.\n",
         "incidentCount": 0
+      },
+      {
+        "id": "T0214",
+        "name": "Rent co-located containers to scan an isolated network",
+        "tooltip": "Rent co-located containers to scan an isolated network",
+        "tags": [
+          "Container Security",
+          "Cloud Security",
+          "Infrastructure as code"
+        ],
+        "url": "techniques/T0214.html",
+        "description": "The attacker rents or deploys a container on the same physical host as\nthe target \u2014 a multi-tenant GPU cloud, shared CI runner pool, or\nco-tenanted PaaS \u2014 so that their scanning and exploitation traffic\noriginates from inside the tenant's network boundary. Rented\ninfrastructure is a legitimate customer workload: egress filtering,\nIP reputation, and external attack-surface monitoring see it as normal\ntenant traffic, and nothing resolves to attacker-owned addresses. From\nthe co-located container the attacker reaches internal-only surfaces \u2014\nDocker bridge networks, private service endpoints, unauthenticated\nmanagement ports, or notebooks bound to loopback \u2014 that are invisible\nfrom the outside. Distinct from T0212 (subverting the routing layer\nwhile destination infrastructure stays untouched) and T0205\n(compromising third-party hosting): here the attacker buys a lawful\nposition adjacent to the victim. Observed in CloudSEK's analysis of a\nleaked offensive control panel that rented containers beside vast.ai\ntenants to scan the Docker bridge and reach unprotected notebooks.\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 12,
+    "amount": 13,
     "tooltip": "Reconnaissance",
     "tacticid": "TA01"
   },
@@ -176,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 153
+        "incidentCount": 154
       },
       {
         "id": "T0110",
@@ -394,7 +407,7 @@
         ],
         "url": "techniques/T0129.html",
         "description": "Typosquatting is an attack technique where an attacker creates a package or container with a name that is very similar to a legitimate one, in hopes that a user will make a typo and download the malicious package or container. \nFor example, if a legitimate package is named \"numpy,\" an attacker might create a package named \"numpyy\" or \"numpi\" in hopes that a user will accidentally install the malicious package instead. \nIn container security, it involves creating a container image with a similar name to a legitimate one, while in open-source security, it involves creating a malicious package with a similar name to a legitimate one.\nOnce the user installs the malicious package or container, the attacker can potentially gain access to the user's system or data, or inject malicious code into the user's environment.\n",
-        "incidentCount": 41
+        "incidentCount": 43
       },
       {
         "id": "T0133",
@@ -526,7 +539,7 @@
         ],
         "url": "techniques/T0180.html",
         "description": "Services (servers) compromise attack in the supply chain is a type of attack that targets the servers hosting the software development and distribution infrastructure. \nThis attack can happen when an attacker gains access to the server through a vulnerability, misconfiguration, or social engineering attack. \nOnce the attacker gains access to the server, they can modify the source code or software packages being distributed to include malicious code or backdoors. \nThis attack can compromise multiple software projects and potentially all users who download or use the compromised software.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0181",
@@ -576,7 +589,7 @@
         ],
         "url": "techniques/T0205.html",
         "description": "Instead of poisoning a package registry or source repository, the attacker\ntakes over a widely embedded CDN hostname, tag manager, or hosted JavaScript\nasset (domain expiry, registrar hijack, or operator acquisition) and serves\nmalicious content to every site that loads it. Polyfill.io (2024) is the\nreference case: a trusted script URL became a drive-by supply-chain implant\nfor hundreds of thousands of properties. This catalogue previously had no technique\nthat named this web-asset supply chain.\n",
-        "incidentCount": 5
+        "incidentCount": 6
       },
       {
         "id": "T0209",
@@ -642,7 +655,7 @@
         ],
         "url": "techniques/T0119.html",
         "description": "Cross-site scripting (XSS) is a web security vulnerability that allows an attacker to compromise the interactions that users have with a vulnerable applications.\nXSS attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. \nAn attacker can use XSS to send a malicious script to an unsuspecting user. \nThe end user browser has no way to know that the script should not be trusted, and will execute the script. Because it thinks the script came from a trusted source, the malicious script can access any cookies, session tokens, or other sensitive information retained by the browser and used with that site. \nThese scripts can even rewrite the content of the HTML page.\n",
-        "incidentCount": 2
+        "incidentCount": 3
       },
       {
         "id": "T0150",
@@ -668,7 +681,7 @@
         ],
         "url": "techniques/T0151.html",
         "description": "A package installation script injection attack is a type of security exploit that involves an attacker injecting malicious code into a legitimate software package installation script.\nThe attack typically occurs when an attacker gains access to the distribution network of a software vendor or package manager, and injects malicious code into the package installation script. \nThis code may be designed to carry out a range of nefarious activities, such as stealing sensitive information, creating backdoors, or executing arbitrary code on the victim's system.\nOnce the victim downloads and installs the compromised software package, the injected code is executed, giving the attacker access to the victim's system.\n",
-        "incidentCount": 36
+        "incidentCount": 37
       },
       {
         "id": "T0152",
@@ -728,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 75
+        "incidentCount": 76
       },
       {
         "id": "T0173",
@@ -879,7 +892,7 @@
         ],
         "url": "techniques/T0178.html",
         "description": "Deploy keys are SSH keys that are used to authenticate a specific machine or service to access a repository or codebase in a SCM system like Git. \nThey are typically used to automate deployments or integrations between services and repositories.\nIn this attack technique, an attacker gains access to a machine that has deploy keys configured for access to a repository or codebase. \nOnce they have access, they can obtain the private key of the deploy key and use it to gain access to the repository or codebase from other machines or services, even if the original machine is no longer accessible.\nBy doing so, the attacker can maintain persistent access to the repository or codebase, allowing them to steal sensitive information, introduce malicious code or manipulate the codebase to conduct further attacks.\n",
-        "incidentCount": 0
+        "incidentCount": 1
       },
       {
         "id": "T0202",
@@ -1002,7 +1015,7 @@
         ],
         "url": "techniques/T0176.html",
         "description": "Attackers disable or misconfigure security controls so that later activity is\nnot observed or blocked. In software supply chains this is more often a\ncomplete disablement than a subtle misconfiguration: turning off a GitHub\nAction required-review check, uninstalling an endpoint agent on a build\nrunner, skipping a signing gate, or emptying a security-group rule.\nMisconfiguration (over-permissive logging, broken audit settings) remains\nin scope as the quieter variant of the same Defense Evasion technique.\n",
-        "incidentCount": 8
+        "incidentCount": 9
       },
       {
         "id": "T0182",
@@ -1064,7 +1077,7 @@
         ],
         "url": "techniques/T0207.html",
         "description": "Consumers are supposed to verify packages, containers, and third-party\nscripts (checksums, signatures, Sigstore, Subresource Integrity). The\nattacker relies on that check never running, or supplies a matching but\nattacker-controlled signature. OWASP CICD-SEC-9 names the control gap;\nthis technique is the attacker side. Polyfill.io hotlinks without SRI and\nunsigned CI helper scripts are typical realizations.\n",
-        "incidentCount": 4
+        "incidentCount": 5
       },
       {
         "id": "T0208",
@@ -1160,7 +1173,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 98
+        "incidentCount": 99
       },
       {
         "id": "T0185",
@@ -1217,7 +1230,7 @@
         ],
         "url": "techniques/T0169.html",
         "description": "The Push Implants across Repositories attack technique is a type of lateral movement tactic where an attacker gains access to a victim's code repository, modifies the code by implanting malicious code or backdoors, and pushes the modified code back to the repository.\nThis technique often involves the attacker stealing valid credentials, such as login credentials or SSH keys, to gain access to the victim's code repository. \nThey then modify the code, implanting the malicious code or backdoors, and push the modified code back to the repository. \nThe victim then unknowingly deploys the modified code, resulting in the compromise of their systems.\n",
-        "incidentCount": 13
+        "incidentCount": 14
       }
     ],
     "amount": 2,

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DirtyBlanket fake Express/React packages spread a self-propagating Linux worm · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS295</p>
+
+        <p class="meta">AS295 · 2026-09</p>
+        <h1>DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</h1>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
+        <p>SafeDep (29 Sep 2026): the npm account <code>dirtyblanket</code> published nine<br>packages in 33 minutes on 29 September 2026 — eight copying Express,<br>one copying React (xeprews, express-javascript, express-nodejs,<br>react-nodejs, exprdd, exprrdd, exptrdd, exptred, exptredd). Installing<br>any of them on Linux runs a preinstall hook that downloads <code>node.js</code><br>through the Internet Archive Wayback Machine — the network sees<br>web.archive.org, which many allowlists trust, while the script is<br>unversioned and changeable — then downloads the worm <code>linux.sh</code> from<br>Codeberg and runs it. The worm installs the open-source CHAOS remote<br>access tool as a fake systemd font service (systemd-fontd /<br>systemd-fontrenderd under systemd directories, immutable flag as root,<br>Tor hidden service C2 with renamed config keys and InsecureSkipVerify),<br>giving the operator a shell, file access, and screenshots. It then<br>propagates three ways: SSH private keys against hosts in known_hosts,<br>new versions of AUR packages the machine&#x27;s keys can push to, and npm<br>tokens in .npmrc used to publish infected versions of packages the<br>victim owns — restoring the original package.json afterwards so the<br>local tree shows no change. Each new host, AUR package, and npm version<br>restarts the chain.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0205.html">T0205</a> Compromise third-party CDN or hosted web asset</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li><li><a href="../techniques/T0176.html">T0176</a> Disable or misconfigure security measures</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li><li><a href="../techniques/T0178.html">T0178</a> Deploy keys</li><li><a href="../techniques/T0169.html">T0169</a> Push implants across repositories</li></ul>
+        <h2><span class="stage">supply-chain</span> npm install-time worm</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Eight Express and one React lookalikes under the dirtyblanket<br>account; versions track the real packages.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Nine packages published from one throwaway account in 33<br>minutes.</p></div><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>The preinstall hook runs on every Linux install and pipes the<br>worm into bash.</p></div><div class="card"><p class="meta"><a href="../techniques/T0205.html">T0205</a> · Initial Access · Compromise a third-party CDN or hosted web asset</p><p>The stage-one fetch is laundered through the Internet Archive<br>Wayback Machine so the network only sees web.archive.org, a<br>domain many allowlists trust; the Codeberg payload stays<br>reachable after the repository is removed.</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>The stage-one script is unversioned and unpinned, so it can be<br>swapped at any time; the worm restores the original<br>package.json after publishing so the local tree shows no<br>change.</p></div><div class="card"><p class="meta"><a href="../techniques/T0176.html">T0176</a> · Defense Evasion · Disable or misconfigure security measures</p><p>The backdoor hides as a systemd font service with systemd-like<br>names, descriptions, and file locations, and sets the<br>immutable flag on its root-installed binary.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>The CHAOS remote access tool runs as a systemd service over a<br>Tor hidden service with InsecureSkipVerify; shell, file<br>access, and screenshots.</p></div><h2><span class="stage">post-supply-chain</span> developer machines, SSH peers, AUR and npm consumers</h2><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Every SSH private key on the machine and npm tokens in .npmrc<br>files are harvested for propagation.</p></div><div class="card"><p class="meta"><a href="../techniques/T0178.html">T0178</a> · Persistence · Deploy keys</p><p>Valid SSH keys are used to log in to every host in<br>known_hosts, so each peer keeps accepting the worm after the<br>original machine is cleaned.</p></div><div class="card"><p class="meta"><a href="../techniques/T0169.html">T0169</a> · Lateral Movement · Push implants across repositories</p><p>npm tokens publish infected versions of packages the victim<br>owns, and git pushes poisoned AUR package builds; every new<br>version restarts the worm chain.</p></div>
+        
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://safedep.io/dirtyblanket-express-impersonation-npm" rel="noopener">https://safedep.io/dirtyblanket-express-impersonation-npm</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

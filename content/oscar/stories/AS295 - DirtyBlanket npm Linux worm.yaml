@@ -1,0 +1,114 @@
+id: AS295
+type: Attack Story
+date: 2026-09
+platforms:
+  - npm
+  - linux
+  - git
+
+summary: DirtyBlanket fake Express/React packages spread a self-propagating Linux worm
+description: |
+  SafeDep (29 Sep 2026): the npm account `dirtyblanket` published nine
+  packages in 33 minutes on 29 September 2026 — eight copying Express,
+  one copying React (xeprews, express-javascript, express-nodejs,
+  react-nodejs, exprdd, exprrdd, exptrdd, exptred, exptredd). Installing
+  any of them on Linux runs a preinstall hook that downloads `node.js`
+  through the Internet Archive Wayback Machine — the network sees
+  web.archive.org, which many allowlists trust, while the script is
+  unversioned and changeable — then downloads the worm `linux.sh` from
+  Codeberg and runs it. The worm installs the open-source CHAOS remote
+  access tool as a fake systemd font service (systemd-fontd /
+  systemd-fontrenderd under systemd directories, immutable flag as root,
+  Tor hidden service C2 with renamed config keys and InsecureSkipVerify),
+  giving the operator a shell, file access, and screenshots. It then
+  propagates three ways: SSH private keys against hosts in known_hosts,
+  new versions of AUR packages the machine's keys can push to, and npm
+  tokens in .npmrc used to publish infected versions of packages the
+  victim owns — restoring the original package.json afterwards so the
+  local tree shows no change. Each new host, AUR package, and npm version
+  restarts the chain.
+
+attacks:
+  - attack: npm install-time worm
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0129
+        techName: Typosquatting
+        tactic: Initial Access
+        comment: |
+          Eight Express and one React lookalikes under the dirtyblanket
+          account; versions track the real packages.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Nine packages published from one throwaway account in 33
+          minutes.
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          The preinstall hook runs on every Linux install and pipes the
+          worm into bash.
+      - techniqueID: T0205
+        techName: Compromise a third-party CDN or hosted web asset
+        tactic: Initial Access
+        comment: |
+          The stage-one fetch is laundered through the Internet Archive
+          Wayback Machine so the network only sees web.archive.org, a
+          domain many allowlists trust; the Codeberg payload stays
+          reachable after the repository is removed.
+      - techniqueID: T0207
+        techName: Skip or forge artifact integrity verification
+        tactic: Defense Evasion
+        comment: |
+          The stage-one script is unversioned and unpinned, so it can be
+          swapped at any time; the worm restores the original
+          package.json after publishing so the local tree shows no
+          change.
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          The backdoor hides as a systemd font service with systemd-like
+          names, descriptions, and file locations, and sets the
+          immutable flag on its root-installed binary.
+      - techniqueID: T0172
+        techName: Runtime backdoor
+        tactic: Execution
+        comment: |
+          The CHAOS remote access tool runs as a systemd service over a
+          Tor hidden service with InsecureSkipVerify; shell, file
+          access, and screenshots.
+  - attack: developer machines, SSH peers, AUR and npm consumers
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          Every SSH private key on the machine and npm tokens in .npmrc
+          files are harvested for propagation.
+      - techniqueID: T0178
+        techName: Deploy keys
+        tactic: Persistence
+        comment: |
+          Valid SSH keys are used to log in to every host in
+          known_hosts, so each peer keeps accepting the worm after the
+          original machine is cleaned.
+      - techniqueID: T0169
+        techName: Push implants across repositories
+        tactic: Lateral Movement
+        comment: |
+          npm tokens publish infected versions of packages the victim
+          owns, and git pushes poisoned AUR package builds; every new
+          version restarts the worm chain.
+
+links:
+  - https://safedep.io/dirtyblanket-express-impersonation-npm

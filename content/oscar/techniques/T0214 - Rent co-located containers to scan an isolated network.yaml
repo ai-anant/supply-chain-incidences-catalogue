@@ -1,0 +1,33 @@
+id: T0214
+type: Technique
+
+tactic: Reconnaissance
+
+realm:
+  - Container Security
+  - Cloud Security
+  - Infrastructure as code
+
+summary: Rent co-located containers to scan an isolated network
+
+description: |
+  The attacker rents or deploys a container on the same physical host as
+  the target — a multi-tenant GPU cloud, shared CI runner pool, or
+  co-tenanted PaaS — so that their scanning and exploitation traffic
+  originates from inside the tenant's network boundary. Rented
+  infrastructure is a legitimate customer workload: egress filtering,
+  IP reputation, and external attack-surface monitoring see it as normal
+  tenant traffic, and nothing resolves to attacker-owned addresses. From
+  the co-located container the attacker reaches internal-only surfaces —
+  Docker bridge networks, private service endpoints, unauthenticated
+  management ports, or notebooks bound to loopback — that are invisible
+  from the outside. Distinct from T0212 (subverting the routing layer
+  while destination infrastructure stays untouched) and T0205
+  (compromising third-party hosting): here the attacker buys a lawful
+  position adjacent to the victim. Observed in CloudSEK's analysis of a
+  leaked offensive control panel that rented containers beside vast.ai
+  tenants to scan the Docker bridge and reach unprotected notebooks.
+
+metadata:
+  version: 0.1
+  state: draft
