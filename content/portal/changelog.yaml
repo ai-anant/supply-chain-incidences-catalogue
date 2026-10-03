@@ -1,4 +1,38 @@
 entries:
+- date: '2026-10-03'
+  id: macsync-signed-installers
+  title: MacSync signed fake Claude Desktop installers added (AS296, T0215)
+  items:
+  - 'AS296 MacSync (OpenSourceMalware verified report, 19 Sep; initial intel Jamf
+    Threat Labs): the lookalike download site claude-desktop.com serves signed and
+    notarized fake app installers (Claude Desktop, TeleGlass, RelayArc, Antigravity
+    lures) as DMGs. A stage-one helper.sh inside each DMG pulls a JSON C2 config
+    from a jsdelivr-mirrored GitHub repo (daynotest/daynoteupd[a|t]), stages the
+    DayNote Mach-O payload from anchorpost13.com / download-storage.com, and
+    beacons to onyxsable8.com. Every DMG is signed by the OSMAN ASTUR Developer ID
+    (Team ID 8T6UCTT38A) — an identity the attacker enrolled, not a stolen vendor
+    certificate — so Gatekeeper installs with no warning. New technique T0215
+    (enroll attacker-owned code-signing identity) added with technique-origin
+    entry, distinct from T0208 (compromise code-signing identity). Platforms
+    macos/ai-agents.'
+  - 'Re-walked every track:true source. The rest of this window was already mapped
+    or is not supply-chain: OpenSourceMalware Show #23 covers the ShinyHunters and
+    KillSec arrests (hosts state neither group has been active in software supply
+    chain) and the Bitget exchange-backend heist (SlowMist attributes initial
+    access to a security-product zero-day, no software-supply-chain intrusion);
+    PolinRider A/B testing (.woff2 renamed to 500/900/300, moved into legitimate
+    folders, then given a .llf extension) attached to AS45; the Baileys campaign
+    topping 100 npm packages attached to AS85; Aikido Shai-Hulud republish after
+    111 days is the same campaign as AS48/AS49; Checkmarx Cyber Resilience Act
+    post is compliance guidance; GitHub changelog items are platform features
+    (stateless App installation tokens, Copilot API support, security-advisory
+    comment APIs, macOS 14 runner retirement); Socket feed items (Laravel Lang,
+    Coruna art-template, Go decimal, node-ipc, @antv wave) all map to existing
+    stories; SafeDep newest items are Sckit/MemTensor on AS39 plus the DirtyBlanket
+    and Mini Shai-Hulud follow-ups already mapped; Rust blog, RubyGems blog,
+    CISA, Sansec, CrowdStrike, Wiz, Google Threat Intelligence, and ReversingLabs
+    show nothing new in this window.'
+
 - date: '2026-10-02'
   id: five-stage-preview
   title: Unlinked preview of a five-stage supply-chain cut

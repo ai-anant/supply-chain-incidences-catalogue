@@ -996,3 +996,14 @@ techniques:
       unprotected notebooks.
     sources:
     - https://www.cloudsek.com/blog/tophit-part-2-renting-the-attack-surface
+  T0215:
+    summary: Enroll attacker-owned code-signing identity
+    tactic: Defense Evasion
+    kind: incident
+    note: This catalogue, from the MacSync fake-installer wave (OSM verified
+      report, initial intel Jamf Threat Labs) where every lure DMG was signed
+      and notarized by the OSMAN ASTUR Developer ID — an identity the
+      attacker enrolled themselves, not a stolen vendor certificate.
+    sources:
+    - https://opensourcemalware.com/domain/claude-desktop.com
+    - https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/

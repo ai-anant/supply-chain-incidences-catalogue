@@ -201,7 +201,7 @@
         ],
         "url": "techniques/T0110.html",
         "description": "An Advertise Malicious Artifact attack is a type of cyber attack in which an attacker distributes a malicious package or container image to a broader audience, typically by advertising it on popular repositories or registries.\nThe goal of this attack is to entice users into downloading and using the malicious artifact, thereby compromising their systems.\nIn this attack, the attacker may create a fake developer account or use an existing legitimate account to upload the malicious artifact to popular repositories or registries such as PyPI or DockerHub.\nThe attacker may then use various techniques to promote the malicious artifact, such as forum promotion, commenting, using misleading descriptions, tags, or keywords, or by hijacking popular package names.\nOnce users download and install the malicious package or container image, it can compromise their systems and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 20
+        "incidentCount": 21
       },
       {
         "id": "T0111",
@@ -441,7 +441,7 @@
         ],
         "url": "techniques/T0136.html",
         "description": "Brandjacking is a type of attack where an attacker impersonates a legitimate brand or project in an attempt to trick users into downloading and installing a malicious container or package. \nThis can happen when an attacker creates a package or container with a similar name or logo to a well-known and trusted brand or project, and then distributes it through public repositories.\nBrandjacking can be particularly dangerous in the context of container and open source security, as many developers and users rely on public repositories and may not take the time to thoroughly verify the authenticity of packages they download.\nOnce a malicious package is installed, it can be difficult to detect and can lead to serious security breaches.\n",
-        "incidentCount": 34
+        "incidentCount": 35
       },
       {
         "id": "T0137",
@@ -589,7 +589,7 @@
         ],
         "url": "techniques/T0205.html",
         "description": "Instead of poisoning a package registry or source repository, the attacker\ntakes over a widely embedded CDN hostname, tag manager, or hosted JavaScript\nasset (domain expiry, registrar hijack, or operator acquisition) and serves\nmalicious content to every site that loads it. Polyfill.io (2024) is the\nreference case: a trusted script URL became a drive-by supply-chain implant\nfor hundreds of thousands of properties. This catalogue previously had no technique\nthat named this web-asset supply chain.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0209",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 46
+        "incidentCount": 47
       },
       {
         "id": "T0166",
@@ -741,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 76
+        "incidentCount": 77
       },
       {
         "id": "T0173",
@@ -1077,7 +1077,7 @@
         ],
         "url": "techniques/T0207.html",
         "description": "Consumers are supposed to verify packages, containers, and third-party\nscripts (checksums, signatures, Sigstore, Subresource Integrity). The\nattacker relies on that check never running, or supplies a matching but\nattacker-controlled signature. OWASP CICD-SEC-9 names the control gap;\nthis technique is the attacker side. Polyfill.io hotlinks without SRI and\nunsigned CI helper scripts are typical realizations.\n",
-        "incidentCount": 5
+        "incidentCount": 6
       },
       {
         "id": "T0208",
@@ -1091,9 +1091,22 @@
         "url": "techniques/T0208.html",
         "description": "The attacker signs malware with a stolen or issuer-trusted code-signing\ncertificate, CI OIDC identity, or package-registry signing key so that\nsignature verification succeeds. SolarWinds Orion updates were signed as\nSolarWinds. Distinct from spoofed git commits (T0195) and from forging\nprovenance documents (T0206): here the cryptographic identity is real\nand compromised.\n",
         "incidentCount": 5
+      },
+      {
+        "id": "T0215",
+        "name": "Enroll attacker-owned code-signing identity",
+        "tooltip": "Enroll attacker-owned code-signing identity",
+        "tags": [
+          "Artifact Security",
+          "Open Source Security",
+          "Secrets Hygiene"
+        ],
+        "url": "techniques/T0215.html",
+        "description": "The attacker registers or purchases their own legitimate code-signing\nidentity \u2014 an Apple Developer ID, a Windows Authenticode certificate, or\na marketplace publisher account \u2014 and signs malware with it. macOS\nnotarization and Gatekeeper then pass with no warning dialog, and\nsignature-based allowlists see a valid, unrevoked signature. Distinct\nfrom T0208 (Compromise code-signing identity): there the cryptographic\nidentity belongs to the vendor and was stolen or misissued; here the\nidentity is genuinely the attacker's, obtained through the normal\nenrollment process. That means vendor-side certificate hygiene cannot\nprevent it \u2014 only teardown of the certificate after the fact, and\nprovenance checks on the distribution channel, apply.\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 11,
+    "amount": 12,
     "tooltip": "Defense Evasion",
     "tacticid": "TA07"
   },

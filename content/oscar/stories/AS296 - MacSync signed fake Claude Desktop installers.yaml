@@ -1,0 +1,90 @@
+id: AS296
+type: Attack Story
+date: 2026-09
+platforms:
+  - macos
+  - ai-agents
+
+summary: MacSync via signed fake Claude Desktop installers on a lookalike download site
+description: |
+  OpenSourceMalware (verified 19 Sep 2026; initial intel Jamf Threat
+  Labs): the lookalike download site claude-desktop.com serves signed and
+  notarized fake app installers — Claude Desktop, TeleGlass, RelayArc,
+  Antigravity lures — as DMG containers. A stage-one shell downloader
+  (helper.sh) inside each DMG pulls a JSON C2 config from a
+  jsdelivr-mirrored GitHub repo (daynotest/daynoteupd[a|t]) and stages
+  the DayNote Mach-O payload from anchorpost13.com /
+  download-storage.com, with beaconing and exfiltration to
+  onyxsable8.com. All lure DMGs are code-signed by Developer ID
+  Application: OSMAN ASTUR (Team ID 8T6UCTT38A) — an identity the
+  attacker enrolled themselves, so macOS installs without a Gatekeeper
+  warning. Same MacSync family as the ClickFix waves (Anvilogic, Jamf);
+  this wave swaps the paste-in-terminal trick for a hands-off signed
+  installer on a brandjacked download site. Lures impersonate AI
+  desktop apps.
+
+attacks:
+  - attack: signed fake-installer distribution
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0136
+        techName: Brandjacking
+        tactic: Initial Access
+        comment: |
+          claude-desktop.com impersonates Anthropic's Claude Desktop
+          download page; TeleGlass, RelayArc, and Antigravity lures
+          borrow other tool names.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          The lookalike site advertises the fake installers as the real
+          developer tools.
+      - techniqueID: T0215
+        techName: Enroll attacker-owned code-signing identity
+        tactic: Defense Evasion
+        comment: |
+          Every lure DMG is signed and notarized by Developer ID
+          Application: OSMAN ASTUR (Team ID 8T6UCTT38A), so Gatekeeper
+          installs it with no warning; the identity is the attacker's
+          own, not a stolen vendor certificate.
+      - techniqueID: T0207
+        techName: Skip or forge artifact integrity verification
+        tactic: Defense Evasion
+        comment: |
+          Signature verification succeeds by design; nothing left for
+          the consumer to catch.
+      - techniqueID: T0205
+        techName: Compromise a third-party CDN or hosted web asset
+        tactic: Initial Access
+        comment: |
+          The stage-two fetch is mirrored through jsdelivr from a GitHub
+          repo, so the network sees a trusted CDN host.
+  - attack: macOS victims executing the installers
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          The signed DMG mounts and runs helper.sh through the bundled
+          helper; no terminal interaction needed.
+      - techniqueID: T0172
+        techName: Runtime backdoor
+        tactic: Execution
+        comment: |
+          The DayNote Mach-O payload beacons to onyxsable8.com under a
+          JSON config fetched at stage one.
+
+gaps: []
+
+links:
+  - https://opensourcemalware.com/domain/claude-desktop.com
+  - https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
+  - https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23

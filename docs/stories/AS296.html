@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MacSync via signed fake Claude Desktop installers on a lookalike download site · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS296</p>
+
+        <p class="meta">AS296 · 2026-09</p>
+        <h1>MacSync via signed fake Claude Desktop installers on a lookalike download site</h1>
+        <p><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a></p>
+        <p>OpenSourceMalware (verified 19 Sep 2026; initial intel Jamf Threat<br>Labs): the lookalike download site claude-desktop.com serves signed and<br>notarized fake app installers — Claude Desktop, TeleGlass, RelayArc,<br>Antigravity lures — as DMG containers. A stage-one shell downloader<br>(helper.sh) inside each DMG pulls a JSON C2 config from a<br>jsdelivr-mirrored GitHub repo (daynotest/daynoteupd[a|t]) and stages<br>the DayNote Mach-O payload from anchorpost13.com /<br>download-storage.com, with beaconing and exfiltration to<br>onyxsable8.com. All lure DMGs are code-signed by Developer ID<br>Application: OSMAN ASTUR (Team ID 8T6UCTT38A) — an identity the<br>attacker enrolled themselves, so macOS installs without a Gatekeeper<br>warning. Same MacSync family as the ClickFix waves (Anvilogic, Jamf);<br>this wave swaps the paste-in-terminal trick for a hands-off signed<br>installer on a brandjacked download site. Lures impersonate AI<br>desktop apps.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0136.html">T0136</a> Brandjacking</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0215.html">T0215</a> Enroll attacker-owned code-signing identity</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li><li><a href="../techniques/T0205.html">T0205</a> Compromise third-party CDN or hosted web asset</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>
+        <h2><span class="stage">supply-chain</span> signed fake-installer distribution</h2><div class="card"><p class="meta"><a href="../techniques/T0136.html">T0136</a> · Initial Access · Brandjacking</p><p>claude-desktop.com impersonates Anthropic&#x27;s Claude Desktop<br>download page; TeleGlass, RelayArc, and Antigravity lures<br>borrow other tool names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>The lookalike site advertises the fake installers as the real<br>developer tools.</p></div><div class="card"><p class="meta"><a href="../techniques/T0215.html">T0215</a> · Defense Evasion · Enroll attacker-owned code-signing identity</p><p>Every lure DMG is signed and notarized by Developer ID<br>Application: OSMAN ASTUR (Team ID 8T6UCTT38A), so Gatekeeper<br>installs it with no warning; the identity is the attacker&#x27;s<br>own, not a stolen vendor certificate.</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>Signature verification succeeds by design; nothing left for<br>the consumer to catch.</p></div><div class="card"><p class="meta"><a href="../techniques/T0205.html">T0205</a> · Initial Access · Compromise a third-party CDN or hosted web asset</p><p>The stage-two fetch is mirrored through jsdelivr from a GitHub<br>repo, so the network sees a trusted CDN host.</p></div><h2><span class="stage">post-supply-chain</span> macOS victims executing the installers</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>The signed DMG mounts and runs helper.sh through the bundled<br>helper; no terminal interaction needed.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>The DayNote Mach-O payload beacons to onyxsable8.com under a<br>JSON config fetched at stage one.</p></div>
+        
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://opensourcemalware.com/domain/claude-desktop.com" rel="noopener">https://opensourcemalware.com/domain/claude-desktop.com</a></li><li><a href="https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/" rel="noopener">https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/</a></li><li><a href="https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23" rel="noopener">https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

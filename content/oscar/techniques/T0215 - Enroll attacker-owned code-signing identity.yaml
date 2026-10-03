@@ -1,0 +1,42 @@
+id: T0215
+type: Technique
+
+tactic: Defense Evasion
+
+realm:
+  - Artifact Security
+  - Open Source Security
+  - Secrets Hygiene
+
+summary: Enroll attacker-owned code-signing identity
+
+description: |
+  The attacker registers or purchases their own legitimate code-signing
+  identity — an Apple Developer ID, a Windows Authenticode certificate, or
+  a marketplace publisher account — and signs malware with it. macOS
+  notarization and Gatekeeper then pass with no warning dialog, and
+  signature-based allowlists see a valid, unrevoked signature. Distinct
+  from T0208 (Compromise code-signing identity): there the cryptographic
+  identity belongs to the vendor and was stolen or misissued; here the
+  identity is genuinely the attacker's, obtained through the normal
+  enrollment process. That means vendor-side certificate hygiene cannot
+  prevent it — only teardown of the certificate after the fact, and
+  provenance checks on the distribution channel, apply.
+
+mitigations:
+  - M1090
+  - M1500
+  - M1590
+
+detections:
+  - D1090
+  - D1510
+  - D1520
+
+references:
+  - https://opensourcemalware.com/domain/claude-desktop.com
+  - https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
+
+metadata:
+  version: 0.1
+  state: draft

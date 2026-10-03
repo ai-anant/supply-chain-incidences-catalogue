@@ -32,7 +32,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0207</p>
 
-        <p class="meta">T0207 · Defense Evasion · TA07 · observed in 5 incident(s)</p>
+        <p class="meta">T0207 · Defense Evasion · TA07 · observed in 6 incident(s)</p>
         <h1>Skip or forge artifact integrity verification</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Open Source Security</span> <span class="chip">CI/CD Posture</span></div>
         <p>Consumers are supposed to verify packages, containers, and third-party<br>scripts (checksums, signatures, Sigstore, Subresource Integrity). The<br>attacker relies on that check never running, or supplies a matching but<br>attacker-controlled signature. OWASP CICD-SEC-9 names the control gap;<br>this technique is the attacker side. Polyfill.io hotlinks without SRI and<br>unsigned CI helper scripts are typical realizations.</p>
@@ -42,7 +42,7 @@
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1090</span> Implement code and image signing</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1090</span> Implement package or image integrity verification</li><li><span class="id">D1500</span> Configure monitoring of used artifacts and open-source libraries</li></ul>
-        <h2>Observed in incidents (5)</h2><ul><li><a href="../incidents/AS8.html">Polyfill.io CDN takeover</a></li><li><a href="../incidents/AS3.html">Codecov Breach</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS287.html">fwupd dangling S3 bucket and CVE-2020-10759 signature-verification bypass</a></li><li><a href="../incidents/AS292.html">Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</a></li></ul>
+        <h2>Observed in incidents (6)</h2><ul><li><a href="../incidents/AS296.html">MacSync via signed fake Claude Desktop installers on a lookalike download site</a></li><li><a href="../incidents/AS8.html">Polyfill.io CDN takeover</a></li><li><a href="../incidents/AS3.html">Codecov Breach</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS287.html">fwupd dangling S3 bucket and CVE-2020-10759 signature-verification bypass</a></li><li><a href="../incidents/AS292.html">Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" rel="noopener">https://owasp.org/www-project-top-10-ci-cd-security-risks/</a></li><li><a href="https://www.w3.org/TR/SRI/" rel="noopener">https://www.w3.org/TR/SRI/</a></li></ul>
         

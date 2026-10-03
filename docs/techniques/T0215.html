@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0215 Enroll attacker-owned code-signing identity · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0215</p>
+
+        <p class="meta">T0215 · Defense Evasion · TA07 · observed in 1 incident(s)</p>
+        <h1>Enroll attacker-owned code-signing identity</h1>
+        <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Open Source Security</span> <span class="chip">Secrets Hygiene</span></div>
+        <p>The attacker registers or purchases their own legitimate code-signing<br>identity — an Apple Developer ID, a Windows Authenticode certificate, or<br>a marketplace publisher account — and signs malware with it. macOS<br>notarization and Gatekeeper then pass with no warning dialog, and<br>signature-based allowlists see a valid, unrevoked signature. Distinct<br>from T0208 (Compromise code-signing identity): there the cryptographic<br>identity belongs to the vendor and was stolen or misissued; here the<br>identity is genuinely the attacker&#x27;s, obtained through the normal<br>enrollment process. That means vendor-side certificate hygiene cannot<br>prevent it — only teardown of the certificate after the fact, and<br>provenance checks on the distribution channel, apply.</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from the MacSync fake-installer wave (OSM verified report, initial intel Jamf Threat Labs) where every lure DMG was signed and notarized by the OSMAN ASTUR Developer ID — an identity the attacker enrolled themselves, not a stolen vendor certificate.</p><ul class='refs'><li><a href="https://opensourcemalware.com/domain/claude-desktop.com" rel="noopener">https://opensourcemalware.com/domain/claude-desktop.com</a></li><li><a href="https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/" rel="noopener">https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <ul><li><span class="id">M1090</span> Implement code and image signing</li><li><span class="id">M1500</span> Verify third-party artifacts and open-source libraries</li><li><span class="id">M1590</span> Implement artifact signing and verification</li></ul>
+        <h2>Detections</h2>
+        <ul><li><span class="id">D1090</span> Implement package or image integrity verification</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1520</span> Implement endpoint detection and response system</li></ul>
+        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS296.html">MacSync via signed fake Claude Desktop installers on a lookalike download site</a></li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://opensourcemalware.com/domain/claude-desktop.com" rel="noopener">https://opensourcemalware.com/domain/claude-desktop.com</a></li><li><a href="https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/" rel="noopener">https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>
