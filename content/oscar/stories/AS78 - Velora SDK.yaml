@@ -2,7 +2,8 @@ id: AS78
 type: Attack Story
 date: 2026-07
 platforms:
-- npm
+  - npm
+  - git
 summary: '@velora-dex/sdk 9.4.1 build-pipeline backdoor'
 description: 'OpenSourceMalware found only @velora-dex/sdk 9.4.1 (Velora / formerly
 

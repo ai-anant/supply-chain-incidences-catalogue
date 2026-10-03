@@ -4,6 +4,7 @@ date: 2025-10
 platforms:
   - npm
   - pypi
+  - browser-extensions
 
 summary: Crypto-developer package theft (Flashbots, BSC, Solana, TON)
 description: |

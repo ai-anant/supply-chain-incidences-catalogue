@@ -2,8 +2,9 @@ id: AS115
 type: Attack Story
 date: 2026-08
 platforms:
-- npm
-- pypi
+  - npm
+  - pypi
+  - cdn
 summary: TXTBOOK dependency confusion against Tinkoff / T-Bank
 description: 'CloudSEK tracks TXTBOOK: 993 public npm packages (after a PyPI start)
 

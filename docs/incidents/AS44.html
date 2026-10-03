@@ -34,7 +34,7 @@
 
         <p class="meta">AS44 · 2026-08</p>
         <h1>StubMaker RubyGems (and npm) Windows infostealer</h1>
-        <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a><a class="plat" href="../platforms/npm.html">npm</a></p>
+        <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>On 15 August 2026 OpenSourceMalware found newly published RubyGems<br>typosquats whose extconf.rb fakes a native-extension build (empty make<br>targets / make_stub) while downloading a 22 MB Rust loader from GitHub<br>Releases. The loader carries an 11 MB Go infostealer in its own data<br>section — no second-stage URL after the first fetch. Targets browser<br>passwords (including Chromium ABE), wallets, seed phrases, Telegram.<br>A parallel npm cluster shared IOCs (StubMaker). Hundreds of downloads<br>before takedown.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0198.html">T0198</a> Malicious Build Time Dependencies</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>

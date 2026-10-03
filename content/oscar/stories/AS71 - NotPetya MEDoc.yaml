@@ -4,6 +4,7 @@ date: 2017-06
 platforms:
   - windows
   - linux
+  - update-channel
 
 summary: NotPetya via M.E.Doc accounting-software updates
 description: |

@@ -4,6 +4,7 @@ date: 2025-07
 platforms:
   - npm
   - windows
+  - workstation
 
 summary: eslint-config-prettier phishing (npnjs.com) and node-gyp.dll
 description: |

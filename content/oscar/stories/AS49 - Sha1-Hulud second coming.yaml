@@ -5,6 +5,9 @@ platforms:
   - npm
   - github-actions
   - git
+  - linux
+  - windows
+  - workstation
 
 summary: "Sha1-Hulud: The Second Coming"
 description: |

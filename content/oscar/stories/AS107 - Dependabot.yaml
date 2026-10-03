@@ -4,6 +4,7 @@ date: 2023-09
 platforms:
   - git
   - github-actions
+  - workstation
 
 summary: Spoofed Dependabot commits and secret-stealing Actions
 description: |

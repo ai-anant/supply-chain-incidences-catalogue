@@ -4,6 +4,7 @@ date: 2016-02
 platforms:
   - linux
   - windows
+  - update-channel
 
 summary: Linux Mint downloads served backdoored ISO
 description: |

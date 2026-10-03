@@ -3,6 +3,11 @@ type: Attack Story
 date: 2026-06
 platforms:
   - npm
+  - ai-agents
+  - git
+  - linux
+  - macos
+  - workstation
 
 summary: "@mastra scope poisoned via typosquat easy-day-js"
 description: |

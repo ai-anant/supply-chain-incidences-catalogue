@@ -3,6 +3,7 @@ type: Attack Story
 date: 2025-07
 platforms:
   - npm
+  - ai-agents
 
 summary: llm-oracle malicious npm payload
 description: |

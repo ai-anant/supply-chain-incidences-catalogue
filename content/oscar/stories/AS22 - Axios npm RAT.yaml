@@ -3,6 +3,8 @@ type: Attack Story
 date: 2026-03
 platforms:
   - npm
+  - cicd-saas
+  - github-actions
 
 summary: axios npm remote-access trojan
 description: |

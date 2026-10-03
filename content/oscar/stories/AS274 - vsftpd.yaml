@@ -3,6 +3,7 @@ type: Attack Story
 date: 2011-06
 platforms:
   - windows
+  - update-channel
 
 summary: vsftpd distribution site served backdoor
 description: |

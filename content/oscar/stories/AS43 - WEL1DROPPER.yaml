@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-08
 platforms:
   - npm
+  - cdn
 
 summary: WEL1DROPPER / NUL1DROPPER npm slopsquatting
 description: |

@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-03
 platforms:
   - npm
+  - windows
 
 summary: pino-sdk-v2 Discord webhook env stealer
 description: |

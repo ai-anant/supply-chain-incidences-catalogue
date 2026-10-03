@@ -4,6 +4,7 @@ date: 2026-08
 platforms:
   - terraform
   - cdn
+  - aws
 
 summary: Coder registry CDN origin pool compromise
 description: |

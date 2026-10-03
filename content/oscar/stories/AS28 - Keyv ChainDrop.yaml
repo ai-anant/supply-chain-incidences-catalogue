@@ -5,6 +5,8 @@ platforms:
   - npm
   - github-actions
   - workstation
+  - ai-agents
+  - kubernetes
 
 summary: Keyv / Cacheable ChainDrop worm
 description: |

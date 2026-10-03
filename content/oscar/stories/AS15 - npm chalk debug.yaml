@@ -3,6 +3,7 @@ type: Attack Story
 date: 2025-09
 platforms:
   - npm
+  - workstation
 
 summary: npm chalk / debug maintainer phishing (Qix)
 description: |

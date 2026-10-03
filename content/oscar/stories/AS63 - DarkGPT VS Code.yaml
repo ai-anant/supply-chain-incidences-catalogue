@@ -4,6 +4,8 @@ date: 2025-12
 platforms:
   - vscode
   - windows
+  - git
+  - macos
 
 summary: DarkGPT / Codo-AI / bitcoin-auto-trading VS Code extensions
 description: |

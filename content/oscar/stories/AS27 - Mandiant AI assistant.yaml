@@ -5,6 +5,8 @@ platforms:
   - pypi
   - git
   - ai-agents
+  - vscode
+  - workstation
 
 summary: Hijacked AI coding assistant spreads Shai-Hulud
 description: |

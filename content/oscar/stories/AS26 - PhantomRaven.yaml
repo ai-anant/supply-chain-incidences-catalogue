@@ -3,6 +3,12 @@ type: Attack Story
 date: 2026-09
 platforms:
   - npm
+  - circleci
+  - git
+  - gitlab
+  - gitlab-ci
+  - jenkins
+  - pypi
 
 summary: PhantomRaven hidden HTTP npm dependencies
 description: |

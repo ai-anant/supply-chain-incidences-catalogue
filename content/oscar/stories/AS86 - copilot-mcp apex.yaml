@@ -5,6 +5,9 @@ platforms:
   - npm
   - macos
   - mcp
+  - git
+  - kubernetes
+  - vscode
 
 summary: "@copilot-mcp/apex macOS infostealer republish"
 description: |

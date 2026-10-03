@@ -4,6 +4,7 @@ date: 2026-09
 platforms:
   - packagist
   - git
+  - vscode
 
 summary: PolinRider poisons visanduma/nova-two-factor Packagist via Git
 description: |

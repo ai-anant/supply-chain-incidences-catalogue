@@ -5,6 +5,7 @@ platforms:
   - vscode
   - git
   - workstation
+  - github-actions
 
 summary: Nx Console VS Code 18.95.0 (GitHub internal repo theft)
 description: |

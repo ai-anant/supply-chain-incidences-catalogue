@@ -5,6 +5,7 @@ platforms:
   - cdn
   - ai-agents
   - windows
+  - mcp
 
 summary: Placeholder domain third-party.com turned live ClickFix server
 description: |

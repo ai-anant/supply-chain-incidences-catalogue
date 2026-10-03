@@ -4,6 +4,7 @@ date: 2026-09
 platforms:
   - pub
   - macos
+  - workstation
 
 summary: pub.dev universal_file_viewer ships XCSSET (infected maintainer)
 description: |

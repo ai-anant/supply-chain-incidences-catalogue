@@ -4,6 +4,10 @@ date: 2025-08
 platforms:
   - npm
   - github-actions
+  - ai-agents
+  - cicd-saas
+  - git
+  - workstation
 
 summary: Nx s1ngularity (stolen npm token via Actions injection)
 description: |

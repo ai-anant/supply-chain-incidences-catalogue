@@ -3,6 +3,8 @@ type: Attack Story
 date: 2026-07
 platforms:
   - npm
+  - cicd-saas
+  - macos
 
 summary: jscrambler@8.14.0 preinstall native binaries
 description: |

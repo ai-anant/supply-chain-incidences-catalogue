@@ -2,7 +2,8 @@ id: AS222
 type: Attack Story
 date: 2017-05
 platforms:
-- macos
+  - macos
+  - update-channel
 summary: HandBrake mirror delivered Proton RAT
 description: 'Catalogued from the tstromberg supplychain-attack-data dataset
 

@@ -4,6 +4,9 @@ date: 2026-05
 platforms:
   - npm
   - github-actions
+  - ai-agents
+  - vscode
+  - workstation
 
 summary: TanStack Mini Shai-Hulud (CVE-2026-45321)
 description: |

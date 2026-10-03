@@ -5,6 +5,7 @@ platforms:
   - npm
   - ai-agents
   - linux
+  - git
 
 summary: Typosquat npm packages backdoor Claude Code SessionStart
 description: |

@@ -34,7 +34,7 @@
 
         <p class="meta">AS71 · 2017-06</p>
         <h1>NotPetya via M.E.Doc accounting-software updates</h1>
-        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a></p>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/update-channel.html">Installer / update channel</a></p>
         <p>On 27 June 2017 Diskcoder.C (NotPetya / ExPetr) wiped machines across<br>Ukraine and companies with VPN links into Ukraine. ESET showed the<br>initial vector was a supply-chain push through M.E.Doc, Ukrainian<br>accounting software: a PHP backdoor (medoc_online.php) on the vendor<br>update/FTP server let TeleBots ship a malicious update that applied<br>without user interaction. The same channel had earlier delivered<br>Win32/Filecoder.AESNI.C (XData). NotPetya then spread inside LANs via<br>EternalBlue/DoublePulsar, Mimikatz + PsExec, and WMI. MBR encryption<br>was modified so recovery was impossible; the ransom screen was a<br>decoy. First-party write-up: ESET WeLiveSecurity, 30 June 2017.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0209.html">T0209</a> Compromise package registry or CDN origin</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0138.html">T0138</a> Backdoor in code</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li></ul>

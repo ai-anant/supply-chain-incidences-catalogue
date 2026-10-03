@@ -34,7 +34,7 @@
 
         <p class="meta">AS116 · 2026-09</p>
         <h1>pub.dev universal_file_viewer ships XCSSET (infected maintainer)</h1>
-        <p><a class="plat" href="../platforms/pub.html">pub.dev / Dart</a><a class="plat" href="../platforms/macos.html">macOS software</a></p>
+        <p><a class="plat" href="../platforms/pub.html">pub.dev / Dart</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a></p>
         <p>Aikido (8 Sep 2026): first malware they found on pub.dev. Flutter package<br>universal_file_viewer 0.1.5 was published from a maintainer machine<br>already infected with XCSSET. Dart lib/ is clean; example/ Android Gradle<br>and Xcode projects carry wormed build hooks. Adding the package as a<br>dependency does not fire it — cloning and building the example app does.<br>XCSSET then worms into every Gradle/Xcode/git repo on the machine and<br>steals browser/Telegram data. Unit 42 / Microsoft cover the malware<br>family; Aikido covers this registry hit.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0153.html">T0153</a> Compromised developer workstation</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0169.html">T0169</a> Push implants across repositories</li></ul>

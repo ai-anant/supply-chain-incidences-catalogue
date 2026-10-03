@@ -34,7 +34,7 @@
 
         <p class="meta">AS76 · 2026-07</p>
         <h1>Typosquatted AI-tool npm packages under a real-identity publisher</h1>
-        <p><a class="plat" href="../platforms/npm.html">npm</a></p>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
         <p>OpenSourceMalware documented a July 2026 npm campaign of typosquatted<br>AI-tool packages that collected git, SSH, and cloud identity data in<br>install scripts and never needed to run at import time. Unlike typical<br>throwaway-account floods, packages were published under a coherent real<br>identity and iterated across at least five packages, including<br>@aspect-security/argon2 — a broken-shell package that only had to be<br>installed. Beacon traffic was dressed as telemetry. OSM’s point: install<br>time is code execution, and runtime scanners miss packages with no<br>runtime.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>

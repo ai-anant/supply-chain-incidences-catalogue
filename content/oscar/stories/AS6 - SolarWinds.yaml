@@ -3,6 +3,7 @@ type: Attack Story
 date: 2019-03
 platforms:
   - windows
+  - update-channel
 
 summary: SolarWinds
 description: |

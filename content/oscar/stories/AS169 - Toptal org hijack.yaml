@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-02
 platforms:
   - npm
+  - git
 
 summary: Toptal GitHub org hijack 10 malicious packages
 description: |

@@ -3,6 +3,8 @@ type: Attack Story
 date: 2026-04
 platforms:
   - npm
+  - git
+  - windows
 
 summary: Trojanized fork martinez-polygon-clipping-tony
 description: |

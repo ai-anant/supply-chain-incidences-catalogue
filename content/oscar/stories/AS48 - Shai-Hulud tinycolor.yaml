@@ -5,6 +5,8 @@ platforms:
   - npm
   - github-actions
   - git
+  - ai-agents
+  - workstation
 
 summary: Shai-Hulud first wave (@ctrl/tinycolor)
 description: |

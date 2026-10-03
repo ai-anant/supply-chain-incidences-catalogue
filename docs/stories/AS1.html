@@ -34,7 +34,7 @@
 
         <p class="meta">AS1 · 2018-04</p>
         <h1>Webmin 1.890–1.920 build-server backdoor</h1>
-        <p><a class="plat" href="../platforms/linux.html">Linux distro / packages</a></p>
+        <p><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a></p>
         <p>In April 2018 an attacker exploited the Webmin development build server and<br>injected a concealed remote-command backdoor into password_change.cgi. The<br>change was taken from the local build tree, not from a controlled SCM, so<br>source review of git would not have seen it. Versions 1.890 shipped an<br>immediately exploitable root RCE; 1.900–1.920 still contained similar code<br>that became exploitable if “allow changing of expired passwords” was on.<br>In September 2018 the old build server was replaced, but the modified<br>directory was copied from backups and the backdoor returned. This was<br>deliberate, not an accidental bug. Tracked as CVE-2019-15107 / CVE-2019-15231.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0180.html">T0180</a> Compromise services / servers</li><li><a href="../techniques/T0135.html">T0135</a> Vulnerable CICD system</li><li><a href="../techniques/T0194.html">T0194</a> Outdated software components</li><li><a href="../techniques/T0138.html">T0138</a> Backdoor in code</li><li><a href="../techniques/T0191.html">T0191</a> Malicious code in artifacts</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li></ul>

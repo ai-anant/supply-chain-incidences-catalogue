@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-07
 platforms:
   - npm
+  - cicd-saas
 
 summary: Compromised Injective SDK on npm
 description: |

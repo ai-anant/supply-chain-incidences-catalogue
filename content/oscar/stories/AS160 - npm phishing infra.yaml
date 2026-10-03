@@ -3,6 +3,8 @@ type: Attack Story
 date: 2026-04
 platforms:
   - npm
+  - cdn
+  - git
 
 summary: 175 npm packages hosting phishing infrastructure
 description: |

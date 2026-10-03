@@ -5,6 +5,7 @@ platforms:
   - npm
   - windows
   - linux
+  - git
 
 summary: BRIDGEHEAD npm typosquats jump WSL to a Windows wallet stealer
 description: |

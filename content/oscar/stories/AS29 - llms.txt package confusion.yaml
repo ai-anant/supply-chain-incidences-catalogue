@@ -5,6 +5,7 @@ platforms:
   - npm
   - pypi
   - ai-agents
+  - cdn
 
 summary: Unclaimed packages in official llms.txt files
 description: |

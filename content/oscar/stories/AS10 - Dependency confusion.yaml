@@ -5,6 +5,7 @@ platforms:
   - npm
   - pypi
   - rubygems
+  - workstation
 
 summary: Dependency confusion (Alex Birsan)
 description: |

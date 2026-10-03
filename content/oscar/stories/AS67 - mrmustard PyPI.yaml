@@ -4,6 +4,7 @@ date: 2026-07
 platforms:
   - pypi
   - github-actions
+  - kubernetes
 
 summary: mrmustard 0.7.4 PyPI credential stealer via stolen publish token
 description: |

@@ -1,5 +1,21 @@
 entries:
 - date: '2026-10-03'
+  id: full-platform-audit
+  title: Every incident re-checked for secondary platform surfaces
+  items:
+  - 'Walked all 295 stories against the write-up text. 118 platform tags added across
+    ~110 incidents. Workstation on every case where the developer machine or build server
+    is in the chain (AS1 Webmin build server, AS11/AS15/AS46 maintainer takeovers that
+    harvest from the machine, AS74 Nx, AS193 PAT cloning). Update channel on SolarWinds,
+    NotPetya/M.E.Doc, HandBrake, Monero CLI, TradingView ad, Linux Mint ISO, vsftpd.
+    Windows/Linux/macOS on cross-platform payloads. Git on GitHub-hosted stages and lure
+    repos. CI SaaS where the CI identity was the publish path.'
+  - 'Five malformed platforms lists fixed (indentation made one list parse as a single
+    string). All tags now validate against the vocabulary.'
+  - 'Not stamped: cloud and Kubernetes mentions that are stolen loot or attacker IPs,
+    Codeberg as an attacker host on DirtyBlanket is still recorded as a code host because
+    the worm was served from it. No Buildkite or GCP incident exists.'
+- date: '2026-10-03'
   id: stage-platform-tags
   title: Stage tags added where the write-up names that system
   items:

@@ -5,6 +5,8 @@ platforms:
   - npm
   - macos
   - vscode
+  - git
+  - windows
 
 summary: npm packages hijack Cursor on macOS
 description: |

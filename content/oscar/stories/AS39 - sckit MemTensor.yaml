@@ -4,6 +4,7 @@ date: 2026-09
 platforms:
   - npm
   - pypi
+  - ai-agents
 
 summary: sckit worm in MemTensor npm plugin and PyPI MemoryOS
 description: |

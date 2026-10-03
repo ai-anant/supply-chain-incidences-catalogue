@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-08
 platforms:
   - macos
+  - update-channel
 
 summary: Fake TradingView macOS installer via YouTube ad
 description: |

@@ -5,6 +5,8 @@ platforms:
   - npm
   - pypi
   - rubygems
+  - browser-extensions
+  - cdn
 
 summary: Telegram, Discord, and WhatsApp-developer malware packages
 description: |

@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-04
 platforms:
   - npm
+  - windows
 
 summary: node-env-resolve full RAT
 description: |

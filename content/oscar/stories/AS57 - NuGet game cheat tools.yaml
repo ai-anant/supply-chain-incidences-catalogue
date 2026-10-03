@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-09
 platforms:
   - nuget
+  - cdn
 
 summary: Eleven NuGet packages posing as game cheats
 description: |

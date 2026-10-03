@@ -6,6 +6,8 @@ platforms:
   - github-actions
   - ai-agents
   - mcp
+  - git
+  - vscode
 
 summary: TeamPCP DUSTMAKER AI workspace poisoning
 description: |

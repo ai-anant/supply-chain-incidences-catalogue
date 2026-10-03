@@ -5,6 +5,11 @@ platforms:
   - npm
   - pypi
   - ai-agents
+  - linux
+  - macos
+  - mcp
+  - windows
+  - workstation
 
 summary: Hades .pth and AI-assistant config persistence
 description: |

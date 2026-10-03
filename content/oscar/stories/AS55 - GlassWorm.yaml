@@ -6,6 +6,7 @@ platforms:
   - npm
   - vscode
   - pypi
+  - browser-extensions
 
 summary: GlassWorm across GitHub, npm, Open VSX, VS Code, Python
 description: |

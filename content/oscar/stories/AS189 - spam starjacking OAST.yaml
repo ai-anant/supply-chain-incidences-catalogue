@@ -5,6 +5,10 @@ platforms:
   - npm
   - pypi
   - git
+  - ai-agents
+  - browser-extensions
+  - cdn
+  - rubygems
 
 summary: Registry abuse, starjacking, OAST, and LLM-developer targeting
 description: |

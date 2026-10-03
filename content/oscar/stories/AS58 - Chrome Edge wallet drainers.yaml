@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-08
 platforms:
   - browser-extensions
+  - cdn
 
 summary: Chrome and Edge crypto-wallet drainer extensions
 description: |

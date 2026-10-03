@@ -6,6 +6,7 @@ platforms:
   - linux
   - git
   - aur
+  - codeberg
 
 summary: DirtyBlanket fake Express/React packages spread a self-propagating Linux worm
 description: |

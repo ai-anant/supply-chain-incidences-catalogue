@@ -4,6 +4,8 @@ date: 2026-09
 platforms:
   - pypi
   - git
+  - macos
+  - windows
 
 summary: Deep-Live-Cam malicious git dependency
 description: |

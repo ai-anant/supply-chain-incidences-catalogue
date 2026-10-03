@@ -2,7 +2,8 @@ id: AS236
 type: Attack Story
 date: 2019-11
 platforms:
-- windows
+  - windows
+  - update-channel
 summary: Monero CLI binaries stole wallet seeds
 description: 'Catalogued from the tstromberg supplychain-attack-data dataset
 

@@ -3,6 +3,8 @@ type: Attack Story
 date: 2026-03
 platforms:
   - npm
+  - git
+  - windows
 
 summary: react-refresh-update Meta library impersonation
 description: |

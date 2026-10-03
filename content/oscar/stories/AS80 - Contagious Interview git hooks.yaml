@@ -6,6 +6,7 @@ platforms:
   - linux
   - macos
   - windows
+  - vscode
 
 summary: Contagious Interview stage-2 in Git pre-commit / post-checkout hooks
 description: |

@@ -2,7 +2,8 @@ id: AS257
 type: Attack Story
 date: 2026-05
 platforms:
-- pypi
+  - pypi
+  - ai-agents
 summary: guardrails-ai PyPI package carried Shai-Hulud
 description: 'Catalogued from the tstromberg supplychain-attack-data dataset
 

@@ -3,6 +3,7 @@ type: Attack Story
 date: 2018-07
 platforms:
   - npm
+  - workstation
 
 summary: eslint-scope and eslint-config-eslint malicious publishes
 description: |

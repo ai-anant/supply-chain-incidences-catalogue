@@ -2,9 +2,10 @@ id: AS75
 type: Attack Story
 date: 2026-02
 platforms:
-- github-actions
-- git
-- ai-agents
+  - github-actions
+  - git
+  - ai-agents
+  - vscode
 summary: hackerbot-claw autonomous GitHub Actions exploitation
 description: 'StepSecurity documented hackerbot-claw, an account describing itself as
 

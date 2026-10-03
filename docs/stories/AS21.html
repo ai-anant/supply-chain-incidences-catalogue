@@ -34,7 +34,7 @@
 
         <p class="meta">AS21 · 2026-09</p>
         <h1>Deep-Live-Cam malicious git dependency</h1>
-        <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
+        <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
         <p>On 8 September 2026 a commit on Deep-Live-Cam (96k GitHub stars) rewrote<br>requirements.txt to pull several packages from source URLs and added<br>linerequests @ git+https://github.com/pypls/requests.git — a lookalike of<br>the real Requests project. setup.py hid a loader past 434 spaces; it<br>fetched a clipboard-hijacking crypto stealer via a Telegraph page and<br>installed login persistence on Windows and macOS. The maintainer reported<br>unusual account access despite 2FA. SafeDep traced the chain; the<br>malicious revision sat on main for about 9 hours 39 minutes.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0139.html">T0139</a> Resource hijacking</li><li><a href="../techniques/T0138.html">T0138</a> Backdoor in code</li></ul>

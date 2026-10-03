@@ -4,6 +4,8 @@ date: 2026-09
 platforms:
   - npm
   - mcp
+  - git
+  - github-actions
 
 summary: GHAPPIER loader via @dforge-core/dforge-mcp trusted publishing
 description: |

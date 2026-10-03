@@ -34,7 +34,7 @@
 
         <p class="meta">AS67 · 2026-07</p>
         <h1>mrmustard 0.7.4 PyPI credential stealer via stolen publish token</h1>
-        <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a></p>
+        <p><a class="plat" href="../platforms/pypi.html">PyPI</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/kubernetes.html">Kubernetes</a></p>
         <p>On 24 July 2026 XanaduAI’s quantum photonics library mrmustard 0.7.4<br>appeared on PyPI with no matching git tag. An attacker who took over<br>maintainer ziofil used throwaway GitHub Actions workflows to recon<br>self-hosted runners (whoami) then POST the repo’s PyPI and Codecov<br>tokens to webhook.site. With the token they uploaded 0.7.4; only the<br>tarball’s __init__.py carried a fake _check_tf_compatibility() that<br>on import stole SSH keys, AWS and Kubernetes configs, skipped CI, and<br>installed cron, a .pth hook, and a shell-rc persistence. First reported<br>by Ilyas Makari / Aikido (GitHub issue 656); StepSecurity detonated it.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li></ul>

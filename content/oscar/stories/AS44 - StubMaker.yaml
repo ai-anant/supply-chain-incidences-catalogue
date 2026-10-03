@@ -4,6 +4,10 @@ date: 2026-08
 platforms:
   - rubygems
   - npm
+  - git
+  - linux
+  - macos
+  - windows
 
 summary: StubMaker RubyGems (and npm) Windows infostealer
 description: |

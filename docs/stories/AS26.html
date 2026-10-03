@@ -34,7 +34,7 @@
 
         <p class="meta">AS26 · 2026-09</p>
         <h1>PhantomRaven hidden HTTP npm dependencies</h1>
-        <p><a class="plat" href="../platforms/npm.html">npm</a></p>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/circleci.html">CircleCI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/gitlab.html">GitLab</a><a class="plat" href="../platforms/gitlab-ci.html">GitLab CI</a><a class="plat" href="../platforms/jenkins.html">Jenkins</a><a class="plat" href="../platforms/pypi.html">PyPI</a></p>
         <p>CrowdStrike described PhantomRaven, an LLM-generated npm info-stealer.<br>The typosquat package looks like Hello-world; the malware is an HTTP<br>remote dependency that npm fetches at install and that the npm web UI<br>does not show. A preinstall hook then runs and harvests GitHub Actions,<br>GitLab, Jenkins, and CircleCI environment variables. PyPI&#x27;s similar-name<br>policy stopped a Python twin; npm did not.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0193.html">T0193</a> Sensitive information in environment variables</li></ul>

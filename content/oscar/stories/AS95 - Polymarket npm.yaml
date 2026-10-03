@@ -4,6 +4,7 @@ date: 2026-05
 platforms:
   - npm
   - git
+  - docker
 
 summary: Polymarket fake-bot and wallet-key npm campaign
 description: |
