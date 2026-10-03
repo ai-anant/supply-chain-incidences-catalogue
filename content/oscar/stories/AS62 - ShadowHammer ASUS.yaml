@@ -3,6 +3,7 @@ type: Attack Story
 date: 2018-06
 platforms:
   - windows
+  - update-channel
 
 summary: Operation ShadowHammer (ASUS Live Update)
 description: |

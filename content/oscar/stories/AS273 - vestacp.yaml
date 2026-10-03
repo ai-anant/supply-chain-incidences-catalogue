@@ -3,6 +3,7 @@ type: Attack Story
 date: 2018-05
 platforms:
   - windows
+  - update-channel
 
 summary: VestaCP installer leaked admin passwords
 description: |

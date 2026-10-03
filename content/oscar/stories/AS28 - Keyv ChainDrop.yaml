@@ -4,6 +4,7 @@ date: 2026-08
 platforms:
   - npm
   - github-actions
+  - workstation
 
 summary: Keyv / Cacheable ChainDrop worm
 description: |

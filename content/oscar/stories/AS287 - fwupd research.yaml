@@ -4,6 +4,7 @@ status: research
 date: 2020-04
 platforms:
   - linux
+  - update-channel
 
 summary: fwupd dangling S3 bucket and CVE-2020-10759 signature-verification bypass
 description: |

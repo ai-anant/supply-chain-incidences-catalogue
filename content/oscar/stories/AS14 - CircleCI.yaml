@@ -3,6 +3,8 @@ type: Attack Story
 date: 2023-01
 platforms:
   - cicd-saas
+  - circleci
+  - workstation
 
 summary: CircleCI December 2022 / January 2023 incident
 description: |

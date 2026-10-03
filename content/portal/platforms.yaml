@@ -25,12 +25,22 @@ platforms:
     label: GitHub Actions
   - id: jenkins
     label: Jenkins
+  - id: circleci
+    label: CircleCI
+  - id: gitlab-ci
+    label: GitLab CI
+  - id: azure-pipelines
+    label: Azure Pipelines
+  - id: buildkite
+    label: Buildkite
   - id: terraform
     label: Terraform
   - id: docker
     label: Docker / containers
   - id: vscode
     label: VS Code / IDE
+  - id: workstation
+    label: Developer workstation
   - id: browser-extensions
     label: Browser extensions
   - id: macos
@@ -41,6 +51,14 @@ platforms:
     label: CI/CD SaaS
   - id: git
     label: Git / GitHub
+  - id: gitlab
+    label: GitLab
+  - id: bitbucket
+    label: Bitbucket
+  - id: codeberg
+    label: Codeberg
+  - id: aur
+    label: AUR
   - id: ai-agents
     label: AI coding agents
   - id: mcp
@@ -49,3 +67,13 @@ platforms:
     label: Linux distro / packages
   - id: windows
     label: Windows software
+  - id: aws
+    label: AWS
+  - id: gcp
+    label: Google Cloud
+  - id: azure
+    label: Azure
+  - id: kubernetes
+    label: Kubernetes
+  - id: update-channel
+    label: Installer / update channel

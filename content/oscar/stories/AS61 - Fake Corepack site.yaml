@@ -4,6 +4,7 @@ date: 2026-03
 platforms:
   - npm
   - windows
+  - update-channel
 
 summary: Fake corepack.org infostealer and proxyware
 description: |

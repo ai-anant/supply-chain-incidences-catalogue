@@ -4,6 +4,7 @@ date: 2026-09
 platforms:
   - windows
   - cdn
+  - update-channel
 
 summary: Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download
 description: |

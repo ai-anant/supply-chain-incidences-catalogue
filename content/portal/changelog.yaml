@@ -1,5 +1,21 @@
 entries:
 - date: '2026-10-03'
+  id: stage-platform-tags
+  title: Stage tags added where the write-up names that system
+  items:
+  - 'New platform IDs: workstation, circleci, gitlab-ci, azure-pipelines, buildkite,
+    gitlab, bitbucket, codeberg, aur, aws, gcp, azure, kubernetes, update-channel.'
+  - 'Applied only where the incident write-up says that system was the supply-chain step,
+    not where it was stolen loot. AUR on AS200–AS202 and AS295. CircleCI on AS14 and the
+    Team PCP victim set (AS17, with GitLab CI, Azure Pipelines, Jenkins, Bitbucket).
+    Workstation on AS5, AS14, AS28, AS192. Update channel on signed-update and installer
+    cases (CCleaner, ShadowHammer, Notepad++, DAEMON Tools, FossHub, PEAR, PureScript,
+    VestaCP, fwupd, Microsoft counterfeit installers, corepack.org, MacSync).'
+  - 'Not applied: AWS/GCP/Azure/Kubernetes mentions that are stolen credentials or attacker
+    IPs. Codeberg on DirtyBlanket is the attacker download host, not a compromised project.
+    No Buildkite or GCP incident in the corpus. Those IDs are in the vocabulary only.
+    Pipeline charts sit at the bottom of each stage box.'
+- date: '2026-10-03'
   id: pipeline-timelines
   title: Five-year timelines under each pipeline stage
   items:

@@ -4,6 +4,7 @@ date: 2026-05
 platforms:
   - vscode
   - git
+  - workstation
 
 summary: Nx Console VS Code 18.95.0 (GitHub internal repo theft)
 description: |

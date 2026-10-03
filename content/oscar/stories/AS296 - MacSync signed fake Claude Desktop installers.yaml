@@ -4,6 +4,7 @@ date: 2026-09
 platforms:
   - macos
   - ai-agents
+  - update-channel
 
 summary: MacSync via signed fake Claude Desktop installers on a lookalike download site
 description: |

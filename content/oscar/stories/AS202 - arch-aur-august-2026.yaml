@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-07
 platforms:
   - linux
+  - aur
 
 summary: AUR adoption disabled after a second malicious commit wave
 description: |

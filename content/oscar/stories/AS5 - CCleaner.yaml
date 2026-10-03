@@ -3,6 +3,8 @@ type: Attack Story
 date: 2017-09
 platforms:
   - windows
+  - workstation
+  - update-channel
 
 summary: CCleaner 5.33 signed ShadowPad backdoor
 description: |

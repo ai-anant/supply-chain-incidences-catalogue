@@ -2,7 +2,8 @@ id: AS244
 type: Attack Story
 date: 2018-06
 platforms:
-- linux
+  - linux
+  - update-channel
 summary: PEAR installer served Perl backdoor
 description: 'Catalogued from the tstromberg supplychain-attack-data dataset
 

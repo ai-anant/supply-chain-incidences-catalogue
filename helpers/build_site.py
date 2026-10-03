@@ -305,7 +305,8 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .talk-box h3 a { color: var(--copper); }
 .talk-box p { margin: 0.15rem 0; font-size: 0.82rem; }
 .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; margin: 1rem 0 1.4rem; }
-.flow-col { background: var(--panel); border: 1px solid var(--line); padding: 0.75rem 0.8rem; }
+.flow-col { background: var(--panel); border: 1px solid var(--line); padding: 0.75rem 0.8rem; display: flex; flex-direction: column; }
+.flow-chart { margin-top: auto; padding-top: 0.8rem; }
 .flow-col h2 { margin: 0 0 0.25rem; font-size: 0.95rem; }
 .flow-col .def { color: var(--muted); font-size: 0.78rem; min-height: 3.2rem; }
 .flow-col .n { font-size: 1.45rem; color: var(--copper); font-weight: 650; line-height: 1.1; }
@@ -1145,12 +1146,15 @@ def build(dest):
     dev_ids = {"T0152", "T0153", "T0154", "T0210", "T0213"}
     plat_stage = {
         "vscode": "dev", "ai-agents": "dev", "mcp": "dev", "browser-extensions": "dev",
-        "git": "repo",
+        "workstation": "dev",
+        "git": "repo", "gitlab": "repo", "bitbucket": "repo", "codeberg": "repo",
         "github-actions": "cicd", "jenkins": "cicd", "cicd-saas": "cicd",
+        "circleci": "cicd", "gitlab-ci": "cicd", "azure-pipelines": "cicd", "buildkite": "cicd",
         "npm": "artifact", "pypi": "artifact", "rubygems": "artifact", "packagist": "artifact",
         "crates": "artifact", "golang": "artifact", "maven": "artifact", "nuget": "artifact",
-        "pub": "artifact", "docker": "artifact", "cdn": "artifact",
-        "terraform": "deploy",
+        "pub": "artifact", "docker": "artifact", "cdn": "artifact", "aur": "artifact",
+        "terraform": "deploy", "aws": "deploy", "gcp": "deploy", "azure": "deploy",
+        "kubernetes": "deploy", "update-channel": "deploy",
     }
     os_plats = {"linux", "windows", "macos"}
 
@@ -1243,7 +1247,7 @@ def build(dest):
             f'<p class="def">{html.escape(defin)}</p>'
             f'<div class="n">{len(inc_in[key])}</div><div class="lbl">incidents touch this stage</div>'
             f'<div class="n">{len(tech_in[key])}</div><div class="lbl">techniques, including ones that also sit elsewhere</div>'
-            f'<p>{chips}</p><ul>{lis}</ul>{spark(inc_years[key])}</div>'
+            f'<p>{chips}</p><ul>{lis}</ul><div class="flow-chart">{spark(inc_years[key])}</div></div>'
         )
     un_lis = "".join(
         f'<li><a href="techniques/{html.escape(tid)}.html">{html.escape(tid)}</a> {html.escape(name)}</li>'
