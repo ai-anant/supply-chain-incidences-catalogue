@@ -1,5 +1,13 @@
 entries:
 - date: '2026-10-03'
+  id: pipeline-timelines
+  title: Five-year timelines under each pipeline stage
+  items:
+  - '/pipeline.html now has a 5-year incident chart under each stage, same axis on every
+    column. The number on a bar is the count. Bar height is scaled within that column so a
+    small stage is still readable. Ten-year blocks were not used: they would hide the
+    2015–2019 to 2025–2029 jump.'
+- date: '2026-10-03'
   id: macsync-signed-installers
   title: MacSync signed fake Claude Desktop installers added (AS296, T0215)
   items:

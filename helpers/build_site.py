@@ -312,6 +312,12 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
 .flow-col .lbl { color: var(--muted); font-size: 0.72rem; }
 .flow-col ul { margin: 0.4rem 0 0; padding-left: 1rem; font-size: 0.78rem; }
 .flow-col li { margin: 0.15rem 0; }
+.spark { display: flex; align-items: flex-end; gap: 2px; height: 6.2rem; margin-top: 0.9rem; }
+.spark-col { flex: 1 1 0; min-width: 0; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.spark-n { font-size: 0.62rem; line-height: 1; color: var(--copper); min-height: 0.7rem; }
+.spark-b { display: block; width: 100%; background: linear-gradient(180deg, var(--copper), var(--copper-dim)); border-radius: 1px 1px 0 0; }
+.spark-b.empty { height: 2px !important; background: var(--line); }
+.spark-y { font-size: 0.58rem; color: var(--muted); line-height: 1.1; }
 @media (max-width: 64rem) {
   .flow { grid-template-columns: 1fr; }
   .flow-col .def { min-height: 0; }
@@ -1171,6 +1177,7 @@ def build(dest):
                 tech_in[k].append((tid, t.get("summary") or ""))
     inc_in = {k: set() for k, _, _ in stage_meta}
     plat_in = {k: {} for k, _, _ in stage_meta}
+    inc_years = {k: [] for k, _, _ in stage_meta}
     endpoint_only = 0
     for s in stories.values():
         plats = [p for p in (s.get("platforms") or []) if p]
@@ -1179,11 +1186,47 @@ def build(dest):
             if p in plat_stage:
                 touched.add(plat_stage[p])
                 plat_in[plat_stage[p]][p] = plat_in[plat_stage[p]].get(p, 0) + 1
+        year_m = re.match(r"(\d{4})", str(s.get("date") or ""))
+        year = int(year_m.group(1)) if year_m else None
         if touched:
             for k in touched:
                 inc_in[k].add(s["id"])
+                if year:
+                    inc_years[k].append(year)
         elif plats and all(p in os_plats for p in plats):
             endpoint_only += 1
+    year_bins = list(range(1975, 2026, 5))
+
+    def spark(years):
+        counts = {b: 0 for b in year_bins}
+        for y in years:
+            b = (y // 5) * 5
+            if b < year_bins[0]:
+                b = year_bins[0]
+            if b > year_bins[-1]:
+                b = year_bins[-1]
+            counts[b] = counts.get(b, 0) + 1
+        peak = max(counts.values()) or 1
+        parts = []
+        for b in year_bins:
+            n = counts[b]
+            if n:
+                h = max(14, round(100 * n / peak))
+                bar = f'<span class="spark-b" style="height:{h}%"></span>'
+                num = f'<span class="spark-n">{n}</span>'
+            else:
+                bar = '<span class="spark-b empty"></span>'
+                num = '<span class="spark-n"></span>'
+            parts.append(
+                f'<div class="spark-col" title="{b}–{b+4}: {n}">'
+                f'{num}{bar}<span class="spark-y">{str(b)[2:]}</span></div>'
+            )
+        return (
+            '<div class="spark" aria-label="Incident counts in 5-year blocks">'
+            + "".join(parts)
+            + '</div><div class="lbl">5-year blocks. Height is this column only. The number is the count.</div>'
+        )
+
     cols = []
     for key, title, defin in stage_meta:
         examples = tech_in[key][:5]
@@ -1200,7 +1243,7 @@ def build(dest):
             f'<p class="def">{html.escape(defin)}</p>'
             f'<div class="n">{len(inc_in[key])}</div><div class="lbl">incidents touch this stage</div>'
             f'<div class="n">{len(tech_in[key])}</div><div class="lbl">techniques, including ones that also sit elsewhere</div>'
-            f'<p>{chips}</p><ul>{lis}</ul></div>'
+            f'<p>{chips}</p><ul>{lis}</ul>{spark(inc_years[key])}</div>'
         )
     un_lis = "".join(
         f'<li><a href="techniques/{html.escape(tid)}.html">{html.escape(tid)}</a> {html.escape(name)}</li>'
@@ -1209,7 +1252,9 @@ def build(dest):
     pipeline = f"""
     <h1>Five-stage cut</h1>
     <p class="lede">Not in the nav. A reading of the catalogue as five supply-chain stages,
-    using the platform and realm tags we already have. Nothing was retagged for this page.</p>
+    using the platform and realm tags we already have. Nothing was retagged for this page.
+    Each column has the same 5-year axis, from 1975. Ten-year blocks would hide the jump
+    from 2015–2019 into 2020–2024 and 2025–2029.</p>
     <div class="flow">{''.join(cols)}</div>
     <h2>Does this cover the five?</h2>
     <p>Yes, in pieces. No, not as five sections. Repository, CI/CD, and registries are thick.
