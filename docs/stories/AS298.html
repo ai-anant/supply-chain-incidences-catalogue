@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stolen Heroku and Travis CI OAuth tokens cloned private GitHub repos · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS298</p>
+
+        <p class="meta">AS298 · 2022-04</p>
+        <h1>Stolen Heroku and Travis CI OAuth tokens cloned private GitHub repos</h1>
+        <p><a class="plat" href="../platforms/cicd-saas.html">CI/CD SaaS</a><a class="plat" href="../platforms/travis-ci.html">Travis CI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/npm.html">npm</a></p>
+        <p>On 12 April 2022 GitHub Security found unauthorized access to npm production<br>infrastructure using a compromised AWS API key. GitHub&#x27;s 15 April advisory<br>says that key came from private npm repositories downloaded with a stolen<br>OAuth token issued to Heroku or Travis CI, not from a compromise of GitHub&#x27;s<br>own token store. The attacker authenticated to the GitHub API with those<br>OAuth tokens, listed organizations, then selectively listed and cloned<br>private repositories. GitHub assessed the attacker did not modify npm<br>packages. Affected OAuth apps were Heroku Dashboard (several IDs) and<br>Travis CI (ID 9216). Travis CI&#x27;s 17 April bulletin says a Heroku OAuth key<br>was stolen and that the key did not grant access to Travis customer<br>repositories; they revoked integrator tokens anyway. Heroku tracked the<br>same window as incident 2413.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li><li><a href="../techniques/T0168.html">T0168</a> Exfiltration to code repositories</li><li><a href="../techniques/T0200.html">T0200</a> Proprietary data stolen</li></ul>
+        <h2><span class="stage">supply-chain</span> Heroku and Travis CI OAuth apps</h2><div class="card"><p class="meta"><a href="../techniques/T0112.html">T0112</a> · Initial Access · Compromised token</p><p>The tokens in use were OAuth user tokens issued to the Heroku and<br>Travis CI integrator apps, not GitHub-stored PATs.</p></div><h2><span class="stage">post-supply-chain</span> Private repositories and npm AWS</h2><div class="card"><p class="meta"><a href="../techniques/T0168.html">T0168</a> · Exfiltration · Exfiltration to code repositories</p><p>The attacker listed and cloned private repositories the stolen<br>OAuth tokens could see.</p></div><div class="card"><p class="meta"><a href="../techniques/T0200.html">T0200</a> · Impact · Proprietary data stolen</p><p>Downloaded private npm repositories yielded an AWS API key that<br>was then used against npm production infrastructure. GitHub found<br>no evidence packages were modified.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Travis CI&#x27;s bulletin and GitHub&#x27;s advisory disagree on whether Travis customer repositories were reachable with the stolen Heroku key. The mapped behavior is the GitHub-observed clone and the npm AWS key, not a Travis build takeover.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://github.blog/2022-04-15-security-alert-stolen-oauth-user-tokens/" rel="noopener">https://github.blog/2022-04-15-security-alert-stolen-oauth-user-tokens/</a></li><li><a href="https://www.travis-ci.com/blog/2022-04-17-securitybulletin/" rel="noopener">https://www.travis-ci.com/blog/2022-04-17-securitybulletin/</a></li><li><a href="https://status.heroku.com/incidents/2413" rel="noopener">https://status.heroku.com/incidents/2413</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

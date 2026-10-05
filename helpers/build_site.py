@@ -112,6 +112,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
         <nav>
           <a href="{root_prefix}index.html">Home</a>
           <a href="{root_prefix}matrix.html">Technique matrix</a>
+          <a href="{root_prefix}cicd.html">CI/CD matrix</a>
           <a href="{root_prefix}techniques/index.html">Techniques</a>
           <a href="{root_prefix}incidents/index.html">Incident mapping</a>
           <a href="{root_prefix}platforms/index.html">Platforms</a>
@@ -340,6 +341,141 @@ def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         f.write(content)
+
+
+def write_cicd(dest, stories):
+    path = os.path.join(ROOT, "content", "portal", "cicd-matrix.yaml")
+    with open(path) as f:
+        spec = yaml.safe_load(f)
+    tactics = spec["tactics"]
+    techniques = spec["techniques"]
+    by_id = {t["id"]: t for t in techniques}
+    mapped = {t["id"]: [] for t in techniques}
+    notes = {}
+    for row in spec.get("mappings") or []:
+        sid = row["story"]
+        if sid not in stories:
+            raise SystemExit(f"cicd-matrix maps unknown story {sid}")
+        notes[sid] = row.get("note") or ""
+        for cid in row.get("techniques") or []:
+            if cid not in by_id:
+                raise SystemExit(f"cicd-matrix unknown technique {cid} on {sid}")
+            mapped[cid].append(sid)
+    n_stories = len({sid for row in spec["mappings"] for sid in [row["story"]]})
+
+    def used_class(n):
+        if n <= 0:
+            return "used-0"
+        if n == 1:
+            return "used-1"
+        if n == 2:
+            return "used-2"
+        if n <= 4:
+            return "used-3"
+        if n <= 7:
+            return "used-4"
+        return "used-5"
+
+    cols = []
+    for tac in tactics:
+        cells = []
+        for t in techniques:
+            if t["tactic"] != tac["id"]:
+                continue
+            n = len(mapped[t["id"]])
+            cells.append(
+                f'<a class="tech {used_class(n)}" href="#{html.escape(t["id"])}">'
+                f'<span class="id">{html.escape(t["id"])}</span> '
+                f'{html.escape(t["name"])}'
+                f'<span class="n">{n}</span></a>'
+            )
+        cols.append(
+            f'<div class="col"><h3>{html.escape(tac["label"])}'
+            f'<span>{len(cells)}</span></h3>{"".join(cells)}</div>'
+        )
+    sections = []
+    for t in techniques:
+        sids = mapped[t["id"]]
+        if not sids:
+            lis = '<li class="muted">No named case in this catalogue yet.</li>'
+        else:
+            items = []
+            for sid in sids:
+                s = stories[sid]
+                note = notes.get(sid) or ""
+                items.append(
+                    f'<li><a href="incidents/{html.escape(sid)}.html">{html.escape(sid)}</a> '
+                    f'{html.escape(s.get("summary") or "")}'
+                    f'<br><span class="muted">{html.escape(note)}</span></li>'
+                )
+            lis = "".join(items)
+        sections.append(
+            f'<h2 id="{html.escape(t["id"])}">{html.escape(t["id"])} {html.escape(t["name"])}</h2>'
+            f'<p>{html.escape(t["summary"])}</p><ul>{lis}</ul>'
+        )
+    src = spec["source"]
+    zeros = [t["id"] for t in techniques if not mapped[t["id"]]]
+    body = f"""
+    <h1>CI/CD matrix</h1>
+    <p class="lede">Pipeline-specific techniques, heat-mapped by how many catalogued
+    incidents do that thing. Names follow the
+    <a href="{html.escape(src["url"])}">Common Threat Matrix for CI/CD Pipeline</a>
+    (Mercari Security Team, {html.escape(src["author"])},
+    <a href="{html.escape(src["talk"])}">{html.escape(src["event"])}</a>).
+    The one-line descriptions are ours. A story is listed only when its write-up
+    describes that behavior.</p>
+    <div class="stats">
+      <div class="stat"><b>{len(techniques)}</b> techniques</div>
+      <div class="stat"><b>{n_stories}</b> incidents mapped</div>
+      <div class="stat"><b>{len(zeros)}</b> with no named case</div>
+    </div>
+    <p><input class="search" id="q" placeholder="Filter techniques… empty columns hide"></p>
+    <p class="legend">Mapped incidents:&nbsp;
+      <span><i class="l0"></i>0</span>
+      <span><i class="l1"></i>1–2</span>
+      <span><i class="l3"></i>3–4</span>
+      <span><i class="l5"></i>5+</span>
+      <span>Dim cells are in the matrix and not yet tied to a case here.
+      Praetorian's Gato write-up (AS24) is red-team research, not a victim incident, so it is not counted.</span>
+    </p>
+    <div class="matrix-wrap">
+      <div class="matrix" id="matrix" style="grid-template-columns: repeat({len(tactics)}, minmax(8.4rem, 1fr))">
+        {''.join(cols)}
+      </div>
+    </div>
+    <h2>What is not on this page</h2>
+    <p>A <code>cicd-saas</code> tag is not enough. WordPress plugin backdoors that only
+    carry that tag are not mapped. TeamCity CVE-2024-27198 is a disclosure with a
+    researcher proof, not a victim campaign in the sources read for this pass, so it
+    is not a story. Cells with no case: {html.escape(", ".join(zeros))}.</p>
+    {''.join(sections)}
+    <script>
+    const q = document.getElementById('q');
+    const matrix = document.getElementById('matrix');
+    function applyFilter() {{
+      const v = q.value.toLowerCase().trim();
+      document.querySelectorAll('.tech').forEach(el => {{
+        const hit = !v || el.textContent.toLowerCase().includes(v);
+        el.classList.toggle('hidden', !hit);
+      }});
+      let visible = 0;
+      document.querySelectorAll('.col').forEach(col => {{
+        const any = [...col.querySelectorAll('.tech')].some(t => !t.classList.contains('hidden'));
+        col.classList.toggle('hidden', !any);
+        if (any) visible++;
+      }});
+      if (visible) {{
+        matrix.style.gridTemplateColumns = 'repeat(' + visible + ', minmax(8.4rem, 1fr))';
+        matrix.style.minWidth = (visible * 8.9) + 'rem';
+      }} else {{
+        matrix.style.gridTemplateColumns = 'none';
+        matrix.style.minWidth = '0';
+      }}
+    }}
+    q.addEventListener('input', applyFilter);
+    applyFilter();
+    </script>"""
+    write(os.path.join(dest, "cicd.html"), page("CI/CD matrix", body, "", "SCIC / CI/CD matrix"))
 
 
 def build(dest):
@@ -575,6 +711,7 @@ def build(dest):
     <div class="dash">
       <div class="panelbox"><h3>Browse</h3>
         <p><a href="matrix.html">Technique matrix</a> — techniques × tactics, heat-mapped by incident count</p>
+        <p><a href="cicd.html">CI/CD matrix</a> — Mercari's pipeline matrix, with the incidents that actually do that</p>
         <p><a href="incidents/index.html">Incident mapping</a> — every incident → techniques</p>
         <p><a href="platforms/index.html">Platforms</a> — all incidents for npm, PyPI, GitHub Actions, …</p>
         <p><a href="stories/index.html">Attack stories</a> — chronological list</p>
@@ -639,6 +776,7 @@ def build(dest):
     </script>
     """
     write(os.path.join(dest, "matrix.html"), page("OSC&R Matrix", matrix_body, "", "SCIC / OSC&R Matrix"))
+    write_cicd(dest, stories)
 
     # techniques index + pages
     rows = []
@@ -1150,6 +1288,7 @@ def build(dest):
         "git": "repo", "gitlab": "repo", "bitbucket": "repo", "codeberg": "repo",
         "github-actions": "cicd", "jenkins": "cicd", "cicd-saas": "cicd",
         "circleci": "cicd", "gitlab-ci": "cicd", "azure-pipelines": "cicd", "buildkite": "cicd",
+        "travis-ci": "cicd", "teamcity": "cicd",
         "npm": "artifact", "pypi": "artifact", "rubygems": "artifact", "packagist": "artifact",
         "crates": "artifact", "golang": "artifact", "maven": "artifact", "nuget": "artifact",
         "pub": "artifact", "docker": "artifact", "cdn": "artifact", "aur": "artifact",

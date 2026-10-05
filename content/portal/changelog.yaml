@@ -1,5 +1,24 @@
 entries:
 - date: '2026-10-05'
+  id: cicd-matrix
+  title: CI/CD threat matrix tab
+  items:
+  - 'New tab /cicd.html. Technique names follow Mercari Security Team''s Common
+    Threat Matrix for CI/CD Pipeline (Hiroki Suezawa, CODE BLUE 2021,
+    https://github.com/rung/threat-matrix-cicd). Descriptions are ours. The
+    source repo has no license, so the mitigation tables were not copied.'
+  - '36 catalogued incidents mapped where the write-up describes that pipeline
+    behavior. A cicd-saas tag alone was not enough. Nine techniques have no
+    named case here (IaC injection, SSH to a runner, production-config edits,
+    implanted runner images, admin approver changes, cross-repo secret-manager
+    access, cloud metadata from the runner, monorepo folder creds, pipeline DoS).'
+  - 'AS298: April 2022 stolen Heroku and Travis CI OAuth tokens used to clone
+    private GitHub repos, including npm''s (GitHub advisory, Travis bulletin,
+    Heroku incident 2413). AS299: October 2023 Diamond Sleet and Onyx Sleet
+    exploited TeamCity CVE-2023-42793 (Microsoft). Not added: TeamCity
+    CVE-2024-27198, which is a disclosure and researcher proof, not a victim
+    campaign in the sources read.'
+- date: '2026-10-05'
   id: malfex-intake
   title: MALFEX npm campaign added
   items:

@@ -16,6 +16,7 @@
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
           <a href="../techniques/index.html">Techniques</a>
           <a href="../incidents/index.html">Incident mapping</a>
           <a href="../platforms/index.html">Platforms</a>
@@ -32,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0135</p>
 
-        <p class="meta">T0135 · Initial Access · TA03 · observed in 2 incident(s)</p>
+        <p class="meta">T0135 · Initial Access · TA03 · observed in 3 incident(s)</p>
         <h1>Vulnerable CICD system</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span></div>
         <p>An attacker can target the CI/CD system itself and exploit vulnerabilities in the system, such as insecure configurations or outdated software. <br>The attacker may also target the build scripts, which could contain secrets and sensitive information, allowing them to gain access to the underlying systems or inject malicious code into the software being built.<br>Some common vulnerabilities in CI/CD systems include insecure storage of credentials, unsecured APIs, and outdated software components. <br>Additionally, attackers may take advantage of misconfigured permissions, such as overly permissive access controls that allow them to escalate privileges or access sensitive information.</p>
@@ -42,7 +43,7 @@
         <ul><li><span class="id">M1720</span> Implement regular patches and updates</li><li><span class="id">M1860</span> Implement strong authentication mechanisms</li><li><span class="id">M1861</span> Implement strong authorization mechanisms</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1260</span> Implement regular security audit and review</li><li><span class="id">D1261</span> Implement penetration testing</li><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1590</span> Implement continuous monitoring and logging of the CI/CD process</li></ul>
-        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS1.html">Webmin 1.890–1.920 build-server backdoor</a></li></ul>
+        <h2>Observed in incidents (3)</h2><ul><li><a href="../incidents/AS299.html">North Korean actors exploited TeamCity CVE-2023-42793</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS1.html">Webmin 1.890–1.920 build-server backdoor</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://www.paloaltonetworks.com/blog/prisma-cloud/shift-left-ci-cd-security-for-your-software-supply-chain/" rel="noopener">https://www.paloaltonetworks.com/blog/prisma-cloud/shift-left-ci-cd-security-for-your-software-supply-chain/</a></li><li><a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" rel="noopener">https://owasp.org/www-project-top-10-ci-cd-security-risks/</a></li></ul>
         

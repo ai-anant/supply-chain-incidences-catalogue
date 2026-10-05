@@ -16,6 +16,7 @@
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
           <a href="../techniques/index.html">Techniques</a>
           <a href="../incidents/index.html">Incident mapping</a>
           <a href="../platforms/index.html">Platforms</a>
@@ -32,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0168</p>
 
-        <p class="meta">T0168 · Exfiltration · TA11 · observed in 6 incident(s)</p>
+        <p class="meta">T0168 · Exfiltration · TA11 · observed in 7 incident(s)</p>
         <h1>Exfiltration to code repositories</h1>
         <div class="chips"><span class="chip">SCM Posture</span></div>
         <p>Adversaries may exfiltrate data to a code repository rather than over their primary command and control channel. <br>Code repositories are often accessible via an API (ex: https://api.github.com, https://gitlab.com/api). Access to these APIs are often over HTTPS, which gives the adversary an additional level of protection.<br>Exfiltration to a code repository can also provide a significant amount of cover to the adversary if it is a popular service already used by hosts within the network.</p>
@@ -42,7 +43,7 @@
         <ul><li><span class="id">M1680</span> Limit access to code repositories</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1590</span> Implement continuous monitoring and logging of the CI/CD process</li><li><span class="id">D1680</span> Monitor code repositories activity</li></ul>
-        <h2>Observed in incidents (6)</h2><ul><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS118.html">codfish/semantic-release-action tag hijack (Miasma)</a></li><li><a href="../incidents/AS74.html">Nx s1ngularity (stolen npm token via Actions injection)</a></li><li><a href="../incidents/AS48.html">Shai-Hulud first wave (@ctrl/tinycolor)</a></li><li><a href="../incidents/AS16.html">TanStack Mini Shai-Hulud (CVE-2026-45321)</a></li><li><a href="../incidents/AS49.html">Sha1-Hulud: The Second Coming</a></li></ul>
+        <h2>Observed in incidents (7)</h2><ul><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS118.html">codfish/semantic-release-action tag hijack (Miasma)</a></li><li><a href="../incidents/AS74.html">Nx s1ngularity (stolen npm token via Actions injection)</a></li><li><a href="../incidents/AS48.html">Shai-Hulud first wave (@ctrl/tinycolor)</a></li><li><a href="../incidents/AS298.html">Stolen Heroku and Travis CI OAuth tokens cloned private GitHub repos</a></li><li><a href="../incidents/AS16.html">TanStack Mini Shai-Hulud (CVE-2026-45321)</a></li><li><a href="../incidents/AS49.html">Sha1-Hulud: The Second Coming</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://attack.mitre.org/techniques/T1567/001/" rel="noopener">https://attack.mitre.org/techniques/T1567/001/</a></li><li><a href="https://www.optimizationcore.com/security/github-exfiltration-indicators-threat-hunt-monitor-block/" rel="noopener">https://www.optimizationcore.com/security/github-exfiltration-indicators-threat-hunt-monitor-block/</a></li></ul>
         

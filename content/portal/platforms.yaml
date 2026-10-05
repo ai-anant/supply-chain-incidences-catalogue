@@ -27,6 +27,10 @@ platforms:
     label: Jenkins
   - id: circleci
     label: CircleCI
+  - id: travis-ci
+    label: Travis CI
+  - id: teamcity
+    label: TeamCity
   - id: gitlab-ci
     label: GitLab CI
   - id: azure-pipelines

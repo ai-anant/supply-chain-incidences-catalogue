@@ -1,0 +1,257 @@
+# CI/CD threat matrix tab. Technique names follow Mercari's public matrix
+# (Hiroki Suezawa / rung, CODE BLUE 2021). Blurbs here are ours.
+# https://github.com/rung/threat-matrix-cicd
+# Map a story only when its write-up describes that behavior.
+
+source:
+  title: Common Threat Matrix for CI/CD Pipeline
+  author: Mercari Security Team (Hiroki Suezawa)
+  url: https://github.com/rung/threat-matrix-cicd
+  talk: https://speakerdeck.com/rung/cd-pipeline
+  event: CODE BLUE 2021
+
+tactics:
+  - id: initial-access
+    label: Initial Access
+  - id: execution
+    label: Execution
+  - id: execution-production
+    label: Execution (Production)
+  - id: persistence
+    label: Persistence
+  - id: privilege-escalation
+    label: Privilege Escalation
+  - id: defense-evasion
+    label: Defense Evasion
+  - id: credential-access
+    label: Credential Access
+  - id: lateral-movement
+    label: Lateral Movement
+  - id: exfiltration
+    label: Exfiltration
+  - id: impact
+    label: Impact
+
+techniques:
+  - id: C01
+    tactic: initial-access
+    name: Supply chain compromise on CI/CD
+    summary: A library, action, tool, or image the pipeline trusts is itself malicious.
+  - id: C02
+    tactic: initial-access
+    name: Valid account of the git host
+    summary: A personal token, SSH key, password, or cookie for the git service is stolen and reused.
+  - id: C03
+    tactic: initial-access
+    name: Valid account of the CI/CD service
+    summary: A CI token, session, or integrator OAuth credential is stolen and reused.
+  - id: C04
+    tactic: initial-access
+    name: Admin of the server hosting git
+    summary: The machine or admin plane that hosts the git service is taken, not just a user account.
+  - id: C05
+    tactic: execution
+    name: Modify CI/CD configuration
+    summary: A workflow, Job DSL, or publish config is changed so the pipeline runs attacker code.
+  - id: C06
+    tactic: execution
+    name: Inject code into IaC
+    summary: Terraform or another IaC file is changed so the pipeline applies attacker infrastructure.
+  - id: C07
+    tactic: execution
+    name: Inject code into the build input
+    summary: Source or the build tree is changed so the pipeline compiles attacker code.
+  - id: C08
+    tactic: execution
+    name: Inject a bad dependency
+    summary: The build resolves a dependency the attacker controls.
+  - id: C09
+    tactic: execution
+    name: SSH to CI/CD pipelines
+    summary: An attacker shells into a runner or pipeline host.
+  - id: C10
+    tactic: execution-production
+    name: Modify production configuration
+    summary: Stolen credentials are used to change production configuration.
+  - id: C11
+    tactic: execution-production
+    name: Deploy a modified application or image
+    summary: A trojanized build, package, or image is what ships.
+  - id: C12
+    tactic: persistence
+    name: Compromise the CI/CD server
+    summary: The build server, CI vendor production, or artifact service itself is taken.
+  - id: C13
+    tactic: persistence
+    name: Implant a CI/CD runner image
+    summary: A runner or agent image is replaced so later jobs start compromised.
+  - id: C14
+    tactic: privilege-escalation
+    name: Take a deploy credential from the CI stage
+    summary: A publish token or OIDC identity available to CI is stolen and used to release.
+  - id: C15
+    tactic: privilege-escalation
+    name: Compromise another pipeline
+    summary: Access from one CI system is used to reach a different pipeline.
+  - id: C16
+    tactic: defense-evasion
+    name: Add an approver with admin rights
+    summary: An admin changes who can approve so a bad change looks reviewed.
+  - id: C17
+    tactic: defense-evasion
+    name: Bypass review
+    summary: A change reaches the default branch or a publish job without the review the project thought it had.
+  - id: C18
+    tactic: defense-evasion
+    name: Reach a secret manager from another repo's CI
+    summary: A job started by a different repository can read secrets it should not see.
+  - id: C19
+    tactic: defense-evasion
+    name: Modify CI/CD caches
+    summary: A cache is poisoned, or a later job reads attacker-controlled cache contents.
+  - id: C20
+    tactic: credential-access
+    name: Dump environment variables in CI/CD
+    summary: Secrets in the job environment are printed, posted, or scanned.
+  - id: C21
+    tactic: credential-access
+    name: Access cloud metadata from the runner
+    summary: The job queries the cloud metadata service for a role credential.
+  - id: C22
+    tactic: credential-access
+    name: Read a credentials file on the runner
+    summary: A file mounted into the job (keys, kubeconfig, cloud config) is read.
+  - id: C23
+    tactic: credential-access
+    name: Take credentials from the CI admin console
+    summary: An admin session on the CI or artifact service reads stored customer secrets.
+  - id: C24
+    tactic: lateral-movement
+    name: Exploit a remote service from the pipeline
+    summary: A CI job is used as the foothold to attack another service.
+  - id: C25
+    tactic: lateral-movement
+    name: Monorepo cross-folder credential
+    summary: A job in one folder of a monorepo can read another folder's credentials.
+  - id: C26
+    tactic: exfiltration
+    name: Exfiltrate production data
+    summary: Stolen credentials are used to read production data, not only CI settings.
+  - id: C27
+    tactic: exfiltration
+    name: Clone git repositories
+    summary: Private repositories are listed and cloned with a stolen token.
+  - id: C28
+    tactic: impact
+    name: Denial of service of the pipeline
+    summary: The CI/CD service itself is taken down.
+
+mappings:
+  - story: AS1
+    techniques: [C07, C12]
+    note: Webmin's build server was exploited and the backdoor was injected into the build tree, not git.
+  - story: AS2
+    techniques: [C01, C11]
+    note: 3CX's desktop build shipped malware after the Trading Technologies supply chain reached a build machine.
+  - story: AS3
+    techniques: [C01, C20]
+    note: The Codecov bash uploader used inside customer CI was modified to print environment variables.
+  - story: AS4
+    techniques: [C02, C04, C07]
+    note: git.php.net was compromised and two commits impersonating PHP developers landed on the server.
+  - story: AS5
+    techniques: [C07, C11, C12]
+    note: Piriform's build system was infected and shipped a signed CCleaner binary.
+  - story: AS6
+    techniques: [C07, C11, C12]
+    note: Orion's build was modified and the signed update is what customers installed.
+  - story: AS10
+    techniques: [C08]
+    note: Public packages of internal names executed inside victim build systems.
+  - story: AS12
+    techniques: [C01, C20]
+    note: tj-actions/changed-files and the related reviewdog action printed CI secrets into logs.
+  - story: AS13
+    techniques: [C01, C05, C08, C11, C14]
+    note: A compromised GitHub Actions workflow published the malicious Ultralytics releases.
+  - story: AS14
+    techniques: [C03, C12, C20, C23]
+    note: Malware on an employee laptop yielded a CircleCI session; customer env vars and contexts were in reach.
+  - story: AS16
+    techniques: [C01, C05, C14, C19, C20]
+    note: TanStack traced the publish to pull_request_target plus Actions cache poisoning.
+  - story: AS17
+    techniques: [C01, C03, C15, C20]
+    note: TeamPCP poisoned CI actions and collected runner secrets across GitHub, GitLab, Azure, Jenkins, Bitbucket, and CircleCI.
+  - story: AS20
+    techniques: [C05, C08, C11, C14, C17, C20]
+    note: A PR comment triggered a workflow that checked out untrusted code and published with OIDC.
+  - story: AS22
+    techniques: [C08]
+    note: Malicious axios versions pulled a fake dependency. The CI tag is the TeamPCP wave, not a separate pipeline takeover.
+  - story: AS26
+    techniques: [C08, C20]
+    note: PhantomRaven's preinstall hook harvests GitHub Actions tokens when the package is installed.
+  - story: AS28
+    techniques: [C02, C05, C11, C14]
+    note: A leftover PAT pushed poisoned commits; the repos' own Actions and npm OIDC published them.
+  - story: AS34
+    techniques: [C02, C05, C14]
+    note: Push access rewrote the release workflow so any push to main published the loader.
+  - story: AS48
+    techniques: [C01, C02, C05, C08, C11, C14, C20, C22]
+    note: Shai-Hulud ran TruffleHog on the host, planted an Actions workflow, and republished with stolen npm tokens.
+  - story: AS49
+    techniques: [C01, C02, C05, C08, C11, C14, C20, C22]
+    note: The second Shai-Hulud wave repeated the CI secret harvest and republish.
+  - story: AS67
+    techniques: [C02, C05, C11, C14, C20]
+    note: Throwaway Actions workflows posted the repo's PyPI and Codecov tokens, then 0.7.4 was uploaded.
+  - story: AS74
+    techniques: [C01, C02, C05, C08, C11, C14, C17, C20]
+    note: pull_request_target plus a workflow_dispatch publish job stole NPM_TOKEN and released nx.
+  - story: AS75
+    techniques: [C05, C17, C20]
+    note: hackerbot-claw opened PRs against public repos with exploitable Actions and stole tokens.
+  - story: AS79
+    techniques: [C05, C17, C20]
+    note: Unauthenticated Jenkins slash commands on jenkins.antrea.io ran a Job DSL gadget and credential scrapers.
+  - story: AS91
+    techniques: [C05, C20]
+    note: Megalodon planted secret-stealing workflow files across many GitHub repos.
+  - story: AS106
+    techniques: [C05, C20]
+    note: Hundreds of malicious PRs carried a payload that steals CI secrets.
+  - story: AS107
+    techniques: [C02, C05, C17, C20]
+    note: Stolen PATs and Dependabot-impersonating commits added a workflow that exfiltrated secrets.
+  - story: AS117
+    techniques: [C20]
+    note: Miri wrote env vars into target/, and a later PR could read that Actions cache. Not an implanted cache payload.
+  - story: AS118
+    techniques: [C01]
+    note: Floating tags on codfish/semantic-release-action were moved onto malicious commits.
+  - story: AS145
+    techniques: [C24]
+    note: GitHub Actions jobs were the compute used to exploit cPanel and WHM.
+  - story: AS190
+    techniques: [C12, C23]
+    note: In-the-wild Artifactory auth bypass yielded admin on the artifact service.
+  - story: AS192
+    techniques: [C27]
+    note: The Nx Console extension was the foothold; the CI/CD-relevant act was cloning GitHub-owned private repos.
+  - story: AS193
+    techniques: [C02, C27]
+    note: Stolen employee PATs were used to mass-clone private repos.
+  - story: AS197
+    techniques: [C01]
+    note: actions-cool tags were moved onto unsigned commits that still ran the real action afterwards.
+  - story: AS229
+    techniques: [C05]
+    note: A pwn-request poisoned the kubernetes-el workflow.
+  - story: AS298
+    techniques: [C03, C26, C27]
+    note: Stolen Heroku and Travis CI OAuth tokens listed and cloned private GitHub repos, including npm's.
+  - story: AS299
+    techniques: [C12]
+    note: Diamond Sleet and Onyx Sleet exploited TeamCity CVE-2023-42793 and deployed backdoors on the CI server.

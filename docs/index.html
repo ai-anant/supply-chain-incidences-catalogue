@@ -16,6 +16,7 @@
         <nav>
           <a href="index.html">Home</a>
           <a href="matrix.html">Technique matrix</a>
+          <a href="cicd.html">CI/CD matrix</a>
           <a href="techniques/index.html">Techniques</a>
           <a href="incidents/index.html">Incident mapping</a>
           <a href="platforms/index.html">Platforms</a>
@@ -34,11 +35,11 @@
 
     <h1>Supply Chain Incidences Catalogue</h1>
     <p class="lede">An AI-generated catalogue of software supply-chain incidents:
-    296 documented cases, 113 techniques, and the ecosystems they hit.</p>
+    298 documented cases, 113 techniques, and the ecosystems they hit.</p>
     <div class="notice">This catalogue is <strong>AI-generated</strong>. Published from
     <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a>.</div>
     <div class="stats">
-      <div class="stat"><b>296</b> incidents</div>
+      <div class="stat"><b>298</b> incidents</div>
       <div class="stat"><b>113</b> techniques</div>
       <div class="stat"><b>89</b> observed in incidents</div>
       <div class="stat"><b>24</b> identified from research</div>
@@ -47,7 +48,7 @@
     <div class="dash">
       <div class="panelbox" style="grid-column: 1 / -1;">
         <h3>Incidents per year</h3>
-        <div class="bars"><div class="b" data-tip="1975: 1 incidents" style="height:1%"></div><div class="b" data-tip="1983: 1 incidents" style="height:1%"></div><div class="b" data-tip="1994: 2 incidents" style="height:1%"></div><div class="b" data-tip="1999: 2 incidents" style="height:1%"></div><div class="b" data-tip="2002: 5 incidents" style="height:3%"></div><div class="b" data-tip="2003: 1 incidents" style="height:1%"></div><div class="b" data-tip="2007: 2 incidents" style="height:1%"></div><div class="b" data-tip="2008: 1 incidents" style="height:1%"></div><div class="b" data-tip="2009: 2 incidents" style="height:1%"></div><div class="b" data-tip="2010: 1 incidents" style="height:1%"></div><div class="b" data-tip="2011: 2 incidents" style="height:1%"></div><div class="b" data-tip="2012: 1 incidents" style="height:1%"></div><div class="b" data-tip="2016: 2 incidents" style="height:1%"></div><div class="b" data-tip="2017: 4 incidents" style="height:2%"></div><div class="b" data-tip="2018: 12 incidents" style="height:7%"></div><div class="b" data-tip="2019: 7 incidents" style="height:4%"></div><div class="b" data-tip="2020: 3 incidents" style="height:2%"></div><div class="b" data-tip="2021: 8 incidents" style="height:5%"></div><div class="b" data-tip="2022: 7 incidents" style="height:4%"></div><div class="b" data-tip="2023: 11 incidents" style="height:7%"></div><div class="b" data-tip="2024: 13 incidents" style="height:8%"></div><div class="b" data-tip="2025: 44 incidents" style="height:27%"></div><div class="b" data-tip="2026: 164 incidents" style="height:100%"></div></div>
+        <div class="bars"><div class="b" data-tip="1975: 1 incidents" style="height:1%"></div><div class="b" data-tip="1983: 1 incidents" style="height:1%"></div><div class="b" data-tip="1994: 2 incidents" style="height:1%"></div><div class="b" data-tip="1999: 2 incidents" style="height:1%"></div><div class="b" data-tip="2002: 5 incidents" style="height:3%"></div><div class="b" data-tip="2003: 1 incidents" style="height:1%"></div><div class="b" data-tip="2007: 2 incidents" style="height:1%"></div><div class="b" data-tip="2008: 1 incidents" style="height:1%"></div><div class="b" data-tip="2009: 2 incidents" style="height:1%"></div><div class="b" data-tip="2010: 1 incidents" style="height:1%"></div><div class="b" data-tip="2011: 2 incidents" style="height:1%"></div><div class="b" data-tip="2012: 1 incidents" style="height:1%"></div><div class="b" data-tip="2016: 2 incidents" style="height:1%"></div><div class="b" data-tip="2017: 4 incidents" style="height:2%"></div><div class="b" data-tip="2018: 12 incidents" style="height:7%"></div><div class="b" data-tip="2019: 7 incidents" style="height:4%"></div><div class="b" data-tip="2020: 3 incidents" style="height:2%"></div><div class="b" data-tip="2021: 8 incidents" style="height:5%"></div><div class="b" data-tip="2022: 8 incidents" style="height:5%"></div><div class="b" data-tip="2023: 12 incidents" style="height:7%"></div><div class="b" data-tip="2024: 13 incidents" style="height:8%"></div><div class="b" data-tip="2025: 44 incidents" style="height:27%"></div><div class="b" data-tip="2026: 164 incidents" style="height:100%"></div></div>
         <div class="tline"><span>1975</span><span>1983</span><span>1994</span><span>1999</span><span>2002</span><span>2003</span><span>2007</span><span>2008</span><span>2009</span><span>2010</span><span>2011</span><span>2012</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
         <p class="sub">Hover a bar for the count. 2025–2026 is the worm/ATO wave
         (Shai-Hulud and descendants); the pre-2020 bars are the classic vendor-updater era.</p>
@@ -60,21 +61,21 @@
       </div>
       <div class="panelbox">
         <h3>Incidents per platform</h3>
-        <div class="hbar"><div class="hb"><a href="platforms/npm.html">npm</a><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">127</span></div><div class="hb"><a href="platforms/git.html">Git / GitHub</a><span class="track"><span class="fill" style="width:64%"></span></span><span class="val">81</span></div><div class="hb"><a href="platforms/linux.html">Linux distro / packages</a><span class="track"><span class="fill" style="width:32%"></span></span><span class="val">41</span></div><div class="hb"><a href="platforms/windows.html">Windows software</a><span class="track"><span class="fill" style="width:30%"></span></span><span class="val">38</span></div><div class="hb"><a href="platforms/pypi.html">PyPI</a><span class="track"><span class="fill" style="width:28%"></span></span><span class="val">36</span></div><div class="hb"><a href="platforms/ai-agents.html">AI coding agents</a><span class="track"><span class="fill" style="width:25%"></span></span><span class="val">32</span></div><div class="hb"><a href="platforms/github-actions.html">GitHub Actions</a><span class="track"><span class="fill" style="width:20%"></span></span><span class="val">26</span></div><div class="hb"><a href="platforms/workstation.html">Developer workstation</a><span class="track"><span class="fill" style="width:17%"></span></span><span class="val">22</span></div><div class="hb"><a href="platforms/cicd-saas.html">CI/CD SaaS</a><span class="track"><span class="fill" style="width:16%"></span></span><span class="val">20</span></div><div class="hb"><a href="platforms/vscode.html">VS Code / IDE</a><span class="track"><span class="fill" style="width:15%"></span></span><span class="val">19</span></div><div class="hb"><a href="platforms/update-channel.html">Installer / update channel</a><span class="track"><span class="fill" style="width:15%"></span></span><span class="val">19</span></div><div class="hb"><a href="platforms/browser-extensions.html">Browser extensions</a><span class="track"><span class="fill" style="width:14%"></span></span><span class="val">18</span></div></div>
+        <div class="hbar"><div class="hb"><a href="platforms/npm.html">npm</a><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">128</span></div><div class="hb"><a href="platforms/git.html">Git / GitHub</a><span class="track"><span class="fill" style="width:64%"></span></span><span class="val">82</span></div><div class="hb"><a href="platforms/linux.html">Linux distro / packages</a><span class="track"><span class="fill" style="width:32%"></span></span><span class="val">41</span></div><div class="hb"><a href="platforms/windows.html">Windows software</a><span class="track"><span class="fill" style="width:30%"></span></span><span class="val">38</span></div><div class="hb"><a href="platforms/pypi.html">PyPI</a><span class="track"><span class="fill" style="width:28%"></span></span><span class="val">36</span></div><div class="hb"><a href="platforms/ai-agents.html">AI coding agents</a><span class="track"><span class="fill" style="width:25%"></span></span><span class="val">32</span></div><div class="hb"><a href="platforms/github-actions.html">GitHub Actions</a><span class="track"><span class="fill" style="width:20%"></span></span><span class="val">26</span></div><div class="hb"><a href="platforms/cicd-saas.html">CI/CD SaaS</a><span class="track"><span class="fill" style="width:17%"></span></span><span class="val">22</span></div><div class="hb"><a href="platforms/workstation.html">Developer workstation</a><span class="track"><span class="fill" style="width:17%"></span></span><span class="val">22</span></div><div class="hb"><a href="platforms/vscode.html">VS Code / IDE</a><span class="track"><span class="fill" style="width:15%"></span></span><span class="val">19</span></div><div class="hb"><a href="platforms/update-channel.html">Installer / update channel</a><span class="track"><span class="fill" style="width:15%"></span></span><span class="val">19</span></div><div class="hb"><a href="platforms/browser-extensions.html">Browser extensions</a><span class="track"><span class="fill" style="width:14%"></span></span><span class="val">18</span></div></div>
         <p class="sub">Grouped lists per ecosystem in
         <a href="platforms/index.html">Platforms</a>.</p>
       </div>
       <div class="panelbox">
         <h3>Eras</h3>
         <div class="era"><span class="n">46</span> pre-2020 classics (CCleaner, NotPetya, ShadowHammer era)</div>
-        <div class="era"><span class="n">42</span> 2020–2024 (extension and registry hijack era)</div>
+        <div class="era"><span class="n">44</span> 2020–2024 (extension and registry hijack era)</div>
         <div class="era"><span class="n">208</span> 2025–2026 worm/ATO wave</div>
         <p class="sub">The 2025–2026 wave is roughly one incident every three days per
         StepSecurity's tracking.</p>
       </div>
       <div class="panelbox">
         <h3>Frequently seen in write-ups</h3>
-        <div class="chips"><a class="chip" href="incidents/index.html">Shai-Hulud <b>12</b></a> <a class="chip" href="incidents/index.html">OAuth <b>6</b></a> <a class="chip" href="incidents/index.html">Add-ons <b>3</b></a> <a class="chip" href="incidents/index.html">CCleaner <b>3</b></a> <a class="chip" href="incidents/index.html">JFrog <b>3</b></a> <a class="chip" href="incidents/index.html">WEL1DROPPER <b>2</b></a> <a class="chip" href="incidents/index.html">NUL1DROPPER <b>2</b></a> <a class="chip" href="incidents/index.html">SLF4J <b>2</b></a> <a class="chip" href="incidents/index.html">TXTBOOK <b>2</b></a> <a class="chip" href="incidents/index.html">T-Bank <b>2</b></a></div>
+        <div class="chips"><a class="chip" href="incidents/index.html">Shai-Hulud <b>12</b></a> <a class="chip" href="incidents/index.html">OAuth <b>8</b></a> <a class="chip" href="incidents/index.html">Add-ons <b>3</b></a> <a class="chip" href="incidents/index.html">CCleaner <b>3</b></a> <a class="chip" href="incidents/index.html">JFrog <b>3</b></a> <a class="chip" href="incidents/index.html">WEL1DROPPER <b>2</b></a> <a class="chip" href="incidents/index.html">NUL1DROPPER <b>2</b></a> <a class="chip" href="incidents/index.html">SLF4J <b>2</b></a> <a class="chip" href="incidents/index.html">CVE-2023-42793 <b>2</b></a> <a class="chip" href="incidents/index.html">TXTBOOK <b>2</b></a></div>
         <p class="sub">Actor / malware names appearing most often across incident summaries.</p>
       </div>
     </div>
@@ -82,6 +83,7 @@
     <div class="dash">
       <div class="panelbox"><h3>Browse</h3>
         <p><a href="matrix.html">Technique matrix</a> — techniques × tactics, heat-mapped by incident count</p>
+        <p><a href="cicd.html">CI/CD matrix</a> — Mercari's pipeline matrix, with the incidents that actually do that</p>
         <p><a href="incidents/index.html">Incident mapping</a> — every incident → techniques</p>
         <p><a href="platforms/index.html">Platforms</a> — all incidents for npm, PyPI, GitHub Actions, …</p>
         <p><a href="stories/index.html">Attack stories</a> — chronological list</p>

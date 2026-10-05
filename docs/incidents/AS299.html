@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>North Korean actors exploited TeamCity CVE-2023-42793 · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS299</p>
+
+        <p class="meta">AS299 · 2023-10</p>
+        <h1>North Korean actors exploited TeamCity CVE-2023-42793</h1>
+        <p><a class="plat" href="../platforms/cicd-saas.html">CI/CD SaaS</a><a class="plat" href="../platforms/teamcity.html">TeamCity</a></p>
+        <p>Microsoft Threat Intelligence, 18 October 2023: since early October,<br>Diamond Sleet and Onyx Sleet exploited CVE-2023-42793, a remote-code<br>execution bug in multiple versions of JetBrains TeamCity server. After<br>exploitation the two actors used different tools. Microsoft assessed the<br>victim set looked opportunistic, and both actors deployed malware that<br>can keep access on the compromised server. Diamond Sleet has previously<br>turned build-environment access into a software supply-chain compromise;<br>Microsoft called that the reason this CI-server exploitation is high<br>risk. This write-up documents the CI-server intrusion. It does not<br>describe a poisoned customer artifact from this wave.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0135.html">T0135</a> Vulnerable CICD system</li></ul>
+        <h2><span class="stage">supply-chain</span> TeamCity servers</h2><div class="card"><p class="meta"><a href="../techniques/T0135.html">T0135</a> · Initial Access · Vulnerable CICD system</p><p>Unauthenticated remote code execution on the TeamCity server was<br>the initial access Microsoft observed.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The Mercari matrix&#x27;s &quot;compromise the CI/CD server&quot; fits. This catalogue has no separate technique for implanting a backdoor on the CI host after that RCE. Microsoft did not report a trojanized build shipped from these servers in this post.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.microsoft.com/en-us/security/blog/2023/10/18/multiple-north-korean-threat-actors-exploiting-the-teamcity-cve-2023-42793-vulnerability/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2023/10/18/multiple-north-korean-threat-actors-exploiting-the-teamcity-cve-2023-42793-vulnerability/</a></li><li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-42793" rel="noopener">https://nvd.nist.gov/vuln/detail/CVE-2023-42793</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

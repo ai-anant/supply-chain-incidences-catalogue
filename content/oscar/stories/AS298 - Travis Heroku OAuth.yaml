@@ -1,0 +1,66 @@
+id: AS298
+type: Attack Story
+date: 2022-04
+platforms:
+  - cicd-saas
+  - travis-ci
+  - git
+  - npm
+summary: Stolen Heroku and Travis CI OAuth tokens cloned private GitHub repos
+description: |
+  On 12 April 2022 GitHub Security found unauthorized access to npm production
+  infrastructure using a compromised AWS API key. GitHub's 15 April advisory
+  says that key came from private npm repositories downloaded with a stolen
+  OAuth token issued to Heroku or Travis CI, not from a compromise of GitHub's
+  own token store. The attacker authenticated to the GitHub API with those
+  OAuth tokens, listed organizations, then selectively listed and cloned
+  private repositories. GitHub assessed the attacker did not modify npm
+  packages. Affected OAuth apps were Heroku Dashboard (several IDs) and
+  Travis CI (ID 9216). Travis CI's 17 April bulletin says a Heroku OAuth key
+  was stolen and that the key did not grant access to Travis customer
+  repositories; they revoked integrator tokens anyway. Heroku tracked the
+  same window as incident 2413.
+
+attacks:
+  - attack: Heroku and Travis CI OAuth apps
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0112
+        techName: Compromised token
+        tactic: Initial Access
+        comment: |
+          The tokens in use were OAuth user tokens issued to the Heroku and
+          Travis CI integrator apps, not GitHub-stored PATs.
+  - attack: Private repositories and npm AWS
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0168
+        techName: Exfiltration to code repositories
+        tactic: Exfiltration
+        comment: |
+          The attacker listed and cloned private repositories the stolen
+          OAuth tokens could see.
+      - techniqueID: T0200
+        techName: Proprietary data stolen
+        tactic: Impact
+        comment: |
+          Downloaded private npm repositories yielded an AWS API key that
+          was then used against npm production infrastructure. GitHub found
+          no evidence packages were modified.
+
+gaps:
+  - Travis CI's bulletin and GitHub's advisory disagree on whether Travis
+    customer repositories were reachable with the stolen Heroku key. The
+    mapped behavior is the GitHub-observed clone and the npm AWS key, not
+    a Travis build takeover.
+
+links:
+  - https://github.blog/2022-04-15-security-alert-stolen-oauth-user-tokens/
+  - https://www.travis-ci.com/blog/2022-04-17-securitybulletin/
+  - https://status.heroku.com/incidents/2413
