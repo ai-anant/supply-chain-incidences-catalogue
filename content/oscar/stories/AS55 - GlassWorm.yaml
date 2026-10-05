@@ -13,7 +13,12 @@ description: |
   OpenSourceMalware reported GlassWorm compromising 430+ GitHub projects
   by using four ecosystems at once (GitHub, npm, Open VSX / VS Code,
   Python). Multi-ecosystem implants so cleaning one registry does not
-  clear the campaign.
+  clear the campaign. Socket (2 Oct 2026) tied a VS Code theme cluster
+  to the same loader: the Marketplace build of Cosmic Nebula Themes
+  reused the previously documented Solana address, AES key, and eval
+  model. Coca-Cola Christmas and Aurora Borealis Studio Theme shared
+  the cluster's development artifacts; Marketplace removed the reported
+  extensions after disclosure.
 
 attacks:
   - attack: Multi-ecosystem implants
@@ -48,3 +53,4 @@ links:
   - https://socket.dev/blog/glassworm-loader-hits-open-vsx-via-suspected-developer-account-compromise
   - https://www.aikido.dev/blog/glassworm-returns-unicode-attack-github-npm-vscode
   - https://www.koi.ai/blog/glassworm-hits-mcp-5th-wave-with-new-delivery-techniques
+  - https://socket.dev/blog/glassworm-vscode-themes

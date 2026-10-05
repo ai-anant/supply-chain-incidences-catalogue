@@ -1,4 +1,30 @@
 entries:
+- date: '2026-10-05'
+  id: malfex-intake
+  title: MALFEX npm campaign added
+  items:
+  - 'AS297 MALFEX (CloudSEK, 30 Sep; full report in their PDF). One operator,
+    August 2023 through September 2026, at least twelve npm packages.
+    function-flag, cdn-img-fetch, and function-color were still unadvised and
+    installable; Arm A droppers (tlxbnhd, tldriver, mxdriver) already had
+    MAL-2026-16383/16384/16385. Install scripts fetch a Windows PE served as
+    image/png, then a signed AutoIt3 interpreter and an overlord-client build
+    with live Solana-memo C2. Arm B stages a Node stealer from the operator
+    GitHub repo cavecrew/proj. Platforms npm/windows/git/workstation. No
+    confirmed downstream victim in the report. Gaps left for blockchain
+    dead-drop C2, content-type staging, latest-tag rollback, and Windows
+    scheduled-task persistence.'
+  - 'AS55 gained the 2 Oct Socket theme-cluster write-up (same GlassWorm
+    loader, not a new operation). AS27 gained the 2 Oct SafeDep recap of the
+    Mandiant assistant-hijack case.'
+  - 'Other tracked feeds in this window were already mapped or not a
+    supply-chain attack: OpenSourceMalware Show #23, ReversingLabs
+    retrospective of known campaigns, StepSecurity sckit, Aikido listicles,
+    Wiz product posts, GitHub changelog platform features, Rust 1.99.0,
+    RubyGems 4.0.22, CISA KEV adds (Citrix, Zammad, FortiMail), GTIG Citrix
+    and ShinyHunters notes, Checkmarx CRA guidance, CrowdStrike product and
+    ClickFix posts. Socket''s GPT-6 Astra item is a simulated CTF, not an
+    in-the-wild publish. Morphisec''s RSS channel had no items.'
 - date: '2026-10-03'
   id: full-platform-audit
   title: Every incident re-checked for secondary platform surfaces

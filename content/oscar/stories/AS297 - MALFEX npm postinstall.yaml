@@ -1,0 +1,109 @@
+id: AS297
+type: Attack Story
+date: 2026-09
+platforms:
+  - npm
+  - windows
+  - git
+  - workstation
+
+summary: MALFEX npm postinstall campaign, three packages still unadvised
+description: |
+  CloudSEK (30 Sep 2026) documented MALFEX, one operator's npm campaign
+  running from August 2023 through September 2026: at least twelve
+  packages plus a GitHub payload repo (cavecrew/proj). Five packages
+  carry Amazon Inspector MAL- advisories, three are malicious and were
+  still unadvised, and four are benign cover tools. The live unadvised
+  set is function-flag (malicious postinstall since 18 July 2025; the
+  latest tag points at 1.7.3, a lower number than earlier builds),
+  cdn-img-fetch (still installable after npm seized its parent
+  img-to-native), and function-color (a wrapper whose only job is to
+  depend on function-flag).
+
+  Arm A (tlxbnhd, tldriver, mxdriver; MAL-2026-16383, -16384, -16385;
+  unpublished) used install scripts to fetch a Windows PE served with
+  an image/png content type. The file is an IExpress cabinet holding a
+  legitimately signed AutoIt3 interpreter and an encrypted script, then
+  a build of the overlord-client Go RAT whose Solana-memo C2 strings
+  are live. Arm B pulls a PNG polyglot from the operator's GitHub repo,
+  decrypts it with the team-name constant malfexteam2027, and stages a
+  Node.js stealer (movinlike) that injects into Discord clients,
+  harvests browser data and Telegram tdata, and exfiltrates to a
+  Discord webhook. CloudSEK did not observe a confirmed downstream
+  victim compromise; the report is operator reach, including packages
+  still installable on 29 September 2026. macOS and Linux launch paths
+  are present in the install scripts, but the fetched payload is a
+  Windows PE and those paths produce no second stage.
+
+attacks:
+  - attack: Attacker-owned npm accounts
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          Publisher handles include malfexkkj, malfex_user, jessica-fruett,
+          liuxhin, malfexteste2, malfexteste3, malfexteste4, and dallascorp.
+          Several used fresh iCloud Hide-My-Email addresses.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Malicious publishes include function-flag, cdn-img-fetch,
+          function-color, and the advised Arm A droppers. Benign cover
+          packages (function-ascii, centralizemiddle) sit on the same
+          accounts.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          function-flag is presented as a font helper. Republishing
+          1.7.3 moved the latest tag onto a lower version number so a
+          fresh install looks like a rollback.
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          Arm A runs obfuscated preinstall.js and postinstall.js.
+          function-flag has carried a postinstall since July 2025.
+          cdn-img-fetch also runs at require time, which install-script
+          blocking does not cover.
+  - attack: Windows payload on the developer machine
+    index: 2
+    stage: post-supply-chain
+    customer: 2
+    supplier: 0
+    techniques:
+      - techniqueID: T0156
+        techName: Exfiltration over webhooks
+        tactic: Exfiltration
+        comment: |
+          Arm B's movinlike stealer exfiltrates to a Discord webhook
+          that was live when CloudSEK wrote the report.
+
+gaps:
+  - Solana-memo dead-drop C2 on the Overlord build has no technique.
+    The same gap is already noted on blockchain-C2 stories.
+  - Staging a PE behind an image/png content type, and an Arm B PNG
+    polyglot, has no technique.
+  - Moving the latest tag to a lower version number has no technique.
+    T0110 only covers the utility disguise.
+  - Windows scheduled-task persistence (the Maiden task, and a copy of
+    AutoIt3.exe under ScopeSmart Technologies Inc) is not T0148, which
+    is a self-hosted CI runner job.
+  - The AutoIt3 binary is the vendor interpreter, signed by AUTOIT
+    CONSULTING LTD. That is not T0215 (attacker-enrolled identity) and
+    not T0208 (stolen signing key).
+
+links:
+  - https://www.cloudsek.com/blog/malfex-malicious-npm-postinstall-supply-chain-campaign
+  - https://cdn.cloudsek.com/cloudsek-blog-pdfs/malfex-a-mal-lvi.pdf
+  - https://osv.dev/vulnerability/MAL-2026-16385
+  - https://osv.dev/vulnerability/MAL-2026-16384
+  - https://osv.dev/vulnerability/MAL-2026-16383
+  - https://osv.dev/vulnerability/MAL-2026-17216
+  - https://osv.dev/vulnerability/MAL-2026-17218
