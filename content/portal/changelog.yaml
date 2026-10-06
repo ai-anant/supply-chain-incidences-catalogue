@@ -1,4 +1,30 @@
 entries:
+- date: '2026-10-06'
+  id: rubygems-subql-intake
+  title: RubyGems crypto-shell gems and SubQuery 5.8.3
+  items:
+  - 'AS300: reqthrottle_3474 published 42 malicious RubyGems on 5 October
+    (SafeDep; OpenSourceMalware, profile name Ghost Dev). Sixteen names are
+    typosquats; the rest pose as crypto utilities. extconf.rb runs at gem
+    install, skips CI and sandboxes, then either opens a reverse shell to
+    45.138.12.177 or downloads a wallet-theft kit. MAL-2026-17598 covers
+    eth-keystore-utils. No confirmed downstream victim in either report.'
+  - 'AS301: @subql/common@5.8.3 (StepSecurity, 5 October; GHSA-9333-3c4x-x3h5,
+    MAL-2026-17571). Unsigned commits on a short-lived branch, account
+    ianhe8x, were not merged to main. The release workflow curls an unverified
+    tarball from ci-artifacts.dev and the published package starts a credential
+    collector on install and on import. Compromise of the named person is not
+    established. The embedded secret-dumping workflow was not observed on a
+    victim repo. Investigation still open in subquery/subql issue 3047.'
+  - 'Other tracked feeds in this window were already mapped or not a
+    supply-chain attack: Socket GlassWorm theme cluster already on AS55;
+    Socket customer, podcast, CTF, and package-manager posts; GitHub changelog
+    product notes; CISA KEV adds for Citrix NetScaler and Zammad; CrowdStrike
+    product posts; Aikido listicles; Wiz product posts; Rust and RubyGems
+    release notes; Morphisec commentary; Sansec had no post newer than the
+    mapped Brevo write-up; GTIG feed last built 30 September. Aikido''s
+    GitLab incoming-email write-up is their own test of a product bug, not
+    an in-the-wild publish.'
 - date: '2026-10-05'
   id: cicd-matrix
   title: CI/CD threat matrix tab

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@subql/common 5.8.3 published after a CI artifact swap · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS301</p>
+
+        <p class="meta">AS301 · 2026-10</p>
+        <h1>@subql/common 5.8.3 published after a CI artifact swap</h1>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/cicd-saas.html">CI/CD SaaS</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a></p>
+        <p>On 5 October 2026 StepSecurity flagged @subql/common@5.8.3, a shared<br>library in the SubQuery monorepo. At collection time npm&#x27;s latest tag<br>pointed at 5.8.3, published 11:56 UTC. Version 5.8.2 (20 November 2025)<br>has no manifest-cache payload. A canary, 5.8.3-onf-rt1, published at<br>11:24 UTC, republished 5.8.2&#x27;s application code under a red-team<br>description and does not carry the payload.</p><p>GitHub account ianhe8x created the short-lived branch chore/ci-audit-55<br>twice the same morning. Both commits are unsigned, name Ian He as<br>author and committer, and parent the same main commit. Main still<br>pointed at that parent when the evidence was collected, so this was<br>not a merge to main. StepSecurity does not establish whether the named<br>person controlled the account. The first commit replaced the publish<br>workflow with a workflow_dispatch canary that packed 5.8.2 and<br>republished it. That canary&#x27;s provenance names Actions run 37302582874,<br>which was unavailable later. The second commit adds a step that<br>downloads an archive from ci-artifacts.dev, deletes packages/common,<br>and extracts the download with no hash check, immediately before the<br>existing publish step. 5.8.3 appeared on npm about two minutes after<br>that branch was deleted.</p><p>The published tarball adds a postinstall that runs<br>node ./dist/project/readers/manifest-cache.js, and the readers index<br>starts the same worker on import. Blocking install scripts is not<br>enough. The loader XOR-decodes and gunzips a seed into JavaScript and<br>runs it in a detached child. StepSecurity decoded that payload without<br>executing it. It reads credential files (.npmrc, .env, AWS credential<br>files, SSH keys, kubeconfig, wallet paths, and .claude.json), collects<br>the full process environment, and tries gh auth token. On a Linux<br>GitHub Actions runner it tries sudo python3 to read Runner.Worker<br>memory for values marked isSecret. It also contains collectors for<br>AWS Secrets Manager, in-cluster Kubernetes secrets, and Vault, and a<br>second workflow that would open a dependabot-looking branch and a<br>codeql_analysis.yml writing toJSON(secrets) into an artifact.<br>StepSecurity did not observe that second workflow on a victim<br>repository. Collection and a command channel use<br>https://ci-artifacts.dev/router. Nineteen other latest @subql package<br>versions could resolve 5.8.3 through an existing range — @subql/cli<br>6.6.3 depends on @subql/common ~5.8.2 — without those parents shipping<br>a new release. No confirmed downstream theft is in the report.<br>StepSecurity opened subquery/subql issue 3047 and called the<br>investigation ongoing. GHSA-9333-3c4x-x3h5 / MAL-2026-17571 cover<br>the published version.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0166.html">T0166</a> Trigger pipeline execution</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0183.html">T0183</a> Harvesting short-lived token</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> Publish workflow on a temporary branch</h2><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>Two unsigned commits on chore/ci-audit-55 changed<br>.github/workflows/publish.yml. They were not merged to main.<br>The account on the branch events is ianhe8x. Compromise of<br>that person is not established.</p></div><div class="card"><p class="meta"><a href="../techniques/T0166.html">T0166</a> · Execution · Trigger pipeline execution</p><p>The release commit inserts an unverified curl of<br>ci-artifacts.dev into the publish job, then the existing<br>publish step runs. The canary workflow was workflow_dispatch.<br>StepSecurity does not have a still-available Actions log for<br>the final 5.8.3 publish.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>&quot;@subql/common@5.8.3 was published at 11:56 UTC and was npm<br>latest at collection time. The canary 5.8.3-onf-rt1 is a<br>republish of 5.8.2 and is not this payload.&quot;</p></div><h2><span class="stage">post-supply-chain</span> Install and import of 5.8.3</h2><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>package.json postinstall runs the manifest-cache reader.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Importing the package also starts the detached worker, via<br>the readers index. Install-script blocking does not cover<br>that path. Parent packages that depend on ~5.8.2 can resolve<br>5.8.3 without a new release of their own.</p></div><div class="card"><p class="meta"><a href="../techniques/T0140.html">T0140</a> · Credential Access · Harvest tokens from environment variables</p><p>The decoded payload collects the full process environment and<br>tries gh auth token. These are capabilities in the tarball,<br>not a named victim theft.</p></div><div class="card"><p class="meta"><a href="../techniques/T0183.html">T0183</a> · Credential Access · Harvesting short-lived token</p><p>On Linux GitHub Actions runners the payload tries to read<br>Runner.Worker memory for values marked isSecret. It does not<br>contain a privilege-escalation exploit for that sudo python3<br>step.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>File targets include .npmrc, .env, AWS credential files, SSH<br>keys, kubeconfig, wallet paths, and .claude.json. Windows<br>paths in the same list are not expanded and are not treated<br>as demonstrated access.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The write-up identifies GitHub account ianhe8x and unsigned commits. It does not establish compromise versus an authorized maintainer, so this is not mapped as T0113.</li><li>Replacing the built package with an external tarball inside the project&#x27;s own workflow is not T0198 (a compromised third-party build plugin). Provenance is shown only for the harmless canary, and that Actions run id was later unavailable, so this is not T0206.</li><li>The embedded workflow that imitates CodeQL and a Dependabot branch, including a spoofed github-advanced-security bot committer, was not observed on a victim repository.</li><li>The HTTPS command channel on ci-artifacts.dev is not T0156, which is exfiltration over webhooks.</li><li>The Russian-locale exit and the CI-detection branch have no technique.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.stepsecurity.io/blog/subql-ecosystem-compromised" rel="noopener">https://www.stepsecurity.io/blog/subql-ecosystem-compromised</a></li><li><a href="https://github.com/subquery/subql/issues/3047" rel="noopener">https://github.com/subquery/subql/issues/3047</a></li><li><a href="https://github.com/subquery/subql/commit/506863d6fb82bd2714970cf8c6f1bf364374b009" rel="noopener">https://github.com/subquery/subql/commit/506863d6fb82bd2714970cf8c6f1bf364374b009</a></li><li><a href="https://github.com/advisories/GHSA-9333-3c4x-x3h5" rel="noopener">https://github.com/advisories/GHSA-9333-3c4x-x3h5</a></li><li><a href="https://osv.dev/vulnerability/MAL-2026-17571" rel="noopener">https://osv.dev/vulnerability/MAL-2026-17571</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

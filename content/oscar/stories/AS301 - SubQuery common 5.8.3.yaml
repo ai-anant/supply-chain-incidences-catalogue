@@ -1,0 +1,153 @@
+id: AS301
+type: Attack Story
+date: 2026-10
+platforms:
+  - npm
+  - github-actions
+  - git
+  - cicd-saas
+  - workstation
+  - linux
+
+summary: "@subql/common 5.8.3 published after a CI artifact swap"
+
+description: |
+  On 5 October 2026 StepSecurity flagged @subql/common@5.8.3, a shared
+  library in the SubQuery monorepo. At collection time npm's latest tag
+  pointed at 5.8.3, published 11:56 UTC. Version 5.8.2 (20 November 2025)
+  has no manifest-cache payload. A canary, 5.8.3-onf-rt1, published at
+  11:24 UTC, republished 5.8.2's application code under a red-team
+  description and does not carry the payload.
+
+  GitHub account ianhe8x created the short-lived branch chore/ci-audit-55
+  twice the same morning. Both commits are unsigned, name Ian He as
+  author and committer, and parent the same main commit. Main still
+  pointed at that parent when the evidence was collected, so this was
+  not a merge to main. StepSecurity does not establish whether the named
+  person controlled the account. The first commit replaced the publish
+  workflow with a workflow_dispatch canary that packed 5.8.2 and
+  republished it. That canary's provenance names Actions run 37302582874,
+  which was unavailable later. The second commit adds a step that
+  downloads an archive from ci-artifacts.dev, deletes packages/common,
+  and extracts the download with no hash check, immediately before the
+  existing publish step. 5.8.3 appeared on npm about two minutes after
+  that branch was deleted.
+
+  The published tarball adds a postinstall that runs
+  node ./dist/project/readers/manifest-cache.js, and the readers index
+  starts the same worker on import. Blocking install scripts is not
+  enough. The loader XOR-decodes and gunzips a seed into JavaScript and
+  runs it in a detached child. StepSecurity decoded that payload without
+  executing it. It reads credential files (.npmrc, .env, AWS credential
+  files, SSH keys, kubeconfig, wallet paths, and .claude.json), collects
+  the full process environment, and tries gh auth token. On a Linux
+  GitHub Actions runner it tries sudo python3 to read Runner.Worker
+  memory for values marked isSecret. It also contains collectors for
+  AWS Secrets Manager, in-cluster Kubernetes secrets, and Vault, and a
+  second workflow that would open a dependabot-looking branch and a
+  codeql_analysis.yml writing toJSON(secrets) into an artifact.
+  StepSecurity did not observe that second workflow on a victim
+  repository. Collection and a command channel use
+  https://ci-artifacts.dev/router. Nineteen other latest @subql package
+  versions could resolve 5.8.3 through an existing range — @subql/cli
+  6.6.3 depends on @subql/common ~5.8.2 — without those parents shipping
+  a new release. No confirmed downstream theft is in the report.
+  StepSecurity opened subquery/subql issue 3047 and called the
+  investigation ongoing. GHSA-9333-3c4x-x3h5 / MAL-2026-17571 cover
+  the published version.
+
+attacks:
+  - attack: Publish workflow on a temporary branch
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0111
+        techName: Malicious code contribution to an open-source repository
+        tactic: Resource Development
+        comment: |
+          Two unsigned commits on chore/ci-audit-55 changed
+          .github/workflows/publish.yml. They were not merged to main.
+          The account on the branch events is ianhe8x. Compromise of
+          that person is not established.
+      - techniqueID: T0166
+        techName: Trigger pipeline execution
+        tactic: Execution
+        comment: |
+          The release commit inserts an unverified curl of
+          ci-artifacts.dev into the publish job, then the existing
+          publish step runs. The canary workflow was workflow_dispatch.
+          StepSecurity does not have a still-available Actions log for
+          the final 5.8.3 publish.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          "@subql/common@5.8.3 was published at 11:56 UTC and was npm
+          latest at collection time. The canary 5.8.3-onf-rt1 is a
+          republish of 5.8.2 and is not this payload."
+  - attack: Install and import of 5.8.3
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          package.json postinstall runs the manifest-cache reader.
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          Importing the package also starts the detached worker, via
+          the readers index. Install-script blocking does not cover
+          that path. Parent packages that depend on ~5.8.2 can resolve
+          5.8.3 without a new release of their own.
+      - techniqueID: T0140
+        techName: Harvest tokens from environment variables
+        tactic: Credential Access
+        comment: |
+          The decoded payload collects the full process environment and
+          tries gh auth token. These are capabilities in the tarball,
+          not a named victim theft.
+      - techniqueID: T0183
+        techName: Harvesting short-lived token
+        tactic: Credential Access
+        comment: |
+          On Linux GitHub Actions runners the payload tries to read
+          Runner.Worker memory for values marked isSecret. It does not
+          contain a privilege-escalation exploit for that sudo python3
+          step.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          File targets include .npmrc, .env, AWS credential files, SSH
+          keys, kubeconfig, wallet paths, and .claude.json. Windows
+          paths in the same list are not expanded and are not treated
+          as demonstrated access.
+
+gaps:
+  - The write-up identifies GitHub account ianhe8x and unsigned commits.
+    It does not establish compromise versus an authorized maintainer, so
+    this is not mapped as T0113.
+  - Replacing the built package with an external tarball inside the
+    project's own workflow is not T0198 (a compromised third-party build
+    plugin). Provenance is shown only for the harmless canary, and that
+    Actions run id was later unavailable, so this is not T0206.
+  - The embedded workflow that imitates CodeQL and a Dependabot branch,
+    including a spoofed github-advanced-security bot committer, was not
+    observed on a victim repository.
+  - The HTTPS command channel on ci-artifacts.dev is not T0156, which is
+    exfiltration over webhooks.
+  - The Russian-locale exit and the CI-detection branch have no technique.
+
+links:
+  - https://www.stepsecurity.io/blog/subql-ecosystem-compromised
+  - https://github.com/subquery/subql/issues/3047
+  - https://github.com/subquery/subql/commit/506863d6fb82bd2714970cf8c6f1bf364374b009
+  - https://github.com/advisories/GHSA-9333-3c4x-x3h5
+  - https://osv.dev/vulnerability/MAL-2026-17571

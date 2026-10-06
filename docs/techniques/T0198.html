@@ -33,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0198</p>
 
-        <p class="meta">T0198 · Defense Evasion · TA07 · observed in 4 incident(s)</p>
+        <p class="meta">T0198 · Defense Evasion · TA07 · observed in 5 incident(s)</p>
         <h1>Malicious Build Time Dependencies</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span> <span class="chip">Code Security</span> <span class="chip">Open Source Security</span></div>
         <p>Within the CI/CD workflow, code can be pushed at different stages. During the build process, plugins are often utilized for tasks like building and testing. However, if a third-party plugin is compromised, malicious code can be introduced. For instance, an attacker gains control over a Maven plugin (a popular build framework) and inject malware during the build process. SBOM tools may not be effective in detecting such scenarios as they primarily operate on source code.</p>
@@ -43,7 +43,7 @@
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1220</span> Use only trusted third-party Github actions from reputable sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li></ul>
-        <h2>Observed in incidents (4)</h2><ul><li><a href="../incidents/AS7.html">XZ Utils backdoor</a></li><li><a href="../incidents/AS44.html">StubMaker RubyGems (and npm) Windows infostealer</a></li><li><a href="../incidents/AS18.html">crates.io arrayref / proc-macro1 build-time dropper</a></li><li><a href="../incidents/AS13.html">Ultralytics PyPI compromise</a></li></ul>
+        <h2>Observed in incidents (5)</h2><ul><li><a href="../incidents/AS7.html">XZ Utils backdoor</a></li><li><a href="../incidents/AS44.html">StubMaker RubyGems (and npm) Windows infostealer</a></li><li><a href="../incidents/AS300.html">Forty-two RubyGems from reqthrottle_3474 run a reverse shell or a crypto stealer at install</a></li><li><a href="../incidents/AS18.html">crates.io arrayref / proc-macro1 build-time dropper</a></li><li><a href="../incidents/AS13.html">Ultralytics PyPI compromise</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://i.blackhat.com/BH-US-23/Presentations/US-23-Long-Reflections-On-Trust.pdf" rel="noopener">https://i.blackhat.com/BH-US-23/Presentations/US-23-Long-Reflections-On-Trust.pdf</a></li></ul>
         

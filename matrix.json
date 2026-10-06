@@ -177,7 +177,7 @@
         ],
         "url": "techniques/T0108.html",
         "description": "An attacker can use accounts in public registries, such as PyPI or DockerHub, to perform a supply chain attack in several ways.\nOne approach is to compromise the credentials of a legitimate developer account and use it to upload malicious packages or container images.\nThe attacker can then promote the malicious artifact by using misleading descriptions or keywords, potentially increasing the number of downloads.\nAlternatively, the attacker can create a fake developer account and upload malicious packages or container images using it.\nThe attacker may use a similar username or avatar to legitimate developers to trick users into thinking the account is legitimate.\nOnce the malicious artifact is uploaded, the attacker can promote it using various techniques, such as hijacking popular package names or using misleading descriptions.\nAnother approach is to target the infrastructure used by public registries, such as the servers or the communication channels used by developers to upload packages or container images.\nAn attacker may compromise the infrastructure and use it to inject malicious code into legitimate packages or container images as they are being uploaded.\n",
-        "incidentCount": 11
+        "incidentCount": 12
       },
       {
         "id": "T0109",
@@ -189,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 155
+        "incidentCount": 157
       },
       {
         "id": "T0110",
@@ -201,7 +201,7 @@
         ],
         "url": "techniques/T0110.html",
         "description": "An Advertise Malicious Artifact attack is a type of cyber attack in which an attacker distributes a malicious package or container image to a broader audience, typically by advertising it on popular repositories or registries.\nThe goal of this attack is to entice users into downloading and using the malicious artifact, thereby compromising their systems.\nIn this attack, the attacker may create a fake developer account or use an existing legitimate account to upload the malicious artifact to popular repositories or registries such as PyPI or DockerHub.\nThe attacker may then use various techniques to promote the malicious artifact, such as forum promotion, commenting, using misleading descriptions, tags, or keywords, or by hijacking popular package names.\nOnce users download and install the malicious package or container image, it can compromise their systems and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 22
+        "incidentCount": 23
       },
       {
         "id": "T0111",
@@ -213,7 +213,7 @@
         ],
         "url": "techniques/T0111.html",
         "description": "A malicious code contribution to an open-source repository attack is a type of cyber attack that involves an attacker submitting code with malicious intent to an open-source repository. \nOpen-source repositories are used to store and manage code for open-source software projects, and they rely on community contributions to improve and maintain the codebase. \nIn this attack, the attacker may submit a seemingly harmless code contribution to the repository. However, the code contains a hidden malware payload that can be triggered later to cause damage. \nAlternatively, the code may include a backdoor that allows the attacker to gain unauthorized access to the system running the open-source software.\nOnce the code is accepted into the repository, it can be difficult to detect the presence of the malicious payload.\nThe code may be integrated into the open-source project, distributed to other projects that depend on it, and even included in software distributions used by many people. \nThis can result in a wide-scale compromise of systems that use the affected code.\n",
-        "incidentCount": 30
+        "incidentCount": 31
       },
       {
         "id": "T0121",
@@ -407,7 +407,7 @@
         ],
         "url": "techniques/T0129.html",
         "description": "Typosquatting is an attack technique where an attacker creates a package or container with a name that is very similar to a legitimate one, in hopes that a user will make a typo and download the malicious package or container. \nFor example, if a legitimate package is named \"numpy,\" an attacker might create a package named \"numpyy\" or \"numpi\" in hopes that a user will accidentally install the malicious package instead. \nIn container security, it involves creating a container image with a similar name to a legitimate one, while in open-source security, it involves creating a malicious package with a similar name to a legitimate one.\nOnce the user installs the malicious package or container, the attacker can potentially gain access to the user's system or data, or inject malicious code into the user's environment.\n",
-        "incidentCount": 43
+        "incidentCount": 44
       },
       {
         "id": "T0133",
@@ -681,7 +681,7 @@
         ],
         "url": "techniques/T0151.html",
         "description": "A package installation script injection attack is a type of security exploit that involves an attacker injecting malicious code into a legitimate software package installation script.\nThe attack typically occurs when an attacker gains access to the distribution network of a software vendor or package manager, and injects malicious code into the package installation script. \nThis code may be designed to carry out a range of nefarious activities, such as stealing sensitive information, creating backdoors, or executing arbitrary code on the victim's system.\nOnce the victim downloads and installs the compromised software package, the injected code is executed, giving the attacker access to the victim's system.\n",
-        "incidentCount": 38
+        "incidentCount": 40
       },
       {
         "id": "T0152",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 47
+        "incidentCount": 48
       },
       {
         "id": "T0166",
@@ -728,7 +728,7 @@
         ],
         "url": "techniques/T0166.html",
         "description": "The Trigger pipeline execution (Poisoned pipeline execution) attack abuses permissions against an SCM repository, in a way that causes a CI pipeline to execute malicious commands.\nUsers that have permissions to manipulate the CI configuration files, or other files which the CI pipeline job relies on, can modify them to contain malicious commands, ultimately poisoning the CI pipeline executing these commands.\nPipelines executing unreviewed code, for example those which are triggered directly off of pull requests or commits to arbitrary repository branches, are more susceptible to Trigger pipeline execution. \nThe reason is that these scenarios, by design, contain code which has not undergone any reviews or approvals.\nOnce able to execute malicious code within the CI pipeline, the attacker can conduct a wide array of malicious operations, all within the context of the pipelines identity.\n",
-        "incidentCount": 13
+        "incidentCount": 14
       },
       {
         "id": "T0172",
@@ -741,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 77
+        "incidentCount": 78
       },
       {
         "id": "T0173",
@@ -1051,7 +1051,7 @@
         ],
         "url": "techniques/T0198.html",
         "description": "Within the CI/CD workflow, code can be pushed at different stages. During the build process, plugins are often utilized for tasks like building and testing. However, if a third-party plugin is compromised, malicious code can be introduced. For instance, an attacker gains control over a Maven plugin (a popular build framework) and inject malware during the build process. SBOM tools may not be effective in detecting such scenarios as they primarily operate on source code.\n",
-        "incidentCount": 4
+        "incidentCount": 5
       },
       {
         "id": "T0206",
@@ -1137,7 +1137,7 @@
         ],
         "url": "techniques/T0140.html",
         "description": "This type of attack involves searching for environment variables that may contain sensitive information and dumping their values to gain access to the associated resources.\nIn cloud and container environments, environment variables are often used to store configuration data, including sensitive information such as passwords, tokens and API keys. \nAttackers can exploit this by searching through the environment variables of running containers or cloud instances to find any sensitive information that has been inadvertently exposed. \nOnce the sensitive information has been obtained, attackers can use it to access and compromise the associated resources.\n",
-        "incidentCount": 31
+        "incidentCount": 32
       },
       {
         "id": "T0162",
@@ -1174,7 +1174,7 @@
         ],
         "url": "techniques/T0183.html",
         "description": "This attack technique involves searching for short-lived tokens that are used during the CI/CD process and extracting them for later use in unauthorized activities.\nShort-lived tokens are often used in CI/CD systems to authenticate communication between different components, such as the build server and the deployment server.\nAn attacker can obtain these tokens from CI/CD logs, variable groups, secure files, etc.\nThese tokens typically have a limited lifespan, but if an attacker is able to capture them, they can use them to gain unauthorized access to the system or associated resources.\n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0184",
@@ -1186,7 +1186,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 99
+        "incidentCount": 101
       },
       {
         "id": "T0185",

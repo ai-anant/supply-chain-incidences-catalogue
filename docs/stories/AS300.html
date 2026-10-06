@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forty-two RubyGems from reqthrottle_3474 run a reverse shell or a crypto stealer at install · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS300</p>
+
+        <p class="meta">AS300 · 2026-10</p>
+        <h1>Forty-two RubyGems from reqthrottle_3474 run a reverse shell or a crypto stealer at install</h1>
+        <p><a class="plat" href="../platforms/rubygems.html">RubyGems</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
+        <p>On 5 October 2026 the RubyGems account reqthrottle_3474 published 42<br>malicious gems in about an hour. SafeDep counted 48 gems on the<br>account, 42 of them malicious. OpenSourceMalware names the same<br>account and records the profile display name Ghost Dev. Most package<br>names target cryptocurrency developers (eth-keystore-utils,<br>bip39-wordlist-utils, btc-wallet-tools). Sixteen are typosquats of<br>real gems (bitcion, kecack, solaan-ruby, etheremu.rb).<br>OpenSourceMalware tracks the set as rubygems-btc-shell.</p><p>Every malicious gem declares a native extension. RubyGems runs<br>ext/req_throttle_mini/extconf.rb during gem install or bundle install.<br>The Ruby under lib/ is a decoy. Newer gems also ship a C file with an<br>empty Init_ function so the tree looks like a real extension. The<br>script stops when it sees CI variables, sandbox-like hostnames,<br>scanner-like usernames, or an analysis directory. It continues only<br>if uptime is over 30 minutes and the home directory holds .ssh,<br>.gitconfig, .npmrc, .gem/credentials, or .bundle. It then double-forks,<br>detaches, and evals a Base64 payload.</p><p>Eleven gems open a /bin/sh reverse shell to 45.138.12.177 on TCP 8089<br>or 8090 and retry every 30 seconds. Thirty-one wait 20 to 40 minutes,<br>then download wgkit.tar.gz from the same host on port 8092 and run<br>wg_install.sh. SafeDep stopped at that downloader. OpenSourceMalware<br>unpacked the archive: the installer copies the kit to<br>$HOME/.cache/.wg, tries to trust a certificate named Wallet Guard Root<br>CA, writes proxy variables into shell rc files, and adds two desktop<br>autostart entries. A local proxy on 127.0.0.1:8899 intercepts listed<br>exchange hosts and injects a script that replaces withdrawal addresses.<br>A grabber reads wallet-extension storage, seed-like files, and the<br>clipboard (Win32 on Windows, xclip or xsel on Unix), and posts to<br>45.138.12.177:8080. Neither lab named a confirmed downstream victim.<br>Amazon Inspector published MAL-2026-17598 for eth-keystore-utils. This<br>entry does not claim an advisory exists for every gem name.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0110.html">T0110</a> Advertise malicious artifact</li><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0198.html">T0198</a> Malicious Build Time Dependencies</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> Attacker-owned RubyGems account</h2><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>All 42 malicious gems were published by reqthrottle_3474.<br>OpenSourceMalware records the profile display name Ghost Dev.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Forty-two gems published in about one hour on 5 October 2026.<br>SafeDep lists the names; sixteen are typosquats and the rest<br>are new crypto-utility names.</p></div><div class="card"><p class="meta"><a href="../techniques/T0110.html">T0110</a> · Resource Development · Advertise malicious artifact</p><p>Non-typosquat names such as eth-keystore-utils ship decoy<br>library code that parses wallet files, so the gem looks like<br>a developer utility.</p></div><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Sixteen names misspell real gems, including bitcion, kecack,<br>solaan-ruby, and etheremu.rb.</p></div><h2><span class="stage">post-supply-chain</span> Install-time loader on the developer machine</h2><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>extconf.rb runs during gem install and bundle install. The<br>malicious logic is not in the decoy lib/ files.</p></div><div class="card"><p class="meta"><a href="../techniques/T0198.html">T0198</a> · Defense Evasion · Malicious Build Time Dependencies</p><p>The extension directory is dressed as a native build, including<br>an empty C Init_ in the later gems, the same shape as StubMaker.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>Eleven gems leave a reconnecting /bin/sh reverse shell to<br>45.138.12.177:8089 or :8090 after install finishes.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>The second-stage grabber reads browser wallet-extension storage,<br>Exodus and Electrum files, and seed-like filenames. The install<br>check itself looks for .ssh, .gem/credentials, and .npmrc before<br>it runs.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>CI-variable, hostname, username, and directory checks that skip sandboxes have no technique.</li><li>Desktop autostart entries and installing a user-trusted root CA are not T0148, which is a scheduled task on a self-hosted runner.</li><li>Withdrawal-address substitution and clipboard swap have no technique.</li><li>The 20-40 minute sleep is a delay, not a condition logic bomb (T0150).</li><li>The local TLS interception proxy has no technique.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://safedep.io/rubygems-crypto-gems-install-time-reverse-shell" rel="noopener">https://safedep.io/rubygems-crypto-gems-install-time-reverse-shell</a></li><li><a href="https://opensourcemalware.com/blog/malicious-crypto-shell" rel="noopener">https://opensourcemalware.com/blog/malicious-crypto-shell</a></li><li><a href="https://osv.dev/vulnerability/MAL-2026-17598" rel="noopener">https://osv.dev/vulnerability/MAL-2026-17598</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

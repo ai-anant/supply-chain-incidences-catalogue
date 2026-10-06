@@ -1,0 +1,125 @@
+id: AS300
+type: Attack Story
+date: 2026-10
+platforms:
+  - rubygems
+  - workstation
+  - linux
+  - windows
+
+summary: Forty-two RubyGems from reqthrottle_3474 run a reverse shell or a crypto stealer at install
+
+description: |
+  On 5 October 2026 the RubyGems account reqthrottle_3474 published 42
+  malicious gems in about an hour. SafeDep counted 48 gems on the
+  account, 42 of them malicious. OpenSourceMalware names the same
+  account and records the profile display name Ghost Dev. Most package
+  names target cryptocurrency developers (eth-keystore-utils,
+  bip39-wordlist-utils, btc-wallet-tools). Sixteen are typosquats of
+  real gems (bitcion, kecack, solaan-ruby, etheremu.rb).
+  OpenSourceMalware tracks the set as rubygems-btc-shell.
+
+  Every malicious gem declares a native extension. RubyGems runs
+  ext/req_throttle_mini/extconf.rb during gem install or bundle install.
+  The Ruby under lib/ is a decoy. Newer gems also ship a C file with an
+  empty Init_ function so the tree looks like a real extension. The
+  script stops when it sees CI variables, sandbox-like hostnames,
+  scanner-like usernames, or an analysis directory. It continues only
+  if uptime is over 30 minutes and the home directory holds .ssh,
+  .gitconfig, .npmrc, .gem/credentials, or .bundle. It then double-forks,
+  detaches, and evals a Base64 payload.
+
+  Eleven gems open a /bin/sh reverse shell to 45.138.12.177 on TCP 8089
+  or 8090 and retry every 30 seconds. Thirty-one wait 20 to 40 minutes,
+  then download wgkit.tar.gz from the same host on port 8092 and run
+  wg_install.sh. SafeDep stopped at that downloader. OpenSourceMalware
+  unpacked the archive: the installer copies the kit to
+  $HOME/.cache/.wg, tries to trust a certificate named Wallet Guard Root
+  CA, writes proxy variables into shell rc files, and adds two desktop
+  autostart entries. A local proxy on 127.0.0.1:8899 intercepts listed
+  exchange hosts and injects a script that replaces withdrawal addresses.
+  A grabber reads wallet-extension storage, seed-like files, and the
+  clipboard (Win32 on Windows, xclip or xsel on Unix), and posts to
+  45.138.12.177:8080. Neither lab named a confirmed downstream victim.
+  Amazon Inspector published MAL-2026-17598 for eth-keystore-utils. This
+  entry does not claim an advisory exists for every gem name.
+
+attacks:
+  - attack: Attacker-owned RubyGems account
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          All 42 malicious gems were published by reqthrottle_3474.
+          OpenSourceMalware records the profile display name Ghost Dev.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Forty-two gems published in about one hour on 5 October 2026.
+          SafeDep lists the names; sixteen are typosquats and the rest
+          are new crypto-utility names.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          Non-typosquat names such as eth-keystore-utils ship decoy
+          library code that parses wallet files, so the gem looks like
+          a developer utility.
+      - techniqueID: T0129
+        techName: Typosquatting
+        tactic: Initial Access
+        comment: |
+          Sixteen names misspell real gems, including bitcion, kecack,
+          solaan-ruby, and etheremu.rb.
+  - attack: Install-time loader on the developer machine
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          extconf.rb runs during gem install and bundle install. The
+          malicious logic is not in the decoy lib/ files.
+      - techniqueID: T0198
+        techName: Malicious Build Time Dependencies
+        tactic: Defense Evasion
+        comment: |
+          The extension directory is dressed as a native build, including
+          an empty C Init_ in the later gems, the same shape as StubMaker.
+      - techniqueID: T0172
+        techName: Runtime backdoor
+        tactic: Execution
+        comment: |
+          Eleven gems leave a reconnecting /bin/sh reverse shell to
+          45.138.12.177:8089 or :8090 after install finishes.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          The second-stage grabber reads browser wallet-extension storage,
+          Exodus and Electrum files, and seed-like filenames. The install
+          check itself looks for .ssh, .gem/credentials, and .npmrc before
+          it runs.
+
+gaps:
+  - CI-variable, hostname, username, and directory checks that skip
+    sandboxes have no technique.
+  - Desktop autostart entries and installing a user-trusted root CA are
+    not T0148, which is a scheduled task on a self-hosted runner.
+  - Withdrawal-address substitution and clipboard swap have no technique.
+  - The 20-40 minute sleep is a delay, not a condition logic bomb (T0150).
+  - The local TLS interception proxy has no technique.
+
+links:
+  - https://safedep.io/rubygems-crypto-gems-install-time-reverse-shell
+  - https://opensourcemalware.com/blog/malicious-crypto-shell
+  - https://osv.dev/vulnerability/MAL-2026-17598

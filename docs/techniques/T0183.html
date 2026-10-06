@@ -33,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0183</p>
 
-        <p class="meta">T0183 · Credential Access · TA08 · observed in 3 incident(s)</p>
+        <p class="meta">T0183 · Credential Access · TA08 · observed in 4 incident(s)</p>
         <h1>Harvesting short-lived token</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span> <span class="chip">Infrastructure as code</span></div>
         <p>This attack technique involves searching for short-lived tokens that are used during the CI/CD process and extracting them for later use in unauthorized activities.<br>Short-lived tokens are often used in CI/CD systems to authenticate communication between different components, such as the build server and the deployment server.<br>An attacker can obtain these tokens from CI/CD logs, variable groups, secure files, etc.<br>These tokens typically have a limited lifespan, but if an attacker is able to capture them, they can use them to gain unauthorized access to the system or associated resources.</p>
@@ -43,7 +43,7 @@
         <ul><li><span class="id">M1120</span> Store credentials in vault</li><li><span class="id">M1830</span> Restrict token access</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1590</span> Implement continuous monitoring and logging of the CI/CD process</li></ul>
-        <h2>Observed in incidents (3)</h2><ul><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS20.html">@7nohe/openapi-react-query-codegen poisoned publish workflow</a></li><li><a href="../incidents/AS16.html">TanStack Mini Shai-Hulud (CVE-2026-45321)</a></li></ul>
+        <h2>Observed in incidents (4)</h2><ul><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS301.html">@subql/common 5.8.3 published after a CI artifact swap</a></li><li><a href="../incidents/AS20.html">@7nohe/openapi-react-query-codegen poisoned publish workflow</a></li><li><a href="../incidents/AS16.html">TanStack Mini Shai-Hulud (CVE-2026-45321)</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://www.synacktiv.com/en/publications/cicd-secrets-extraction-tips-and-tricks.html" rel="noopener">https://www.synacktiv.com/en/publications/cicd-secrets-extraction-tips-and-tricks.html</a></li></ul>
         
