@@ -33,7 +33,13 @@ description: |
   victim compromise; the report is operator reach, including packages
   still installable on 29 September 2026. macOS and Linux launch paths
   are present in the install scripts, but the fetched payload is a
-  Windows PE and those paths produce no second stage.
+  Windows PE and those paths produce no second stage. Checkmarx Zero (5
+  Oct 2026) documented the same operator. The title phrase about signing
+  their work is branding: publisher handles, git author
+  corpmalfex@gmail.com, a README name Murizada, and the key
+  malfexteam2027. It is not an attacker code-signing identity. The AutoIt3
+  binary remains the vendor-signed interpreter. MAL-2026-17320 covers only
+  cdn-img-fetch 1.0.0 and 1.0.1.
 
 attacks:
   - attack: Attacker-owned npm accounts
@@ -101,6 +107,8 @@ gaps:
 
 links:
   - https://www.cloudsek.com/blog/malfex-malicious-npm-postinstall-supply-chain-campaign
+  - https://checkmarx.com/zero-post/malfex-npm-malware-campaign-three-payloads-and-an-adversary-that-signs-their-work/
+  - https://osv.dev/vulnerability/MAL-2026-17320
   - https://cdn.cloudsek.com/cloudsek-blog-pdfs/malfex-a-mal-lvi.pdf
   - https://osv.dev/vulnerability/MAL-2026-16385
   - https://osv.dev/vulnerability/MAL-2026-16384

@@ -1,4 +1,27 @@
 entries:
+- date: '2026-10-07'
+  id: oct7-second-lab
+  title: Second-lab notes on four existing incidents
+  items:
+  - 'AS25 gained the 6 Oct ReversingLabs recap of indexed-btree. Same
+    runtime loader, not a new package. Command-and-control was still up
+    when they wrote. https://www.reversinglabs.com/blog/npm-dependency-installation-security-measure-defeated'
+  - 'AS297 gained the 5 Oct Checkmarx Zero write-up of MALFEX. Same
+    operator. The title phrase about signing their work is branding
+    (publisher handles, git author, README name), not a code-signing
+    identity. MAL-2026-17320 covers only cdn-img-fetch 1.0.0 and 1.0.1.
+    https://checkmarx.com/zero-post/malfex-npm-malware-campaign-three-payloads-and-an-adversary-that-signs-their-work/'
+  - 'AS85 gained the 28 Sep OX Security count of the same Baileys
+    channel-follow campaign: 101 packages, about 490,000 downloads, 16
+    removed as of that date. git tag added for the GitHub-hosted channel
+    list. https://www.ox.security/blog/phantomsub-malicious-npm-campaign-secretly-adds-users-to-whatsapp-spam-channels/'
+  - 'AS190 gained the OpenInfra Europe notice that Nordix Artifactory
+    was compromised on 31 Aug 2026 through CVE-2026-82329. Downloads
+    from artifactory.nordix.org between 28 Aug and 15 Sep 2026 should
+    be treated as potentially tampered. https://openinfraeurope.org/'
+  - 'No new operation. Other tracked posts since 6 Oct were product
+    notes, a git-history how-to, ICS advisories, or the Citrix NetScaler
+    KEV add CVE-2026-88779.'
 - date: '2026-10-06'
   id: rubygems-subql-intake
   title: RubyGems crypto-shell gems and SubQuery 5.8.3

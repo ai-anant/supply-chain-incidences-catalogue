@@ -9,6 +9,10 @@ description: 'Wiz Research (10 Sep 2026): active exploitation of three Artifacto
   vulnerabilities chained to bypass authentication and gain admin control.
 
   Artifact-registry compromise is a supply-chain origin (T0209 class).
+  OpenInfra Europe notice: their Nordix Artifactory was compromised on
+  31 Aug 2026 through CVE-2026-82329. Downloads from
+  artifactory.nordix.org between 28 Aug and 15 Sep 2026 should be
+  treated as potentially tampered. Discovered 15 Sep.
 
   '
 attacks:
@@ -32,3 +36,4 @@ attacks:
     comment: Three Artifactory vulnerabilities identified and chained.
 links:
 - https://www.wiz.io/blog/artifactory-under-attack-in-the-wild-exploitation-of-cve-2026-42016-cve-2026-4201
+- https://openinfraeurope.org/

@@ -35,14 +35,14 @@
 
         <p class="meta">AS85 · 2026-08</p>
         <h1>Baileys npm forks farming WhatsApp Channel follows</h1>
-        <p><a class="plat" href="../platforms/npm.html">npm</a></p>
-        <p>SafeDep tracked a campaign of npm packages that fork the Baileys<br>WhatsApp library so that a developer’s own WhatsApp account follows<br>attacker channels on install/use, inflating follower counts and<br>injecting advertising. Abuse of a real messaging API from a lookalike<br>dependency, not a classic infostealer.</p>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/git.html">Git / GitHub</a></p>
+        <p>SafeDep tracked a campaign of npm packages that fork the Baileys<br>WhatsApp library so that a developer’s own WhatsApp account follows<br>attacker channels on install/use, inflating follower counts and<br>injecting advertising. Abuse of a real messaging API from a lookalike<br>dependency, not a classic infostealer. OX Security (28 Sep 2026)<br>counted 101 packages in the same campaign, about 490,000 downloads,<br>with 16 removed as of that date. One variant fetches the channel list<br>from a GitHub repo at runtime; others hardcode it in cleartext or<br>base64. No credential theft in that write-up.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li></ul>
         <h2><span class="stage">supply-chain</span> forked library abuse</h2><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Baileys forks/lookalikes on npm.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>Packages that drive WhatsApp Channel follows.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Runs with the victim’s WhatsApp session.</p></div>
         
         <h2>Sources</h2>
-        <ul class='refs'><li><a href="https://safedep.io/malicious-baileys-npm-whatsapp-campaign" rel="noopener">https://safedep.io/malicious-baileys-npm-whatsapp-campaign</a></li><li><a href="https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23" rel="noopener">https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23</a></li></ul>
+        <ul class='refs'><li><a href="https://safedep.io/malicious-baileys-npm-whatsapp-campaign" rel="noopener">https://safedep.io/malicious-baileys-npm-whatsapp-campaign</a></li><li><a href="https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23" rel="noopener">https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23</a></li><li><a href="https://www.ox.security/blog/phantomsub-malicious-npm-campaign-secretly-adds-users-to-whatsapp-spam-channels/" rel="noopener">https://www.ox.security/blog/phantomsub-malicious-npm-campaign-secretly-adds-users-to-whatsapp-spam-channels/</a></li></ul>
         
 </main>
 

@@ -3,6 +3,7 @@ type: Attack Story
 date: 2026-08
 platforms:
   - npm
+  - git
 
 summary: Baileys npm forks farming WhatsApp Channel follows
 description: |
@@ -10,7 +11,11 @@ description: |
   WhatsApp library so that a developer’s own WhatsApp account follows
   attacker channels on install/use, inflating follower counts and
   injecting advertising. Abuse of a real messaging API from a lookalike
-  dependency, not a classic infostealer.
+  dependency, not a classic infostealer. OX Security (28 Sep 2026)
+  counted 101 packages in the same campaign, about 490,000 downloads,
+  with 16 removed as of that date. One variant fetches the channel list
+  from a GitHub repo at runtime; others hardcode it in cleartext or
+  base64. No credential theft in that write-up.
 
 attacks:
   - attack: forked library abuse
@@ -35,3 +40,4 @@ attacks:
 links:
   - https://safedep.io/malicious-baileys-npm-whatsapp-campaign
   - https://opensourcemalware.com/blog/the-opensourcemalwareshow-episode23
+  - https://www.ox.security/blog/phantomsub-malicious-npm-campaign-secretly-adds-users-to-whatsapp-spam-channels/

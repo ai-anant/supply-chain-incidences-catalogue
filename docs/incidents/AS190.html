@@ -36,13 +36,13 @@
         <p class="meta">AS190 · 2026-09</p>
         <h1>In-the-wild JFrog Artifactory auth bypass (CVE-2026-42016/42018/82329)</h1>
         <p><a class="plat" href="../platforms/cicd-saas.html">CI/CD SaaS</a></p>
-        <p>Wiz Research (10 Sep 2026): active exploitation of three Artifactory<br>vulnerabilities chained to bypass authentication and gain admin control.<br>Artifact-registry compromise is a supply-chain origin (T0209 class).</p>
+        <p>Wiz Research (10 Sep 2026): active exploitation of three Artifactory<br>vulnerabilities chained to bypass authentication and gain admin control.<br>Artifact-registry compromise is a supply-chain origin (T0209 class). OpenInfra Europe notice: their Nordix Artifactory was compromised on 31 Aug 2026 through CVE-2026-82329. Downloads from artifactory.nordix.org between 28 Aug and 15 Sep 2026 should be treated as potentially tampered. Discovered 15 Sep.</p>
         <h2>Mapped techniques</h2>
         <ul><li><a href="../techniques/T0209.html">T0209</a> Compromise package registry or CDN origin</li><li><a href="../techniques/T0137.html">T0137</a> Weak authentication methods</li><li><a href="../techniques/T0104.html">T0104</a> Discover coding flaws</li></ul>
         <h2><span class="stage">supply-chain</span> registry takeover</h2><div class="card"><p class="meta"><a href="../techniques/T0209.html">T0209</a> · Initial Access · Compromise package registry or CDN origin</p><p>Artifactory admin via chained CVEs.</p></div><div class="card"><p class="meta"><a href="../techniques/T0137.html">T0137</a> · Initial Access · Weak authentication methods</p><p>Auth bypass chain.</p></div><div class="card"><p class="meta"><a href="../techniques/T0104.html">T0104</a> · Reconnaissance · Discover coding flaws</p><p>Three Artifactory vulnerabilities identified and chained.</p></div>
         
         <h2>Sources</h2>
-        <ul class='refs'><li><a href="https://www.wiz.io/blog/artifactory-under-attack-in-the-wild-exploitation-of-cve-2026-42016-cve-2026-4201" rel="noopener">https://www.wiz.io/blog/artifactory-under-attack-in-the-wild-exploitation-of-cve-2026-42016-cve-2026-4201</a></li></ul>
+        <ul class='refs'><li><a href="https://www.wiz.io/blog/artifactory-under-attack-in-the-wild-exploitation-of-cve-2026-42016-cve-2026-4201" rel="noopener">https://www.wiz.io/blog/artifactory-under-attack-in-the-wild-exploitation-of-cve-2026-42016-cve-2026-4201</a></li><li><a href="https://openinfraeurope.org/" rel="noopener">https://openinfraeurope.org/</a></li></ul>
         
 </main>
 

@@ -13,7 +13,9 @@ description: |
   host and beacons Slack/Telegram; C2 is an Ethereum Sepolia contract;
   stage-2 is X25519/ECDH-unwrapped on-chain. Nine sibling packages reached
   366k–1.95M downloads. Blocking lifecycle scripts only moved the payload
-  from install time to import time.
+  from install time to import time. ReversingLabs (6 Oct 2026) recapped
+  the same package and said the command-and-control infrastructure was
+  still running.
 
 attacks:
   - attack: npm indexed-btree and siblings
@@ -54,3 +56,4 @@ gaps:
 
 links:
   - https://checkmarx.com/zero-post/npm-btree-malware-campaign-affects-millions-of-downloads-no-need-for-install-script/
+  - https://www.reversinglabs.com/blog/npm-dependency-installation-security-measure-defeated
