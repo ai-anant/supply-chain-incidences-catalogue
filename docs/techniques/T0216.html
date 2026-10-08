@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0216 Wipe developer profile if a stolen token is revoked · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0216</p>
+
+        <p class="meta">T0216 · Impact · TA12 · observed in 1 incident(s)</p>
+        <h1>Wipe developer profile if a stolen token is revoked</h1>
+        <div class="chips"><span class="chip">Secrets Hygiene</span> <span class="chip">Open Source Security</span></div>
+        <p>After stealing a credential, the attacker installs a local background<br>service that keeps a copy of that credential and polls the identity<br>provider. If the provider rejects the credential — the ordinary result<br>of revocation — the service deletes the developer&#x27;s home directory or<br>user profile. The first remediation step is what triggers the wipe.<br>Distinct from T0149 (delete repositories): the target is the workstation<br>profile, not the remote repository. Uninstalling the package that<br>planted the service does not stop a copy that already landed under<br>the user config directory.</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from StepSecurity&#x27;s write-up of tensorlake@0.5.144. gh-token-monitor polls the stolen GitHub token and deletes the home directory or Windows user profile if GitHub rejects it.</p><ul class='refs'><li><a href="https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm" rel="noopener">https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Detections</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS302.html">tensorlake 0.5.144 steals tokens, then wipes the home directory if they are revoked</a></li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm" rel="noopener">https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

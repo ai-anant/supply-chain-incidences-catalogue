@@ -189,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 157
+        "incidentCount": 158
       },
       {
         "id": "T0110",
@@ -213,7 +213,7 @@
         ],
         "url": "techniques/T0111.html",
         "description": "A malicious code contribution to an open-source repository attack is a type of cyber attack that involves an attacker submitting code with malicious intent to an open-source repository. \nOpen-source repositories are used to store and manage code for open-source software projects, and they rely on community contributions to improve and maintain the codebase. \nIn this attack, the attacker may submit a seemingly harmless code contribution to the repository. However, the code contains a hidden malware payload that can be triggered later to cause damage. \nAlternatively, the code may include a backdoor that allows the attacker to gain unauthorized access to the system running the open-source software.\nOnce the code is accepted into the repository, it can be difficult to detect the presence of the malicious payload.\nThe code may be integrated into the open-source project, distributed to other projects that depend on it, and even included in software distributions used by many people. \nThis can result in a wide-scale compromise of systems that use the affected code.\n",
-        "incidentCount": 31
+        "incidentCount": 32
       },
       {
         "id": "T0121",
@@ -226,7 +226,7 @@
         ],
         "url": "techniques/T0121.html",
         "description": "A compromised legitimate artifact attack is a type of cyber attack in which an attacker replaces a legitimate package or container image with a malicious version, often without the knowledge of the original developer or distributor. \nThis attack takes advantage of the trust that users place in legitimate packages or container images, which are often used to deploy software across multiple environments.\nIn this attack, the attacker may gain access to the repository or registry where the legitimate artifact is stored, either by exploiting a vulnerability or through social engineering tactics. \nThe attacker then replaces the legitimate artifact with a malicious version that contains malware or other harmful code. \nOnce the compromised artifact is downloaded and deployed, it can compromise the system and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 66
+        "incidentCount": 67
       },
       {
         "id": "T0141",
@@ -681,7 +681,7 @@
         ],
         "url": "techniques/T0151.html",
         "description": "A package installation script injection attack is a type of security exploit that involves an attacker injecting malicious code into a legitimate software package installation script.\nThe attack typically occurs when an attacker gains access to the distribution network of a software vendor or package manager, and injects malicious code into the package installation script. \nThis code may be designed to carry out a range of nefarious activities, such as stealing sensitive information, creating backdoors, or executing arbitrary code on the victim's system.\nOnce the victim downloads and installs the compromised software package, the injected code is executed, giving the attacker access to the victim's system.\n",
-        "incidentCount": 40
+        "incidentCount": 41
       },
       {
         "id": "T0152",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 48
+        "incidentCount": 49
       },
       {
         "id": "T0166",
@@ -728,7 +728,7 @@
         ],
         "url": "techniques/T0166.html",
         "description": "The Trigger pipeline execution (Poisoned pipeline execution) attack abuses permissions against an SCM repository, in a way that causes a CI pipeline to execute malicious commands.\nUsers that have permissions to manipulate the CI configuration files, or other files which the CI pipeline job relies on, can modify them to contain malicious commands, ultimately poisoning the CI pipeline executing these commands.\nPipelines executing unreviewed code, for example those which are triggered directly off of pull requests or commits to arbitrary repository branches, are more susceptible to Trigger pipeline execution. \nThe reason is that these scenarios, by design, contain code which has not undergone any reviews or approvals.\nOnce able to execute malicious code within the CI pipeline, the attacker can conduct a wide array of malicious operations, all within the context of the pipelines identity.\n",
-        "incidentCount": 14
+        "incidentCount": 15
       },
       {
         "id": "T0172",
@@ -918,7 +918,7 @@
         ],
         "url": "techniques/T0210.html",
         "description": "The attacker writes into hidden agent directories and config that\ndevelopers and CI treat as local clutter \u2014 `.claude/`, `.cursor/`,\n`.vscode/`, Copilot/Gemini/Codex settings, MCP server entries, or\nPython `.pth` startup hooks. The next time the human or the agent\nopens the project, attacker instructions run with the developer's\nalready-granted tools. Uninstalling a malicious package does not\nclear this. Observed in Morphisec's Hades campaign, GTIG DUSTMAKER,\nand Mandiant's hijacked coding-assistant case.\n",
-        "incidentCount": 13
+        "incidentCount": 14
       }
     ],
     "amount": 10,
@@ -1038,7 +1038,7 @@
         ],
         "url": "techniques/T0195.html",
         "description": "By modifying metadata in commits, attackers can easily push their own code to code repositories. For example, by changing the name and email in a commit it is possible to pass as a legitimate user.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       },
       {
         "id": "T0198",
@@ -1186,7 +1186,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 101
+        "incidentCount": 102
       },
       {
         "id": "T0185",
@@ -1243,7 +1243,7 @@
         ],
         "url": "techniques/T0169.html",
         "description": "The Push Implants across Repositories attack technique is a type of lateral movement tactic where an attacker gains access to a victim's code repository, modifies the code by implanting malicious code or backdoors, and pushes the modified code back to the repository.\nThis technique often involves the attacker stealing valid credentials, such as login credentials or SSH keys, to gain access to the victim's code repository. \nThey then modify the code, implanting the malicious code or backdoors, and push the modified code back to the repository. \nThe victim then unknowingly deploys the modified code, resulting in the compromise of their systems.\n",
-        "incidentCount": 14
+        "incidentCount": 15
       }
     ],
     "amount": 2,
@@ -1475,9 +1475,21 @@
         "url": "techniques/T0201.html",
         "description": "The downstream consequence of a software supply-chain attack: customers who\nconsumed a poisoned update, package, or service are themselves breached.\nSolarWinds Orion, 3CX, Codecov, and Polyfill.io are canonical examples \u2014\nthe supplier is the delivery vehicle; customer environments are the prize.\nModeling this as its own Impact technique lets defenders map \"what happened\nto us because we trusted a vendor\" without collapsing it into a generic\nbackdoor label.\n",
         "incidentCount": 15
+      },
+      {
+        "id": "T0216",
+        "name": "Wipe developer profile if a stolen token is revoked",
+        "tooltip": "Wipe developer profile if a stolen token is revoked",
+        "tags": [
+          "Secrets Hygiene",
+          "Open Source Security"
+        ],
+        "url": "techniques/T0216.html",
+        "description": "After stealing a credential, the attacker installs a local background\nservice that keeps a copy of that credential and polls the identity\nprovider. If the provider rejects the credential \u2014 the ordinary result\nof revocation \u2014 the service deletes the developer's home directory or\nuser profile. The first remediation step is what triggers the wipe.\nDistinct from T0149 (delete repositories): the target is the workstation\nprofile, not the remote repository. Uninstalling the package that\nplanted the service does not stop a copy that already landed under\nthe user config directory.\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 9,
+    "amount": 10,
     "tooltip": "Impact",
     "tacticid": "TA12"
   }

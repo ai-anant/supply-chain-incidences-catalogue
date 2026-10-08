@@ -1,4 +1,36 @@
 entries:
+- date: '2026-10-08'
+  id: tensorlake-intake
+  title: Tensorlake npm hostage-token worm
+  items:
+  - 'AS302: tensorlake@0.5.144 (StepSecurity, 8 October; npm registry time
+    01:12 UTC; still latest at collection). Thirteen commits on main of
+    tensorlakeai/tensorlake, e90c47b through 6386121, authored as Shanshan
+    Wang (cooleel). The first was a web-UI upload. cooleel then dispatched
+    the TypeScript SDK release workflow (Actions run 37706134202). The
+    package has a real provenance attestation of that build. preinstall
+    skips CI, downloads Bun, and runs an obfuscated stealer. Stolen npm
+    tokens republish the victim''s packages. Stolen GitHub tokens commit
+    a Claude SessionStart hook and a VS Code folderOpen task as
+    claude@users.noreply.github.com. gh-token-monitor deletes the home
+    directory or Windows profile if the stolen GitHub token is revoked.
+    Compromise of the named account is not established. No GHSA or OSV
+    id, and no named downstream victim. New technique T0216 for the wipe.
+    https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm'
+  - 'AS60 gained the 7 October Socket note of 16 further Firefox Add-ons
+    (Rabby and OKX clones). Socket assesses this is the same August
+    campaign, not a new operation. Mozilla had unpublished them as of
+    5 October. https://socket.dev/blog/firefox-crypto-wallet-stealers'
+  - 'AS28 gained Unit 42''s August ChainDrop analysis and the 8 October
+    note on Web3 command-and-control in that worm. Same keyv / cacheable
+    operation. https://unit42.paloaltonetworks.com/chaindrop-npm-worm-analysis/'
+  - 'AS35 gained the same 8 October Unit 42 note for the PolinRider
+    section (Web3 C2 across npm, Go, and Packagist). Not a new package.
+    https://unit42.paloaltonetworks.com/web3-cloud-supply-chain-attacks/'
+  - 'No other new operation. Tracked posts since 7 October were product
+    notes, CRA commentary, a ransomware affiliate write-up (Gentlemen),
+    CISA KEV adds for Citrix NetScaler (already noted) and Zammad, and
+    a package-detection paper.'
 - date: '2026-10-07'
   id: oct7-second-lab
   title: Second-lab notes on four existing incidents

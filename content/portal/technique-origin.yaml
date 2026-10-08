@@ -1007,3 +1007,12 @@ techniques:
     sources:
     - https://opensourcemalware.com/domain/claude-desktop.com
     - https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
+  T0216:
+    summary: Wipe developer profile if a stolen token is revoked
+    tactic: Impact
+    kind: incident
+    note: This catalogue, from StepSecurity's write-up of tensorlake@0.5.144.
+      gh-token-monitor polls the stolen GitHub token and deletes the home
+      directory or Windows user profile if GitHub rejects it.
+    sources:
+    - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm

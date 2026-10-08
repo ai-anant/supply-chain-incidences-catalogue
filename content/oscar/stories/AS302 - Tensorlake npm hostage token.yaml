@@ -1,0 +1,169 @@
+id: AS302
+type: Attack Story
+date: 2026-10
+platforms:
+  - npm
+  - git
+  - github-actions
+  - workstation
+  - ai-agents
+  - vscode
+  - linux
+  - windows
+
+summary: tensorlake 0.5.144 steals tokens, then wipes the home directory if they are revoked
+
+description: |
+  On 8 October 2026 StepSecurity reported tensorlake@0.5.144 on npm.
+  The registry still listed that version as latest at collection, published
+  01:12 UTC, with a preinstall of node lib/setup.mjs. Version 0.5.143 was
+  published 6 October and is the pin StepSecurity recommends.
+
+  The payload files were committed to main of tensorlakeai/tensorlake.
+  StepSecurity names the range e90c47b to 6386121 and says the first
+  commit landed at 01:20 UTC on 7 October, with seven more over the
+  following hours, none through a pull request. GitHub shows 13 commits
+  in that range, all authored as Shanshan Wang (login cooleel). The first,
+  "Add files via upload", was committed through the web UI (committer
+  web-flow). The last is 23:41 UTC the same day. Neither the blog nor
+  the commits establish that the named person was the operator.
+
+  At 00:08 UTC on 8 October, cooleel started a workflow_dispatch of
+  "Release - TypeScript SDK (npm)" on 6386121 (Actions run 37706134202).
+  It succeeded. npm recorded the 0.5.144 publish at 01:12 UTC, matching
+  StepSecurity. The package carries a provenance attestation because it
+  was built from that repo's main. The attestation names the build. It
+  does not say the commit was safe.
+
+  setup.mjs skips CI, so developer machines are the target. It downloads
+  the Bun runtime and runs an obfuscated 856 KB file, which StepSecurity
+  decoded without executing. The payload collects GitHub and npm tokens,
+  cloud keys, Kubernetes and Vault secrets, SSH keys, saved browser
+  logins, and config for Claude, Cursor, and Windsurf. It encrypts that
+  data and sends it to a public GitHub repo it creates in the victim's
+  account, or to iseekaigogo.com. The repo description the payload sets
+  is attacker branding. It is not evidence this is the 2025 Shai-Hulud
+  wave or a later named wave.
+
+  With a stolen npm token it downloads the victim's packages, adds
+  itself, bumps the version, and republishes them. With a stolen GitHub
+  token it commits .claude/settings.json (a SessionStart hook) and
+  .vscode/tasks.json (a folderOpen task) into repos it can write, as
+  claude@users.noreply.github.com, message "chore: update dependencies".
+
+  If it has a GitHub token it also installs gh-token-monitor. For up to
+  24 hours the service checks that token against the GitHub API every
+  60 seconds. If GitHub rejects it, the service runs rm -rf ~/ on Linux
+  or macOS, or a PowerShell delete of the user profile on Windows.
+  Revoking the token is what starts the wipe. StepSecurity told
+  maintainers in tensorlakeai/tensorlake issue 1014. No OSV or GHSA
+  record existed at collection, and the report names no downstream victim.
+
+attacks:
+  - attack: Poisoned main and the release workflow
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0111
+        techName: Malicious code contribution to an open-source repository
+        tactic: Resource Development
+        comment: |
+          Thirteen commits on main, e90c47b through 6386121, authored as
+          Shanshan Wang (cooleel). The first was a web-UI upload. No pull
+          request. Compromise of that person is not established.
+      - techniqueID: T0121
+        techName: Compromised legitimate artifact
+        tactic: Resource Development
+        comment: |
+          tensorlake is the project's own npm package. 0.5.144 replaced
+          0.5.143 as latest. The files on npm match main.
+      - techniqueID: T0166
+        techName: Trigger pipeline execution
+        tactic: Execution
+        comment: |
+          workflow_dispatch of the TypeScript SDK npm release by cooleel,
+          Actions run 37706134202, started 00:08 UTC on 8 October on
+          commit 6386121 and succeeded.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          tensorlake@0.5.144 published 01:12 UTC on 8 October and was
+          still npm latest at collection. preinstall runs node lib/setup.mjs.
+  - attack: Install on a developer machine
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          The preinstall hook runs setup.mjs. It skips itself on CI.
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          setup.mjs downloads Bun and runs an obfuscated 856 KB file.
+          StepSecurity decoded that file without running it. Bun here is
+          a downloaded interpreter for the payload, not a compromised
+          compiler.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          GitHub and npm tokens, cloud keys, Kubernetes and Vault secrets,
+          SSH keys, saved browser logins, and Claude, Cursor, and Windsurf
+          config. These are capabilities in the decoded file, not a named
+          victim theft.
+      - techniqueID: T0210
+        techName: Poison AI coding-agent config or workspace
+        tactic: Persistence
+        comment: |
+          Stolen GitHub tokens are used to commit a SessionStart hook in
+          .claude/settings.json and a folderOpen task in .vscode/tasks.json.
+      - techniqueID: T0169
+        techName: Push implants across repositories
+        tactic: Lateral Movement
+        comment: |
+          The same GitHub token commits those files into repos the token
+          can write. A stolen npm token is used to republish the victim's
+          own packages with the payload added.
+      - techniqueID: T0195
+        techName: Spoofed Commits
+        tactic: Defense Evasion
+        comment: |
+          Spread commits use author claude@users.noreply.github.com and
+          the message "chore: update dependencies".
+      - techniqueID: T0216
+        techName: Wipe developer profile if a stolen token is revoked
+        tactic: Impact
+        comment: |
+          gh-token-monitor polls the stolen GitHub token every 60 seconds
+          for up to 24 hours. If GitHub rejects it, the service deletes
+          the home directory (Linux, macOS) or the user profile (Windows).
+
+gaps:
+  - The commits and the workflow_dispatch use login cooleel. The write-up
+    does not establish compromise versus an authorized maintainer, so
+    this is not mapped as T0113.
+  - npm provenance on 0.5.144 is a real attestation of the poisoned main
+    build. That is not T0206, which is forging or omitting provenance.
+  - Exfiltration to a public repo created in the victim account, or to
+    iseekaigogo.com, is not T0156 (webhooks).
+  - The CI skip and the Bun download have no separate technique.
+  - The description the payload writes on its exfil repo is branding.
+    It is not a basis for merging this publish into an earlier wave.
+  - No confirmed downstream install is in the report. No GHSA or OSV
+    id existed at collection.
+
+links:
+  - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm
+  - https://github.com/tensorlakeai/tensorlake/issues/1014
+  - https://github.com/tensorlakeai/tensorlake/commit/e90c47bbb208e99cac8aa678405b2133f6cb3f52
+  - https://github.com/tensorlakeai/tensorlake/commit/6386121c561e74fec143a138d5cc3d3bbabdfe8c
+  - https://github.com/tensorlakeai/tensorlake/actions/runs/37706134202
+  - https://www.npmjs.com/package/tensorlake/v/0.5.144

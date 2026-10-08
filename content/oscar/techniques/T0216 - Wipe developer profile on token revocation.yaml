@@ -1,0 +1,32 @@
+id: T0216
+type: Technique
+
+tactic: Impact
+
+realm:
+  - Secrets Hygiene
+  - Open Source Security
+
+summary: Wipe developer profile if a stolen token is revoked
+
+description: |
+  After stealing a credential, the attacker installs a local background
+  service that keeps a copy of that credential and polls the identity
+  provider. If the provider rejects the credential — the ordinary result
+  of revocation — the service deletes the developer's home directory or
+  user profile. The first remediation step is what triggers the wipe.
+  Distinct from T0149 (delete repositories): the target is the workstation
+  profile, not the remote repository. Uninstalling the package that
+  planted the service does not stop a copy that already landed under
+  the user config directory.
+
+mitigations: []
+
+detections: []
+
+references:
+  - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm
+
+metadata:
+  version: 0.1
+  state: draft

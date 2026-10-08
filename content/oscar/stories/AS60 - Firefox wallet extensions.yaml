@@ -12,6 +12,19 @@ description: |
   them to attacker infrastructure. Companion campaign to the Chrome/Edge
   drainers (AS58), on Mozilla’s store.
 
+  On 7 October 2026 Socket reported 16 more listings and assessed, with
+  high confidence, that they continue this August campaign. Four are
+  Rabby Wallet clones branded Raabby WaIIet. They hook mnemonic and
+  private-key import and send the raw secret to a Cloudflare Worker in
+  a GET query. Twelve are OKX Wallet clones. Eleven send a 12- or
+  24-word phrase to a Worker; sipoo-grozza@browserweb.com ships broken
+  and does not load its background script. Fifteen contact
+  icy-star-f45c.workers.dev. The broken variant uses
+  fondationanimalaidrelief.workers.dev and the same frontend. Every
+  manifest declares Firefox data collection permission none. Socket
+  says Mozilla had unpublished these 16 as of 5 October. No confirmed
+  theft of a named wallet is in the report.
+
 attacks:
   - attack: malicious firefox add-ons
     index: 1
@@ -22,7 +35,10 @@ attacks:
       - techniqueID: T0109
         techName: Publish malicious artifact
         tactic: Resource Development
-        comment: 77 listings on addons.mozilla.org.
+        comment: |
+          77 listings on addons.mozilla.org in the August report. Sixteen
+          more in the 7 October continuation, unpublished by Mozilla as
+          of 5 October.
       - techniqueID: T0110
         techName: Advertise malicious artifact
         tactic: Resource Development
@@ -43,3 +59,4 @@ attacks:
 links:
   - https://socket.dev/blog/firefox-crypto-wallet-theft
   - https://socket.dev/blog/8-more-malicious-firefox-extensions
+  - https://socket.dev/blog/firefox-crypto-wallet-stealers
