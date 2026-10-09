@@ -1,0 +1,132 @@
+id: AS303
+type: Attack Story
+date: 2026-10
+platforms:
+  - npm
+  - windows
+  - workstation
+
+summary: Seven fake NebulaAI npm packages drop a Windows KNTRAT at install
+
+description: |
+  On 8 October 2026 CloudSEK published NEBULA. Seven npm packages pose
+  as a NebulaAI SDK and were published from four sequential burner
+  accounts: nebulallms, nebulallms2, nebulallms3, and nebulallms4. Each
+  account used a distinct uberip.com address. CloudSEK dates the start
+  to late September 2026. OSV records for six names were published from
+  28 September through 5 October.
+
+  api-nebula and llm-nebula were still installable on 8 October under
+  nebulallms3. npm replaced nebula-sdk and nebulajs-api with security
+  stubs. nebula-llm and nebulaai-sdk were removed. On 2 October
+  nebulallms4 published testtestkjkldfnjdfn and removed it 41 minutes
+  later. CloudSEK treats that name as a test build. Packages whose
+  names merely contain nebula, such as particle engines, are not in
+  this set.
+
+  package.json points main at nebula.js, a plain client class
+  NebulaAIClient with default base URL api.nebulaai.dev and model
+  nebula-orbit-3. That domain does not resolve and is not command and
+  control. The preinstall script is node preinstall.cjs, so npm runs
+  the dropper before a developer can read the facade. The same
+  preinstall.cjs, sha256
+  8bc90df9b387849338d9c61a8d379cfbb0d70ea576c0e37e1fb07ba164921807, is
+  byte-identical across nebula-sdk, nebula-llm, and nebulaai-sdk. The
+  test build replaced that file and kept the same nebula.js.
+
+  The dropper writes a Windows PE to
+  %LOCALAPPDATA%\Microsoft\Conhost\conhost.exe and starts it detached.
+  One build embeds the PE as base64 then zlib. Another fetches it
+  during install. The recovered binary, sha256
+  5222dd57b8859e791a16abcf7f616bbc59f8cf248798c7c8c2ba800f0b52cd8c, is
+  a modified KNTRAT. Strings name command host 65.87.7.132 and
+  user-agent kntrat/0xB15B00B6. In a twelve-minute lab run it did not
+  beacon. CloudSEK reads that as anti-analysis, not an inert sample,
+  and takes the feature set from the KNTRAT source. That repository
+  was private during the campaign and was made public on 6 October as
+  github.com/syskiel/kntrat, renamed from kntrat-e. The source describes
+  a Windows remote-access tool that uses direct NT and win32k syscalls
+  and an empty import table, a hidden desktop, Winlogon Shell
+  persistence, named-pipe shells, and kernel-streaming camera and
+  microphone capture. CloudSEK names no victim organisation. The target
+  is whoever installs one of the packages on Windows.
+
+  MAL-2026-17531 covers api-nebula 1.0.0. It was filed on 5 October,
+  after the package had already been installable, and the package was
+  still installable when CloudSEK checked on 8 October. MAL-2026-17230
+  covers llm-nebula 1.0.0. MAL-2026-17219 covers nebula-sdk 1.0.0 and
+  1.0.1. MAL-2026-17220, MAL-2026-17227, and MAL-2026-17228 cover
+  nebulajs-api, nebula-llm, and nebulaai-sdk. The test package has no
+  advisory.
+
+attacks:
+  - attack: Burner accounts and a fake SDK facade
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          Four attacker-owned npm accounts, nebulallms through
+          nebulallms4, each on a distinct uberip.com address. Not a
+          compromised maintainer of an existing project.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Seven package names. Six have OSV malware records. api-nebula
+          and llm-nebula were still installable on 8 October.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          main points at nebula.js, an unobfuscated AI client. The
+          dropper is the preinstall script, not the file a reader opens
+          first.
+  - attack: Install hook drops KNTRAT
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          preinstall runs node preinstall.cjs. The malicious logic is
+          not in nebula.js.
+      - techniqueID: T0172
+        techName: Runtime backdoor
+        tactic: Execution
+        comment: |
+          The hook writes conhost.exe under
+          %LOCALAPPDATA%\Microsoft\Conhost and starts it. The recovered
+          PE beacons to 65.87.7.132. CloudSEK did not observe a beacon
+          in the lab run.
+
+gaps:
+  - The names are not typosquats of a real package, and CloudSEK does
+    not identify a vendor SDK being impersonated, so this is not T0129
+    or T0136. api.nebulaai.dev does not resolve.
+  - Winlogon Shell persistence is not T0148, which is a scheduled task
+    on a self-hosted runner.
+  - An empty import table, a hidden desktop, named pipes, and camera
+    or microphone capture have no technique. Those details are from
+    the published KNTRAT source, not from a named victim.
+  - The GitHub repository is the attacker's own tool, published after
+    deployment. It is not a compromised project, so this is not T0111.
+  - No confirmed downstream install is in the report.
+
+links:
+  - https://www.cloudsek.com/blog/nebula-fake-ai-sdk-npm-packages-windows-rat
+  - https://cdn.cloudsek.com/cloudsek-blog-pdfs/cloudsek-neb-qhe.pdf
+  - https://osv.dev/vulnerability/MAL-2026-17531
+  - https://osv.dev/vulnerability/MAL-2026-17230
+  - https://osv.dev/vulnerability/MAL-2026-17219
+  - https://osv.dev/vulnerability/MAL-2026-17220
+  - https://osv.dev/vulnerability/MAL-2026-17227
+  - https://osv.dev/vulnerability/MAL-2026-17228
+  - https://github.com/syskiel/kntrat

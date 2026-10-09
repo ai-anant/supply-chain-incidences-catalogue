@@ -14,10 +14,12 @@ platforms:
 summary: tensorlake 0.5.144 steals tokens, then wipes the home directory if they are revoked
 
 description: |
-  On 8 October 2026 StepSecurity reported tensorlake@0.5.144 on npm.
-  The registry still listed that version as latest at collection, published
-  01:12 UTC, with a preinstall of node lib/setup.mjs. Version 0.5.143 was
-  published 6 October and is the pin StepSecurity recommends.
+  On 8 October 2026 StepSecurity reported tensorlake@0.5.144 on npm,
+  published 01:12 UTC, with a preinstall of node lib/setup.mjs. At that
+  collection the registry still listed 0.5.144 as latest. Version 0.5.143
+  was published 6 October and is the pin StepSecurity recommends. On
+  9 October the registry version endpoint for 0.5.144 returned 404.
+  latest was 0.5.145, published 20:24 UTC on 8 October.
 
   The payload files were committed to main of tensorlakeai/tensorlake.
   StepSecurity names the range e90c47b to 6386121 and says the first
@@ -42,8 +44,8 @@ description: |
   logins, and config for Claude, Cursor, and Windsurf. It encrypts that
   data and sends it to a public GitHub repo it creates in the victim's
   account, or to iseekaigogo.com. The repo description the payload sets
-  is attacker branding. It is not evidence this is the 2025 Shai-Hulud
-  wave or a later named wave.
+  is attacker branding. It is not, by itself, evidence of which wave
+  this build belongs to.
 
   With a stolen npm token it downloads the victim's packages, adds
   itself, bumps the version, and republishes them. With a stolen GitHub
@@ -57,7 +59,20 @@ description: |
   or macOS, or a PowerShell delete of the user profile on Windows.
   Revoking the token is what starts the wipe. StepSecurity told
   maintainers in tensorlakeai/tensorlake issue 1014. No OSV or GHSA
-  record existed at collection, and the report names no downstream victim.
+  record existed at that collection. MAL-2026-17650 was published at
+  02:54 UTC the same day and covers 0.5.144 only. No report names a
+  downstream victim.
+
+  SafeDep, Aikido, and Socket wrote up the same publish on 8 October.
+  Maintainers merged pull request 1016 at 04:32 UTC that day to revert
+  the commits on main. SafeDep reads the payload as a Mini Shai-Hulud
+  build: cipher salt svksjrhjkcejg, which it also reports for the keyv
+  wave, plus Ethereum contract
+  0xb614155Fd88114d40549b259457Bcf921Df091B9. Aikido records a
+  package-specific worm tag and says the PyPI and Cargo packages were
+  not published. That family read is not a reason to merge this publish
+  into the earlier keyv story. The package, the account, and the date
+  are this incident.
 
 attacks:
   - attack: Poisoned main and the release workflow
@@ -156,9 +171,10 @@ gaps:
     iseekaigogo.com, is not T0156 (webhooks).
   - The CI skip and the Bun download have no separate technique.
   - The description the payload writes on its exfil repo is branding.
-    It is not a basis for merging this publish into an earlier wave.
-  - No confirmed downstream install is in the report. No GHSA or OSV
-    id existed at collection.
+    SafeDep's salt match is a family link to the keyv wave, not the
+    same operation.
+  - No confirmed downstream install is in the reports. MAL-2026-17650
+    covers 0.5.144. No GHSA id.
 
 links:
   - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm
@@ -166,4 +182,9 @@ links:
   - https://github.com/tensorlakeai/tensorlake/commit/e90c47bbb208e99cac8aa678405b2133f6cb3f52
   - https://github.com/tensorlakeai/tensorlake/commit/6386121c561e74fec143a138d5cc3d3bbabdfe8c
   - https://github.com/tensorlakeai/tensorlake/actions/runs/37706134202
-  - https://www.npmjs.com/package/tensorlake/v/0.5.144
+  - https://www.npmjs.com/package/tensorlake
+  - https://osv.dev/vulnerability/MAL-2026-17650
+  - https://github.com/tensorlakeai/tensorlake/pull/1016
+  - https://safedep.io/tensorlake-npm-compromise-mini-shai-hulud
+  - https://www.aikido.dev/blog/tensorlake-npm-package-compromised
+  - https://socket.dev/blog/tensorlake-compromise

@@ -1,4 +1,26 @@
 entries:
+- date: '2026-10-09'
+  id: nebula-intake
+  title: NEBULA fake AI SDK packages, Tensorlake follow-up
+  items:
+  - 'AS303: seven npm packages posing as a NebulaAI SDK, published from
+    burner accounts nebulallms through nebulallms4 (CloudSEK, 8 October).
+    preinstall drops a modified KNTRAT to a fake conhost.exe path and
+    beacons to 65.87.7.132. api-nebula and llm-nebula were still
+    installable when CloudSEK checked. No named victim. MAL-2026-17531
+    and five earlier malware ids. Not a typosquat of a real package.
+    https://www.cloudsek.com/blog/nebula-fake-ai-sdk-npm-packages-windows-rat'
+  - 'AS302 gained the same-day SafeDep, Aikido, and Socket write-ups.
+    The npm version endpoint for 0.5.144 returned 404 on 9 October.
+    latest is 0.5.145, published 20:24 UTC on 8 October. Maintainers
+    merged pull request 1016 at 04:32 UTC. MAL-2026-17650 covers
+    0.5.144. SafeDep''s salt match ties the payload to the keyv wave;
+    the publish stays its own story.
+    https://safedep.io/tensorlake-npm-compromise-mini-shai-hulud'
+  - 'No other new operation. Tracked posts since 8 October were product
+    notes, a podcast episode, a Midnight Blizzard telemetry recap that
+    does not touch a registry, CISA advisory AA26-281A (network
+    intrusion, not a package or CI compromise), and KEV or ICS rows.'
 - date: '2026-10-08'
   id: tensorlake-intake
   title: Tensorlake npm hostage-token worm
