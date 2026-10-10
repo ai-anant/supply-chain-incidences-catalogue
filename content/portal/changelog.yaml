@@ -1,4 +1,30 @@
 entries:
+- date: '2026-10-10'
+  id: ghostaction-intake
+  title: GhostAction October workflow wave
+  items:
+  - 'AS304: GhostAction on 8 October. kitao (13:20-13:44 UTC, 27
+    repositories, including kitao/pyxel) and henrywoo (21:10-21:26 UTC,
+    318 repositories) pushed security-audit.yml under the victim
+    identities. uber/athenadriver went straight to master. The workflow
+    templates named Actions secrets and greps the tree plus git log -p
+    --all, then POSTs cleartext to 193.32.204.199. athenadriver run
+    37846728441 got OK from that host. pyxel templated PyPI and
+    crates.io token names; no malicious publish was observed. Same
+    operation as the 7 October GitGuardian return (772 repositories,
+    31 August-30 September, same IP). 2025 origin used a different
+    endpoint. A Socket same-day update, clock left blank on the page,
+    says more than 500 accounts since 7 October.
+    https://www.stepsecurity.io/blog/ghostaction-returns
+    https://socket.dev/blog/ghostaction-cloud-credentials
+    https://opensourcemalware.com/blog/ghostaction-attack-escalates
+    https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/'
+  - 'No other new operation. Tracked posts since 9 October were product
+    notes, a podcast episode, an arXiv skills paper, an ASOS push-note
+    extortion claim, a Midnight Blizzard telemetry recap, CrowdStrike
+    ARTEX against South Korean finance, a WhatsApp-to-SYSTEM intrusion
+    write-up, GitHub changelog product items, and CISA ICS rows.
+    Sansec''s visible 2026 index still tops out at 25 August.'
 - date: '2026-10-09'
   id: nebula-intake
   title: NEBULA fake AI SDK packages, Tensorlake follow-up
