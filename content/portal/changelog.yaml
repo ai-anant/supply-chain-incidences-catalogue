@@ -1,4 +1,43 @@
 entries:
+- date: '2026-10-12'
+  id: tradertraitor-intake
+  title: TraderTraitor Terraform provider, GhostAction phishing
+  items:
+  - 'AS305: TraderTraitor interview repositories ship a weaponized
+    Terraform lock file. terraform init then downloads the provider
+    from registry.hashicorp-aws.com, registry.hashicorp-aws.io, or
+    registry.hashicorp-terraform.io. Zscaler''s July binary,
+    terraform-provider-awsbeta_v1.0.0, calls package awsbeta from
+    main, so it runs when Terraform starts the provider, then fetches
+    a Bash loader from hashicorp-terraform.io. The loader decrypts a
+    fake .woff into FLATROOF. ROOFDECK resolves C2 through a signed
+    Pastebin drop, then Nostr. SentinelOne (18 September) documents
+    the lock files and a second victim, an IT-services DevOps MacBook,
+    implants present from 18 March. Delivery of the July binary itself
+    was not established. Not published on the official Terraform
+    registry. The April LayerZero / KelpDAO case is the same provider
+    lure; the 292 million dollar mint is the reported outcome, not a
+    separate technique.
+    https://www.zscaler.com/blogs/security-research/suspected-tradertraitor-group-uses-trojanized-terraform-provider-deliver
+    https://www.sentinelone.com/labs/dont-call-us-well-call-your-apis-tradertraitor-backdoors-resurface-on-victim-with-no-crypto-ties/
+    https://layerzero.network/publications/kelpdao-incident-report.pdf'
+  - 'AS304 gained the 11 October phishing write-up. A GitHub security
+    lure on my-github.com, same IP 193.32.204.199, proxies login and
+    silently approves an OAuth device flow for repo, workflow, and
+    read:org. The recovered email''s form submission was not proven.
+    Same operation, not a new story.
+    https://opensourcemalware.com/blog/ghostaction-phishing-campaign'
+  - 'AS65 and AS28 gained the 8 October Sonatype Q3 index, which names
+    those two operations and does not add a package. allianceauth-workflows
+    and dough-synth embed a model refusal string. Sonatype says neither
+    package is malicious. Not a story.
+    https://www.sonatype.com/blog/q3-2026-open-source-malware-index-when-compromise-compounds'
+  - 'No other new operation. Tracked posts since 10 October were a
+    Copilot JetBrains changelog note, product and how-to posts, the
+    already mapped GhostAction and Tensorlake write-ups, a RubyGems
+    beta release, CISA ICS rows, and a Magento product zero-day that
+    is not a registry or CI compromise. Sansec''s visible index still
+    tops out at the 16 September Brevo post.'
 - date: '2026-10-10'
   id: ghostaction-intake
   title: GhostAction October workflow wave

@@ -86,8 +86,22 @@ description: |
   as an escalation of that campaign. my-github.com, registered 9
   October, resolves to 193.32.204.199. my-gitlab.com, registered 22
   September, is a separate registration. OpenSourceMalware does not
-  claim common ownership, and the phishing uses they list were not
-  observed.
+  claim common ownership of that second domain.
+
+  On 11 October OpenSourceMalware published a phishing email shown
+  as coming from noreply@my-github.com. It impersonated a GitHub
+  security alert, named the recipient, and used the path /SDRVuhYw,
+  the same path public scans saw hours after the domain was
+  registered. The page is a GitHub reverse proxy. Its script posts
+  to /login/device/code for client id Ov23ctrqCqZ79UaYKwyq with
+  scopes repo, workflow, and read:org, then submits the device-flow
+  authorization through the proxied session. The access token is
+  sent to my-github.com on TCP/8443. Static markers are a vh_device
+  cookie, /vh_beacon, and console strings VH1 through VH5.
+  OpenSourceMalware did not prove the recipient submitted the form.
+  The HAR they kept does not contain the device-code or token
+  requests. This is the same server as the workflow exfiltration,
+  not a second operation.
 
 attacks:
   - attack: Stolen maintainer identity, workflow pushed to every writable repo
@@ -173,11 +187,17 @@ gaps:
     attribute the miner to this operator. Forged author email, one
     repository, and a broken Docker Hub image. Not mapped here.
   - my-gitlab.com is not confirmed campaign infrastructure.
+  - The 11 October kit shows how a token with repo, workflow, and
+    read:org would be taken. Submission of that email was not
+    proven, so this is not a new T0112, and it does not establish
+    how kitao or henrywoo were taken. There is no technique for
+    the phishing page or the device-flow consent.
 
 links:
   - https://www.stepsecurity.io/blog/ghostaction-returns
   - https://socket.dev/blog/ghostaction-cloud-credentials
   - https://opensourcemalware.com/blog/ghostaction-attack-escalates
+  - https://opensourcemalware.com/blog/ghostaction-phishing-campaign
   - https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/
   - https://blog.gitguardian.com/ghostaction-campaign-3-325-secrets-stolen/
   - https://www.stepsecurity.io/blog/ghostaction-campaign-over-3-000-secrets-stolen-through-malicious-github-workflows

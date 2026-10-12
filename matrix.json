@@ -441,7 +441,7 @@
         ],
         "url": "techniques/T0136.html",
         "description": "Brandjacking is a type of attack where an attacker impersonates a legitimate brand or project in an attempt to trick users into downloading and installing a malicious container or package. \nThis can happen when an attacker creates a package or container with a similar name or logo to a well-known and trusted brand or project, and then distributes it through public repositories.\nBrandjacking can be particularly dangerous in the context of container and open source security, as many developers and users rely on public repositories and may not take the time to thoroughly verify the authenticity of packages they download.\nOnce a malicious package is installed, it can be difficult to detect and can lead to serious security breaches.\n",
-        "incidentCount": 35
+        "incidentCount": 36
       },
       {
         "id": "T0137",
@@ -480,7 +480,7 @@
         ],
         "url": "techniques/T0153.html",
         "description": "Compromised developer workstation attack is a technique where an attacker gains access to a developer's machine, which contains sensitive information such as access credentials, keys, and code repositories. \nThis technique can allow an attacker to steal code or modify it to include backdoors or other malicious code. \nThe attacker can also use this access to gain entry into other systems within the organization.\nThis type of attack can be carried out through various means, such as Phishing, Typosquatting, Brandjacking, malicious IDE extensions, or exploiting vulnerabilities in the developer's system. \nOnce the attacker gains access, they can install malware or backdoors, extract sensitive information, or use the machine as a foothold to carry out further attacks.\n",
-        "incidentCount": 12
+        "incidentCount": 13
       },
       {
         "id": "T0154",
@@ -550,7 +550,7 @@
         ],
         "url": "techniques/T0181.html",
         "description": "Malicious module injection is an attack that targets the Infrastructure as Code (IaC) process, where an attacker injects malicious code or modules into the configuration files used to define and provision infrastructure resources. \nThis can occur during the development or deployment phases of the IaC process, and the injected code can lead to backdoors, data breaches, resource hijacking, or integrity compromise.\n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0194",
@@ -576,7 +576,7 @@
         ],
         "url": "techniques/T0197.html",
         "description": "It is possible to install a package not from an official package repository - but rather install directly using a URL. Packages from official repositories are usually vetted for security vulnerabilities. Installing from an unverified URL can expose your system to malicious software, including viruses, malware, or other security threats.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0205",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 49
+        "incidentCount": 50
       },
       {
         "id": "T0166",
@@ -741,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 79
+        "incidentCount": 80
       },
       {
         "id": "T0173",
@@ -1447,7 +1447,7 @@
         ],
         "url": "techniques/T0199.html",
         "description": "- In the realm of software supply chains, attackers covet secrets. Gaining access to customer secrets enables attackers to advance to the next stage of their malicious activities.\n",
-        "incidentCount": 4
+        "incidentCount": 5
       },
       {
         "id": "T0200",

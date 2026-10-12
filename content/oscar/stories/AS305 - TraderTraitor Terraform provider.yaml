@@ -1,0 +1,195 @@
+id: AS305
+type: Attack Story
+date: 2026-03
+platforms:
+  - terraform
+  - git
+  - workstation
+  - macos
+  - linux
+  - windows
+  - aws
+  - gcp
+
+summary: TraderTraitor interview repos point Terraform at a lookalike provider registry
+
+description: |
+  SentinelOne published this on 18 September 2026 (page modified 21
+  September). Zscaler ThreatLabz published the provider binary on 8
+  October, from a sample found in July. Both describe TraderTraitor
+  (Jade Sleet, UNC4899, also called Pressure Chollima and Slow
+  Pisces). SentinelOne ties the same macOS backdoors to the April
+  2026 LayerZero / KelpDAO intrusion and to a later victim. The
+  LayerZero report is the victim post-mortem both labs cite. This
+  story maps the Terraform delivery, not the token-mint theft.
+
+  The lure is a fake job interview. SentinelOne pivoted from the
+  gtn-candidate-repo name in the LayerZero report to other GitHub
+  projects (Northwind-IAC, novacart-interview, terraform-candidate-repo,
+  and a Steed-LHV assessment). Each carries a weaponized
+  .terraform.lock.hcl. The lock file names a provider whose source is
+  an attacker registry, not the HashiCorp registry. Three domains
+  appear across the set: registry.hashicorp-aws.com,
+  registry.hashicorp-aws.io, and registry.hashicorp-terraform.io.
+  terraform init treats that source as the provider and downloads it.
+  One candidate's novacart fork notes that they removed a
+  typosquatted provider from the original lock file. SentinelOne does
+  not say that candidate was infected.
+
+  Zscaler's binary is terraform-provider-awsbeta_v1.0.0. It is a Go
+  provider scaffold. A sibling package named awsbeta is called from
+  main, so it runs when Terraform starts the provider. A session.lock
+  file in the temp directory is the run-once marker. If the marker is
+  absent, the provider downloads a Bash script over HTTPS from
+  hashicorp-terraform.io, writes it as safari_updater, marks it
+  executable, and starts it with sh -c. The provider keeps answering
+  as a normal AWS provider. Zscaler says it is not known how that
+  binary reached the victim. The lookalike domain is one of the three
+  SentinelOne found in the lock files.
+
+  The Bash loader picks a payload by OS and CPU. Linux, macOS, and
+  Windows each map to a font family name; the architecture maps to a
+  style (Bold, Regular, ExtraBold, Italic). The file looks like a
+  web font, for example HiraginoSans-Regular.woff. Bytes after the
+  marker @@ENDFONT@@ are Base64 and AES-256-CBC (key
+  PTa3WZPQZAjj55t@). Decryption can run through Python, Node, Perl,
+  or OpenSSL. On macOS the script clears the quarantine attribute
+  and applies an ad hoc signature. Drop paths: Linux
+  $HOME/.config/git/update, macOS
+  $HOME/Library/com.apple.iTunesCloud/SystemUpdate, Windows
+  $HOME/AppData/Local/Microsoft/Edge/service.exe. Download order is
+  a dynamic-DNS host, a GitHub repository of the font files, then a
+  Vercel site.
+
+  The decrypted binary is FLATROOF, the Rust family named in the
+  KelpDAO report. Zscaler's config decrypts with PBKDF2-HMAC-SHA256
+  and AES-256-GCM. Channels in the shared code are Telegram, GitHub
+  API polling, and an HTTP webhook. Not every sample had every
+  channel filled in. Persistence in that config is a Linux service,
+  a macOS shell logout hook, and a Windows Run value. Embedded
+  Python stealers pack browser profile databases, shell history, and
+  a process list. Linux also takes the Chrome Safe Storage secret
+  and keyring files. macOS copies login.keychain-db and Safari
+  data. Windows adds Credential Manager entries and extension data
+  for MetaMask, Phantom, Trust Wallet, and Rabby, plus a small
+  executable that is injected into a suspended Chromium process to
+  recover master keys. Zscaler notes the Python comments look
+  machine-written. That is an observation about the stealer, not a
+  claim that an agent ran the intrusion.
+
+  ROOFDECK is the follow-on backdoor, Windows and macOS in the
+  Zscaler sample. It reads a local config, then a Pastebin file of
+  an encrypted server address plus an RSA signature split by ||.
+  It checks the signature before accepting the address. If Pastebin
+  fails, it reads the website field of attacker Nostr profiles. At
+  analysis time a profile named tulip pointed at the same Pastebin
+  URL as the Windows sample. After that it uses HTTP and WebSocket.
+
+  SentinelOne's second victim is an IT-services firm in India, not
+  a crypto company. One Apple Silicon MacBook of a DevOps engineer.
+  Telemetry shows FLATROOF and ROOFDECK on disk from 18 March 2026.
+  SentinelOne cannot prove how they arrived. They stayed quiet until
+  29 March, when Cursor opened ~/DevOps-Automation/cloudshield and
+  launched SystemUpdate and iSync. On 13 April the same engineer
+  cloned terraform-candidate-repo. Beaconing continued into June.
+  SentinelOne, citing the LayerZero report, says an employee there
+  installed a weaponized interview project, the same two backdoors
+  collected API keys, and the actor moved into that company's AWS
+  and Google Cloud accounts. The reported KelpDAO loss is 292
+  million dollars, via a fake mint plus a denial of service against
+  validation servers. That theft is the outcome SentinelOne
+  summarizes. It is not re-analyzed here.
+
+attacks:
+  - attack: Lookalike Terraform provider, started by terraform init
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0136
+        techName: Brandjacking
+        tactic: Initial Access
+        comment: |
+          registry.hashicorp-aws.com, registry.hashicorp-aws.io, and
+          registry.hashicorp-terraform.io stand in for the HashiCorp
+          provider registry. The July binary is named
+          terraform-provider-awsbeta and keeps answering as an AWS
+          provider.
+      - techniqueID: T0197
+        techName: Use code from untrusted source
+        tactic: Initial Access
+        comment: |
+          The lock file sets the provider source to the attacker
+          registry. terraform init downloads that binary. It was not
+          published on the official Terraform registry.
+      - techniqueID: T0181
+        techName: Malicious module injection
+        tactic: Initial Access
+        comment: |
+          The interview repositories ship a weaponized
+          .terraform.lock.hcl. That is the IaC file Terraform trusts
+          for the provider.
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          awsbeta is called from main, so it runs when Terraform
+          starts the provider. It then launches safari_updater. The
+          named executions are developer workstations. The same
+          binary would run in CI if that project was applied there.
+          No CI run is named.
+  - attack: FLATROOF and ROOFDECK on the engineer laptop
+    index: 2
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0153
+        techName: Compromised developer workstation
+        tactic: Initial Access
+        comment: |
+          SentinelOne's IT-services case is one DevOps MacBook.
+          LayerZero's case, as SentinelOne summarizes the victim
+          report, started on an employee workstation that installed
+          the interview project.
+      - techniqueID: T0172
+        techName: Runtime Backdoor
+        tactic: Execution
+        comment: |
+          FLATROOF (SystemUpdate) and ROOFDECK (iSync, later
+          loginwindow). Command set includes a shell and file
+          upload. ROOFDECK adds a reverse shell.
+      - techniqueID: T0199
+        techName: Secrets Leak
+        tactic: Impact
+        comment: |
+          Stealers take browser login databases, cookies, shell
+          history, a macOS keychain file, Windows Credential Manager
+          entries, and four wallet extensions. SentinelOne says the
+          LayerZero intrusion used stolen API keys to enter AWS and
+          GCP. That cloud step is their summary of the victim report.
+
+gaps:
+  - Zscaler does not know how terraform-provider-awsbeta_v1.0.0
+    reached the July victim. The lock-file path is documented on
+    the interview repositories, including the same
+    hashicorp-terraform.io domain. It is not proven for that sample.
+  - Nothing was published to registry.terraform.io. This is not
+    T0108 or T0109. It is also not T0120. The lock file names the
+    attacker registry. It does not win a name on the public one.
+  - The fake interview is how the repositories were offered. There
+    is no technique for that lure. It is not the BeaverTail
+    Contagious Interview wave.
+  - Linux service, macOS zlogout, Windows Run, and LaunchAgent
+    persistence have no technique. Pastebin and Nostr dead drops
+    have no technique. Font-file packing and the quarantine-attribute
+    clear are delivery details, not a separate ID.
+  - The 292 million dollar mint is not a supply-chain technique.
+    Mapped only as the reported outcome of the workstation
+    compromise.
+
+links:
+  - https://www.zscaler.com/blogs/security-research/suspected-tradertraitor-group-uses-trojanized-terraform-provider-deliver
+  - https://www.sentinelone.com/labs/dont-call-us-well-call-your-apis-tradertraitor-backdoors-resurface-on-victim-with-no-crypto-ties/
+  - https://layerzero.network/publications/kelpdao-incident-report.pdf
