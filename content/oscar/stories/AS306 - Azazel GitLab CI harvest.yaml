@@ -1,0 +1,167 @@
+id: AS306
+type: Attack Story
+date: 2026-10
+platforms:
+  - gitlab
+  - gitlab-ci
+  - git
+  - jenkins
+  - mcp
+  - ai-agents
+  - linux
+  - aws
+  - kubernetes
+
+summary: Azazel harvested GitLab CI secrets and called a local MCP tool on a victim
+
+description: |
+  CloudSEK published this on 5 October 2026. The operator calls
+  himself Azazel, a Russian-speaking affiliate of the Gentlemen
+  ransomware group who also ran an independent leak site, LEAKNED.
+  CloudSEK found the operation on an exposed file server. More than
+  two dozen organisations across six countries were on the loot
+  servers. This story maps the CI secret harvest and the MCP
+  execution channel. It does not map the ransom payments.
+
+  Chain A is how every victim outside one AI-company engagement was
+  reached. The setup script installed glato, nord-stream,
+  gitlab-secrets, gitlab-watchman, and gitleaks. The tooling table
+  names GitLab variable stores, Jenkins, and git history. From one
+  GitLab instance, Azazel pulled tokens, database credentials, API
+  keys, and SSH private keys. That instance hosted pipelines for two
+  unrelated organisations. One CI/CD token then opened Oracle and
+  PostgreSQL credentials, shipping API credentials, and SSH keys for
+  three cloud hosts of the second organisation. CloudSEK does not
+  say how the first GitLab was entered. No CVE is named.
+
+  A separate SaaS platform case used one CI/CD token to reach more
+  than 150 databases, payment gateways, and hundreds of source
+  repositories, including more than a dozen of that platform's
+  clients. Azazel named three of those clients on LEAKNED. CloudSEK
+  does not repeat the names. A second platform, hosting a
+  government-linked financial registry, lost more than 120,000
+  records across client environments. After the copy, a Python
+  script killed PostgreSQL and deleted the data directory. No
+  malicious package was published.
+
+  The ransom-note checker va.py called exec_in_session on
+  127.0.0.1:35367 with a fixed bearer token, looping SSH checks
+  across six internal hosts. CloudSEK says Azazel registered a
+  reverse shell handler as a tool inside an AI coding assistant via
+  MCP. mcp_test.py and recon_mcp.py sit next to va.py. The tooling
+  table records the MCP client name as hermes. The same table lists
+  internet-census-mcp-scanner, hunting exposed MCP ports. CloudSEK
+  does not tie a victim to a port that scanner found. The confirmed
+  calls are the attacker's script to a listener already bound on the
+  victim host. The post does not show a project-open hook.
+
+  Chain B is a different intrusion of one AI company, still
+  transferring when CloudSEK looked, more than 6TB. Initial access
+  was an unauthenticated AI medical-imaging API that fetched a
+  caller-supplied URL. A hardcoded JWT bypass remained in git
+  history after it was removed from the tree. Cluster configuration
+  values were encrypted with Jasypt; Azazel recovered the master key
+  and decrypted them. A sweep of the exfiltrated data collected
+  kubeconfig files and SSH keys. That chain is not the CI harvest.
+
+  Attacker staging used the hostname forgitlab.com. That host is the
+  operator's server, not a victim GitLab, and not the shared
+  instance in Chain A.
+
+attacks:
+  - attack: GitLab CI variable stores and a shared instance
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0112
+        techName: Compromised token
+        tactic: Initial Access
+        comment: |
+          One CI/CD token from a GitLab instance that hosted
+          pipelines for two organisations opened the second
+          organisation's database credentials, a shipping API, and
+          SSH keys for three cloud hosts. A separate SaaS platform
+          token reached that platform's clients. CloudSEK does not
+          say how either token was first obtained.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          gitleaks was in the setup script. The tooling table names
+          git history as a credential source, and Chain B recovered
+          a removed JWT bypass from git log. GitLab variable stores
+          were harvested with glato, gitlab-secrets, and
+          gitlab-watchman. Those stores are not files. There is no
+          separate technique for a variable-store API.
+      - techniqueID: T0199
+        techName: Secret leak
+        tactic: Impact
+        comment: |
+          Extracted values include CI tokens, database credentials,
+          API keys, and SSH private keys. The SaaS case also took
+          JWT secrets and cleartext passwords from client databases.
+      - techniqueID: T0186
+        techName: Source code leak
+        tactic: Impact
+        comment: |
+          The SaaS CI token reached hundreds of source code
+          repositories across the platform and its clients. CloudSEK
+          does not publish those repositories.
+      - techniqueID: T0201
+        techName: Customers compromised
+        tactic: Impact
+        comment: |
+          One CI token reached more than a dozen client companies of
+          a SaaS platform, including databases and payment gateways.
+          A second platform's client environments lost records from
+          a government-linked financial registry. No poisoned package
+          or update was the vehicle. The supplier CI token was.
+  - attack: MCP tool on the victim host
+    index: 2
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0210
+        techName: Poison AI coding-agent config or workspace
+        tactic: Persistence
+        comment: |
+          CloudSEK says a reverse shell handler was registered as a
+          tool inside an AI coding assistant via MCP. The confirmed
+          use is va.py calling exec_in_session at 127.0.0.1:35367.
+          mcp_test.py and recon_mcp.py are named beside it. The post
+          does not show a project-open hook or a write into .claude
+          or .vscode. The client string in the tooling table is
+          hermes.
+
+gaps:
+  - CloudSEK does not say how the first GitLab was entered. No CVE,
+    stolen account, or public project is named. That is not T0135.
+  - GitLab CI variable-store reads (glato, gitlab-secrets,
+    gitlab-watchman) are not file harvest and not environment-variable
+    harvest of a running job. Mapped with the git-history file harvest
+    under T0184, and called out here.
+  - Jenkins is named only as a harvest target in the tooling table.
+    No Jenkins host, job, or credential is described.
+  - internet-census-mcp-scanner hunted exposed MCP ports. No victim
+    is tied to a discovered port. That scan is not T0105, which is
+    scanning one organisation's cloud, and it is not T0123 without a
+    confirmed entry.
+  - va.py's exec_in_session calls are live execution against a local
+    listener. T0210 covers the tool registration. There is no
+    technique for MCP-as-C2 by itself.
+  - Chain B's URL-fetch on the imaging API has no technique.
+    OverlayFS SUID escape, the PostgreSQL process kill, and the
+    ransom note written into a GitLab README and issue are not
+    mapped. T0138 and T0196 are backdoors in code. A ransom note is
+    not one.
+  - forgitlab.com is the operator's staging host. It is not a
+    compromised GitLab product and not T0180.
+  - Business-record extortion and the LEAKNED leak site are not
+    supply-chain techniques. The operator's use of an assistant to
+    plan his own disk layout is not T0213.
+
+links:
+  - https://www.cloudsek.com/blog/caught-in-4k-the-gentlemen-files

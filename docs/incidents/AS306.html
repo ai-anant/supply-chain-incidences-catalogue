@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azazel harvested GitLab CI secrets and called a local MCP tool on a victim · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS306</p>
+
+        <p class="meta">AS306 · 2026-10</p>
+        <h1>Azazel harvested GitLab CI secrets and called a local MCP tool on a victim</h1>
+        <p><a class="plat" href="../platforms/gitlab.html">GitLab</a><a class="plat" href="../platforms/gitlab-ci.html">GitLab CI</a><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/jenkins.html">Jenkins</a><a class="plat" href="../platforms/mcp.html">MCP</a><a class="plat" href="../platforms/ai-agents.html">AI coding agents</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/aws.html">AWS</a><a class="plat" href="../platforms/kubernetes.html">Kubernetes</a></p>
+        <p>CloudSEK published this on 5 October 2026. The operator calls<br>himself Azazel, a Russian-speaking affiliate of the Gentlemen<br>ransomware group who also ran an independent leak site, LEAKNED.<br>CloudSEK found the operation on an exposed file server. More than<br>two dozen organisations across six countries were on the loot<br>servers. This story maps the CI secret harvest and the MCP<br>execution channel. It does not map the ransom payments.</p><p>Chain A is how every victim outside one AI-company engagement was<br>reached. The setup script installed glato, nord-stream,<br>gitlab-secrets, gitlab-watchman, and gitleaks. The tooling table<br>names GitLab variable stores, Jenkins, and git history. From one<br>GitLab instance, Azazel pulled tokens, database credentials, API<br>keys, and SSH private keys. That instance hosted pipelines for two<br>unrelated organisations. One CI/CD token then opened Oracle and<br>PostgreSQL credentials, shipping API credentials, and SSH keys for<br>three cloud hosts of the second organisation. CloudSEK does not<br>say how the first GitLab was entered. No CVE is named.</p><p>A separate SaaS platform case used one CI/CD token to reach more<br>than 150 databases, payment gateways, and hundreds of source<br>repositories, including more than a dozen of that platform&#x27;s<br>clients. Azazel named three of those clients on LEAKNED. CloudSEK<br>does not repeat the names. A second platform, hosting a<br>government-linked financial registry, lost more than 120,000<br>records across client environments. After the copy, a Python<br>script killed PostgreSQL and deleted the data directory. No<br>malicious package was published.</p><p>The ransom-note checker va.py called exec_in_session on<br>127.0.0.1:35367 with a fixed bearer token, looping SSH checks<br>across six internal hosts. CloudSEK says Azazel registered a<br>reverse shell handler as a tool inside an AI coding assistant via<br>MCP. mcp_test.py and recon_mcp.py sit next to va.py. The tooling<br>table records the MCP client name as hermes. The same table lists<br>internet-census-mcp-scanner, hunting exposed MCP ports. CloudSEK<br>does not tie a victim to a port that scanner found. The confirmed<br>calls are the attacker&#x27;s script to a listener already bound on the<br>victim host. The post does not show a project-open hook.</p><p>Chain B is a different intrusion of one AI company, still<br>transferring when CloudSEK looked, more than 6TB. Initial access<br>was an unauthenticated AI medical-imaging API that fetched a<br>caller-supplied URL. A hardcoded JWT bypass remained in git<br>history after it was removed from the tree. Cluster configuration<br>values were encrypted with Jasypt; Azazel recovered the master key<br>and decrypted them. A sweep of the exfiltrated data collected<br>kubeconfig files and SSH keys. That chain is not the CI harvest.</p><p>Attacker staging used the hostname forgitlab.com. That host is the<br>operator&#x27;s server, not a victim GitLab, and not the shared<br>instance in Chain A.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li><li><a href="../techniques/T0199.html">T0199</a> Secret leak</li><li><a href="../techniques/T0186.html">T0186</a> Source code leak</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li><li><a href="../techniques/T0210.html">T0210</a> Poison AI coding-agent config or workspace</li></ul>
+        <h2><span class="stage">supply-chain</span> GitLab CI variable stores and a shared instance</h2><div class="card"><p class="meta"><a href="../techniques/T0112.html">T0112</a> · Initial Access · Compromised token</p><p>One CI/CD token from a GitLab instance that hosted<br>pipelines for two organisations opened the second<br>organisation&#x27;s database credentials, a shipping API, and<br>SSH keys for three cloud hosts. A separate SaaS platform<br>token reached that platform&#x27;s clients. CloudSEK does not<br>say how either token was first obtained.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>gitleaks was in the setup script. The tooling table names<br>git history as a credential source, and Chain B recovered<br>a removed JWT bypass from git log. GitLab variable stores<br>were harvested with glato, gitlab-secrets, and<br>gitlab-watchman. Those stores are not files. There is no<br>separate technique for a variable-store API.</p></div><div class="card"><p class="meta"><a href="../techniques/T0199.html">T0199</a> · Impact · Secret leak</p><p>Extracted values include CI tokens, database credentials,<br>API keys, and SSH private keys. The SaaS case also took<br>JWT secrets and cleartext passwords from client databases.</p></div><div class="card"><p class="meta"><a href="../techniques/T0186.html">T0186</a> · Impact · Source code leak</p><p>The SaaS CI token reached hundreds of source code<br>repositories across the platform and its clients. CloudSEK<br>does not publish those repositories.</p></div><div class="card"><p class="meta"><a href="../techniques/T0201.html">T0201</a> · Impact · Customers compromised</p><p>One CI token reached more than a dozen client companies of<br>a SaaS platform, including databases and payment gateways.<br>A second platform&#x27;s client environments lost records from<br>a government-linked financial registry. No poisoned package<br>or update was the vehicle. The supplier CI token was.</p></div><h2><span class="stage">supply-chain</span> MCP tool on the victim host</h2><div class="card"><p class="meta"><a href="../techniques/T0210.html">T0210</a> · Persistence · Poison AI coding-agent config or workspace</p><p>CloudSEK says a reverse shell handler was registered as a<br>tool inside an AI coding assistant via MCP. The confirmed<br>use is va.py calling exec_in_session at 127.0.0.1:35367.<br>mcp_test.py and recon_mcp.py are named beside it. The post<br>does not show a project-open hook or a write into .claude<br>or .vscode. The client string in the tooling table is<br>hermes.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>CloudSEK does not say how the first GitLab was entered. No CVE, stolen account, or public project is named. That is not T0135.</li><li>GitLab CI variable-store reads (glato, gitlab-secrets, gitlab-watchman) are not file harvest and not environment-variable harvest of a running job. Mapped with the git-history file harvest under T0184, and called out here.</li><li>Jenkins is named only as a harvest target in the tooling table. No Jenkins host, job, or credential is described.</li><li>internet-census-mcp-scanner hunted exposed MCP ports. No victim is tied to a discovered port. That scan is not T0105, which is scanning one organisation&#x27;s cloud, and it is not T0123 without a confirmed entry.</li><li>va.py&#x27;s exec_in_session calls are live execution against a local listener. T0210 covers the tool registration. There is no technique for MCP-as-C2 by itself.</li><li>Chain B&#x27;s URL-fetch on the imaging API has no technique. OverlayFS SUID escape, the PostgreSQL process kill, and the ransom note written into a GitLab README and issue are not mapped. T0138 and T0196 are backdoors in code. A ransom note is not one.</li><li>forgitlab.com is the operator&#x27;s staging host. It is not a compromised GitLab product and not T0180.</li><li>Business-record extortion and the LEAKNED leak site are not supply-chain techniques. The operator&#x27;s use of an assistant to plan his own disk layout is not T0213.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.cloudsek.com/blog/caught-in-4k-the-gentlemen-files" rel="noopener">https://www.cloudsek.com/blog/caught-in-4k-the-gentlemen-files</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

@@ -1,4 +1,26 @@
 entries:
+- date: '2026-10-13'
+  id: azazel-intake
+  title: Azazel GitLab CI harvest
+  items:
+  - 'AS306: Azazel, a Gentlemen affiliate, harvested GitLab CI secrets
+    and called a local MCP tool (CloudSEK, 5 October). One GitLab
+    instance hosted pipelines for two organisations. One CI token
+    opened the second organisation''s databases and three cloud hosts.
+    A SaaS platform token reached more than a dozen of that platform''s
+    clients and hundreds of source repositories. va.py called
+    exec_in_session on 127.0.0.1:35367. No malicious package. Initial
+    GitLab access is not described. forgitlab.com is the operator''s
+    staging host, not a victim GitLab. Chain B, an imaging-API URL
+    fetch against one AI company, is not this harvest.
+    https://www.cloudsek.com/blog/caught-in-4k-the-gentlemen-files'
+  - 'No other new operation. Tracked posts since 12 October were
+    GitHub changelog product notes (push attribution, Dependabot
+    organisation registries), already mapped GhostAction and
+    Tensorlake write-ups, and CISA AA26-281A, which is a network
+    intrusion and not a package or CI compromise. Sansec''s visible
+    index still tops out at the 16 September Brevo post. Checkmarx
+    Zero still tops out at the 17 September btree post.'
 - date: '2026-10-12'
   id: tradertraitor-intake
   title: TraderTraitor Terraform provider, GhostAction phishing
