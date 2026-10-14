@@ -16,7 +16,9 @@ description: |
   about 11 hours later. Targets Web3 founders/developers: browser data,
   20+ crypto wallets, SSH/AWS/Kubernetes creds via osascript and
   curl|zsh, beacon every 60 seconds. npm removed the republish too;
-  GitHub binaries and C2 stayed live.
+  GitHub binaries and C2 stayed live. A later wave by the same
+  publisher, @apexacc/cli and @apexacc/audit, is AS307. That wave is
+  not this republish.
 
 attacks:
   - attack: takedown-and-republish

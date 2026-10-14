@@ -7,7 +7,7 @@ platforms:
   - git
   - workstation
 
-summary: MALFEX npm postinstall campaign, three packages still unadvised
+summary: MALFEX npm campaign, including a native imgdecode loader with no install script
 description: |
   CloudSEK (30 Sep 2026) documented MALFEX, one operator's npm campaign
   running from August 2023 through September 2026: at least twelve
@@ -41,6 +41,24 @@ description: |
   binary remains the vendor-signed interpreter. MAL-2026-17320 covers only
   cdn-img-fetch 1.0.0 and 1.0.1.
 
+  SafeDep (13 October 2026) found the operator had already replaced the
+  removed JavaScript loaders. imgdecode, published by malfexteste8,
+  versions 1.0.0 through 1.0.3, hides the loader in a prebuilt Windows
+  Node addon. require("imgdecode") loads
+  prebuilds/win32-x64/imgdecode.node. From 1.0.1 the addon runs during
+  N-API module init. There is no install script. The routine returns
+  immediately unless stdout is an interactive Windows console, so CI
+  jobs with redirected output do not trigger it. It downloads banner.jpg
+  from the same cavecrew/proj repository, decrypts it, and injects the
+  result into a suspended dllhost.exe. Version 1.0.3 was published on
+  11 October, six days after the Checkmarx report, and was still on npm
+  on 13 October. npm had removed imgbundle on 7 October and
+  cdn-img-fetch on 8 October. SafeDep recovered banner.png, not
+  banner.jpg. The stage-2 downloader hash
+  2f268ca76ab27971d8b16bd4ded26e1f9cd3d4460b894af2d4bdf89f0ab7ec4b is
+  on the Checkmarx indicator list. SafeDep has not confirmed that
+  banner.jpg delivers that same payload.
+
 attacks:
   - attack: Attacker-owned npm accounts
     index: 1
@@ -53,14 +71,15 @@ attacks:
         tactic: Resource Development
         comment: |
           Publisher handles include malfexkkj, malfex_user, jessica-fruett,
-          liuxhin, malfexteste2, malfexteste3, malfexteste4, and dallascorp.
-          Several used fresh iCloud Hide-My-Email addresses.
+          liuxhin, malfexteste2, malfexteste3, malfexteste4, malfexteste8,
+          and dallascorp. Several used fresh iCloud Hide-My-Email addresses.
       - techniqueID: T0109
         techName: Publish malicious artifact
         tactic: Resource Development
         comment: |
           Malicious publishes include function-flag, cdn-img-fetch,
-          function-color, and the advised Arm A droppers. Benign cover
+          function-color, the advised Arm A droppers, and the later
+          replacements imgbundle, runhelper, and imgdecode. Benign cover
           packages (function-ascii, centralizemiddle) sit on the same
           accounts.
       - techniqueID: T0110
@@ -77,7 +96,15 @@ attacks:
           Arm A runs obfuscated preinstall.js and postinstall.js.
           function-flag has carried a postinstall since July 2025.
           cdn-img-fetch also runs at require time, which install-script
-          blocking does not cover.
+          blocking does not cover. imgdecode has no install script.
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          imgdecode loads a prebuilt Windows addon on require. From
+          1.0.1 the loader runs in N-API module init, only when stdout
+          is an interactive console, then injects decrypted shellcode
+          into dllhost.exe.
   - attack: Windows payload on the developer machine
     index: 2
     stage: post-supply-chain
@@ -115,3 +142,6 @@ links:
   - https://osv.dev/vulnerability/MAL-2026-16383
   - https://osv.dev/vulnerability/MAL-2026-17216
   - https://osv.dev/vulnerability/MAL-2026-17218
+  - https://safedep.io/malfex-imgdecode-npm-native-addon-loader/
+  - https://osv.dev/vulnerability/MAL-2026-17330
+  - https://osv.dev/vulnerability/MAL-2026-17332

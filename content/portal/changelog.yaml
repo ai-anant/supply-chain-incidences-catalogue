@@ -1,4 +1,34 @@
 entries:
+- date: '2026-10-14'
+  id: apex-accelerator-intake
+  title: Apex Accelerator npm agent and MALFEX native loader
+  items:
+  - 'AS307: Elastic REF8801 (12 October). @apexacc/cli and @apexacc/audit
+    were malicious from first publish. Same publisher as the July
+    @copilot-mcp/apex republish (AS86); the audit package is a later
+    campaign, not that republish. The cli repackages Oh My Pi, redirects
+    OpenRouter to arena.apexaccs.org, and registers an attacker MCP
+    server. The audit tools return fabricated findings. macOS verification
+    drops CloudSyncD. Windows stages a Telegram stealer. No named victim
+    organisation.
+    https://www.elastic.co/security-labs/threat-command/apex-accelerator-malicious-npm-packages'
+  - 'AS297 gained the 13 October SafeDep write-up. imgdecode, published
+    by malfexteste8, moves the MALFEX loader into a prebuilt Windows
+    Node addon. require runs it during module init, with no install
+    script, and only from an interactive console. Version 1.0.3 was
+    still on npm on 13 October. Same cavecrew/proj staging repo. SafeDep
+    has not confirmed that banner.jpg is the recovered banner.png
+    payload. Same operation, not a new story.
+    https://safedep.io/malfex-imgdecode-npm-native-addon-loader/'
+  - 'No other new operation. Docker Hub CVE-2026-105445 reassigned
+    personal access tokens on account-to-org conversion. Docker reviewed
+    about 304,000 transferred-token pushes and found no exploitation.
+    Not a story. The 13 October ReversingLabs note is agents publishing
+    screenshots to finish a task, not a malicious package. CrowdStrike
+    Famous Chollima on 13 October is laptop-farm employment fraud, not
+    a registry or CI compromise. GitHub changelog rows were product
+    notes.
+    https://www.docker.com/blog/docker-hub-security-advisory-cve-2026-105445/'
 - date: '2026-10-13'
   id: azazel-intake
   title: Azazel GitLab CI harvest

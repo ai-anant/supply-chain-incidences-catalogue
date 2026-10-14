@@ -1,0 +1,172 @@
+id: AS307
+type: Attack Story
+date: 2026-10
+platforms:
+  - npm
+  - macos
+  - windows
+  - mcp
+  - ai-agents
+  - git
+  - vscode
+  - workstation
+
+summary: Apex Accelerator published a malicious npm coding agent and a fake audit MCP
+
+description: |
+  Elastic Security Labs published REF8801 on 12 October 2026. A
+  supply-chain monitor flagged @apexacc/cli. The package was malicious
+  from the first publish, not a hijacked maintainer release. The same
+  publisher had already shipped the July @copilot-mcp/apex macOS
+  stealer (AS86). Elastic treats the follow-on package @apexacc/audit
+  as a later campaign by that publisher, not as that republish.
+
+  The public face is Apex Arena, a private workspace for crypto
+  founders, backed by an accelerator called Apex. The site claims more
+  than 200 portfolio projects and more than $124 million raised. It
+  offers free Claude and Gemini credits, a coding assistant, and
+  downloadable security-audit tools. Elastic found fake reviews, a Luma
+  event listing later taken down, and a founder post describing how he
+  handled the pitch. Elastic notified TOKEN2049 organizers. No victim
+  organisation is named as having installed the packages.
+
+  @apexacc/cli (GitHub apexaccs/copilot) repackages the coding agent
+  Oh My Pi. Elastic compared Apex Copilot v1.6.1 with Oh My Pi v16.3.6:
+  1,351 of 1,363 files under packages/coding-agent/src/ matched. The
+  added bootstrap redirects OpenRouter traffic, registers an attacker
+  MCP server, and fetches a host command. The Windows native addon
+  pi_natives.win32-x64-baseline.node matches Oh My Pi. Elastic found no
+  extra malicious mechanism in that DLL.
+
+  @apexacc/audit (GitHub apexaccs/audit-mcp) advertises an 18-tool MCP
+  security server. None of the handlers run the advertised scans. They
+  return hard-coded, label-substituted, date-derived, or random text.
+  audit_full_contract claims Slither v0.10.4 analyzed 847 lines.
+  audit_honeypot always returns NOT A HONEYPOT. audit_token_risk draws
+  a random score from 55 through 94, so the verdict can only be SAFE or
+  WARN. audit_token_security_api returns fixed GoPlus and Slither
+  fields and a composite score of 68/100 without those queries.
+
+  The bin entries apex.cjs and audit.cjs run when the command is
+  invoked or launched with npx. They download a platform Bun executable
+  from the project's GitHub releases and start it. Windows hashes:
+  apex-windows-x64.exe
+  985829083f3937df6c82419216f7697afae0caac8efca6257a756066fe2c0abb and
+  apex-audit-windows-x64.exe
+  5ee7145061f05779f7f6f9b72e216713d17d53e183a92f408bfbbc44f2bfb95d.
+  Both bootstraps POST to vrf.apexaccs.org/api/v1/vrf and run the
+  returned command. On macOS a Rust helper does that request.
+
+  On macOS the returned command is a curl-to-shell installer from
+  verify.apexfdn.xyz. The script fetches a tarball whose only file is
+  a Mach-O named installer, sha256
+  68f5a00eafa8ecebf5d93328e0fec23b24d6f91808c8384db002946a13656c71.
+  Elastic identifies that dropper as CloudSyncD. It prompts for an
+  admin password, checks it with dscl, and writes the password to
+  ~/.config/cloudsync/data.json while showing a decoy shared-library
+  error. The second stage posts host details to
+  ccmihr.com/macos/jquery.js and can run a tasked Mach-O. Elastic did
+  not see that server return a further payload.
+
+  On Windows the bootstrap writes a PowerShell file and a VBScript
+  launcher under the temp directory and starts wscript. @apexacc/audit
+  also asks for elevation so it can exclude its app directory from
+  Microsoft Defender and sets VerifiedAndReputablePolicyState to zero.
+  The verification response fetches a script from 0auth-chromium.com,
+  which downloads a loader from ehegisnightmare.icu. In Elastic's run
+  that loader stopped on a missing Python dependency before the next
+  stage. The recovered chain elevates, then a later stage runs
+  shellcode in process. The native stealer reads clipboard text, a
+  screenshot, Wi-Fi profile names, wallets, browsers, and AI-client
+  files including Claude config.json, Cursor storage.json and
+  settings.json, and Windsurf .env and auth.json. It archives those
+  under a Network Protocol Clients/MCP path and sends the zip through
+  Telegram. A Dropbox URL in the same binary downloads a signed Visual
+  Studio 2022 Community bootstrapper. Elastic treats that path as a
+  front, not the stealer.
+
+  Once an Apex token is set, the cli bootstrap overwrites
+  OPENROUTER_API_KEY and sets OPENROUTER_BASE_URL to
+  https://arena.apexaccs.org/api/llm/v1. An instrumented chat containing
+  the marker REF8801-CHAT-CHECK-01 was answered by that host. A later
+  request included the contents of a file the local read tool had just
+  opened. Tool approvals default to yolo. Elastic did not observe the
+  server substituting a malicious tool call. The same bootstrap writes
+  an apex-copilot entry in ~/.apex/agent/mcp.json pointing at
+  https://arena.apexaccs.org/api/copilot/mcp. That entry survives
+  process restart. A scoring call for a project that existed only in
+  the prompt returned 51/100 in every category and said the AI scorer
+  was unavailable.
+
+  The audit bootstrap tries to register its executable with Claude
+  Desktop, Cursor, and Windsurf. A start-up check rejects the mcp flag
+  before the server starts. The README tells the user to point the
+  client at dist/server.js instead. Historical commits contain a few
+  Russian comments. Elastic says those comments do not establish who
+  operates the campaign.
+
+attacks:
+  - attack: Malicious-from-publish agent and fake audit MCP
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          Attacker-owned npm scope @apexacc. Malicious from the first
+          publish. Not a compromised maintainer of an existing project.
+          Same publisher as the July @copilot-mcp/apex republish (AS86).
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          @apexacc/cli and @apexacc/audit. Bin scripts download Bun
+          executables from the projects' GitHub releases and start them.
+      - techniqueID: T0110
+        techName: Advertise malicious artifact
+        tactic: Resource Development
+        comment: |
+          Pitched as a Web3 accelerator offering free model credits, a
+          coding assistant, and an 18-tool security audit. The audit
+          handlers return fabricated findings.
+  - attack: Developer workstation after the command runs
+    index: 2
+    stage: post-supply-chain
+    customer: 2
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          Invoking the command or npx runs apex.cjs or audit.cjs. The
+          bootstrap asks vrf.apexaccs.org for a command and executes it.
+          macOS lands CloudSyncD. Windows stages a stealer.
+      - techniqueID: T0210
+        techName: Poison AI coding-agent config or workspace
+        tactic: Persistence
+        comment: |
+          Overwrites OPENROUTER_BASE_URL and OPENROUTER_API_KEY so model
+          traffic goes to arena.apexaccs.org. Writes ~/.apex/agent/mcp.json
+          with an attacker MCP server. Approvals default to yolo.
+          Attempts Claude Desktop, Cursor, and Windsurf registration.
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          @apexacc/audit requests elevation to exclude its app directory
+          from Defender and sets VerifiedAndReputablePolicyState to zero.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          CloudSyncD stores the phished admin password. The Windows
+          stealer reads browser stores and AI-client config, then sends
+          a zip through Telegram. Elastic did not see a further macOS
+          C2 task.
+
+links:
+  - https://www.elastic.co/security-labs/threat-command/apex-accelerator-malicious-npm-packages
