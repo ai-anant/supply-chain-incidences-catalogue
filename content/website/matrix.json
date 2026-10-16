@@ -692,7 +692,7 @@
         ],
         "url": "techniques/T0152.html",
         "description": "Malicious code can be injected into build commands, build scripts or project files. \nThese commands and scripts can be executed upon IDE project build and run.\n",
-        "incidentCount": 4
+        "incidentCount": 5
       },
       {
         "id": "T0155",
@@ -741,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 80
+        "incidentCount": 81
       },
       {
         "id": "T0173",
@@ -823,7 +823,7 @@
         ],
         "url": "techniques/T0138.html",
         "description": "Backdoor in code attack technique involves inserting a malicious code segment or backdoor into the software codebase, which allows the attacker to maintain access and control over the system even after their initial access has been removed or blocked.\nIn this attack, the attacker gains access to the codebase through various means, such as exploiting vulnerabilities or stealing credentials. \nOnce they have gained access, the attacker inserts a malicious code segment or backdoor into the codebase. \nThis code segment may be designed to execute specific malicious activities, such as stealing sensitive information, or to provide the attacker with continued access and control over the system.\n",
-        "incidentCount": 8
+        "incidentCount": 9
       },
       {
         "id": "T0148",
@@ -834,7 +834,7 @@
         ],
         "url": "techniques/T0148.html",
         "description": "In this attack, the attacker gains access to a self-hosted runner, which is a server or a virtual machine that runs the CI/CD pipelines for an organization. \nOnce access is gained, the attacker creates a scheduled task or job that runs at regular intervals, even after the initial attack has been detected and removed.\nThe scheduled task or job can be programmed to perform a variety of malicious activities, such as downloading and executing additional malware or maintaining a persistent backdoor for future attacks. \n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0161",
@@ -918,7 +918,7 @@
         ],
         "url": "techniques/T0210.html",
         "description": "The attacker writes into hidden agent directories and config that\ndevelopers and CI treat as local clutter \u2014 `.claude/`, `.cursor/`,\n`.vscode/`, Copilot/Gemini/Codex settings, MCP server entries, or\nPython `.pth` startup hooks. The next time the human or the agent\nopens the project, attacker instructions run with the developer's\nalready-granted tools. Uninstalling a malicious package does not\nclear this. Observed in Morphisec's Hades campaign, GTIG DUSTMAKER,\nand Mandiant's hijacked coding-assistant case.\n",
-        "incidentCount": 16
+        "incidentCount": 17
       }
     ],
     "amount": 10,
@@ -1209,7 +1209,7 @@
         ],
         "url": "techniques/T0189.html",
         "description": "It is a very common mistake for developers to keep secrets in configuration files, these can include user credentials, private keys, api keys etc...  \nThose files are usually the first place where adversaries search for such information.  \n",
-        "incidentCount": 1
+        "incidentCount": 2
       }
     ],
     "amount": 8,
@@ -1354,7 +1354,7 @@
         ],
         "url": "techniques/T0168.html",
         "description": "Adversaries may exfiltrate data to a code repository rather than over their primary command and control channel. \nCode repositories are often accessible via an API (ex: https://api.github.com, https://gitlab.com/api). Access to these APIs are often over HTTPS, which gives the adversary an additional level of protection.\nExfiltration to a code repository can also provide a significant amount of cover to the adversary if it is a popular service already used by hosts within the network.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       }
     ],
     "amount": 3,

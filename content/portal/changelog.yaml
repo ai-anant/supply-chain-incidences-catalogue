@@ -1,4 +1,25 @@
 entries:
+- date: '2026-10-16'
+  id: ghostaction-font-intake
+  title: GhostAction fake-font stage
+  items:
+  - 'AS304 gained the 16 October OpenSourceMalware write-up. Same
+    operation, not a new story. On 15 October the operator committed
+    a hidden folderOpen task and public/fonts/fa-solid-400.woff2
+    into a cluster of 94 repositories. The font is 38 lines of plain
+    Node.js. It reads cloud, registry, git, and AI-tool credential
+    files, posts to 193.32.204.199:8080, and installs a five-minute
+    cron that pipes /c2/ plus the hostname to bash. The returned
+    script was not recovered. Platforms now include vscode and
+    workstation.
+    https://opensourcemalware.com/blog/ghostaction-copycats-polinrider-by-hiding-a-stealer-in-a-fake-font-file'
+  - 'AS45 gained the same URL for one overlapping repository.
+    daxitzadafiya/bagisto-dhs also has a 25 June PolinRider Tailwind
+    loader. No shared indicator with the October files.'
+  - 'No other new operation. Tracked posts since 14 October were
+    product notes, a podcast, hardening write-ups, and intrusion
+    reports that never touch a registry or CI. GitHub Actions
+    workflow lockfiles are a platform control, not an incident.'
 - date: '2026-10-14'
   id: apex-accelerator-intake
   title: Apex Accelerator npm agent and MALFEX native loader

@@ -4,8 +4,10 @@ date: 2026-10
 platforms:
   - git
   - github-actions
+  - vscode
+  - workstation
 
-summary: GhostAction workflows steal Actions secrets and git-history credentials
+summary: GhostAction steals CI secrets, then autoruns a stealer from a fake font
 
 description: |
   On 9 October 2026 StepSecurity, Socket, and OpenSourceMalware
@@ -103,6 +105,69 @@ description: |
   requests. This is the same server as the workflow exfiltration,
   not a second operation.
 
+  On 16 October OpenSourceMalware published a second stage that
+  landed on 15 October. It persists after the workflow is deleted.
+  The same GitHub access commits .vscode/tasks.json and
+  public/fonts/fa-solid-400.woff2. The task is labeled eslint-check,
+  hidden, and set to runOn folderOpen. The command is
+  node ./public/fonts/fa-solid-400.woff2. The file is 38 lines of
+  plain Node.js, byte-identical in the 79 repositories they could
+  clone. It is not obfuscated JavaScript, and it does not use a
+  blockchain loader. OpenSourceMalware labels it a copy of the
+  PolinRider launcher, not an extension of that campaign. No shared
+  indicator with DPRK malware was found.
+
+  The cluster is 94 repositories and 66 owners. Fifteen were
+  deleted, renamed, or made private before analysis. Of the 79
+  that remained, 65 had gone more than a year without a commit
+  when the first malicious commit landed. On 8 October, between
+  13:03 and 22:41 UTC, 72 of those 79 received the first Stage 1
+  workflow. Four more received it on 12-14 October. Stage 2's
+  main burst was 15 October, 01:00-10:31 UTC. In 76 repositories
+  the second workflow, the font, and tasks.json landed together.
+  The median gap from Stage 1 was 6.3 days. psm-2/ai-artifacts
+  received Stage 2 at 10:30 UTC with no Stage 1. cashpost and
+  bangcv-flutter removed the Stage 1 workflow on 9 October and
+  still received Stage 2 on 15 October, at 02:32 and 07:48 UTC.
+  Deleting the workflow did not revoke the push credential.
+
+  The font reads the first 3,000 bytes of ~/.aws/credentials,
+  ~/.pypirc, ~/.npmrc, ~/.git-credentials, ~/.netrc,
+  ~/.claude/.credentials.json, ~/.gemini/oauth_creds.json, and
+  ~/.kube/config. It reads ~/.ssh/id_rsa and ~/.ssh/id_ed25519
+  in full. It greps the home directory for AWS, Anthropic, GitHub,
+  npm, and PyPI token shapes, capped at 30 matches and a 10 second
+  timeout. It appends environment variables whose names match
+  AWS_, ANTHROPIC, OPENAI, HF_TOKEN, or GITHUB_TOKEN. The same
+  expression also lists names that begin with an underscore. One
+  cleartext HTTP POST goes to 193.32.204.199 port 8080. Batch
+  tags on the copies are c=reinject, c=auto_20261013, and
+  c=security. c=security is the 12 October tag on
+  raihanlimit/ainebot-md, the first move to port 8080.
+
+  The same script installs a cron line marked ghc2. Every five
+  minutes the machine fetches
+  http://193.32.204.199:8080/c2/ plus its hostname and pipes the
+  body to bash. OpenSourceMalware had not retrieved what that
+  path returns. Deleting the font does not remove the cron job.
+
+  The same burst adds a second workflow. It is Stage 1 with more
+  patterns, a wiki scan that uses the job's GITHUB_TOKEN, and a
+  secret-gist upload if the POST fails. Filenames differ:
+  lint.yml, ci-check.yml, build-check.yml, repo-health.yml,
+  audit.yml, code-review.yml, and test-suite.yml, each in 5 to
+  16 repositories. mammarraza/reactapp also has cache-cleanup.yml,
+  display name Runner Maintenance, added 15 October at 06:24 UTC,
+  set to run on self-hosted runners. That copy reads the instance
+  metadata IAM role, reads SSH keys, and installs the same cron.
+  It is the only workflow in the set that reaches the host under
+  the runner.
+
+  daxitzadafiya/bagisto-dhs is in this cluster and also has a
+  PolinRider Tailwind-config loader. The force-push is 25 June
+  2026. OpenSourceMalware found no shared indicator with the 15
+  October files. That loader stays on AS45.
+
 attacks:
   - attack: Stolen maintainer identity, workflow pushed to every writable repo
     index: 1
@@ -168,6 +233,79 @@ attacks:
           August-September window. No malicious registry publish was
           observed after the pyxel token names were templated.
 
+  - attack: Fake font autoruns on folder open, then a five-minute cron
+    index: 3
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0138
+        techName: Backdoor in code
+        tactic: Persistence
+        comment: |
+          tasks.json and the fake font stay in the repo after the
+          workflow is deleted. cashpost and bangcv-flutter removed
+          Stage 1 on 9 October and still received these files on
+          15 October.
+      - techniqueID: T0210
+        techName: Poison AI coding-agent config or workspace
+        tactic: Persistence
+        comment: |
+          .vscode/tasks.json is hidden, labeled eslint-check, and
+          set to runOn folderOpen. The command is node on
+          public/fonts/fa-solid-400.woff2.
+      - techniqueID: T0152
+        techName: IDE
+        tactic: Execution
+        comment: |
+          Opening the folder in VS Code runs that node command.
+          The file is plain JavaScript with a font extension.
+          Node does not check the extension.
+      - techniqueID: T0189
+        techName: Secrets in configuration files
+        tactic: Credential Access
+        comment: |
+          The script reads AWS, PyPI, npm, git, netrc, Claude,
+          Gemini, and kube config files, plus both SSH private
+          keys. A home-directory grep keeps 30 token matches.
+      - techniqueID: T0140
+        techName: Harvest tokens from environment variables
+        tactic: Credential Access
+        comment: |
+          Names matching AWS_, ANTHROPIC, OPENAI, HF_TOKEN, or
+          GITHUB_TOKEN are appended to the same report. This is
+          the developer process environment, not Actions secrets.
+      - techniqueID: T0199
+        techName: Secret leak
+        tactic: Impact
+        comment: |
+          The report is one cleartext POST to 193.32.204.199
+          port 8080. Tags are c=reinject, c=auto_20261013, and
+          c=security.
+      - techniqueID: T0172
+        techName: Runtime backdoor
+        tactic: Execution
+        comment: |
+          A crontab line marked ghc2 runs every five minutes,
+          fetches /c2/ plus the hostname, and pipes the body to
+          bash. The returned script was not recovered. Deleting
+          the font does not remove the job.
+      - techniqueID: T0148
+        techName: Scheduled tasks on self hosted runner
+        tactic: Persistence
+        comment: |
+          mammarraza/reactapp cache-cleanup.yml, display name
+          Runner Maintenance, is runs-on self-hosted and installs
+          the same cron. One workflow, not a campaign-wide runner
+          compromise.
+      - techniqueID: T0168
+        techName: Exfiltration to code repositories
+        tactic: Exfiltration
+        comment: |
+          The second workflow uploads findings to a secret gist
+          if the POST fails. OpenSourceMalware did not show a
+          gist that was created.
+
 gaps:
   - The theft of the GitHub credential was not observed, so this is
     not T0112 or T0153. A leaked token is the labs' hypothesis.
@@ -192,6 +330,13 @@ gaps:
     proven, so this is not a new T0112, and it does not establish
     how kitao or henrywoo were taken. There is no technique for
     the phishing page or the device-flow consent.
+  - OpenSourceMalware had not retrieved the body served from the
+    cron URL. The five-minute job is T0172. T0148 is only the one
+    self-hosted workflow. Reading an IAM role from the instance
+    metadata service is not its own technique.
+  - daxitzadafiya/bagisto-dhs also has a June PolinRider loader.
+    That operation is AS45. This URL is listed there too. The two
+    are not merged.
 
 links:
   - https://www.stepsecurity.io/blog/ghostaction-returns
@@ -201,3 +346,4 @@ links:
   - https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/
   - https://blog.gitguardian.com/ghostaction-campaign-3-325-secrets-stolen/
   - https://www.stepsecurity.io/blog/ghostaction-campaign-over-3-000-secrets-stolen-through-malicious-github-workflows
+  - https://opensourcemalware.com/blog/ghostaction-copycats-polinrider-by-hiding-a-stealer-in-a-fake-font-file

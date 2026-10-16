@@ -21,6 +21,18 @@ description: |
   observed ~200 malicious release artifacts / 111 packages (80+ Go, 10
   Packagist, npm, Chrome extensions). AS35 is one Packagist instance.
 
+  On 16 October OpenSourceMalware found one repository in a
+  GhostAction cluster that also carries this loader.
+  daxitzadafiya/bagisto-dhs has poisoned Tailwind configs, including
+  tailwind.config.js. A force-push on 25 June 2026 rewrote a commit
+  whose history date still says 16 April 2025, and added
+  temp_auto_push.bat. The block reads a pointer from TRON or Aptos
+  and fetches encrypted code from BNB Smart Chain. Addresses match
+  indicators already tracked for this campaign. The 15 October
+  tasks.json and fake font on that same repo report to GhostAction's
+  server and share no indicator with this loader. That stage is
+  AS304.
+
 attacks:
   - attack: Maintainer GitHub accounts
     index: 1
@@ -72,3 +84,4 @@ links:
   - https://socket.dev/blog/polinrider-github-packagist
   - https://checkmarx.com/zero-post/chainveil-a-malicious-npm-supply-chain-attack-by-successkey/
   - https://checkmarx.com/zero-post/sequel-to-chainveil-npm-malware-targets-vite-ecosystem/
+  - https://opensourcemalware.com/blog/ghostaction-copycats-polinrider-by-hiding-a-stealer-in-a-fake-font-file
