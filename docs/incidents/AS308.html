@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchos1as typosquatted yay on the AUR and ran a root install scriptlet · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS308</p>
+
+        <p class="meta">AS308 · 2026-10</p>
+        <h1>marchos1as typosquatted yay on the AUR and ran a root install scriptlet</h1>
+        <p><a class="plat" href="../platforms/aur.html">AUR</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a></p>
+        <p>James Smith reported this to aur-general on 13 October 2026 (19:51<br>PT). Account marchos1as had typosquatted popular AUR helpers. The<br>mail names yay and paru as examples. The subject line says hundreds<br>of packages. The only enumerated set is fifteen yay lookalikes.</p><p>Emiliano Gandini Outeda&#x27;s watcher fired seven minutes after the<br>upload, at 21:34 on 13 October. It recorded 15 packages added and<br>13 changed. The added names, clustered under one rule, are ay, ayy,<br>hay, tay, uay, ya, yaay, yat, yau, yayy, yqy, ysy, yya, yyay, and<br>yzy. No paru name is in that list.</p><p>Andreas Reichel&#x27;s scan of yyay is the only scriptlet quoted in the<br>thread. The package presents the legitimate yay upstream URL and<br>the yay-13.0.1.tar.gz tarball. That tarball&#x27;s sha256sum passed.<br>The package name is yyay. yyay.install runs at pacman install and<br>upgrade, as root. post_install and post_upgrade are empty (the<br>body is true). The payload sits at the top of the file, outside<br>any function, and pipes a script from the gitflic.ru project<br>hellscripter/install-scripts into a shell. The fetch is wrapped<br>in a web.archive.org URL with no pinned snapshot, so the script<br>that is served is not fixed. That script is not in source=() and<br>has no checksum. The thread does not recover what linux.sh<br>returned. The upstream named in the scan is github.com/Jguer/yay.</p><p>DeepChirp confirmed the install scripts were malicious, banned<br>marchos1as, and deleted the account&#x27;s packages the same evening.<br>A maintainer search on 17 October returns no packages. This is<br>not the June orphan-adoption wave (AS201) or the July adoption<br>halt (AS202). A new account uploaded lookalikes. It did not adopt<br>existing package bases.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0108.html">T0108</a> Accounts in public registry</li><li><a href="../techniques/T0129.html">T0129</a> Typosquatting</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li></ul>
+        <h2><span class="stage">supply-chain</span> AUR upload</h2><div class="card"><p class="meta"><a href="../techniques/T0108.html">T0108</a> · Resource Development · Accounts in public registry</p><p>marchos1as is the publishing account. DeepChirp banned it.<br>The thread does not describe a stolen maintainer session.</p></div><div class="card"><p class="meta"><a href="../techniques/T0129.html">T0129</a> · Initial Access · Typosquatting</p><p>Fifteen names sit next to yay. yyay reuses the real upstream<br>URL and the real yay-13.0.1 tarball. paru is only an example<br>in the first mail.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>The packages were new uploads. DeepChirp deleted them after<br>confirming the install scripts. They are no longer on the AUR.</p></div><h2><span class="stage">post-supply-chain</span> pacman install</h2><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>yyay.install runs as root on install and upgrade. The<br>functions reviewers would read are empty. The pipe to a<br>shell is top-level. The fetched script was not recovered.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The subject says hundreds of packages. The watcher enumerated 15 yay lookalikes. Do not treat the subject line as a count.</li><li>linux.sh was not in the package and was not recovered. Credential theft, a backdoor, and a rootkit are Andreas&#x27;s examples of what a remote script could do. They are not observed behavior.</li><li>Ralf Mardorf is listed as a participant on the thread index. That message was not in the pages read for this entry.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/thread/L3TGW6CC6WCX32VKEXLFAYDWCQXA2ICZ/" rel="noopener">https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/thread/L3TGW6CC6WCX32VKEXLFAYDWCQXA2ICZ/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

@@ -1,4 +1,33 @@
 entries:
+- date: '2026-10-17'
+  id: aur-yay-aomei-intake
+  title: AUR yay typosquat and AOMEI update-config windows
+  items:
+  - 'AS308: marchos1as typosquatted yay on the AUR (aur-general, 13
+    October). Fifteen lookalikes were enumerated (ay through yzy,
+    including yyay). yyay reuses the real yay 13.0.1 tarball and
+    runs a root install scriptlet that pipes a gitflic.ru script
+    into a shell. The fetched script was not recovered. An AUR
+    trusted user banned the account and deleted the packages the
+    same evening. Not the June orphan wave (AS201) or the July
+    adoption halt (AS202).
+    https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/thread/L3TGW6CC6WCX32VKEXLFAYDWCQXA2ICZ/'
+  - 'AS309: UNC7017 tampered with AOMEI update configuration for
+    five to ten minutes at a time, April–July 2026 (Mandiant, 15
+    October; METAL, 16 October). Clients still requested the real
+    hosts. down_html.ini redirected the archive and rewrote the
+    MD5. Confirmed windows are 28 May, 16 July, and 20 July.
+    CROSSROAD staged SHINYROAD. How the origin was written is not
+    described. A restored ini does not clean an endpoint.
+    https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering/
+    https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html'
+  - 'No other new operation. Tracked posts since 16 October were
+    product notes, a podcast, hardening, a Magento product RCE,
+    and intrusion reports that never touch a registry, an update
+    channel, or CI. BeyondTrust CVE-2026-102764 is appliance
+    exploitation, not a shipped update. LiteLLM CVE-2026-59822
+    honeypot hits are gateway RCE, not a package publish. The
+    AISI Astra note is a simulated CTF, not a victim.'
 - date: '2026-10-16'
   id: ghostaction-font-intake
   title: GhostAction fake-font stage

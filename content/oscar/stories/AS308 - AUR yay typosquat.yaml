@@ -1,0 +1,92 @@
+id: AS308
+type: Attack Story
+date: 2026-10
+platforms:
+  - aur
+  - linux
+
+summary: marchos1as typosquatted yay on the AUR and ran a root install scriptlet
+
+description: |
+  James Smith reported this to aur-general on 13 October 2026 (19:51
+  PT). Account marchos1as had typosquatted popular AUR helpers. The
+  mail names yay and paru as examples. The subject line says hundreds
+  of packages. The only enumerated set is fifteen yay lookalikes.
+
+  Emiliano Gandini Outeda's watcher fired seven minutes after the
+  upload, at 21:34 on 13 October. It recorded 15 packages added and
+  13 changed. The added names, clustered under one rule, are ay, ayy,
+  hay, tay, uay, ya, yaay, yat, yau, yayy, yqy, ysy, yya, yyay, and
+  yzy. No paru name is in that list.
+
+  Andreas Reichel's scan of yyay is the only scriptlet quoted in the
+  thread. The package presents the legitimate yay upstream URL and
+  the yay-13.0.1.tar.gz tarball. That tarball's sha256sum passed.
+  The package name is yyay. yyay.install runs at pacman install and
+  upgrade, as root. post_install and post_upgrade are empty (the
+  body is true). The payload sits at the top of the file, outside
+  any function, and pipes a script from the gitflic.ru project
+  hellscripter/install-scripts into a shell. The fetch is wrapped
+  in a web.archive.org URL with no pinned snapshot, so the script
+  that is served is not fixed. That script is not in source=() and
+  has no checksum. The thread does not recover what linux.sh
+  returned. The upstream named in the scan is github.com/Jguer/yay.
+
+  DeepChirp confirmed the install scripts were malicious, banned
+  marchos1as, and deleted the account's packages the same evening.
+  A maintainer search on 17 October returns no packages. This is
+  not the June orphan-adoption wave (AS201) or the July adoption
+  halt (AS202). A new account uploaded lookalikes. It did not adopt
+  existing package bases.
+
+attacks:
+  - attack: AUR upload
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          marchos1as is the publishing account. DeepChirp banned it.
+          The thread does not describe a stolen maintainer session.
+      - techniqueID: T0129
+        techName: Typosquatting
+        tactic: Initial Access
+        comment: |
+          Fifteen names sit next to yay. yyay reuses the real upstream
+          URL and the real yay-13.0.1 tarball. paru is only an example
+          in the first mail.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          The packages were new uploads. DeepChirp deleted them after
+          confirming the install scripts. They are no longer on the AUR.
+  - attack: pacman install
+    index: 2
+    stage: post-supply-chain
+    customer: 2
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          yyay.install runs as root on install and upgrade. The
+          functions reviewers would read are empty. The pipe to a
+          shell is top-level. The fetched script was not recovered.
+
+gaps:
+  - The subject says hundreds of packages. The watcher enumerated
+    15 yay lookalikes. Do not treat the subject line as a count.
+  - linux.sh was not in the package and was not recovered. Credential
+    theft, a backdoor, and a rootkit are Andreas's examples of what
+    a remote script could do. They are not observed behavior.
+  - Ralf Mardorf is listed as a participant on the thread index.
+    That message was not in the pages read for this entry.
+
+links:
+  - https://lists.archlinux.org/archives/list/aur-general@lists.archlinux.org/thread/L3TGW6CC6WCX32VKEXLFAYDWCQXA2ICZ/

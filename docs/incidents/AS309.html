@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNC7017 swapped AOMEI update config for minutes at a time · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS309</p>
+
+        <p class="meta">AS309 · 2026-04</p>
+        <h1>UNC7017 swapped AOMEI update config for minutes at a time</h1>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/update-channel.html">Installer / update channel</a></p>
+        <p>Google Threat Intelligence Group and Mandiant published this on<br>15 October 2026. ManageEngine Threat Analysis Lab (METAL) published<br>the endpoint reconstruction on 16 October. Both describe UNC7017<br>tampering with AOMEI Technology update configuration between April<br>and July 2026. METAL&#x27;s telemetry is AOMEI Backupper 8.3.0 and<br>later. Mandiant also names AnyViewer, which uses the same ABMarket<br>update flow.</p><p>Nothing in either write-up is a CVE in the client. Backupper.exe<br>fetches down_html.ini from<br>www2.aomeisoftware.com/download/abpopup/down_html.ini. That file<br>names the archive URL and the MD5 the client will accept. The<br>client downloads the archive, checks that MD5, and extracts it<br>under the install tree. ABNotify.exe fetches Notifycfg.ini from<br>account.aomeitech.com/Notifycfg.ini and follows it. METAL says<br>neither file is signed, and the checksum lives in the same<br>unauthenticated file that names the URL.</p><p>UNC7017 wrote those files on the origin, left them malicious for<br>five to ten minutes, then restored the authentic copies. Clients<br>that polled inside the window followed the attacker URL. Clients<br>that polled outside it received the real files. Confirmed windows<br>are 28 May (05:40–05:50 UTC), 16 July (08:33–08:39 UTC), and<br>20 July (10:35–10:40 UTC). Samples start in late April. Mandiant<br>says further windows are likely and were not seen. On 16 July the<br>Url line moved from www2.aomeisoftware.com to<br>promotion.storage-data.com and the minor version field (&quot;thrid&quot;)<br>and MD5 were updated to match. On 20 July the download was a<br>Google Cloud Storage object under storage.googleapis.com/aomeiupdate/.<br>Earlier staging used Alibaba OSS<br>(serv.oss-cn-hongkong.aliyuncs.com) and the lookalike domains<br>storage-data.com and aomei.storage-data.com.</p><p>The archive is upgrade-now.zip. CROSSROAD (upgrade-now.exe) is<br>the downloader. It stages SHINYROAD, a modular backdoor, beside<br>a Famatech Radmin launcher and registers the scheduled task<br>RadminComponentRuntime. METAL&#x27;s 28 May cases, two organisations<br>with no shared infrastructure, show Backupper.exe extracting into<br>tmphtml and moving the files into html. The dropper had already<br>deleted itself. Radmin Server was installed from a genuine<br>installer with no server address. METAL found no evidence that<br>Radmin was running. Remote access was the implant&#x27;s outbound<br>connection. A later stage, from early July, is Adaptix C2<br>masquerading as Nitro PDF, with the task NitroRuntime and a<br>beacon to 8.210.84.56:6800.</p><p>On 20 July, Notifycfg.ini also opened a 1x1 popup at<br>file://8.210.84.56/DavWWWRoot/campaign/24hour-flash-sale.html.<br>Mandiant describes that as WebDAV NTLM coercion, separate from<br>the ZIP. Mandiant notified AOMEI on 17 July. AOMEI replied on<br>29 July that the origin had been corrected. METAL has not<br>independently verified containment. Endpoints that polled during<br>a window keep the scheduled task after the ini files are restored.</p><p>Victimology is whoever polled during a window. Mandiant names<br>organisations in IT services, telecommunications, and higher<br>education across Australia, Brazil, India, Pakistan, Portugal,<br>Singapore, South Africa, Spain, Switzerland, Türkiye, and the<br>United States, and says the set is wider than the telemetry.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0209.html">T0209</a> Compromise package registry or CDN origin</li><li><a href="../techniques/T0180.html">T0180</a> Compromise services / servers</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0172.html">T0172</a> Runtime backdoor</li><li><a href="../techniques/T0201.html">T0201</a> Customers compromised</li></ul>
+        <h2><span class="stage">supply-chain</span> Update origin</h2><div class="card"><p class="meta"><a href="../techniques/T0209.html">T0209</a> · Initial Access · Compromise package registry or CDN origin</p><p>Clients still requested www2.aomeisoftware.com and<br>account.aomeitech.com. UNC7017 changed down_html.ini and<br>Notifycfg.ini on those origins, then put the real files back.</p></div><div class="card"><p class="meta"><a href="../techniques/T0180.html">T0180</a> · Initial Access · Compromise services / servers</p><p>The ini files on AOMEI&#x27;s update hosts were modified in<br>place. Neither post says how that write access was obtained.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>The ini named an attacker archive and a matching MD5.<br>The client treated that archive as the expected update.<br>The file at the original URL was not replaced. The pointer was.</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>The MD5 the client checks is declared in the same<br>unauthenticated ini that names the URL. UNC7017 updated<br>both together, including the &quot;thrid&quot; version field.</p></div><h2><span class="stage">post-supply-chain</span> Endpoint that polled inside a window</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>Backupper.exe extracts the archive. Notifycfg.ini causes<br>upgrade-now.html to run in the in-app WebView, including<br>a 1x1 window, and that page starts the sibling executable.</p></div><div class="card"><p class="meta"><a href="../techniques/T0172.html">T0172</a> · Execution · Runtime backdoor</p><p>CROSSROAD stages SHINYROAD and registers<br>RadminComponentRuntime. METAL describes an attacker DLL<br>beside the Radmin launcher and an encrypted PocketPy<br>implant in a signed dllhost.exe surrogate.</p></div><div class="card"><p class="meta"><a href="../techniques/T0201.html">T0201</a> · Impact · Customers compromised</p><p>Any client that polled during a window received the<br>archive. Mandiant&#x27;s identified set spans several countries<br>and is not limited to those organisations.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>How UNC7017 wrote the ini files is not described. No CVE, stolen account, or hosting panel is named. That is not T0135.</li><li>The 20 July WebDAV NetNTLMv2 coercion is a 1x1 file:// popup in Notifycfg.ini. It is not file harvest (T0184) and not an environment-variable dump (T0140). No technique names it.</li><li>Timestomping of upgrade-now.exe, the unsigned rsetup64.exe /intsetup on 28 May, and Adaptix C2 under Nitro PDF names are follow-on. They are not separate supply-chain techniques.</li><li>METAL has not verified that the 29 July origin fix contained the server. A restored ini does not remove a scheduled task already written on an endpoint.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering/" rel="noopener">https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering/</a></li><li><a href="https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html" rel="noopener">https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

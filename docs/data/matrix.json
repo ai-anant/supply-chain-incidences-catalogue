@@ -177,7 +177,7 @@
         ],
         "url": "techniques/T0108.html",
         "description": "An attacker can use accounts in public registries, such as PyPI or DockerHub, to perform a supply chain attack in several ways.\nOne approach is to compromise the credentials of a legitimate developer account and use it to upload malicious packages or container images.\nThe attacker can then promote the malicious artifact by using misleading descriptions or keywords, potentially increasing the number of downloads.\nAlternatively, the attacker can create a fake developer account and upload malicious packages or container images using it.\nThe attacker may use a similar username or avatar to legitimate developers to trick users into thinking the account is legitimate.\nOnce the malicious artifact is uploaded, the attacker can promote it using various techniques, such as hijacking popular package names or using misleading descriptions.\nAnother approach is to target the infrastructure used by public registries, such as the servers or the communication channels used by developers to upload packages or container images.\nAn attacker may compromise the infrastructure and use it to inject malicious code into legitimate packages or container images as they are being uploaded.\n",
-        "incidentCount": 14
+        "incidentCount": 15
       },
       {
         "id": "T0109",
@@ -189,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 160
+        "incidentCount": 161
       },
       {
         "id": "T0110",
@@ -226,7 +226,7 @@
         ],
         "url": "techniques/T0121.html",
         "description": "A compromised legitimate artifact attack is a type of cyber attack in which an attacker replaces a legitimate package or container image with a malicious version, often without the knowledge of the original developer or distributor. \nThis attack takes advantage of the trust that users place in legitimate packages or container images, which are often used to deploy software across multiple environments.\nIn this attack, the attacker may gain access to the repository or registry where the legitimate artifact is stored, either by exploiting a vulnerability or through social engineering tactics. \nThe attacker then replaces the legitimate artifact with a malicious version that contains malware or other harmful code. \nOnce the compromised artifact is downloaded and deployed, it can compromise the system and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 67
+        "incidentCount": 68
       },
       {
         "id": "T0141",
@@ -407,7 +407,7 @@
         ],
         "url": "techniques/T0129.html",
         "description": "Typosquatting is an attack technique where an attacker creates a package or container with a name that is very similar to a legitimate one, in hopes that a user will make a typo and download the malicious package or container. \nFor example, if a legitimate package is named \"numpy,\" an attacker might create a package named \"numpyy\" or \"numpi\" in hopes that a user will accidentally install the malicious package instead. \nIn container security, it involves creating a container image with a similar name to a legitimate one, while in open-source security, it involves creating a malicious package with a similar name to a legitimate one.\nOnce the user installs the malicious package or container, the attacker can potentially gain access to the user's system or data, or inject malicious code into the user's environment.\n",
-        "incidentCount": 44
+        "incidentCount": 45
       },
       {
         "id": "T0133",
@@ -539,7 +539,7 @@
         ],
         "url": "techniques/T0180.html",
         "description": "Services (servers) compromise attack in the supply chain is a type of attack that targets the servers hosting the software development and distribution infrastructure. \nThis attack can happen when an attacker gains access to the server through a vulnerability, misconfiguration, or social engineering attack. \nOnce the attacker gains access to the server, they can modify the source code or software packages being distributed to include malicious code or backdoors. \nThis attack can compromise multiple software projects and potentially all users who download or use the compromised software.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       },
       {
         "id": "T0181",
@@ -602,7 +602,7 @@
         ],
         "url": "techniques/T0209.html",
         "description": "Instead of publishing a malicious version under a stolen maintainer\naccount, the attacker tampers with the registry or the CDN origin pool\nthat serves it. Consumers still resolve the real hostname. Coder's\nregistry.coder.com incident (GHSA-vx42-ghc9-gw65) is the type case:\nrogue origin IPs were added to a Cloudflare pool so a legitimate CDN\nserved stolen-credential Terraform modules. Distinct from T0205 (third-party\nweb asset) and T0109 (publish to the registry as a user).\n",
-        "incidentCount": 28
+        "incidentCount": 29
       },
       {
         "id": "T0212",
@@ -681,7 +681,7 @@
         ],
         "url": "techniques/T0151.html",
         "description": "A package installation script injection attack is a type of security exploit that involves an attacker injecting malicious code into a legitimate software package installation script.\nThe attack typically occurs when an attacker gains access to the distribution network of a software vendor or package manager, and injects malicious code into the package installation script. \nThis code may be designed to carry out a range of nefarious activities, such as stealing sensitive information, creating backdoors, or executing arbitrary code on the victim's system.\nOnce the victim downloads and installs the compromised software package, the injected code is executed, giving the attacker access to the victim's system.\n",
-        "incidentCount": 42
+        "incidentCount": 43
       },
       {
         "id": "T0152",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 52
+        "incidentCount": 53
       },
       {
         "id": "T0166",
@@ -741,7 +741,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 81
+        "incidentCount": 82
       },
       {
         "id": "T0173",
@@ -1077,7 +1077,7 @@
         ],
         "url": "techniques/T0207.html",
         "description": "Consumers are supposed to verify packages, containers, and third-party\nscripts (checksums, signatures, Sigstore, Subresource Integrity). The\nattacker relies on that check never running, or supplies a matching but\nattacker-controlled signature. OWASP CICD-SEC-9 names the control gap;\nthis technique is the attacker side. Polyfill.io hotlinks without SRI and\nunsigned CI helper scripts are typical realizations.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0208",
@@ -1474,7 +1474,7 @@
         ],
         "url": "techniques/T0201.html",
         "description": "The downstream consequence of a software supply-chain attack: customers who\nconsumed a poisoned update, package, or service are themselves breached.\nSolarWinds Orion, 3CX, Codecov, and Polyfill.io are canonical examples \u2014\nthe supplier is the delivery vehicle; customer environments are the prize.\nModeling this as its own Impact technique lets defenders map \"what happened\nto us because we trusted a vendor\" without collapsing it into a generic\nbackdoor label.\n",
-        "incidentCount": 16
+        "incidentCount": 17
       },
       {
         "id": "T0216",
