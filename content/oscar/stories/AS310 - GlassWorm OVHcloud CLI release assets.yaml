@@ -1,0 +1,157 @@
+id: AS310
+type: Attack Story
+date: 2026-10
+platforms:
+  - git
+  - github-actions
+  - workstation
+  - macos
+  - linux
+  - windows
+
+summary: GlassWorm-hijacked contributor replaced OVHcloud CLI release assets on five published versions
+
+description: |
+  On 19 October 2026, between 12:47 and 13:12 UTC, release binaries of
+  five already-published versions of the official OVHcloud CLI
+  (ovh/ovhcloud-cli) were replaced through GitHub's ordinary Releases
+  API. v0.11.0 through v0.15.0 each lost up to six assets: both macOS
+  builds, Linux x86_64 and arm64, Windows x86_64, and the checksums
+  file that vouches for them. The i386 builds, Windows arm64, and the
+  WASM build were left untouched, which reads as platform selection
+  aimed at developer and ops workstations rather than a defacement. A
+  downstream CI job that pins the SHA-256 of
+  ovhcloud-cli_Linux_arm64.tar.gz failed, and the reporter opened
+  issue 300 at 13:50 UTC. OVHcloud deleted the replaced assets at
+  14:21 UTC, about 94 minutes after the first upload, and shipped a
+  clean v0.16.0 at 17:16 UTC marked immutable with a release
+  attestation.
+
+  The uploads came from the personal account HassenBF, a legitimate
+  OVH contributor with merged pull requests in ovhcloud-docs and
+  ovh/manager, Write on the repository, and no public org membership
+  or commits in ovhcloud-cli itself. No tag was pushed and no
+  workflow ran: the Actions run list shows nothing between 16 October
+  and the v0.16.0 tag push, so GoReleaser was never invoked. The
+  injected binary carries Go build metadata that gives the fake
+  away - a pseudo-version (v0.15.1-0.20261013083505-5ead8ef9b43d+dirty)
+  instead of the release tag, vcs.modified=true from uncommitted
+  changes, and vcs.* lines that GoReleaser's -trimpath would strip.
+  It is a plain go build of a 13 October commit made somewhere other
+  than the release pipeline, uploaded one asset at a time with
+  checksums.txt replaced last. OVHcloud has not published what the
+  binary reads or where it sends data. Octave Klaba described it as
+  looking for secrets stored on disk and called its quality mediocre
+  but functional.
+
+  OpenSourceMalware ties the account to GlassWorm. Four of
+  HassenBF's personal repositories were force-pushed on 5 and
+  6 March 2026; each new tip is an amend of the previous one that
+  keeps the original author date and message and adds a preinstall.js
+  loader (inlined into src/index.js in crwn-clothing). The loader
+  hides its payload in Unicode variation-selector characters, decrypts
+  an AES-256-CBC stage, and pulls its next-stage URL from the memo
+  field of a Solana wallet transaction - a wallet that appears in
+  public GlassWorm indicator lists. OpenSourceMalware is explicit
+  that the link between the March account compromise and the October
+  uploads rests on the shared account identity, and OVHcloud has not
+  said how the credentials were taken or whether the workflow's
+  long-lived TAP_GITHUB_TOKEN was exposed. A post-mortem is promised.
+
+  Mutable releases and human publishers made the swap cheap. The
+  project's own GoReleaser config sets replace_existing_artifacts:
+  true, so replacing assets on a months-old release is documented
+  behaviour. install.sh and the Homebrew cask in ovh/homebrew-tap
+  fetched the release URL without independent verification, and the
+  checksums file was replaced along with the binaries. Anyone who
+  installed through install.sh, brew install --cask ovh/tap/ovhcloud-cli,
+  or a direct release download in the window on the mainstream
+  platforms got the swapped file. go install, source builds, and
+  OVHcloud's internally built Docker image were not affected. The
+  v0.16.0 response - immutable release, service-account publisher
+  (ovh-cds), signed tag, GitHub attestation - closes the mutable
+  release and personal-publisher rows. Anyone who ran the swapped
+  binary is told to treat every secret on the machine as exposed.
+
+attacks:
+  - attack: Hijacked contributor account
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0113
+        techName: Compromised user account
+        tactic: Initial Access
+        comment: |
+          HassenBF, a real OVH contributor, held Write on the repo -
+          most likely through the @ovh/ovhcloud-cli-owners team that
+          CODEOWNERS grants on everything. Its public repos were
+          amended with the loader in March; the earliest server-verified
+          attacker use of the account is 5 March 2026. How the
+          credentials were taken is not published.
+      - techniqueID: T0111
+        techName: Malicious code contribution to an open-source repository
+        tactic: Resource Development
+        comment: |
+          The amend-and-force-push on four personal repos planted a
+          preinstall.js variation-selector loader. That is staging on
+          the hijacked account, not a change to ovh/ovhcloud-cli - the
+          source repository was never touched.
+      - techniqueID: T0121
+        techName: Compromised legitimate artifact
+        tactic: Resource Development
+        comment: |
+          Release assets of v0.11.0 to v0.15.0 were deleted and
+          re-uploaded through the Releases API, checksums.txt last so
+          the published hashes matched. Tags still point at the real
+          commits; the Go module proxy serves clean source.
+      - techniqueID: T0207
+        techName: Skip or forge artifact integrity verification
+        tactic: Defense Evasion
+        comment: |
+          install.sh does not verify checksums.txt and the cask trusts
+          the release URL, so the swapped files passed every automated
+          path. The one catch came from a downstream CI that hand-pinned
+          a SHA-256.
+  - attack: Workstation that fetched a swapped binary
+    index: 2
+    stage: post-supply-chain
+    customer: 2
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          install.sh, brew upgrade, or a CI/Dockerfile fetch during the
+          94-minute window ran the dirty build. It lacks the version
+          ldflag, so ovhcloud version printed a pseudo-version instead
+          of the tag.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          Klaba described the binary as looking for secrets stored on
+          disk. The replaced assets were deleted before anyone archived
+          them, so no public sample analysis names paths or exfil
+          endpoints.
+
+gaps:
+  - How HassenBF's credentials were taken in March 2026, and whether
+    the same actor held the account through October, is not
+    established. OpenSourceMalware labels the GlassWorm linkage an
+    inference from the shared account.
+  - The malicious binary was never archived. Everything about its
+    behaviour comes from Klaba's description; no IOC beyond the
+    reporter's one replaced-asset hash is public.
+  - Whether TAP_GITHUB_TOKEN or any org-level secret was exposed, and
+    whether ovh/homebrew-tap was checked, awaits the post-mortem.
+  - The workflow did not run and no provenance existed to forge, so
+    T0206 does not apply; the gap is the absence of any attestation
+    to check, not a forged one.
+
+links:
+  - https://github.com/ovh/ovhcloud-cli/issues/300
+  - https://opensourcemalware.com/blog/glassworm-hacks-ovh-clouds-cli-tool
+  - https://x.com/olesovhcom/status/2112225308589834260

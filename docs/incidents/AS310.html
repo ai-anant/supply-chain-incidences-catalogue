@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GlassWorm-hijacked contributor replaced OVHcloud CLI release assets on five published versions · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS310</p>
+
+        <p class="meta">AS310 · 2026-10</p>
+        <h1>GlassWorm-hijacked contributor replaced OVHcloud CLI release assets on five published versions</h1>
+        <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/github-actions.html">GitHub Actions</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/linux.html">Linux distro / packages</a><a class="plat" href="../platforms/windows.html">Windows software</a></p>
+        <p>On 19 October 2026, between 12:47 and 13:12 UTC, release binaries of<br>five already-published versions of the official OVHcloud CLI<br>(ovh/ovhcloud-cli) were replaced through GitHub&#x27;s ordinary Releases<br>API. v0.11.0 through v0.15.0 each lost up to six assets: both macOS<br>builds, Linux x86_64 and arm64, Windows x86_64, and the checksums<br>file that vouches for them. The i386 builds, Windows arm64, and the<br>WASM build were left untouched, which reads as platform selection<br>aimed at developer and ops workstations rather than a defacement. A<br>downstream CI job that pins the SHA-256 of<br>ovhcloud-cli_Linux_arm64.tar.gz failed, and the reporter opened<br>issue 300 at 13:50 UTC. OVHcloud deleted the replaced assets at<br>14:21 UTC, about 94 minutes after the first upload, and shipped a<br>clean v0.16.0 at 17:16 UTC marked immutable with a release<br>attestation.</p><p>The uploads came from the personal account HassenBF, a legitimate<br>OVH contributor with merged pull requests in ovhcloud-docs and<br>ovh/manager, Write on the repository, and no public org membership<br>or commits in ovhcloud-cli itself. No tag was pushed and no<br>workflow ran: the Actions run list shows nothing between 16 October<br>and the v0.16.0 tag push, so GoReleaser was never invoked. The<br>injected binary carries Go build metadata that gives the fake<br>away - a pseudo-version (v0.15.1-0.20261013083505-5ead8ef9b43d+dirty)<br>instead of the release tag, vcs.modified=true from uncommitted<br>changes, and vcs.* lines that GoReleaser&#x27;s -trimpath would strip.<br>It is a plain go build of a 13 October commit made somewhere other<br>than the release pipeline, uploaded one asset at a time with<br>checksums.txt replaced last. OVHcloud has not published what the<br>binary reads or where it sends data. Octave Klaba described it as<br>looking for secrets stored on disk and called its quality mediocre<br>but functional.</p><p>OpenSourceMalware ties the account to GlassWorm. Four of<br>HassenBF&#x27;s personal repositories were force-pushed on 5 and<br>6 March 2026; each new tip is an amend of the previous one that<br>keeps the original author date and message and adds a preinstall.js<br>loader (inlined into src/index.js in crwn-clothing). The loader<br>hides its payload in Unicode variation-selector characters, decrypts<br>an AES-256-CBC stage, and pulls its next-stage URL from the memo<br>field of a Solana wallet transaction - a wallet that appears in<br>public GlassWorm indicator lists. OpenSourceMalware is explicit<br>that the link between the March account compromise and the October<br>uploads rests on the shared account identity, and OVHcloud has not<br>said how the credentials were taken or whether the workflow&#x27;s<br>long-lived TAP_GITHUB_TOKEN was exposed. A post-mortem is promised.</p><p>Mutable releases and human publishers made the swap cheap. The<br>project&#x27;s own GoReleaser config sets replace_existing_artifacts:<br>true, so replacing assets on a months-old release is documented<br>behaviour. install.sh and the Homebrew cask in ovh/homebrew-tap<br>fetched the release URL without independent verification, and the<br>checksums file was replaced along with the binaries. Anyone who<br>installed through install.sh, brew install --cask ovh/tap/ovhcloud-cli,<br>or a direct release download in the window on the mainstream<br>platforms got the swapped file. go install, source builds, and<br>OVHcloud&#x27;s internally built Docker image were not affected. The<br>v0.16.0 response - immutable release, service-account publisher<br>(ovh-cds), signed tag, GitHub attestation - closes the mutable<br>release and personal-publisher rows. Anyone who ran the swapped<br>binary is told to treat every secret on the machine as exposed.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0121.html">T0121</a> Compromised legitimate artifact</li><li><a href="../techniques/T0207.html">T0207</a> Skip or forge artifact integrity verification</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li></ul>
+        <h2><span class="stage">supply-chain</span> Hijacked contributor account</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>HassenBF, a real OVH contributor, held Write on the repo -<br>most likely through the @ovh/ovhcloud-cli-owners team that<br>CODEOWNERS grants on everything. Its public repos were<br>amended with the loader in March; the earliest server-verified<br>attacker use of the account is 5 March 2026. How the<br>credentials were taken is not published.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>The amend-and-force-push on four personal repos planted a<br>preinstall.js variation-selector loader. That is staging on<br>the hijacked account, not a change to ovh/ovhcloud-cli - the<br>source repository was never touched.</p></div><div class="card"><p class="meta"><a href="../techniques/T0121.html">T0121</a> · Resource Development · Compromised legitimate artifact</p><p>Release assets of v0.11.0 to v0.15.0 were deleted and<br>re-uploaded through the Releases API, checksums.txt last so<br>the published hashes matched. Tags still point at the real<br>commits; the Go module proxy serves clean source.</p></div><div class="card"><p class="meta"><a href="../techniques/T0207.html">T0207</a> · Defense Evasion · Skip or forge artifact integrity verification</p><p>install.sh does not verify checksums.txt and the cask trusts<br>the release URL, so the swapped files passed every automated<br>path. The one catch came from a downstream CI that hand-pinned<br>a SHA-256.</p></div><h2><span class="stage">post-supply-chain</span> Workstation that fetched a swapped binary</h2><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>install.sh, brew upgrade, or a CI/Dockerfile fetch during the<br>94-minute window ran the dirty build. It lacks the version<br>ldflag, so ovhcloud version printed a pseudo-version instead<br>of the tag.</p></div><div class="card"><p class="meta"><a href="../techniques/T0184.html">T0184</a> · Credential Access · Harvesting sensitive information from files</p><p>Klaba described the binary as looking for secrets stored on<br>disk. The replaced assets were deleted before anyone archived<br>them, so no public sample analysis names paths or exfil<br>endpoints.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>How HassenBF&#x27;s credentials were taken in March 2026, and whether the same actor held the account through October, is not established. OpenSourceMalware labels the GlassWorm linkage an inference from the shared account.</li><li>The malicious binary was never archived. Everything about its behaviour comes from Klaba&#x27;s description; no IOC beyond the reporter&#x27;s one replaced-asset hash is public.</li><li>Whether TAP_GITHUB_TOKEN or any org-level secret was exposed, and whether ovh/homebrew-tap was checked, awaits the post-mortem.</li><li>The workflow did not run and no provenance existed to forge, so T0206 does not apply; the gap is the absence of any attestation to check, not a forged one.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://github.com/ovh/ovhcloud-cli/issues/300" rel="noopener">https://github.com/ovh/ovhcloud-cli/issues/300</a></li><li><a href="https://opensourcemalware.com/blog/glassworm-hacks-ovh-clouds-cli-tool" rel="noopener">https://opensourcemalware.com/blog/glassworm-hacks-ovh-clouds-cli-tool</a></li><li><a href="https://x.com/olesovhcom/status/2112225308589834260" rel="noopener">https://x.com/olesovhcom/status/2112225308589834260</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

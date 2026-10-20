@@ -1,4 +1,28 @@
 entries:
+- date: '2026-10-20'
+  id: ovhcloud-cli-release-assets-intake
+  title: GlassWorm-hijacked account swapped OVHcloud CLI release assets
+  items:
+  - 'AS310: Release assets of ovh/ovhcloud-cli v0.11.0 to v0.15.0
+    were replaced through the Releases API on 19 October, 12:47 to
+    13:12 UTC, by the contributor account HassenBF. No tag push and
+    no workflow run. The binary is a dirty local go build (pseudo-
+    version, vcs.modified=true) of a 13 October commit. Mainstream
+    platform archives and checksums.txt were swapped; i386, Windows
+    arm64, and WASM were not. A downstream CI that pinned a SHA-256
+    caught it in 94 minutes; OVHcloud deleted the assets and shipped
+    immutable, attested v0.16.0 from a service account. OpenSourceMalware
+    links the account to GlassWorm via March amend-and-force-push
+    preinstall loaders and a known Solana dead-drop wallet, and says
+    that linkage is an inference. go install, source builds, and the
+    internal Docker image were not affected.
+    https://github.com/ovh/ovhcloud-cli/issues/300
+    https://opensourcemalware.com/blog/glassworm-hacks-ovh-clouds-cli-tool'
+  - 'No other new operation. SafeDep''s latest post is the 18 September
+    mathmain loader. The 18 October items (Trail of Bits package-
+    manager integrity study, the model-signing arXiv paper) are
+    defensive research, not incidents; the Databricks LLM-triage
+    piece is a tooling write-up.'
 - date: '2026-10-17'
   id: aur-yay-aomei-intake
   title: AUR yay typosquat and AOMEI update-config windows

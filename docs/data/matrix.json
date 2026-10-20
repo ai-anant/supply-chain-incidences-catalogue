@@ -213,7 +213,7 @@
         ],
         "url": "techniques/T0111.html",
         "description": "A malicious code contribution to an open-source repository attack is a type of cyber attack that involves an attacker submitting code with malicious intent to an open-source repository. \nOpen-source repositories are used to store and manage code for open-source software projects, and they rely on community contributions to improve and maintain the codebase. \nIn this attack, the attacker may submit a seemingly harmless code contribution to the repository. However, the code contains a hidden malware payload that can be triggered later to cause damage. \nAlternatively, the code may include a backdoor that allows the attacker to gain unauthorized access to the system running the open-source software.\nOnce the code is accepted into the repository, it can be difficult to detect the presence of the malicious payload.\nThe code may be integrated into the open-source project, distributed to other projects that depend on it, and even included in software distributions used by many people. \nThis can result in a wide-scale compromise of systems that use the affected code.\n",
-        "incidentCount": 32
+        "incidentCount": 33
       },
       {
         "id": "T0121",
@@ -226,7 +226,7 @@
         ],
         "url": "techniques/T0121.html",
         "description": "A compromised legitimate artifact attack is a type of cyber attack in which an attacker replaces a legitimate package or container image with a malicious version, often without the knowledge of the original developer or distributor. \nThis attack takes advantage of the trust that users place in legitimate packages or container images, which are often used to deploy software across multiple environments.\nIn this attack, the attacker may gain access to the repository or registry where the legitimate artifact is stored, either by exploiting a vulnerability or through social engineering tactics. \nThe attacker then replaces the legitimate artifact with a malicious version that contains malware or other harmful code. \nOnce the compromised artifact is downloaded and deployed, it can compromise the system and potentially cause significant harm, such as stealing sensitive data or taking control of the system.\n",
-        "incidentCount": 68
+        "incidentCount": 69
       },
       {
         "id": "T0141",
@@ -274,7 +274,7 @@
         ],
         "url": "techniques/T0113.html",
         "description": "A compromised user account is a serious security threat, as attackers can use it to bypass security measures that are in place to protect an organization's assets. \nAttackers can gain access to legitimate user accounts in several ways, including brute-force attacks, phishing, malware, or social engineering.\nOnce an attacker gains access to a user's account, they can access the cloud resources, artifact repository, infrastructure-as-code templates, or source code repository to steal or modify sensitive data or launch further attacks.\nIn such case an attacker is able to modify the code and cloud resources, inject malware or backdoors, or replace legitimate artifacts.\nThis can result in data breaches, system downtime, reputation damage, and financial losses.\n",
-        "incidentCount": 29
+        "incidentCount": 30
       },
       {
         "id": "T0114",
@@ -716,7 +716,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 53
+        "incidentCount": 54
       },
       {
         "id": "T0166",
@@ -1077,7 +1077,7 @@
         ],
         "url": "techniques/T0207.html",
         "description": "Consumers are supposed to verify packages, containers, and third-party\nscripts (checksums, signatures, Sigstore, Subresource Integrity). The\nattacker relies on that check never running, or supplies a matching but\nattacker-controlled signature. OWASP CICD-SEC-9 names the control gap;\nthis technique is the attacker side. Polyfill.io hotlinks without SRI and\nunsigned CI helper scripts are typical realizations.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       },
       {
         "id": "T0208",
@@ -1186,7 +1186,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 105
+        "incidentCount": 106
       },
       {
         "id": "T0185",
