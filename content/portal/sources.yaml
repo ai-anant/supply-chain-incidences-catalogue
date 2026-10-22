@@ -118,3 +118,14 @@ sources:
   track: false
   note: Same model — origin material only. Per-talk list is content/portal/talks.yaml. DEF CON 34
     included LiteLLM security research (presented before publication).
+- name: Web Hacking Techniques Index (webhacklist)
+  url: https://webhacklist.com/research/2026-ai/
+  kind: archive
+  track: true
+  note: Soroush Dalili (irsdl) preservation archive of web-hacking technique write-ups, 2006
+    onwards, each record credited to its original researchers. Discovery and archive backfill
+    only — public citations must be the original research URL the record credits, never
+    webhacklist itself. No RSS; the current-year page (preliminary) grows as research is added;
+    older years at https://webhacklist.com/research/<year>/. Includes supply-chain-relevant
+    entries (GitHub Actions prompt injection, SolarWinds-scale CDN compromises); plain web-app
+    technique posts with no supply-chain publish classify SKIP per the normal rules.

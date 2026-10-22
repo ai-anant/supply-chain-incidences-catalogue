@@ -1,5 +1,15 @@
 entries:
 - date: '2026-10-22'
+  id: webhacklist-source
+  title: Web Hacking Techniques Index added to the watch list
+  items:
+  - 'New source row: webhacklist.com, Soroush Dalili''s (irsdl) preservation
+    archive of web-hacking technique write-ups 2006 onwards. Tracked at the
+    current-year page. Discovery and archive backfill only — public citations
+    must be the original research URL each record credits, never webhacklist
+    itself. No RSS; non-supply-chain technique posts classify SKIP under the
+    normal rules.'
+- date: '2026-10-22'
   id: emudhra-ca-keys
   title: eMudhra intermediate CA keys added; new certificates/trust-stores platform
   items:
