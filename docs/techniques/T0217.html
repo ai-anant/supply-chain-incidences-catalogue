@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0217 Build trusted artifacts from an attacker-controlled source · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0217</p>
+
+        <p class="meta">T0217 · Resource Development · TA02 · observed in 1 incident(s)</p>
+        <h1>Build trusted artifacts from an attacker-controlled source</h1>
+        <div class="chips"><span class="chip">SCM Posture</span> <span class="chip">CI/CD Posture</span> <span class="chip">Open Source Security</span></div>
+        <p>The attacker redirects a project&#x27;s own trusted build or release<br>pipeline so that it builds from a source the attacker controls -<br>typically a lookalike repository one character away from the real<br>one - and lets the pipeline do the rest. The artifacts that come out<br>are produced, signed, and published by the legitimate infrastructure<br>under the legitimate publisher identity, so every downstream check<br>that asks &quot;did the real publisher ship this?&quot; answers yes. What the<br>checks do not ask is whether the recorded input source was the real<br>project. The payload never appears in the real repository or its<br>release tags, so tag audits, source diffs of the official repo, and<br>&quot;is the tag clean?&quot; heuristics all pass.</p><p>Observed in the LiteLLM 1.107.0 compromise (21 October 2026): the<br>attacker held GitHub CLI OAuth tokens of three developers taken from<br>the logs of an internet-exposed internal deployment, used one to<br>modify the private release workflow, used an organization owner&#x27;s<br>token to override branch protection after the normal push path was<br>rejected, and pointed the workflow&#x27;s source input at the lookalike<br>repository Berri-AI/litellm (one hyphen off from BerriAI/litellm).<br>The lookalike source carried ten stacked commits on top of the real<br>tag adding a payload directory and one build-config line. The<br>official pipeline built, signed, and published the poisoned wheels<br>and container images; the container provenance recorded the<br>lookalike source honestly and still validated. Provenance vouches<br>for recorded inputs, not for their trustworthiness.</p><p>Distinct from T0206 (forging or omitting provenance - here the<br>provenance is genuine), T0121 (replacing an already-built artifact -<br>here the artifact is freshly built by the victim&#x27;s own pipeline),<br>and T0109 (publishing an attacker-authored package under an<br>attacker identity - here the publisher identity is the victim&#x27;s).</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from the LiteLLM 1.107.0 compromise (BerriAI incident report, SafeDep, StepSecurity, Socket): the attacker held three developers&#x27; GitHub CLI OAuth tokens, pointed the legitimate private release workflow at the lookalike repository Berri-AI/litellm after overriding branch protection with an org-owner token, and let the trusted pipeline build, sign, and publish the poisoned wheels and Docker images. The container provenance recorded the lookalike source honestly and still passed - provenance vouches for recorded inputs, not for their trustworthiness.</p><ul class='refs'><li><a href="https://www.litellm.ai/blog?post=security-incident-oct-21-2026" rel="noopener">https://www.litellm.ai/blog?post=security-incident-oct-21-2026</a></li><li><a href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/" rel="noopener">https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/</a></li><li><a href="https://socket.dev/blog/litellm-compromise" rel="noopener">https://socket.dev/blog/litellm-compromise</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <ul><li><span class="id">M1730</span> Implement code reviews</li><li><span class="id">M1732</span> Implement code scanning for security risks</li><li><span class="id">M1661</span> Revoke user permissions</li><li><span class="id">M1662</span> Evaluate pipeline execution permissions</li><li><span class="id">M1500</span> Verify third-party artifacts and open-source libraries</li></ul>
+        <h2>Detections</h2>
+        <ul><li><span class="id">D1500</span> Configure monitoring of used artifacts and open-source libraries</li><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1260</span> Implement regular security audit and review</li></ul>
+        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS313.html">LiteLLM 1.107.0 built from a lookalike repository shipped a startup-hook stealer and hourly loader</a></li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://www.litellm.ai/blog?post=security-incident-oct-21-2026" rel="noopener">https://www.litellm.ai/blog?post=security-incident-oct-21-2026</a></li><li><a href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/" rel="noopener">https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/</a></li><li><a href="https://socket.dev/blog/litellm-compromise" rel="noopener">https://socket.dev/blog/litellm-compromise</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

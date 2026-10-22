@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forged and timestamp-cloned commits planted a preinstall dropper in hugo-paper and mevn-cli · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS312</p>
+
+        <p class="meta">AS312 · 2026-10</p>
+        <h1>Forged and timestamp-cloned commits planted a preinstall dropper in hugo-paper and mevn-cli</h1>
+        <p><a class="plat" href="../platforms/git.html">Git / GitHub</a><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/workstation.html">Developer workstation</a></p>
+        <p>SafeDep (20 October 2026) documented forged commits on the default<br>branches of two unrelated GitHub projects, hugo-paper (a Hugo theme)<br>and mevn-cli. The commits add a preinstall hook as the first entry<br>under &quot;scripts&quot; in package.json plus a scripts/preinstall.js loader.<br>Running npm install or bun install in a checkout of either<br>repository downloads a second-stage script from<br>buildwithknexus[.]xyz (check_w for Windows, check_m for macOS and<br>Linux) with curl -k and runs it detached and with output suppressed,<br>so the install finishes normally. SafeDep did not retrieve the<br>second stage. No npm release carries the payload - hugo-paper is not<br>published to npm at all and the last mevn-cli release (1.8.3, 2022)<br>predates the attack - so registry scanners see nothing; the risk is<br>to developers who clone the repository and run an install.</p><p>On mevn-cli, on 20 August 2026 at 11:23 UTC, the attacker appended<br>new commits to the develop and master branches. Each appended<br>commit copies the author, timestamp, and message of the commit<br>before it; the master commits carry a 2020 date so they look old.<br>The maintainer never signed commits, so no Verified badge<br>disappears. Two loader versions followed: v1 used a hidden<br>PowerShell window whose unescaped \c sequences likely broke the<br>Windows path, and v2 switched to curl.exe with cmd /c inside a try<br>block. On hugo-paper, on 21 August at 02:22 UTC, the attacker<br>force-pushed a68d2c9b over main. It replicates the metadata of<br>merge commit de1169ec - same author, same March date, same message<br>- but has one parent instead of two, drops the GitHub web-flow GPG<br>signature, and adds the two payload files. The commit list on<br>GitHub still shows the original avatar and date; the tells are the<br>missing Verified badge, the single parent, and the PR API still<br>reporting a merge_commit_sha that no longer exists on any branch.<br>The author of the original PR is uninvolved.</p><p>Two unrelated maintainers were hit within 15 hours with pushes under<br>their own identities, which points to stolen push credentials - a<br>personal access token or SSH key. SafeDeb infers this from the<br>pattern and has not confirmed the theft path. The git trick is the<br>same amend-and-force-push family used by GlassWorm (AS310) and<br>ForceMemo earlier in 2026, but the tooling is plaintext curl against<br>a fixed domain and SafeDep shares no indicators with either, so it<br>treats this as a separate cluster. Forks and copies made after the<br>attack inherit the payload; four are enumerated. Issue #272 on<br>hugo-paper, filed 20 October, is when the campaign surfaced.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0113.html">T0113</a> Compromised user account</li><li><a href="../techniques/T0195.html">T0195</a> Spoofed Commits</li><li><a href="../techniques/T0111.html">T0111</a> Malicious code contribution to an open-source repository</li><li><a href="../techniques/T0151.html">T0151</a> Installation scripts</li><li><a href="../techniques/T0159.html">T0159</a> Malicious artifact execution</li></ul>
+        <h2><span class="stage">supply-chain</span> Credential holder rewrites and appends project history</h2><div class="card"><p class="meta"><a href="../techniques/T0113.html">T0113</a> · Initial Access · Compromised user account</p><p>Pushes landed under the maintainers&#x27; own identities on two<br>unrelated accounts within 15 hours. SafeDep infers stolen<br>push credentials (PAT or SSH key) and has not confirmed how<br>they were taken.</p></div><div class="card"><p class="meta"><a href="../techniques/T0195.html">T0195</a> · Defense Evasion · Spoofed Commits</p><p>The forged hugo-paper commit clones the author, date, and<br>message of the real merge commit; the mevn-cli commits clone<br>the preceding commit&#x27;s metadata branch by branch, with 2020<br>dates on master. Detection rests on parent counts, missing<br>GPG signatures, and the PR API&#x27;s merge_commit_sha.</p></div><div class="card"><p class="meta"><a href="../techniques/T0111.html">T0111</a> · Resource Development · Malicious code contribution to an open-source repository</p><p>The payload is a package.json preinstall hook plus<br>scripts/preinstall.js committed to the default branches - a<br>source-repository change that never becomes a published<br>package.</p></div><h2><span class="stage">post-supply-chain</span> Developer runs an install in a cloned checkout</h2><div class="card"><p class="meta"><a href="../techniques/T0151.html">T0151</a> · Execution · Installation scripts</p><p>npm or bun install in the checkout runs the preinstall hook.<br>hugo-paper is not on npm and mevn-cli&#x27;s latest release<br>predates the attack, so only source installs are exposed.</p></div><div class="card"><p class="meta"><a href="../techniques/T0159.html">T0159</a> · Execution · Malicious artifact execution</p><p>preinstall.js downloads check_m or check_w from<br>buildwithknexus[.]xyz with curl -k, writes /tmp/check or<br>%TEMP%\check.cmd, and executes it detached with stdio<br>ignored. The second stage was not recovered.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The second stage served by buildwithknexus[.]xyz was never retrieved, so what runs after the dropper is unknown.</li><li>How the attacker obtained push access to two unrelated maintainer accounts is not confirmed; the stolen-credential reading is SafeDep&#x27;s inference from the pattern.</li><li>The relationship to the GlassWorm and ForceMemo amend-and- force-push clusters is open; SafeDep treats the tooling difference and non-shared indicators as a separate cluster for now.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://safedep.io/hugo-paper-mevn-cli-forged-commit-preinstall-dropper/" rel="noopener">https://safedep.io/hugo-paper-mevn-cli-forged-commit-preinstall-dropper/</a></li><li><a href="https://github.com/nanxiaobei/hugo-paper/issues/272" rel="noopener">https://github.com/nanxiaobei/hugo-paper/issues/272</a></li><li><a href="https://github.com/nanxiaobei/hugo-paper/blob/a68d2c9b2ad9d857b09dcb30a578ac1de6487061/scripts/preinstall.js" rel="noopener">https://github.com/nanxiaobei/hugo-paper/blob/a68d2c9b2ad9d857b09dcb30a578ac1de6487061/scripts/preinstall.js</a></li><li><a href="https://github.com/madlabsinc/mevn-cli/blob/f8830218b5d70d068cca19a45df261a8cf19f30d/scripts/preinstall.js" rel="noopener">https://github.com/madlabsinc/mevn-cli/blob/f8830218b5d70d068cca19a45df261a8cf19f30d/scripts/preinstall.js</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

@@ -189,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 161
+        "incidentCount": 162
       },
       {
         "id": "T0110",
@@ -213,7 +213,7 @@
         ],
         "url": "techniques/T0111.html",
         "description": "A malicious code contribution to an open-source repository attack is a type of cyber attack that involves an attacker submitting code with malicious intent to an open-source repository. \nOpen-source repositories are used to store and manage code for open-source software projects, and they rely on community contributions to improve and maintain the codebase. \nIn this attack, the attacker may submit a seemingly harmless code contribution to the repository. However, the code contains a hidden malware payload that can be triggered later to cause damage. \nAlternatively, the code may include a backdoor that allows the attacker to gain unauthorized access to the system running the open-source software.\nOnce the code is accepted into the repository, it can be difficult to detect the presence of the malicious payload.\nThe code may be integrated into the open-source project, distributed to other projects that depend on it, and even included in software distributions used by many people. \nThis can result in a wide-scale compromise of systems that use the affected code.\n",
-        "incidentCount": 33
+        "incidentCount": 34
       },
       {
         "id": "T0121",
@@ -238,9 +238,22 @@
         "url": "techniques/T0141.html",
         "description": "Third-party package managers, such as Node Package Manager, PyPi, and Yarn, are commonly used for integrating open-source software packages into existing development environments. These package managers provide metadata about the software and often include a link to the package's source code repository to help developers assess the software's reliability. One way developers evaluate the trustworthiness of a package is by checking its popularity, which is typically measured by the number of \"Stars\" the package has received. However, some package managers do not validate the connection between the package and its source code repository, which leaves them vulnerable to attacks. Malicious actors can manipulate the popularity statistics of a package by associating a popular source code repository URL with a malicious package, leading developers to unwittingly incorporate the malicious code into their development environment.\n",
         "incidentCount": 5
+      },
+      {
+        "id": "T0217",
+        "name": "Build trusted artifacts from an attacker-controlled source",
+        "tooltip": "Build trusted artifacts from an attacker-controlled source",
+        "tags": [
+          "SCM Posture",
+          "CI/CD Posture",
+          "Open Source Security"
+        ],
+        "url": "techniques/T0217.html",
+        "description": "The attacker redirects a project's own trusted build or release\npipeline so that it builds from a source the attacker controls -\ntypically a lookalike repository one character away from the real\none - and lets the pipeline do the rest. The artifacts that come out\nare produced, signed, and published by the legitimate infrastructure\nunder the legitimate publisher identity, so every downstream check\nthat asks \"did the real publisher ship this?\" answers yes. What the\nchecks do not ask is whether the recorded input source was the real\nproject. The payload never appears in the real repository or its\nrelease tags, so tag audits, source diffs of the official repo, and\n\"is the tag clean?\" heuristics all pass.\n\nObserved in the LiteLLM 1.107.0 compromise (21 October 2026): the\nattacker held GitHub CLI OAuth tokens of three developers taken from\nthe logs of an internet-exposed internal deployment, used one to\nmodify the private release workflow, used an organization owner's\ntoken to override branch protection after the normal push path was\nrejected, and pointed the workflow's source input at the lookalike\nrepository Berri-AI/litellm (one hyphen off from BerriAI/litellm).\nThe lookalike source carried ten stacked commits on top of the real\ntag adding a payload directory and one build-config line. The\nofficial pipeline built, signed, and published the poisoned wheels\nand container images; the container provenance recorded the\nlookalike source honestly and still validated. Provenance vouches\nfor recorded inputs, not for their trustworthiness.\n\nDistinct from T0206 (forging or omitting provenance - here the\nprovenance is genuine), T0121 (replacing an already-built artifact -\nhere the artifact is freshly built by the victim's own pipeline),\nand T0109 (publishing an attacker-authored package under an\nattacker identity - here the publisher identity is the victim's).\n",
+        "incidentCount": 1
       }
     ],
-    "amount": 6,
+    "amount": 7,
     "tooltip": "Resource Development",
     "tacticid": "TA02"
   },
@@ -260,7 +273,7 @@
         ],
         "url": "techniques/T0112.html",
         "description": "Access to third party APIs typically uses a token to authenticate access.  \nThis token is usually a randomized string that is auto-generated by the API provider and should be at least 16 characters or more.  \nThis token is passed with a request to the API provider and if the token is valid, the request is successful.  \nEach of these tokens will usually have a set of permissions applied to it that authorizes it to perform very simple read operations, or more complex write and delete operations.  \nUnfortunately, these tokens are often accidentally embedded in applications via source code or Javascript variable exposure.  \nAttackers will often scan web applications URLs or public git repositories for exposed credentials to then in turn use those found credentials to gain access to the victims resources. \n",
-        "incidentCount": 9
+        "incidentCount": 10
       },
       {
         "id": "T0113",
@@ -274,7 +287,7 @@
         ],
         "url": "techniques/T0113.html",
         "description": "A compromised user account is a serious security threat, as attackers can use it to bypass security measures that are in place to protect an organization's assets. \nAttackers can gain access to legitimate user accounts in several ways, including brute-force attacks, phishing, malware, or social engineering.\nOnce an attacker gains access to a user's account, they can access the cloud resources, artifact repository, infrastructure-as-code templates, or source code repository to steal or modify sensitive data or launch further attacks.\nIn such case an attacker is able to modify the code and cloud resources, inject malware or backdoors, or replace legitimate artifacts.\nThis can result in data breaches, system downtime, reputation damage, and financial losses.\n",
-        "incidentCount": 30
+        "incidentCount": 31
       },
       {
         "id": "T0114",
@@ -681,7 +694,7 @@
         ],
         "url": "techniques/T0151.html",
         "description": "A package installation script injection attack is a type of security exploit that involves an attacker injecting malicious code into a legitimate software package installation script.\nThe attack typically occurs when an attacker gains access to the distribution network of a software vendor or package manager, and injects malicious code into the package installation script. \nThis code may be designed to carry out a range of nefarious activities, such as stealing sensitive information, creating backdoors, or executing arbitrary code on the victim's system.\nOnce the victim downloads and installs the compromised software package, the injected code is executed, giving the attacker access to the victim's system.\n",
-        "incidentCount": 43
+        "incidentCount": 44
       },
       {
         "id": "T0152",
@@ -716,7 +729,7 @@
         ],
         "url": "techniques/T0159.html",
         "description": "Malicious artifact execution refers to an attack where an attacker injects or modifies a software component with malicious code that is executed when the component is used by a downstream system in the CI/CD process. \nWhen a CI/CD process lacks sufficient mechanisms to validate the integrity of code and artifacts, attackers can insert malicious code that appears to be harmless. \nThis allows the malicious code to pass through the pipeline undetected, potentially causing harm in the CI/CD process or in production.\nThe malicious code can be executed in the CI/CD process or even in production.\n",
-        "incidentCount": 54
+        "incidentCount": 56
       },
       {
         "id": "T0166",
@@ -728,7 +741,7 @@
         ],
         "url": "techniques/T0166.html",
         "description": "The Trigger pipeline execution (Poisoned pipeline execution) attack abuses permissions against an SCM repository, in a way that causes a CI pipeline to execute malicious commands.\nUsers that have permissions to manipulate the CI configuration files, or other files which the CI pipeline job relies on, can modify them to contain malicious commands, ultimately poisoning the CI pipeline executing these commands.\nPipelines executing unreviewed code, for example those which are triggered directly off of pull requests or commits to arbitrary repository branches, are more susceptible to Trigger pipeline execution. \nThe reason is that these scenarios, by design, contain code which has not undergone any reviews or approvals.\nOnce able to execute malicious code within the CI pipeline, the attacker can conduct a wide array of malicious operations, all within the context of the pipelines identity.\n",
-        "incidentCount": 16
+        "incidentCount": 17
       },
       {
         "id": "T0172",
@@ -741,7 +754,7 @@
         ],
         "url": "techniques/T0172.html",
         "description": "A runtime backdoor attack is a type of cyber attack where an attacker gains unauthorized access to a computer system or network and installs a malicious software or code that allows them to control the system or steal sensitive information.\nThis type of attack is called a \"runtime\" backdoor attack because it involves manipulating the system at runtime, while it is running, rather than during the development or deployment stages.\nThe attacker typically gains access to the system through a vulnerability, such as an unpatched software flaw or weak authentication mechanism. \nOnce inside, the attacker can install a backdoor that provides them with persistent access to the system, even after the initial entry point has been closed.\n",
-        "incidentCount": 82
+        "incidentCount": 83
       },
       {
         "id": "T0173",
@@ -905,7 +918,7 @@
         ],
         "url": "techniques/T0202.html",
         "description": "Pipelines that grant overly broad tokens (for example GitHub Actions\n`GITHUB_TOKEN` with `contents: write`, `id-token: write`, or pull-request\njobs that can push to default branches) let an attacker persist after the\nfirst poisoned workflow run. Persistence takes the form of a new workflow\nfile, a deploy key, a self-hosted runner registration, or a long-lived\ncloud credential minted by the job. This is distinct from overprivileged\nrunners (T0132) and from creating an access token after account takeover\n(T0165): the weakness is the workflow permission set itself.\n",
-        "incidentCount": 7
+        "incidentCount": 8
       },
       {
         "id": "T0210",
@@ -1015,7 +1028,7 @@
         ],
         "url": "techniques/T0176.html",
         "description": "Attackers disable or misconfigure security controls so that later activity is\nnot observed or blocked. In software supply chains this is more often a\ncomplete disablement than a subtle misconfiguration: turning off a GitHub\nAction required-review check, uninstalling an endpoint agent on a build\nrunner, skipping a signing gate, or emptying a security-group rule.\nMisconfiguration (over-permissive logging, broken audit settings) remains\nin scope as the quieter variant of the same Defense Evasion technique.\n",
-        "incidentCount": 10
+        "incidentCount": 11
       },
       {
         "id": "T0182",
@@ -1038,7 +1051,7 @@
         ],
         "url": "techniques/T0195.html",
         "description": "By modifying metadata in commits, attackers can easily push their own code to code repositories. For example, by changing the name and email in a commit it is possible to pass as a legitimate user.\n",
-        "incidentCount": 8
+        "incidentCount": 9
       },
       {
         "id": "T0198",
@@ -1064,7 +1077,7 @@
         ],
         "url": "techniques/T0206.html",
         "description": "The attacker ships an artifact without truthful provenance \u2014 no SBOM, a\nforged SLSA attestation, or a provenance document that names the wrong\nsource repo, builder, or commit. NIST SSDF PS.3.2 and SLSA Build L2+\nexist so consumers can reject unofficial builds; forging or skipping that\npaperwork is how a SolarWinds-style implant still looks like a legitimate\nvendor release. Distinct from malicious code in the artifact (T0191): this\ntechnique is about lying about *how* the artifact was produced.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0207",
@@ -1122,7 +1135,7 @@
         ],
         "url": "techniques/T0130.html",
         "description": "This attack involves searching through logs generated by a system to find sensitive information that may have been inadvertently logged. \nSuch information can include passwords, API keys, access tokens, or other types of credentials.\nIn many systems, logs are generated automatically as part of normal operations.\nAttackers can exploit this by searching through the logs to find any sensitive information that has been logged. \nOnce this information is found, the attacker can use it to gain unauthorized access to the system or associated resources.\n",
-        "incidentCount": 3
+        "incidentCount": 4
       },
       {
         "id": "T0140",
@@ -1137,7 +1150,7 @@
         ],
         "url": "techniques/T0140.html",
         "description": "This type of attack involves searching for environment variables that may contain sensitive information and dumping their values to gain access to the associated resources.\nIn cloud and container environments, environment variables are often used to store configuration data, including sensitive information such as passwords, tokens and API keys. \nAttackers can exploit this by searching through the environment variables of running containers or cloud instances to find any sensitive information that has been inadvertently exposed. \nOnce the sensitive information has been obtained, attackers can use it to access and compromise the associated resources.\n",
-        "incidentCount": 33
+        "incidentCount": 34
       },
       {
         "id": "T0162",
@@ -1186,7 +1199,7 @@
         ],
         "url": "techniques/T0184.html",
         "description": "This attack involves searching for files within the CI/CD system that may contain sensitive information such as credentials, API keys, or other access tokens.\nThese files can include configuration files, scripts, and other files that are used as part of the build and deployment process. \nAttackers can use various techniques to locate these files, including directory traversal attacks, file inclusion vulnerabilities, or simply guessing common file names or paths.\nOnce the attacker has located a file containing sensitive information, they can extract the credentials and use them to gain unauthorized access to the targeted system or application.\n",
-        "incidentCount": 106
+        "incidentCount": 107
       },
       {
         "id": "T0185",

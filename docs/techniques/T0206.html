@@ -33,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0206</p>
 
-        <p class="meta">T0206 · Defense Evasion · TA07 · observed in 6 incident(s)</p>
+        <p class="meta">T0206 · Defense Evasion · TA07 · observed in 7 incident(s)</p>
         <h1>Forge or omit build provenance</h1>
         <div class="chips"><span class="chip">CI/CD Posture</span> <span class="chip">Artifact Security</span> <span class="chip">SCM Posture</span></div>
         <p>The attacker ships an artifact without truthful provenance — no SBOM, a<br>forged SLSA attestation, or a provenance document that names the wrong<br>source repo, builder, or commit. NIST SSDF PS.3.2 and SLSA Build L2+<br>exist so consumers can reject unofficial builds; forging or skipping that<br>paperwork is how a SolarWinds-style implant still looks like a legitimate<br>vendor release. Distinct from malicious code in the artifact (T0191): this<br>technique is about lying about *how* the artifact was produced.</p>
@@ -43,7 +43,7 @@
         <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li><li><span class="id">M1291</span> Verify package or container sources</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1500</span> Configure monitoring of used artifacts and open-source libraries</li><li><span class="id">D1262</span> Implement vulnerability assessment</li></ul>
-        <h2>Observed in incidents (6)</h2><ul><li><a href="../incidents/AS78.html">@velora-dex/sdk 9.4.1 build-pipeline backdoor</a></li><li><a href="../incidents/AS33.html">TeamPCP DUSTMAKER AI workspace poisoning</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS74.html">Nx s1ngularity (stolen npm token via Actions injection)</a></li><li><a href="../incidents/AS28.html">Keyv / Cacheable ChainDrop worm</a></li><li><a href="../incidents/AS34.html">GHAPPIER loader via @dforge-core/dforge-mcp trusted publishing</a></li></ul>
+        <h2>Observed in incidents (7)</h2><ul><li><a href="../incidents/AS78.html">@velora-dex/sdk 9.4.1 build-pipeline backdoor</a></li><li><a href="../incidents/AS33.html">TeamPCP DUSTMAKER AI workspace poisoning</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS74.html">Nx s1ngularity (stolen npm token via Actions injection)</a></li><li><a href="../incidents/AS28.html">Keyv / Cacheable ChainDrop worm</a></li><li><a href="../incidents/AS34.html">GHAPPIER loader via @dforge-core/dforge-mcp trusted publishing</a></li><li><a href="../incidents/AS313.html">LiteLLM 1.107.0 built from a lookalike repository shipped a startup-hook stealer and hourly loader</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://slsa.dev/spec/v1.0/threats" rel="noopener">https://slsa.dev/spec/v1.0/threats</a></li><li><a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener">https://csrc.nist.gov/pubs/sp/800/218/final</a></li><li><a href="https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form" rel="noopener">https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form</a></li></ul>
         
