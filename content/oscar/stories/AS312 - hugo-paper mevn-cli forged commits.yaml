@@ -1,0 +1,124 @@
+id: AS312
+type: Attack Story
+date: 2026-10
+platforms:
+  - git
+  - npm
+  - workstation
+
+summary: Forged and timestamp-cloned commits planted a preinstall dropper in hugo-paper and mevn-cli
+
+description: |
+  SafeDep (20 October 2026) documented forged commits on the default
+  branches of two unrelated GitHub projects, hugo-paper (a Hugo theme)
+  and mevn-cli. The commits add a preinstall hook as the first entry
+  under "scripts" in package.json plus a scripts/preinstall.js loader.
+  Running npm install or bun install in a checkout of either
+  repository downloads a second-stage script from
+  buildwithknexus[.]xyz (check_w for Windows, check_m for macOS and
+  Linux) with curl -k and runs it detached and with output suppressed,
+  so the install finishes normally. SafeDep did not retrieve the
+  second stage. No npm release carries the payload - hugo-paper is not
+  published to npm at all and the last mevn-cli release (1.8.3, 2022)
+  predates the attack - so registry scanners see nothing; the risk is
+  to developers who clone the repository and run an install.
+
+  On mevn-cli, on 20 August 2026 at 11:23 UTC, the attacker appended
+  new commits to the develop and master branches. Each appended
+  commit copies the author, timestamp, and message of the commit
+  before it; the master commits carry a 2020 date so they look old.
+  The maintainer never signed commits, so no Verified badge
+  disappears. Two loader versions followed: v1 used a hidden
+  PowerShell window whose unescaped \c sequences likely broke the
+  Windows path, and v2 switched to curl.exe with cmd /c inside a try
+  block. On hugo-paper, on 21 August at 02:22 UTC, the attacker
+  force-pushed a68d2c9b over main. It replicates the metadata of
+  merge commit de1169ec - same author, same March date, same message
+  - but has one parent instead of two, drops the GitHub web-flow GPG
+  signature, and adds the two payload files. The commit list on
+  GitHub still shows the original avatar and date; the tells are the
+  missing Verified badge, the single parent, and the PR API still
+  reporting a merge_commit_sha that no longer exists on any branch.
+  The author of the original PR is uninvolved.
+
+  Two unrelated maintainers were hit within 15 hours with pushes under
+  their own identities, which points to stolen push credentials - a
+  personal access token or SSH key. SafeDeb infers this from the
+  pattern and has not confirmed the theft path. The git trick is the
+  same amend-and-force-push family used by GlassWorm (AS310) and
+  ForceMemo earlier in 2026, but the tooling is plaintext curl against
+  a fixed domain and SafeDep shares no indicators with either, so it
+  treats this as a separate cluster. Forks and copies made after the
+  attack inherit the payload; four are enumerated. Issue #272 on
+  hugo-paper, filed 20 October, is when the campaign surfaced.
+
+attacks:
+  - attack: Credential holder rewrites and appends project history
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0113
+        techName: Compromised user account
+        tactic: Initial Access
+        comment: |
+          Pushes landed under the maintainers' own identities on two
+          unrelated accounts within 15 hours. SafeDep infers stolen
+          push credentials (PAT or SSH key) and has not confirmed how
+          they were taken.
+      - techniqueID: T0195
+        techName: Spoofed Commits
+        tactic: Defense Evasion
+        comment: |
+          The forged hugo-paper commit clones the author, date, and
+          message of the real merge commit; the mevn-cli commits clone
+          the preceding commit's metadata branch by branch, with 2020
+          dates on master. Detection rests on parent counts, missing
+          GPG signatures, and the PR API's merge_commit_sha.
+      - techniqueID: T0111
+        techName: Malicious code contribution to an open-source repository
+        tactic: Resource Development
+        comment: |
+          The payload is a package.json preinstall hook plus
+          scripts/preinstall.js committed to the default branches - a
+          source-repository change that never becomes a published
+          package.
+  - attack: Developer runs an install in a cloned checkout
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0151
+        techName: Installation scripts
+        tactic: Execution
+        comment: |
+          npm or bun install in the checkout runs the preinstall hook.
+          hugo-paper is not on npm and mevn-cli's latest release
+          predates the attack, so only source installs are exposed.
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          preinstall.js downloads check_m or check_w from
+          buildwithknexus[.]xyz with curl -k, writes /tmp/check or
+          %TEMP%\check.cmd, and executes it detached with stdio
+          ignored. The second stage was not recovered.
+
+gaps:
+  - The second stage served by buildwithknexus[.]xyz was never
+    retrieved, so what runs after the dropper is unknown.
+  - How the attacker obtained push access to two unrelated maintainer
+    accounts is not confirmed; the stolen-credential reading is
+    SafeDep's inference from the pattern.
+  - The relationship to the GlassWorm and ForceMemo amend-and-
+    force-push clusters is open; SafeDep treats the tooling
+    difference and non-shared indicators as a separate cluster for
+    now.
+
+links:
+  - https://safedep.io/hugo-paper-mevn-cli-forged-commit-preinstall-dropper/
+  - https://github.com/nanxiaobei/hugo-paper/issues/272
+  - https://github.com/nanxiaobei/hugo-paper/blob/a68d2c9b2ad9d857b09dcb30a578ac1de6487061/scripts/preinstall.js
+  - https://github.com/madlabsinc/mevn-cli/blob/f8830218b5d70d068cca19a45df261a8cf19f30d/scripts/preinstall.js

@@ -1,0 +1,203 @@
+id: AS313
+type: Attack Story
+date: 2026-10
+platforms:
+  - pypi
+  - docker
+  - git
+  - github-actions
+  - workstation
+  - linux
+  - macos
+  - windows
+
+summary: LiteLLM 1.107.0 built from a lookalike repository shipped a startup-hook stealer and hourly loader
+
+description: |
+  On 21 October 2026, litellm==1.107.0 reached PyPI with a
+  credential stealer and a remote-code loader in all seven wheels
+  (Linux, macOS, Windows), and the official Docker images v1.107.0,
+  latest, main-latest, and main-stable on Docker Hub and GHCR carried
+  the same code. The v1.107.0 git tag on BerriAI/litellm is clean. The
+  release was built from an attacker-controlled lookalike repository,
+  Berri-AI/litellm, where the attacker had stacked ten commits on top
+  of the tag that add a cook/ payload directory and one line, data =
+  "cook", to the [tool.maturin] section of pyproject.toml. Maturin
+  copies that directory into the wheel's .data tree, so every wheel
+  installs cook.pth, cook.py, and sitecustomize.py into site-packages.
+  The sdist carries the tampered build config but omits the payload
+  directory. The attacker's commits themselves live in the lookalike
+  repository; the equivalent change to the real one (commit 783c43bc
+  adding data = "cook") is what the tag audit misses.
+
+  cook.pth and sitecustomize.py run when any Python process starts on
+  the host - not only processes that import litellm. cook.py is a
+  one-layer exec(zlib.decompress(base64.b64decode(...))) stealer with
+  sixteen collection modules: browser password and history databases,
+  SSH keys, GPG keys, TLS private keys, cloud credential files (AWS,
+  Azure, gcloud, kubeconfig, Docker, rclone, .netrc), CI and
+  infrastructure secrets (GitLab runner config, Jenkins admin password
+  and master key, Vault tokens, Terraform and Packer credentials,
+  Kubernetes service-account tokens, /run/secrets), AI coding tool
+  credentials (Claude Code, Cursor, Copilot, Gemini CLI, Codex, and
+  others), environment variables including /proc/<pid>/environ, AWS
+  instance-metadata role credentials, and - picked for LiteLLM users -
+  the LiteLLM proxy's own database tables holding LLM provider API
+  keys. Results are AES-256-CBC encrypted with the key wrapped under
+  an embedded RSA-4096 public key and POSTed to
+  www.litellm[.]dev/healthcheck with a hard-coded X-Token header. A
+  marker file makes it run once per host.
+
+  sitecustomize.py forks a detached daemon that polls
+  raw.githubusercontent[.]com/letters9813/pythonclient-test/main/domain.txt
+  every hour and downloads and exec()s http://<domain>/codepy - an
+  attacker-controlled second stage that was never recovered. GitHub
+  deleted the letters9813 account about two hours after publication,
+  leaving the loader dormant. LiteLLM's incident report attributes the
+  intrusion to stolen GitHub CLI OAuth tokens of three developers,
+  taken from the logs of an internal LiteLLM deployment that was
+  exposed to the internet; Claude Code can embed a user's GitHub CLI
+  OAuth token in response bodies, which end up in LiteLLM logs. The
+  attacker used one developer's credential to modify the private
+  release workflow, an org owner's credential to override branch
+  protection after a normal push was rejected, pointed the workflow at
+  the lookalike source, satisfied the production approval gate with a
+  second developer's credential, and used a third to delete the
+  workflow run records. The compromised interval was 11:39 to 13:23
+  UTC on PyPI and 11:46 to 14:20 UTC on Docker Hub; LiteLLM has not
+  confirmed how the internal deployment was reached.
+
+attacks:
+  - attack: Stolen operator tokens subvert the private release pipeline
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0130
+        techName: Harvest secrets from logs
+        tactic: Credential Access
+        comment: |
+          The GitHub CLI OAuth tokens of three developers were read out
+          of the logs of an internet-exposed internal LiteLLM
+          deployment. Claude Code can embed those tokens in response
+          bodies, which LiteLLM logs. LiteLLM has not confirmed how the
+          deployment itself was reached.
+      - techniqueID: T0112
+        techName: Compromised token
+        tactic: Initial Access
+        comment: |
+          Three developer GitHub CLI OAuth tokens gave workflow-run
+          rights, org-owner branch-protection override, an approval
+          gate pass, and run-record deletion. All involved tokens were
+          revoked after the incident.
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          Branch protection rejected the workflow change at 10:08:29;
+          an org-owner credential overrode the protection at 10:08:34
+          and force-applied commit 9cf97e9. A third credential deleted
+          the production and staging workflow records afterwards.
+      - techniqueID: T0166
+        techName: Trigger pipeline execution
+        tactic: Execution
+        comment: |
+          The attacker pointed the legitimate private release workflow
+          at the lookalike source repository rather than editing
+          pipeline steps. The official pipeline built, signed, and
+          published the poisoned artifacts.
+      - techniqueID: T0202
+        techName: Inadequate CI/CD workflow permissions
+        tactic: Initial Access
+        comment: |
+          The private release workflow accepted a caller-supplied
+          source repository and its revision as dispatch inputs, so a
+          workflow-run token could redirect the trusted build. The
+          provenance recorded the lookalike owner honestly -
+          source_owner Berri-AI - and still signed.
+      - techniqueID: T0217
+        techName: Build trusted artifacts from an attacker-controlled source
+        tactic: Resource Development
+        comment: |
+          The core of the incident: the trusted private pipeline built
+          from Berri-AI/litellm, where ten commits stacked on the real
+          tag add the cook/ payload and the maturin data line. The
+          artifacts were signed and published by the legitimate
+          pipeline, and the v1.107.0 tag on the real repository stays
+          clean, so tag audits pass.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Seven wheels went to PyPI at 11:39-11:40 and container jobs
+          published the images at 11:46, under the official publisher
+          identity. A second developer's credential satisfied the
+          production approval gate at 11:11.
+      - techniqueID: T0206
+        techName: Forge or omit build provenance
+        tactic: Defense Evasion
+        comment: |
+          The container provenance was genuine and complete - run
+          39587059944, revision 20535d8 - and it is what tied the
+          build to the lookalike source. It vouches for recorded
+          inputs, not for their trustworthiness; the tag audit alone
+          would have missed the payload.
+  - attack: Python environments that installed 1.107.0
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          cook.pth and sitecustomize.py execute during Python
+          initialization in every process on the host - applications,
+          pip, IDE language servers, CI jobs - so removal instructions
+          start from a shell, not Python.
+      - techniqueID: T0184
+        techName: Dumping credentials from files
+        tactic: Credential Access
+        comment: |
+          Sixteen collection modules sweep browser stores, SSH and GPG
+          keys, cloud and CI credential files, AI coding tool tokens,
+          and the LiteLLM proxy database tables that hold provider
+          keys.
+      - techniqueID: T0140
+        techName: Dump tokens from the environment variable
+        tactic: Credential Access
+        comment: |
+          The stealer reads its own process environment and other
+          processes' environments through /proc/<pid>/environ.
+      - techniqueID: T0172
+        techName: Runtime Backdoor
+        tactic: Execution
+        comment: |
+          sitecustomize.py forks a detached hourly daemon that reads
+          the next-stage address from domain.txt and exec()s
+          http://<domain>/codepy. GitHub deleted letters9813 about two
+          hours after publication, leaving the stage dormant; hosts
+          that ran the daemon earlier could have received second-stage
+          code that was never recovered.
+
+gaps:
+  - How the attacker reached the internet-exposed internal LiteLLM
+    deployment is unconfirmed; LiteLLM suspects a recently patched
+    vulnerability.
+  - The second-stage server behind domain.txt and the codepy payload
+    were never recovered; only hosts that ran the daemon before the
+    letters9813 deletion could have received code, and the exfil
+    marker file is absent from ephemeral containers by design.
+  - Whether the lookalike repository itself was reachable publicly,
+    or built only inside the pipeline, is not established from the
+    public reports.
+
+links:
+  - https://www.litellm.ai/blog?post=security-incident-oct-21-2026
+  - https://github.com/BerriAI/litellm/issues/47826
+  - https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
+  - https://www.stepsecurity.io/blog/litellm-1-107-0-compromised-on-pypi-backdoored-wheels-drop-a-credential-stealer-and-an-hourly-remote-code-loader
+  - https://socket.dev/blog/litellm-compromise
+  - https://opensourcemalware.com/blog/litellm-1-107-0-pypi-wheel-contains-a-credential-stealer-and-persistent-python-backdoor

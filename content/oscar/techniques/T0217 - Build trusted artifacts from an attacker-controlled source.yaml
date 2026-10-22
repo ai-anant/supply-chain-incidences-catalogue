@@ -1,0 +1,65 @@
+id: T0217
+type: Technique
+
+tactic: Resource Development
+
+realm:
+  - SCM Posture
+  - CI/CD Posture
+  - Open Source Security
+
+summary: Build trusted artifacts from an attacker-controlled source
+
+description: |
+  The attacker redirects a project's own trusted build or release
+  pipeline so that it builds from a source the attacker controls -
+  typically a lookalike repository one character away from the real
+  one - and lets the pipeline do the rest. The artifacts that come out
+  are produced, signed, and published by the legitimate infrastructure
+  under the legitimate publisher identity, so every downstream check
+  that asks "did the real publisher ship this?" answers yes. What the
+  checks do not ask is whether the recorded input source was the real
+  project. The payload never appears in the real repository or its
+  release tags, so tag audits, source diffs of the official repo, and
+  "is the tag clean?" heuristics all pass.
+
+  Observed in the LiteLLM 1.107.0 compromise (21 October 2026): the
+  attacker held GitHub CLI OAuth tokens of three developers taken from
+  the logs of an internet-exposed internal deployment, used one to
+  modify the private release workflow, used an organization owner's
+  token to override branch protection after the normal push path was
+  rejected, and pointed the workflow's source input at the lookalike
+  repository Berri-AI/litellm (one hyphen off from BerriAI/litellm).
+  The lookalike source carried ten stacked commits on top of the real
+  tag adding a payload directory and one build-config line. The
+  official pipeline built, signed, and published the poisoned wheels
+  and container images; the container provenance recorded the
+  lookalike source honestly and still validated. Provenance vouches
+  for recorded inputs, not for their trustworthiness.
+
+  Distinct from T0206 (forging or omitting provenance - here the
+  provenance is genuine), T0121 (replacing an already-built artifact -
+  here the artifact is freshly built by the victim's own pipeline),
+  and T0109 (publishing an attacker-authored package under an
+  attacker identity - here the publisher identity is the victim's).
+
+mitigations:
+  - M1730
+  - M1732
+  - M1661
+  - M1662
+  - M1500
+
+detections:
+  - D1500
+  - D1262
+  - D1260
+
+references:
+  - https://www.litellm.ai/blog?post=security-incident-oct-21-2026
+  - https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
+  - https://socket.dev/blog/litellm-compromise
+
+metadata:
+  version: 0.1
+  state: draft

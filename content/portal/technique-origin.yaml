@@ -1016,3 +1016,21 @@ techniques:
       directory or Windows user profile if GitHub rejects it.
     sources:
     - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm
+  T0217:
+    summary: Build trusted artifacts from an attacker-controlled source
+    tactic: Resource Development
+    kind: incident
+    note: "This catalogue, from the LiteLLM 1.107.0 compromise (BerriAI
+      incident report, SafeDep, StepSecurity, Socket): the attacker held
+      three developers' GitHub CLI OAuth tokens, pointed the legitimate
+      private release workflow at the lookalike repository
+      Berri-AI/litellm after overriding branch protection with an
+      org-owner token, and let the trusted pipeline build, sign, and
+      publish the poisoned wheels and Docker images. The container
+      provenance recorded the lookalike source honestly and still
+      passed - provenance vouches for recorded inputs, not for their
+      trustworthiness."
+    sources:
+    - https://www.litellm.ai/blog?post=security-incident-oct-21-2026
+    - https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
+    - https://socket.dev/blog/litellm-compromise

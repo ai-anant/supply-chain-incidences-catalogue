@@ -1,5 +1,46 @@
 entries:
 - date: '2026-10-22'
+  id: litellm-forged-commits-intake
+  title: LiteLLM 1.107.0 lookalike-repo release and hugo-paper/mevn-cli forged commits
+  items:
+  - 'AS313: litellm==1.107.0 on PyPI (21 October, live 11:39-13:23
+    UTC) and the official Docker images v1.107.0/latest/main-latest/
+    main-stable (11:46-14:20 UTC) carried a credential stealer
+    (cook.py via a cook.pth .pth hook) and an hourly remote-code
+    loader (sitecustomize.py daemon) that run at Python startup in
+    every process on the host. The v1.107.0 git tag is clean; the
+    trusted private release pipeline was pointed, via three stolen
+    developer GitHub CLI OAuth tokens lifted from an internet-exposed
+    internal deployment''s logs, at the lookalike repository
+    Berri-AI/litellm, which it then built, signed, and published.
+    New technique T0217 (build trusted artifacts from an
+    attacker-controlled source). Exfil to www.litellm[.]dev; the
+    loader''s GitHub pointer account letters9813 was deleted about
+    two hours in, leaving the second stage dormant and unrecovered.
+    https://www.litellm.ai/blog?post=security-incident-oct-21-2026
+    https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/'
+  - 'AS312: forged commits on hugo-paper (force-pushed tip cloning
+    the signed merge commit''s author, date, and message, 21 August)
+    and mevn-cli (appended commits cloning each predecessor''s
+    metadata on two branches, 20 August) add a package.json
+    preinstall dropper that fetches a second stage from
+    buildwithknexus[.]xyz when a developer runs npm/bun install in
+    the cloned repo. No npm release carries the payload, so registry
+    scanning sees nothing; discovered via hugo-paper issue #272 on
+    20 October. SafeDep infers stolen push credentials on two
+    unrelated maintainers within 15 hours and treats the cluster as
+    separate from GlassWorm/ForceMemo despite the same
+    amend-and-force-push trick.
+    https://safedep.io/hugo-paper-mevn-cli-forged-commit-preinstall-dropper/'
+  - 'Also reviewed: OpenCode Console breach (18 October) has only a
+    vendor statement with no root cause or mechanism published yet,
+    so it is not mapped; Aikido''s and CrowdStrike''s PHP2shell
+    pieces and the ReversingLabs posts are vulnerability coverage,
+    product notes, and research rather than new operations.
+    eMudhra weak intermediate-CA keys were mapped separately as
+    AS311 with the new pki platform. No other tracked source
+    published a new operation since the 20 October intake.'
+- date: '2026-10-22'
   id: webhacklist-source
   title: Web Hacking Techniques Index added to the watch list
   items:
