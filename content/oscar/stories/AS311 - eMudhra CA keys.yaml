@@ -1,0 +1,53 @@
+id: AS311
+type: Attack Story
+date: 2026-10
+platforms:
+  - pki
+summary: eMudhra intermediate CA keys recoverable in milliseconds; root distrusted
+description: |
+  On 17 October 2026 a security researcher reported to Apple, Google,
+  Microsoft, Mozilla, and eMudhra that the private keys of eight eMudhra
+  intermediate certificates are trivially recoverable. Scott Helme's
+  20 October write-up: the keys are P-384 ECDSA, but each private scalar is
+  a single byte — 47 zero bytes plus one value (4, 56, 115, ...). Recovering
+  any of them from the public certificate is at most 255 point
+  multiplications, under a second on a laptop. The eight intermediates were
+  created April 2025: six TLS issuing CAs (DV, OV, EV, two generations each)
+  and two code-signing CAs, all cross-signed by Sectigo's AAA Certificate
+  Services root in May 2025. Whoever holds a key can mint certificates every
+  client trusts — TLS interception for any domain, or malware carrying an
+  eMudhra code-signing chain. Chrome pushed a CRLSet blocking the
+  intermediates the same evening; Firefox blocked them via OneCRL hours
+  later. On 20 October Mozilla announced the incident publicly and shipped
+  an NSS update removing the eMudhra root; Chrome confirmed the root goes in
+  Chrome Root Store v43. No rogue certificate issued from the weak keys has
+  been publicly reported — the compromise is the recoverable key material
+  itself, not an observed abuse.
+
+attacks:
+  - attack: eMudhra CA keys
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0208
+        techName: Compromise code-signing identity
+        tactic: Defense Evasion
+        comment: |
+          The two code-signing intermediates are real eMudhra identities
+          whose private keys anyone can recover. Malware signed with them
+          would verify as eMudhra. T0208 describes a stolen or issuer-trusted
+          signing certificate; here the identity is real and the key material
+          is effectively public.
+
+gaps:
+  - The corpus has no technique for weak CA key generation or TLS trust
+    compromise. The TLS half of this incident — six intermediates able to
+    mint browser-trusted certificates for any domain — has no matching
+    technique. T0208 covers only the code-signing half.
+  - No rogue certificate from these keys has been publicly reported. The
+    mapping covers the capability, not an observed signing abuse.
+
+links:
+  - https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/

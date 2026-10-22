@@ -31,6 +31,8 @@ platforms:
     label: Travis CI
   - id: teamcity
     label: TeamCity
+  - id: pki
+    label: Certificates / trust stores
   - id: gitlab-ci
     label: GitLab CI
   - id: azure-pipelines

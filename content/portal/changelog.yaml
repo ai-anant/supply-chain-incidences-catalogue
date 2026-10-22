@@ -1,4 +1,21 @@
 entries:
+- date: '2026-10-22'
+  id: emudhra-ca-keys
+  title: eMudhra intermediate CA keys added; new certificates/trust-stores platform
+  items:
+  - 'AS311: the private keys of eight eMudhra intermediate certificates are
+    single-byte P-384 scalars (4, 56, 115, ...), recoverable in under a
+    second from the public certificates. Six TLS issuing CAs and two
+    code-signing CAs, created April 2025 and cross-signed by Sectigo''s
+    AAA root. Reported 17 October to Apple, Google, Microsoft, Mozilla,
+    and eMudhra; Chrome CRLSet that evening, Firefox OneCRL hours later;
+    Mozilla announced publicly and removed the root from NSS on 20
+    October, Chrome root store v43 confirmed. Source: Scott Helme''s
+    20 October write-up. Mapped to T0208 for the code-signing half. The
+    TLS half has no technique in the corpus — recorded as a gap. No rogue
+    certificate from the weak keys has been publicly reported.'
+  - 'New platform id pki (Certificates / trust stores), filed under the
+    deploy stage in the five-stage cut.'
 - date: '2026-10-20'
   id: ovhcloud-cli-release-assets-intake
   title: GlassWorm-hijacked account swapped OVHcloud CLI release assets

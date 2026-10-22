@@ -33,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0208</p>
 
-        <p class="meta">T0208 · Defense Evasion · TA07 · observed in 5 incident(s)</p>
+        <p class="meta">T0208 · Defense Evasion · TA07 · observed in 6 incident(s)</p>
         <h1>Compromise code-signing identity</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">CI/CD Posture</span> <span class="chip">Code Security</span></div>
         <p>The attacker signs malware with a stolen or issuer-trusted code-signing<br>certificate, CI OIDC identity, or package-registry signing key so that<br>signature verification succeeds. SolarWinds Orion updates were signed as<br>SolarWinds. Distinct from spoofed git commits (T0195) and from forging<br>provenance documents (T0206): here the cryptographic identity is real<br>and compromised.</p>
@@ -43,7 +43,7 @@
         <ul><li><span class="id">M1860</span> Implement strong authentication mechanisms</li><li><span class="id">M1120</span> Store credentials in vault</li><li><span class="id">M1530</span> Use multi-factor authentication</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1260</span> Implement regular security audit and review</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li></ul>
-        <h2>Observed in incidents (5)</h2><ul><li><a href="../incidents/AS62.html">Operation ShadowHammer (ASUS Live Update)</a></li><li><a href="../incidents/AS63.html">DarkGPT / Codo-AI / bitcoin-auto-trading VS Code extensions</a></li><li><a href="../incidents/AS5.html">CCleaner 5.33 signed ShadowPad backdoor</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS195.html">DAEMON Tools signed installers backdoored (Apr–May 2026)</a></li></ul>
+        <h2>Observed in incidents (6)</h2><ul><li><a href="../incidents/AS62.html">Operation ShadowHammer (ASUS Live Update)</a></li><li><a href="../incidents/AS63.html">DarkGPT / Codo-AI / bitcoin-auto-trading VS Code extensions</a></li><li><a href="../incidents/AS5.html">CCleaner 5.33 signed ShadowPad backdoor</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS195.html">DAEMON Tools signed installers backdoored (Apr–May 2026)</a></li><li><a href="../incidents/AS311.html">eMudhra intermediate CA keys recoverable in milliseconds; root distrusted</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://slsa.dev/spec/v1.0/threats" rel="noopener">https://slsa.dev/spec/v1.0/threats</a></li><li><a href="https://orangematter.solarwinds.com/2021/05/07/an-investigative-update-of-the-cyberattack/" rel="noopener">https://orangematter.solarwinds.com/2021/05/07/an-investigative-update-of-the-cyberattack/</a></li></ul>
         

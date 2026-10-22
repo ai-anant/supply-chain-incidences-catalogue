@@ -1289,6 +1289,7 @@ def build(dest):
         "github-actions": "cicd", "jenkins": "cicd", "cicd-saas": "cicd",
         "circleci": "cicd", "gitlab-ci": "cicd", "azure-pipelines": "cicd", "buildkite": "cicd",
         "travis-ci": "cicd", "teamcity": "cicd",
+        "pki": "deploy",
         "npm": "artifact", "pypi": "artifact", "rubygems": "artifact", "packagist": "artifact",
         "crates": "artifact", "golang": "artifact", "maven": "artifact", "nuget": "artifact",
         "pub": "artifact", "docker": "artifact", "cdn": "artifact", "aur": "artifact",
