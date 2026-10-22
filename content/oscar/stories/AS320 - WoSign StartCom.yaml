@@ -1,0 +1,42 @@
+id: AS320
+type: Attack Story
+date: 2016-08
+platforms:
+  - pki
+summary: WoSign and StartCom issued unauthorized certificates and backdated SHA-1 certs
+description: |
+  Mozilla's CA:WoSign Issues page documents a series of failures at WoSign
+  and its acquired StartCom: the 31 August 2016 discovery that WoSign had
+  issued certificates for GitHub without GitHub's request or authorization
+  (via a WoSign employee-controlled StartSSL account after StartCom's
+  acquisition); issuance of 1,132 long-lived SHA-1 certificates between
+  January and March 2015, with 76 of them backdated to before 16 June 2016
+  to evade the SHA-1 sunset; undisclosed acquisition; and inconsistent
+  disclosures. Google, Mozilla, Apple, and Microsoft progressively
+  distrusted WoSign and StartCom roots and intermediates; certificates
+  from them stopped being accepted in mainstream browsers in 2017.
+
+attacks:
+  - attack: WoSign / StartCom issuance
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          A github.com certificate issued without GitHub's authorization is
+          a working MITM certificate for github.com in any browser. The
+          backdated SHA-1 set shows issuance controls collapsing further.
+
+gaps:
+  - Trustwave's February 2012 intermediate for an MITM appliance is the
+    same class; the canonical Mozilla blog post is no longer served and
+    archive.org was rate-limited from this environment during this pass,
+    so it is recorded here in the gap rather than as its own story. A
+    later pass can lift it from the wayback snapshot.
+
+links:
+  - https://wiki.mozilla.org/CA/WoSign_Issues

@@ -1,0 +1,38 @@
+id: AS318
+type: Attack Story
+date: 2015-03
+platforms:
+  - pki
+summary: CNNIC-issued intermediate ran on MCS Holdings' man-in-the-middle proxy
+description: |
+  On 20 March 2015 Google's pinning detected a *.google.com certificate
+  issued by an intermediate CA chaining to CNNIC. The intermediate had been
+  delegated to MCS Holdings, which — contrary to its contract to issue only
+  for domains it registered — installed the key on its eID SSL interception
+  appliance instead of an HSM. The appliance issued certificates for
+  domains it did not control; the observed set was in a test network. Google
+  blocked the MCS certificate with a CRLSet push on 20 March and, after a
+  joint investigation, removed recognition of the CNNIC root and EV CAs in
+  Chrome, with a disclosed whitelist for existing certificates. Google's
+  post explicitly names ANSSI 2013 as the earlier instance of the same
+  failure.
+
+attacks:
+  - attack: MCS Holdings / CNNIC intermediate
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          A delegated public CA intermediate deployed on an interception
+          proxy. The key's holder can mint browser-valid certificates for
+          any domain; the root operator carries the blast radius.
+
+gaps: []
+
+links:
+  - https://security.googleblog.com/2015/03/maintaining-digital-certificate-security.html

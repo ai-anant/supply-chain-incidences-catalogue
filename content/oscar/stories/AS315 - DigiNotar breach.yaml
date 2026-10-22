@@ -1,0 +1,38 @@
+id: AS315
+type: Attack Story
+date: 2011-08
+platforms:
+  - pki
+summary: DigiNotar CA breach produced a wildcard google.com certificate used in Iran
+description: |
+  Fox-IT's Operation Black Tulip forensic report (December 2011) established
+  that attackers held access to DigiNotar's certificate-issuing
+  infrastructure for over a month, issuing 531 fraudulent certificates for
+  domains including google.com, skype.com, and WordPress. A wildcard
+  certificate for *.google.com signed by DigiNotar's intermediate was used
+  in the wild against users in Iran to intercept Gmail sessions. Google
+  detected the interception on 29 August 2011 because Chrome's built-in
+  pinning for Google properties rejected the fraudulent certificate and
+  reported it. The consequences were total: browser vendors removed every
+  DigiNotar root from their trust stores within days, and the company went
+  bankrupt the following September.
+
+attacks:
+  - attack: DigiNotar issuance infrastructure
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          A wildcard *.google.com certificate from a trusted CA turned
+          interception of Gmail sessions in Iran into a connection every
+          client accepted. This is the reference case for the technique.
+
+gaps: []
+
+links:
+  - https://web.archive.org/web/2012/https://www.fox-it.com/documents/326/fox-it_blacktulip_wo1.pdf

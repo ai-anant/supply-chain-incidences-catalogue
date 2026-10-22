@@ -1117,9 +1117,21 @@
         "url": "techniques/T0215.html",
         "description": "The attacker registers or purchases their own legitimate code-signing\nidentity \u2014 an Apple Developer ID, a Windows Authenticode certificate, or\na marketplace publisher account \u2014 and signs malware with it. macOS\nnotarization and Gatekeeper then pass with no warning dialog, and\nsignature-based allowlists see a valid, unrevoked signature. Distinct\nfrom T0208 (Compromise code-signing identity): there the cryptographic\nidentity belongs to the vendor and was stolen or misissued; here the\nidentity is genuinely the attacker's, obtained through the normal\nenrollment process. That means vendor-side certificate hygiene cannot\nprevent it \u2014 only teardown of the certificate after the fact, and\nprovenance checks on the distribution channel, apply.\n",
         "incidentCount": 1
+      },
+      {
+        "id": "T0218",
+        "name": "Compromise TLS trust identity",
+        "tooltip": "Compromise TLS trust identity",
+        "tags": [
+          "Artifact Security",
+          "Cloud Security"
+        ],
+        "url": "techniques/T0218.html",
+        "description": "The attacker holds the private key of a certificate authority or\nintermediate issuing CA that client trust stores accept, and mints\ncertificates for domains they do not control. A browser or OS then\naccepts a man-in-the-middle session as the genuine site. The key comes\nfrom a compromised CA network (DigiNotar), from bad key generation that\nmakes it recoverable (eMudhra's single-byte scalars), from a compromised\nissuance account (Comodo's reseller RA), from a certificate issued as a\nCA when it was meant for a server (TURKTRUST), from an intermediate\ndelegated to a network appliance that intercepted traffic (ANSSI, MCS\nHoldings), or from a CA issuing without the domain owner's knowledge\n(Symantec test certificates). Distinct from T0208 (Compromise\ncode-signing identity): there the trust decision is artifact signature\nverification; here it is the browser and OS trust store for TLS\nsessions.\n",
+        "incidentCount": 8
       }
     ],
-    "amount": 12,
+    "amount": 13,
     "tooltip": "Defense Evasion",
     "tacticid": "TA07"
   },

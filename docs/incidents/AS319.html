@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Symantec test certificates issued for domains without owner knowledge · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS319</p>
+
+        <p class="meta">AS319 · 2015-09</p>
+        <h1>Symantec test certificates issued for domains without owner knowledge</h1>
+        <p><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>On 17 September 2015 Google announced that a Symantec-issued certificate<br>for google.com without Google&#x27;s knowledge had been found. Symantec&#x27;s own<br>incident report, published 13 October 2015, disclosed 23 test certificates<br>covering five organizations including Google and Opera. Using Certificate<br>Transparency logs, Google found more questionable certificates within<br>minutes; Symantec&#x27;s follow-up audit on 12 October 2015 reported 164<br>certificates over 76 domains and 2,458 certificates for domains that were<br>never registered. Google required Certificate Transparency for all<br>Symantec-issued certificates from 1 June 2016, and after a further 2017<br>failure (distinction misissuance found by Ryan Sleevi) imposed<br>progressive distrust culminating in Symantec&#x27;s TLS business being sold<br>to DigiCert in late 2017.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0218.html">T0218</a> Compromise TLS trust identity</li></ul>
+        <h2><span class="stage">supply-chain</span> Symantec issuance</h2><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>Certificates for domains issued without the owner&#x27;s knowledge are<br>valid to every client. No breach of CA keys is needed — the CA&#x27;s<br>own issuance process is the compromised stage.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The 2017 separate Symantec misissuance wave is the same operation&#x27;s continuation and is folded into this story rather than a new ID.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://security.googleblog.com/2015/10/sustaining-digital-certificate-security.html" rel="noopener">https://security.googleblog.com/2015/10/sustaining-digital-certificate-security.html</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

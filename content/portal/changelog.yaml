@@ -1,45 +1,28 @@
 entries:
 - date: '2026-10-22'
-  id: litellm-forged-commits-intake
-  title: LiteLLM 1.107.0 lookalike-repo release and hugo-paper/mevn-cli forged commits
+  id: tls-trust-identity
+  title: New technique T0218; historical TLS trust incidents backfilled
   items:
-  - 'AS313: litellm==1.107.0 on PyPI (21 October, live 11:39-13:23
-    UTC) and the official Docker images v1.107.0/latest/main-latest/
-    main-stable (11:46-14:20 UTC) carried a credential stealer
-    (cook.py via a cook.pth .pth hook) and an hourly remote-code
-    loader (sitecustomize.py daemon) that run at Python startup in
-    every process on the host. The v1.107.0 git tag is clean; the
-    trusted private release pipeline was pointed, via three stolen
-    developer GitHub CLI OAuth tokens lifted from an internet-exposed
-    internal deployment''s logs, at the lookalike repository
-    Berri-AI/litellm, which it then built, signed, and published.
-    New technique T0217 (build trusted artifacts from an
-    attacker-controlled source). Exfil to www.litellm[.]dev; the
-    loader''s GitHub pointer account letters9813 was deleted about
-    two hours in, leaving the second stage dormant and unrecovered.
-    https://www.litellm.ai/blog?post=security-incident-oct-21-2026
-    https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/'
-  - 'AS312: forged commits on hugo-paper (force-pushed tip cloning
-    the signed merge commit''s author, date, and message, 21 August)
-    and mevn-cli (appended commits cloning each predecessor''s
-    metadata on two branches, 20 August) add a package.json
-    preinstall dropper that fetches a second stage from
-    buildwithknexus[.]xyz when a developer runs npm/bun install in
-    the cloned repo. No npm release carries the payload, so registry
-    scanning sees nothing; discovered via hugo-paper issue #272 on
-    20 October. SafeDep infers stolen push credentials on two
-    unrelated maintainers within 15 hours and treats the cluster as
-    separate from GlassWorm/ForceMemo despite the same
-    amend-and-force-push trick.
-    https://safedep.io/hugo-paper-mevn-cli-forged-commit-preinstall-dropper/'
-  - 'Also reviewed: OpenCode Console breach (18 October) has only a
-    vendor statement with no root cause or mechanism published yet,
-    so it is not mapped; Aikido''s and CrowdStrike''s PHP2shell
-    pieces and the ReversingLabs posts are vulnerability coverage,
-    product notes, and research rather than new operations.
-    eMudhra weak intermediate-CA keys were mapped separately as
-    AS311 with the new pki platform. No other tracked source
-    published a new operation since the 20 October intake.'
+  - 'New technique T0218 Compromise TLS trust identity (Defense Evasion) —
+    the attacker holds a CA or intermediate private key that client trust
+    stores accept and mints certificates for domains they do not control.
+    The TLS half of AS311 eMudhra now maps here; the gap note on AS311 is
+    closed.'
+  - 'Backfilled the historical class: AS314 Comodo reseller RA account
+    (nine fraudulent certs for mail.google.com and friends, March 2011,
+    observed live on addons.mozilla.org), AS315 DigiNotar breach (wildcard
+    google.com used in Iran; Fox-IT Black Tulip report via archive),
+    AS316 TURKTRUST (a server certificate issued as an intermediate CA,
+    December 2012), AS317 ANSSI (intermediate run inside a MITM appliance,
+    December 2013), AS318 MCS Holdings on CNNIC (same failure, March
+    2015), AS319 Symantec test certificates (23 disclosed, 164+2458 found
+    via CT; progressive distrust 2015-2017), AS320 WoSign/StartCom
+    (github.com issued without authorization, SHA-1 backdating; trust
+    removed 2016-2017).'
+  - 'All mapped from root-program operator posts (Google Online Security
+    Blog, Mozilla). Trustwave 2012 is recorded in the AS320 gap note — the
+    canonical Mozilla post is no longer served and archive.org rate-limited
+    this environment during the pass.'
 - date: '2026-10-22'
   id: webhacklist-source
   title: Web Hacking Techniques Index added to the watch list

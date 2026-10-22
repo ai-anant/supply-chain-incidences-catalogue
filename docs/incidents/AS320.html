@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WoSign and StartCom issued unauthorized certificates and backdated SHA-1 certs · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS320</p>
+
+        <p class="meta">AS320 · 2016-08</p>
+        <h1>WoSign and StartCom issued unauthorized certificates and backdated SHA-1 certs</h1>
+        <p><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>Mozilla&#x27;s CA:WoSign Issues page documents a series of failures at WoSign<br>and its acquired StartCom: the 31 August 2016 discovery that WoSign had<br>issued certificates for GitHub without GitHub&#x27;s request or authorization<br>(via a WoSign employee-controlled StartSSL account after StartCom&#x27;s<br>acquisition); issuance of 1,132 long-lived SHA-1 certificates between<br>January and March 2015, with 76 of them backdated to before 16 June 2016<br>to evade the SHA-1 sunset; undisclosed acquisition; and inconsistent<br>disclosures. Google, Mozilla, Apple, and Microsoft progressively<br>distrusted WoSign and StartCom roots and intermediates; certificates<br>from them stopped being accepted in mainstream browsers in 2017.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0218.html">T0218</a> Compromise TLS trust identity</li></ul>
+        <h2><span class="stage">supply-chain</span> WoSign / StartCom issuance</h2><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>A github.com certificate issued without GitHub&#x27;s authorization is<br>a working MITM certificate for github.com in any browser. The<br>backdated SHA-1 set shows issuance controls collapsing further.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>Trustwave&#x27;s February 2012 intermediate for an MITM appliance is the same class; the canonical Mozilla blog post is no longer served and archive.org was rate-limited from this environment during this pass, so it is recorded here in the gap rather than as its own story. A later pass can lift it from the wayback snapshot.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://wiki.mozilla.org/CA/WoSign_Issues" rel="noopener">https://wiki.mozilla.org/CA/WoSign_Issues</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

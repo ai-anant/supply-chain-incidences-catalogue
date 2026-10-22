@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T0218 Compromise TLS trust identity · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0218</p>
+
+        <p class="meta">T0218 · Defense Evasion · TA07 · observed in 8 incident(s)</p>
+        <h1>Compromise TLS trust identity</h1>
+        <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Cloud Security</span></div>
+        <p>The attacker holds the private key of a certificate authority or<br>intermediate issuing CA that client trust stores accept, and mints<br>certificates for domains they do not control. A browser or OS then<br>accepts a man-in-the-middle session as the genuine site. The key comes<br>from a compromised CA network (DigiNotar), from bad key generation that<br>makes it recoverable (eMudhra&#x27;s single-byte scalars), from a compromised<br>issuance account (Comodo&#x27;s reseller RA), from a certificate issued as a<br>CA when it was meant for a server (TURKTRUST), from an intermediate<br>delegated to a network appliance that intercepted traffic (ANSSI, MCS<br>Holdings), or from a CA issuing without the domain owner&#x27;s knowledge<br>(Symantec test certificates). Distinct from T0208 (Compromise<br>code-signing identity): there the trust decision is artifact signature<br>verification; here it is the browser and OS trust store for TLS<br>sessions.</p>
+        <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, from the eMudhra single-byte CA keys (Scott Helme, October 2026) where six TLS intermediates were recoverable in under a second. The historical class is documented by root-program operators — Comodo RA-account issuance (2011), DigiNotar (2011), TURKTRUST misissued intermediate (2012), ANSSI appliance intermediate (2013), MCS Holdings on CNNIC (2015), Symantec unowned-domain issuance (2015-2017).</p><ul class='refs'><li><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" rel="noopener">https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/</a></li><li><a href="https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html" rel="noopener">https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html</a></li></ul>
+        
+        <h2>Mitigations</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Detections</h2>
+        <p class='muted'>None linked yet.</p>
+        <h2>Observed in incidents (8)</h2><ul><li><a href="../incidents/AS314.html">Comodo reseller RA account issued nine fraudulent certificates</a></li><li><a href="../incidents/AS318.html">CNNIC-issued intermediate ran on MCS Holdings&#x27; man-in-the-middle proxy</a></li><li><a href="../incidents/AS315.html">DigiNotar CA breach produced a wildcard google.com certificate used in Iran</a></li><li><a href="../incidents/AS320.html">WoSign and StartCom issued unauthorized certificates and backdated SHA-1 certs</a></li><li><a href="../incidents/AS317.html">ANSSI intermediate used to intercept Google SSL traffic</a></li><li><a href="../incidents/AS319.html">Symantec test certificates issued for domains without owner knowledge</a></li><li><a href="../incidents/AS316.html">TURKTRUST issued an intermediate CA certificate as if it were a server certificate</a></li><li><a href="../incidents/AS311.html">eMudhra intermediate CA keys recoverable in milliseconds; root distrusted</a></li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" rel="noopener">https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/</a></li><li><a href="https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html" rel="noopener">https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

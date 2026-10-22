@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNNIC-issued intermediate ran on MCS Holdings&#x27; man-in-the-middle proxy · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS318</p>
+
+        <p class="meta">AS318 · 2015-03</p>
+        <h1>CNNIC-issued intermediate ran on MCS Holdings&#x27; man-in-the-middle proxy</h1>
+        <p><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>On 20 March 2015 Google&#x27;s pinning detected a *.google.com certificate<br>issued by an intermediate CA chaining to CNNIC. The intermediate had been<br>delegated to MCS Holdings, which — contrary to its contract to issue only<br>for domains it registered — installed the key on its eID SSL interception<br>appliance instead of an HSM. The appliance issued certificates for<br>domains it did not control; the observed set was in a test network. Google<br>blocked the MCS certificate with a CRLSet push on 20 March and, after a<br>joint investigation, removed recognition of the CNNIC root and EV CAs in<br>Chrome, with a disclosed whitelist for existing certificates. Google&#x27;s<br>post explicitly names ANSSI 2013 as the earlier instance of the same<br>failure.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0218.html">T0218</a> Compromise TLS trust identity</li></ul>
+        <h2><span class="stage">supply-chain</span> MCS Holdings / CNNIC intermediate</h2><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>A delegated public CA intermediate deployed on an interception<br>proxy. The key&#x27;s holder can mint browser-valid certificates for<br>any domain; the root operator carries the blast radius.</p></div>
+        
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://security.googleblog.com/2015/03/maintaining-digital-certificate-security.html" rel="noopener">https://security.googleblog.com/2015/03/maintaining-digital-certificate-security.html</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

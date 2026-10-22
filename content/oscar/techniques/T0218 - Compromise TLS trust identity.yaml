@@ -1,0 +1,34 @@
+id: T0218
+type: Technique
+
+tactic: Defense Evasion
+
+realm:
+  - Artifact Security
+  - Cloud Security
+
+summary: Compromise TLS trust identity
+
+description: |
+  The attacker holds the private key of a certificate authority or
+  intermediate issuing CA that client trust stores accept, and mints
+  certificates for domains they do not control. A browser or OS then
+  accepts a man-in-the-middle session as the genuine site. The key comes
+  from a compromised CA network (DigiNotar), from bad key generation that
+  makes it recoverable (eMudhra's single-byte scalars), from a compromised
+  issuance account (Comodo's reseller RA), from a certificate issued as a
+  CA when it was meant for a server (TURKTRUST), from an intermediate
+  delegated to a network appliance that intercepted traffic (ANSSI, MCS
+  Holdings), or from a CA issuing without the domain owner's knowledge
+  (Symantec test certificates). Distinct from T0208 (Compromise
+  code-signing identity): there the trust decision is artifact signature
+  verification; here it is the browser and OS trust store for TLS
+  sessions.
+
+references:
+  - https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/
+  - https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html
+
+metadata:
+  version: 0.1
+  state: draft

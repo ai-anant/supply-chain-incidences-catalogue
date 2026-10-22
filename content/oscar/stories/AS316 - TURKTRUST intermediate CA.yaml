@@ -1,0 +1,38 @@
+id: AS316
+type: Attack Story
+date: 2012-12
+platforms:
+  - pki
+summary: TURKTRUST issued an intermediate CA certificate as if it were a server certificate
+description: |
+  In December 2012 Google found a certificate for *.google.com that chained
+  to TURKTRUST. Two years earlier, in August 2011, TURKTRUST had issued two
+  certificates through its AÇE Farma Sipariş Sistemi program without
+  validation. One, *.EGO.GOV.TR, was a normal server certificate. The
+  other, *.ekoparty.org, was issued as an intermediate CA certificate —
+  CA:TRUE — instead of an end-entity certificate. Whoever held it could
+  issue certificates for any domain. The *.ekoparty.org intermediate was
+  used to mint a *.google.com certificate discovered on 25 December 2012.
+  Browser vendors blocked the misissued intermediate the same week;
+  Microsoft's advisory (2798897) and Google's 4 January 2013 post describe
+  the chain.
+
+attacks:
+  - attack: TURKTRUST issuance
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          The private key of the *.ekoparty.org intermediate made its holder
+          a CA. A google.com certificate minted with it validates in every
+          browser without the CA's infrastructure ever being touched.
+
+gaps: []
+
+links:
+  - https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html

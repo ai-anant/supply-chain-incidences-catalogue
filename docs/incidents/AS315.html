@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DigiNotar CA breach produced a wildcard google.com certificate used in Iran · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS315</p>
+
+        <p class="meta">AS315 · 2011-08</p>
+        <h1>DigiNotar CA breach produced a wildcard google.com certificate used in Iran</h1>
+        <p><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>Fox-IT&#x27;s Operation Black Tulip forensic report (December 2011) established<br>that attackers held access to DigiNotar&#x27;s certificate-issuing<br>infrastructure for over a month, issuing 531 fraudulent certificates for<br>domains including google.com, skype.com, and WordPress. A wildcard<br>certificate for *.google.com signed by DigiNotar&#x27;s intermediate was used<br>in the wild against users in Iran to intercept Gmail sessions. Google<br>detected the interception on 29 August 2011 because Chrome&#x27;s built-in<br>pinning for Google properties rejected the fraudulent certificate and<br>reported it. The consequences were total: browser vendors removed every<br>DigiNotar root from their trust stores within days, and the company went<br>bankrupt the following September.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0218.html">T0218</a> Compromise TLS trust identity</li></ul>
+        <h2><span class="stage">supply-chain</span> DigiNotar issuance infrastructure</h2><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>A wildcard *.google.com certificate from a trusted CA turned<br>interception of Gmail sessions in Iran into a connection every<br>client accepted. This is the reference case for the technique.</p></div>
+        
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://web.archive.org/web/2012/https://www.fox-it.com/documents/326/fox-it_blacktulip_wo1.pdf" rel="noopener">https://web.archive.org/web/2012/https://www.fox-it.com/documents/326/fox-it_blacktulip_wo1.pdf</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

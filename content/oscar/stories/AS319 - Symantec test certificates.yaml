@@ -1,0 +1,41 @@
+id: AS319
+type: Attack Story
+date: 2015-09
+platforms:
+  - pki
+summary: Symantec test certificates issued for domains without owner knowledge
+description: |
+  On 17 September 2015 Google announced that a Symantec-issued certificate
+  for google.com without Google's knowledge had been found. Symantec's own
+  incident report, published 13 October 2015, disclosed 23 test certificates
+  covering five organizations including Google and Opera. Using Certificate
+  Transparency logs, Google found more questionable certificates within
+  minutes; Symantec's follow-up audit on 12 October 2015 reported 164
+  certificates over 76 domains and 2,458 certificates for domains that were
+  never registered. Google required Certificate Transparency for all
+  Symantec-issued certificates from 1 June 2016, and after a further 2017
+  failure (distinction misissuance found by Ryan Sleevi) imposed
+  progressive distrust culminating in Symantec's TLS business being sold
+  to DigiCert in late 2017.
+
+attacks:
+  - attack: Symantec issuance
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          Certificates for domains issued without the owner's knowledge are
+          valid to every client. No breach of CA keys is needed — the CA's
+          own issuance process is the compromised stage.
+
+gaps:
+  - The 2017 separate Symantec misissuance wave is the same operation's
+    continuation and is folded into this story rather than a new ID.
+
+links:
+  - https://security.googleblog.com/2015/10/sustaining-digital-certificate-security.html

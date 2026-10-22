@@ -1016,21 +1016,17 @@ techniques:
       directory or Windows user profile if GitHub rejects it.
     sources:
     - https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm
-  T0217:
-    summary: Build trusted artifacts from an attacker-controlled source
-    tactic: Resource Development
+  T0218:
+    summary: Compromise TLS trust identity
+    tactic: Defense Evasion
     kind: incident
-    note: "This catalogue, from the LiteLLM 1.107.0 compromise (BerriAI
-      incident report, SafeDep, StepSecurity, Socket): the attacker held
-      three developers' GitHub CLI OAuth tokens, pointed the legitimate
-      private release workflow at the lookalike repository
-      Berri-AI/litellm after overriding branch protection with an
-      org-owner token, and let the trusted pipeline build, sign, and
-      publish the poisoned wheels and Docker images. The container
-      provenance recorded the lookalike source honestly and still
-      passed - provenance vouches for recorded inputs, not for their
-      trustworthiness."
+    note: This catalogue, from the eMudhra single-byte CA keys (Scott Helme,
+      October 2026) where six TLS intermediates were recoverable in under a
+      second. The historical class is documented by root-program operators —
+      Comodo RA-account issuance (2011), DigiNotar (2011), TURKTRUST
+      misissued intermediate (2012), ANSSI appliance intermediate (2013),
+      MCS Holdings on CNNIC (2015), Symantec unowned-domain issuance
+      (2015-2017).
     sources:
-    - https://www.litellm.ai/blog?post=security-incident-oct-21-2026
-    - https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/
-    - https://socket.dev/blog/litellm-compromise
+    - https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/
+    - https://security.googleblog.com/2013/01/enhancing-digital-certificate-security.html

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comodo reseller RA account issued nine fraudulent certificates · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS314</p>
+
+        <p class="meta">AS314 · 2011-03</p>
+        <h1>Comodo reseller RA account issued nine fraudulent certificates</h1>
+        <p><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>On 15 March 2011 an attacker breached one user account at a Comodo<br>registration authority and used it to issue nine certificates for seven<br>domains the attacker did not control: mail.google.com, www.google.com,<br>login.yahoo.com, login.skype.com, addons.mozilla.org, and two Windows<br>Live domains. Comodo&#x27;s incident report says the CA&#x27;s HSM keys were not<br>compromised — the attacker worked through the issuance account, created<br>a new user ID on it, and came mainly from Iranian IP addresses. Eight of<br>the nine were revoked unused; the addons.mozilla.org certificate was<br>observed live in the wild from a GMX mail server. Chrome and Firefox<br>blacklisted the certificates on 22-23 March. Comodo&#x27;s 31 March update<br>describes a second, failed attempt on 26 March through a different<br>reseller account.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0218.html">T0218</a> Compromise TLS trust identity</li></ul>
+        <h2><span class="stage">supply-chain</span> Comodo RA issuance</h2><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>Certificates for mail.google.com and login.yahoo.com signed by a<br>real Comodo RA let a man-in-the-middle impersonate those sites to<br>any browser. The CA key itself never left the HSM — the issuance<br>process was the compromised stage.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The corpus separates TLS trust from code signing as of T0218. This incident is issuance-account abuse, not key theft; the technique covers both because the client-visible effect is identical.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.comodo.com/Comodo-Fraud-Incident-2011-03-23.html" rel="noopener">https://www.comodo.com/Comodo-Fraud-Incident-2011-03-23.html</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

@@ -40,14 +40,16 @@ attacks:
           would verify as eMudhra. T0208 describes a stolen or issuer-trusted
           signing certificate; here the identity is real and the key material
           is effectively public.
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          The six TLS issuing intermediates have single-byte P-384 scalars.
+          Whoever recovers one (under a second of computation) can mint
+          browser-valid certificates for any domain until the root was
+          distrusted on 20 October 2026.
 
-gaps:
-  - The corpus has no technique for weak CA key generation or TLS trust
-    compromise. The TLS half of this incident — six intermediates able to
-    mint browser-trusted certificates for any domain — has no matching
-    technique. T0208 covers only the code-signing half.
-  - No rogue certificate from these keys has been publicly reported. The
-    mapping covers the capability, not an observed signing abuse.
+gaps: []
 
 links:
   - https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/

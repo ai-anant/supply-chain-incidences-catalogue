@@ -1,0 +1,43 @@
+id: AS314
+type: Attack Story
+date: 2011-03
+platforms:
+  - pki
+summary: Comodo reseller RA account issued nine fraudulent certificates
+description: |
+  On 15 March 2011 an attacker breached one user account at a Comodo
+  registration authority and used it to issue nine certificates for seven
+  domains the attacker did not control: mail.google.com, www.google.com,
+  login.yahoo.com, login.skype.com, addons.mozilla.org, and two Windows
+  Live domains. Comodo's incident report says the CA's HSM keys were not
+  compromised — the attacker worked through the issuance account, created
+  a new user ID on it, and came mainly from Iranian IP addresses. Eight of
+  the nine were revoked unused; the addons.mozilla.org certificate was
+  observed live in the wild from a GMX mail server. Chrome and Firefox
+  blacklisted the certificates on 22-23 March. Comodo's 31 March update
+  describes a second, failed attempt on 26 March through a different
+  reseller account.
+
+attacks:
+  - attack: Comodo RA issuance
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          Certificates for mail.google.com and login.yahoo.com signed by a
+          real Comodo RA let a man-in-the-middle impersonate those sites to
+          any browser. The CA key itself never left the HSM — the issuance
+          process was the compromised stage.
+
+gaps:
+  - The corpus separates TLS trust from code signing as of T0218. This
+    incident is issuance-account abuse, not key theft; the technique
+    covers both because the client-visible effect is identical.
+
+links:
+  - https://www.comodo.com/Comodo-Fraud-Incident-2011-03-23.html

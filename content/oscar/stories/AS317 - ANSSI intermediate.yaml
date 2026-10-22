@@ -1,0 +1,39 @@
+id: AS317
+type: Attack Story
+date: 2013-12
+platforms:
+  - pki
+summary: ANSSI intermediate used to intercept Google SSL traffic
+description: |
+  In December 2013 Google's certificate pinning detected a certificate for
+  *.google.com issued by an ANSSI subordinate CA. The French network
+  security agency (ANSSI) had delegated an intermediate to TRECAN, a
+  private company, whose employees ran it inside their IREM network
+  appliance — a man-in-the-middle proxy — instead of an HSM. In that
+  configuration the appliance could and did mint certificates for arbitrary
+  domains; the observed use was Google traffic interception inside the
+  network. Google's 12 December 2013 post says eight certificates were
+  issued for seven domains, none observed in the public internet outside
+  the affected network. ANSSI restricted the intermediate to government
+  and French public institutions pending investigation. Google's earlier
+  MCS Holdings write-up describes this as the same failure mode repeated.
+
+attacks:
+  - attack: TRECAN / ANSSI intermediate
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 1
+    techniques:
+      - techniqueID: T0218
+        techName: Compromise TLS trust identity
+        tactic: Defense Evasion
+        comment: |
+          An intermediate CA key installed on a MITM appliance gives every
+          host behind it an authority over any domain. The public trust
+          chain made a private appliance a global CA.
+
+gaps: []
+
+links:
+  - https://security.googleblog.com/2013/12/further-improving-digital-certificate.html
