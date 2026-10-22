@@ -1090,7 +1090,7 @@
         ],
         "url": "techniques/T0208.html",
         "description": "The attacker signs malware with a stolen or issuer-trusted code-signing\ncertificate, CI OIDC identity, or package-registry signing key so that\nsignature verification succeeds. SolarWinds Orion updates were signed as\nSolarWinds. Distinct from spoofed git commits (T0195) and from forging\nprovenance documents (T0206): here the cryptographic identity is real\nand compromised.\n",
-        "incidentCount": 5
+        "incidentCount": 6
       },
       {
         "id": "T0215",
