@@ -266,8 +266,9 @@ h2 { font-size: 1.15rem; margin-top: 1.6rem; }
   background: #000d; color: var(--ink); padding: 0.25rem 0.45rem; font-size: 0.72rem;
   white-space: nowrap; border: 1px solid var(--line); z-index: 5;
 }
-.tline { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.tline span { font-size: 0.78rem; color: var(--muted); }
+.tline { display: flex; gap: 3px; margin-top: 0.5rem; }
+.tline span { flex: 1 1 0; min-width: 3px; font-size: 0.7rem; color: var(--muted);
+  text-align: center; white-space: nowrap; overflow: visible; }
 .big { font-size: 2.2rem; color: var(--copper); font-weight: 700; line-height: 1.1; }
 .era { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.6rem; align-items: baseline;
   font-size: 0.82rem; margin: 0.3rem 0; }
