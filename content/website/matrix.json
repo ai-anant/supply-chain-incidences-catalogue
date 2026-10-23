@@ -189,7 +189,7 @@
         ],
         "url": "techniques/T0109.html",
         "description": "Public registries are widely used by developers and organizations to download and distribute software packages and container images, making them an attractive target for attackers.\nIn this type of attack, the attacker creates a package or container image that contains malicious code or files, such as a backdoor or other malware.\nThe attacker then uploads the package or image to PyPI, DockerHub or other registry, posing as a legitimate user or creating a fake account.\nOnce the package or image is uploaded, it becomes available for download by other users who may unsuspectingly use it in their projects.\nThe supply chain attack can have far-reaching consequences as it can affect all systems that rely on the malicious package or image.\nFor example, a Python package that is downloaded from PyPI may be used by multiple applications and libraries, potentially compromising all systems that use it.\nSimilarly, a container image with a malicious payload may be used to deploy an application across multiple environments, leading to a widespread compromise.\n",
-        "incidentCount": 162
+        "incidentCount": 165
       },
       {
         "id": "T0110",
@@ -504,7 +504,7 @@
         ],
         "url": "techniques/T0154.html",
         "description": "Malicious IDE extension attack is an attack technique in which an attacker creates a malicious extension for an Integrated Development Environment (IDE) and uploads it to the IDE's extension marketplace or repository. \nThe malicious extension may appear to be a legitimate tool or add-on, but when installed, it can perform unauthorized actions such as stealing user credentials or introducing vulnerabilities in the code.\nOnce installed, a malicious IDE extension can access the developer's code, which can contain sensitive information such as access keys, passwords, and credentials. \nThis information can then be used by the attacker to gain unauthorized access to cloud resources, steal data, or launch further attacks.\n",
-        "incidentCount": 17
+        "incidentCount": 18
       },
       {
         "id": "T0157",
@@ -589,7 +589,7 @@
         ],
         "url": "techniques/T0197.html",
         "description": "It is possible to install a package not from an official package repository - but rather install directly using a URL. Packages from official repositories are usually vetted for security vulnerabilities. Installing from an unverified URL can expose your system to malicious software, including viruses, malware, or other security threats.\n",
-        "incidentCount": 7
+        "incidentCount": 9
       },
       {
         "id": "T0205",
@@ -602,7 +602,7 @@
         ],
         "url": "techniques/T0205.html",
         "description": "Instead of poisoning a package registry or source repository, the attacker\ntakes over a widely embedded CDN hostname, tag manager, or hosted JavaScript\nasset (domain expiry, registrar hijack, or operator acquisition) and serves\nmalicious content to every site that loads it. Polyfill.io (2024) is the\nreference case: a trusted script URL became a drive-by supply-chain implant\nfor hundreds of thousands of properties. This catalogue previously had no technique\nthat named this web-asset supply chain.\n",
-        "incidentCount": 8
+        "incidentCount": 10
       },
       {
         "id": "T0209",
@@ -1103,7 +1103,7 @@
         ],
         "url": "techniques/T0208.html",
         "description": "The attacker signs malware with a stolen or issuer-trusted code-signing\ncertificate, CI OIDC identity, or package-registry signing key so that\nsignature verification succeeds. SolarWinds Orion updates were signed as\nSolarWinds. Distinct from spoofed git commits (T0195) and from forging\nprovenance documents (T0206): here the cryptographic identity is real\nand compromised.\n",
-        "incidentCount": 6
+        "incidentCount": 7
       },
       {
         "id": "T0215",
@@ -1116,7 +1116,7 @@
         ],
         "url": "techniques/T0215.html",
         "description": "The attacker registers or purchases their own legitimate code-signing\nidentity \u2014 an Apple Developer ID, a Windows Authenticode certificate, or\na marketplace publisher account \u2014 and signs malware with it. macOS\nnotarization and Gatekeeper then pass with no warning dialog, and\nsignature-based allowlists see a valid, unrevoked signature. Distinct\nfrom T0208 (Compromise code-signing identity): there the cryptographic\nidentity belongs to the vendor and was stolen or misissued; here the\nidentity is genuinely the attacker's, obtained through the normal\nenrollment process. That means vendor-side certificate hygiene cannot\nprevent it \u2014 only teardown of the certificate after the fact, and\nprovenance checks on the distribution channel, apply.\n",
-        "incidentCount": 1
+        "incidentCount": 2
       },
       {
         "id": "T0218",

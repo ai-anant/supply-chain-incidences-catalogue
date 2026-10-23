@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WIZVERA VeraPort plugin installed malware signed with stolen certificates · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS327</p>
+
+        <p class="meta">AS327 · 2020-11</p>
+        <h1>WIZVERA VeraPort plugin installed malware signed with stolen certificates</h1>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>ESET (December 2020) reported that the WIZVERA VeraPort browser plugin,<br>a download-verification component used by South Korean banking and<br>government websites, was compromised to install malware on visitors&#x27;<br>machines. The plugin fetched a payload that was signed with<br>certificates stolen from legitimate software publishers, so signature<br>checks on the installed file passed. The operation targeted users of<br>trusted government and financial sites; the watering hole was the<br>plugin&#x27;s own distribution path. VeraPort is required by many Korean<br>banking sites, which is why its install base was broad.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0208.html">T0208</a> Compromise code-signing identity</li><li><a href="../techniques/T0154.html">T0154</a> Malicious IDE extension</li></ul>
+        <h2><span class="stage">supply-chain</span> VeraPort plugin distribution</h2><div class="card"><p class="meta"><a href="../techniques/T0208.html">T0208</a> · Defense Evasion · Compromise code-signing identity</p><p>The delivered binaries were signed with certificates belonging<br>to real publishers that the attackers had stolen, so the<br>signature verified as a legitimate vendor.</p></div><div class="card"><p class="meta"><a href="../techniques/T0154.html">T0154</a> · Initial Access · Malicious IDE extension</p><p>Closest available element for a mandated browser plugin that<br>executes with the user&#x27;s rights. The plugin is not an IDE<br>extension; the technique family is the same installed-component<br>trust problem.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The corpus has no dedicated technique for a mandatory browser plugin as the delivery vehicle. T0154 is the nearest element and is a loose fit. A &quot;mandated client component&quot; technique would be more accurate if this pattern recurs.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.welivesecurity.com/2020/12/10/wizvera-veraport-malicious-backdoor-compromises-south-korean-users/" rel="noopener">https://www.welivesecurity.com/2020/12/10/wizvera-veraport-malicious-backdoor-compromises-south-korean-users/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

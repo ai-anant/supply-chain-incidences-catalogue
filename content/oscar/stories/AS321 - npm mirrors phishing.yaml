@@ -1,6 +1,6 @@
 id: AS321
 type: Attack Story
-date: 2026-09
+date: 2026-08
 platforms:
   - npm
   - cdn
@@ -24,7 +24,7 @@ attacks:
     supplier: 1
     techniques:
       - techniqueID: T0205
-        techName: Compromise third-party CDN or hosted web asset
+        techName: Compromise a third-party CDN or hosted web asset
         tactic: Initial Access
         comment: |
           The mirror/CDN is the trusted web asset being abused. Same class
@@ -37,3 +37,5 @@ gaps:
 
 links:
   - https://www.bleepingcomputer.com/news/security/hackers-abuse-npm-mirrors-to-host-phishing-redirect-pages/
+  - https://x.com/inf0stache/status/2072889597491548203
+  - https://www.intelfusions.com/news/china-airlines-npm-fake-cloudflare-clickfix-phishing

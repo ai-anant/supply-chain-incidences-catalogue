@@ -1,0 +1,52 @@
+id: AS325
+type: Attack Story
+date: 2018-08
+platforms:
+  - windows
+  - macos
+  - update-channel
+summary: AppleJeus fake crypto trading apps carried malware from vendor-run sites
+description: |
+  CISA/FBI/Treasury advisory AA21-048A (updated April 2021) describes
+  AppleJeus: since at least 2018, Lazarus Group has distributed fake
+  cryptocurrency trading applications built to look like products of
+  legitimate trading companies. The applications were hosted on websites
+  that appeared to belong to those companies and were also spread through
+  phishing, social networking and social engineering. Variants exist for
+  Windows and macOS; later ESET analysis reported Linux and macOS variants
+  and installer packages signed with certificates the operators obtained.
+  The objective was theft of cryptocurrency from exchanges and financial
+  services. This is a design-stage, attacker-owned-product case: the
+  software is not a trojanized version of a real vendor's build, it is a
+  convincing counterfeit of one.
+
+attacks:
+  - attack: Fake trading application
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0197
+        techName: Use code from untrusted source
+        tactic: Initial Access
+        comment: |
+          The victim installs a counterfeit product from a site that looks
+          like the real vendor, not a poisoned version of a legitimate
+          dependency.
+      - techniqueID: T0215
+        techName: Enroll attacker-owned code-signing identity
+        tactic: Defense Evasion
+        comment: |
+          Later variants were signed with certificates the operators
+          acquired themselves, so Gatekeeper and Authenticode checks pass
+          on a product that has no legitimate vendor behind it.
+
+gaps:
+  - The document lists this as a design-stage attack. In corpus terms it is
+    a counterfeit product, not a compromise of a real supplier's build —
+    which is why T0197 and T0215 carry it rather than a build-compromise
+    technique.
+
+links:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-048a

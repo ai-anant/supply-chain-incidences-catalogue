@@ -68,6 +68,37 @@ documents:
       The framework is consumption-side controls (ingest, scan, inventory, update,
       audit, enforce, rebuild, fix), the defender mirror of what the technique set
       already describes. No new attacker techniques added.
+- id: mitre-scaf-2013
+  name: MITRE Supply Chain Attack Framework and Attack Patterns (MTR140021)
+  url: https://apps.dtic.mil/sti/citations/ADA597432
+  publisher: MITRE Corporation for DASD SE (John F. Miller, Dec 2013)
+  gaps_found:
+  - note: '41 attack patterns (A1-A41) covering malicious insertion of HW, SW, FW
+      and system data across the DoD acquisition lifecycle. About two thirds are hardware
+      counterfeiting, ASIC/firmware substitution and shipping-channel interception
+      - out of scope for a software-delivery corpus. The software patterns largely
+      duplicate techniques already present: A37/A39/A40 (altered compilers and dev
+      tools) map to T0170, A39 (IDE/tooling) to T0154, A20 (malicious update) to the
+      update-channel family. Two classes have no corpus counterpart and were left
+      as gaps rather than invented: insider-directed design/requirements tampering
+      (A13-A17, altering specifications so faults are built in) and deliberately misconfiguring
+      build data (A30). Neither has a public software-supply-chain incident in this
+      catalogue''s sources.'
+- id: insight-software-supply-chain-2021
+  name: Software Supply Chain Attacks - lifecycle casebook (2021)
+  url: https://www.dhs.gov/publication/software-supply-chain-attacks
+  publisher: 'Public-domain briefing PDF, dated March 2021 (sources: DHS CERT, FBI,
+    MITRE ATT&CK, vendor research)'
+  gaps_found:
+  - note: 'A ten-case lifecycle map (design, develop, deploy, maintain, retire) plus
+      integrity and attribution notes. Five of the ten cases had no story here and
+      were added from the cited primary research: SignSight / VGCA installer substitution
+      (AS323), Operation StealthyTrident on Able Desktop (AS324), AppleJeus counterfeit
+      trading applications (AS325), GoldenSpy bank-mandated tax software (AS326) and
+      WIZVERA VeraPort (AS327). The other five were already covered: SolarWinds, NotPetya,
+      ShadowHammer, Copay/event-stream and dependency confusion. The document''s retire-stage
+      point (end-of-life software increasing exposure) is a supply risk with no attacker-technique
+      counterpart, consistent with the S2C2F review.'
 new_techniques:
 - T0206
 - T0207

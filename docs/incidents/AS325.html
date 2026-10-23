@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AppleJeus fake crypto trading apps carried malware from vendor-run sites · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS325</p>
+
+        <p class="meta">AS325 · 2018-08</p>
+        <h1>AppleJeus fake crypto trading apps carried malware from vendor-run sites</h1>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/macos.html">macOS software</a><a class="plat" href="../platforms/update-channel.html">Installer / update channel</a></p>
+        <p>CISA/FBI/Treasury advisory AA21-048A (updated April 2021) describes<br>AppleJeus: since at least 2018, Lazarus Group has distributed fake<br>cryptocurrency trading applications built to look like products of<br>legitimate trading companies. The applications were hosted on websites<br>that appeared to belong to those companies and were also spread through<br>phishing, social networking and social engineering. Variants exist for<br>Windows and macOS; later ESET analysis reported Linux and macOS variants<br>and installer packages signed with certificates the operators obtained.<br>The objective was theft of cryptocurrency from exchanges and financial<br>services. This is a design-stage, attacker-owned-product case: the<br>software is not a trojanized version of a real vendor&#x27;s build, it is a<br>convincing counterfeit of one.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0215.html">T0215</a> Enroll attacker-owned code-signing identity</li></ul>
+        <h2><span class="stage">supply-chain</span> Fake trading application</h2><div class="card"><p class="meta"><a href="../techniques/T0197.html">T0197</a> · Initial Access · Use code from untrusted source</p><p>The victim installs a counterfeit product from a site that looks<br>like the real vendor, not a poisoned version of a legitimate<br>dependency.</p></div><div class="card"><p class="meta"><a href="../techniques/T0215.html">T0215</a> · Defense Evasion · Enroll attacker-owned code-signing identity</p><p>Later variants were signed with certificates the operators<br>acquired themselves, so Gatekeeper and Authenticode checks pass<br>on a product that has no legitimate vendor behind it.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The document lists this as a design-stage attack. In corpus terms it is a counterfeit product, not a compromise of a real supplier&#x27;s build — which is why T0197 and T0215 carry it rather than a build-compromise technique.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-048a" rel="noopener">https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-048a</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

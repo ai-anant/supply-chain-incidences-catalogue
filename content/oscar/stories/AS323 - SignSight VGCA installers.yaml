@@ -1,0 +1,48 @@
+id: AS323
+type: Attack Story
+date: 2020-12
+platforms:
+  - windows
+  - update-channel
+  - pki
+summary: Operation SignSight trojanized VGCA installers on a government CA's download site
+description: |
+  ESET (17 December 2020) found that two software installers on the
+  Vietnam Government Certification Authority website, ca.gov.vn, had been
+  modified to carry a backdoor: gca01-client-v2-x32-8.3.msi and
+  gca01-client-v2-x64-8.3.msi, signed installers for the authority's own
+  digital-signature client. The implant is PhantomNet (also reported as
+  SManager, analysed by NTT Security). ESET confirmed the files were
+  downloaded over HTTPS from ca.gov.vn, so a network man-in-the-middle is
+  unlikely — the hosted files themselves were replaced. The window ESET
+  believes is July to 16 August 2020; the site was not serving the
+  compromised installers by late August. VGCA said it was already aware of
+  the intrusion and had notified affected users; ESET telemetry found no
+  distribution outside this site.
+
+attacks:
+  - attack: VGCA download site
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          The served installer was genuine by name, signed, and hosted by
+          the certificate authority itself — only its contents changed.
+      - techniqueID: T0205
+        techName: Compromise third-party CDN or hosted web asset
+        tactic: Initial Access
+        comment: |
+          The authority's own download site was the trusted asset replaced.
+          HTTPS delivery rules out a network MITM; the origin was altered.
+
+gaps:
+  - PhantomNet's own capabilities are outside this catalogue's scope; the
+    mapped behaviour is the installer substitution, not the implant.
+
+links:
+  - https://www.welivesecurity.com/2020/12/17/operation-signsight-supply-chain-attack-southeast-asia/

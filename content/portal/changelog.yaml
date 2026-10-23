@@ -1,5 +1,32 @@
 entries:
 - date: '2026-10-23'
+  id: lifecycle-docs-pass
+  title: MITRE supply-chain framework and 2021 lifecycle casebook reviewed; five gaps filled
+  items:
+  - 'MITRE MTR140021 Supply Chain Attack Framework (41 attack patterns, Dec
+    2013): reviewed as guidance, no new techniques. About two thirds of the
+    patterns are hardware counterfeiting, ASIC/firmware substitution and
+    shipping-channel interception — outside a software-delivery corpus. The
+    software patterns duplicate existing techniques (altered compilers to
+    T0170, dev-tooling tampering to T0154, malicious update to the
+    update-channel family). Two classes have no counterpart and are left as
+    gaps: insider tampering with requirements/design so faults are built in
+    (A13–A17) and deliberate build-data misconfiguration (A30).'
+  - 'The 2021 lifecycle casebook named five incidents with no story here.
+    Added from the cited primary research: AS323 Operation SignSight (two
+    VGCA installers on ca.gov.vn replaced, ESET), AS324 Operation
+    StealthyTrident (Able Desktop update server, LuckyMouse/TA428, ESET),
+    AS325 AppleJeus (counterfeit crypto trading apps, CISA/FBI/Treasury
+    AA21-048A), AS326 GoldenSpy (backdoor in bank-mandated tax software,
+    Trustwave), AS327 WIZERVA VeraPort (plugin installed malware signed
+    with stolen certificates, ESET). The other five cases were already
+    covered: SolarWinds, NotPetya, ShadowHammer, Copay/event-stream,
+    dependency confusion.'
+  - 'Verified along the way that AS5 CCleaner and AS8 Polyfill.io were
+    already correct. AS321 citation tidied: the BleepingComputer write-up is
+    the report, with the inf0stache and IntelFusions originals plus the OX
+    Security finding now linked.'
+- date: '2026-10-23'
   id: s2c2f-guidance
   title: OpenSSF S2C2F reviewed as defender guidance
   items:

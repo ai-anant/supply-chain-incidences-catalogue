@@ -33,7 +33,7 @@
 <main>
 <p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0215</p>
 
-        <p class="meta">T0215 · Defense Evasion · TA07 · observed in 1 incident(s)</p>
+        <p class="meta">T0215 · Defense Evasion · TA07 · observed in 2 incident(s)</p>
         <h1>Enroll attacker-owned code-signing identity</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Open Source Security</span> <span class="chip">Secrets Hygiene</span></div>
         <p>The attacker registers or purchases their own legitimate code-signing<br>identity — an Apple Developer ID, a Windows Authenticode certificate, or<br>a marketplace publisher account — and signs malware with it. macOS<br>notarization and Gatekeeper then pass with no warning dialog, and<br>signature-based allowlists see a valid, unrevoked signature. Distinct<br>from T0208 (Compromise code-signing identity): there the cryptographic<br>identity belongs to the vendor and was stolen or misissued; here the<br>identity is genuinely the attacker&#x27;s, obtained through the normal<br>enrollment process. That means vendor-side certificate hygiene cannot<br>prevent it — only teardown of the certificate after the fact, and<br>provenance checks on the distribution channel, apply.</p>
@@ -43,7 +43,7 @@
         <ul><li><span class="id">M1090</span> Implement code and image signing</li><li><span class="id">M1500</span> Verify third-party artifacts and open-source libraries</li><li><span class="id">M1590</span> Implement artifact signing and verification</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1090</span> Implement package or image integrity verification</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1520</span> Implement endpoint detection and response system</li></ul>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS296.html">MacSync via signed fake Claude Desktop installers on a lookalike download site</a></li></ul>
+        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS325.html">AppleJeus fake crypto trading apps carried malware from vendor-run sites</a></li><li><a href="../incidents/AS296.html">MacSync via signed fake Claude Desktop installers on a lookalike download site</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://opensourcemalware.com/domain/claude-desktop.com" rel="noopener">https://opensourcemalware.com/domain/claude-desktop.com</a></li><li><a href="https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/" rel="noopener">https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/</a></li></ul>
         

@@ -1,0 +1,45 @@
+id: AS326
+type: Attack Story
+date: 2020-06
+platforms:
+  - windows
+  - update-channel
+summary: GoldenSpy backdoor shipped inside bank-mandated tax software
+description: |
+  Trustwave SpiderLabs documented GoldenSpy (also tracked as S0493): a
+  backdoor embedded in a tax-invoicing package that a Chinese bank
+  required its foreign corporate clients to install in order to pay
+  Chinese taxes. The software installed a remote-access implant alongside
+  the legitimate function, and a second component was later pushed to
+  already-installed copies. The delivery mechanism is the relationship
+  rather than a compromised repository: the customer installs the product
+  because a business counterparty requires it, and the supplier of that
+  software is the bank or its vendor.
+
+attacks:
+  - attack: Bank-mandated tax software
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0197
+        techName: Use code from untrusted source
+        tactic: Initial Access
+        comment: |
+          The installer is supplied by a business partner as a condition
+          of doing business, so the normal vendor-selection control never
+          applies.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          A backdoor shipped inside the package from the outset, with a
+          follow-on component pushed to existing installs.
+
+gaps:
+  - The corpus has no technique for coerced installation by a business
+    counterparty. T0197 is the nearest fit and understates the pressure.
+
+links:
+  - https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/goldenspy-operation-china-undercover-tax-software-used-to-target-western-corporations/

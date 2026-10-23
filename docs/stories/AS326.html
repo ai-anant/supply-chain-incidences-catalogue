@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoldenSpy backdoor shipped inside bank-mandated tax software · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS326</p>
+
+        <p class="meta">AS326 · 2020-06</p>
+        <h1>GoldenSpy backdoor shipped inside bank-mandated tax software</h1>
+        <p><a class="plat" href="../platforms/windows.html">Windows software</a><a class="plat" href="../platforms/update-channel.html">Installer / update channel</a></p>
+        <p>Trustwave SpiderLabs documented GoldenSpy (also tracked as S0493): a<br>backdoor embedded in a tax-invoicing package that a Chinese bank<br>required its foreign corporate clients to install in order to pay<br>Chinese taxes. The software installed a remote-access implant alongside<br>the legitimate function, and a second component was later pushed to<br>already-installed copies. The delivery mechanism is the relationship<br>rather than a compromised repository: the customer installs the product<br>because a business counterparty requires it, and the supplier of that<br>software is the bank or its vendor.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0197.html">T0197</a> Use code from untrusted source</li><li><a href="../techniques/T0109.html">T0109</a> Publish malicious artifact</li></ul>
+        <h2><span class="stage">supply-chain</span> Bank-mandated tax software</h2><div class="card"><p class="meta"><a href="../techniques/T0197.html">T0197</a> · Initial Access · Use code from untrusted source</p><p>The installer is supplied by a business partner as a condition<br>of doing business, so the normal vendor-selection control never<br>applies.</p></div><div class="card"><p class="meta"><a href="../techniques/T0109.html">T0109</a> · Resource Development · Publish malicious artifact</p><p>A backdoor shipped inside the package from the outset, with a<br>follow-on component pushed to existing installs.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The corpus has no technique for coerced installation by a business counterparty. T0197 is the nearest fit and understates the pressure.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/goldenspy-operation-china-undercover-tax-software-used-to-target-western-corporations/" rel="noopener">https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/goldenspy-operation-china-undercover-tax-software-used-to-target-western-corporations/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

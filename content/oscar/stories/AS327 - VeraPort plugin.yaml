@@ -1,0 +1,49 @@
+id: AS327
+type: Attack Story
+date: 2020-11
+platforms:
+  - windows
+  - pki
+summary: WIZVERA VeraPort plugin installed malware signed with stolen certificates
+description: |
+  ESET (December 2020) reported that the WIZVERA VeraPort browser plugin,
+  a download-verification component used by South Korean banking and
+  government websites, was compromised to install malware on visitors'
+  machines. The plugin fetched a payload that was signed with
+  certificates stolen from legitimate software publishers, so signature
+  checks on the installed file passed. The operation targeted users of
+  trusted government and financial sites; the watering hole was the
+  plugin's own distribution path. VeraPort is required by many Korean
+  banking sites, which is why its install base was broad.
+
+attacks:
+  - attack: VeraPort plugin distribution
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0208
+        techName: Compromise code-signing identity
+        tactic: Defense Evasion
+        comment: |
+          The delivered binaries were signed with certificates belonging
+          to real publishers that the attackers had stolen, so the
+          signature verified as a legitimate vendor.
+      - techniqueID: T0154
+        techName: Malicious IDE extension
+        tactic: Initial Access
+        comment: |
+          Closest available element for a mandated browser plugin that
+          executes with the user's rights. The plugin is not an IDE
+          extension; the technique family is the same installed-component
+          trust problem.
+
+gaps:
+  - The corpus has no dedicated technique for a mandatory browser plugin
+    as the delivery vehicle. T0154 is the nearest element and is a loose
+    fit. A "mandated client component" technique would be more accurate if
+    this pattern recurs.
+
+links:
+  - https://www.welivesecurity.com/2020/12/10/wizvera-veraport-malicious-backdoor-compromises-south-korean-users/

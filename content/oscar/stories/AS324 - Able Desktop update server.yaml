@@ -1,0 +1,46 @@
+id: AS324
+type: Attack Story
+date: 2020-12
+platforms:
+  - windows
+  - update-channel
+summary: Operation StealthyTrident compromised Able Desktop's update server
+description: |
+  ESET (10 December 2020) documented Operation StealthyTrident: the update
+  server for Able Desktop, a Mongolian corporate application, was
+  compromised and used to deliver HyperBro, Tmanger and a ShadowPad
+  variant to the software's users. Trojanized installers and the product's
+  own update mechanism were both used. ESET attributes the activity to
+  LuckyMouse (also tracked as TA428), a China-linked actor, and notes
+  competing hypotheses for how the ShadowPad C2 access was shared. Able
+  Soft told ESET the trojanized installers and updates had not been used
+  since the incident was reported, and that it halted automatic updates as
+  a precaution; the last occurrence ESET saw was July 2020.
+
+attacks:
+  - attack: Able Desktop update server
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0205
+        techName: Compromise third-party CDN or hosted web asset
+        tactic: Initial Access
+        comment: |
+          The vendor's update server was the compromised delivery asset,
+          not a registry or a package account.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Trojanized installers plus the product's own update channel
+          carried HyperBro / ShadowPad into customer environments.
+
+gaps:
+  - Same delivery shape as SignSight (AS323), but a different operation and
+    a different actor. Separate vendor, country and implant family, so it
+    is its own story rather than an extra link.
+
+links:
+  - https://www.welivesecurity.com/2020/12/10/luckymouse-ta428-compromise-able-desktop/
