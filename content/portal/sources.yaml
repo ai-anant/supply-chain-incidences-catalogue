@@ -101,6 +101,13 @@ sources:
   kind: guidance
   track: false
   note: Build/source/dependency threat model.
+- name: S2C2F consumption framework
+  url: https://github.com/ossf/s2c2f/blob/main/specification/framework.md
+  kind: guidance
+  track: false
+  note: OpenSSF guide for securely consuming OSS (ingest/scan/inventory/update/
+    audit/enforce/rebuild/fix, 4 maturity levels). Its threat table cites real
+    incidents; the catalogue covers the attacker side of all 13.
 - name: CISA Secure Software Attestation
   url: https://www.cisa.gov/resources-tools/resources/secure-software-development-attestation-form
   kind: guidance

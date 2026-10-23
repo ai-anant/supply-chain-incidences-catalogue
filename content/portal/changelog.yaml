@@ -1,5 +1,20 @@
 entries:
 - date: '2026-10-23'
+  id: s2c2f-guidance
+  title: OpenSSF S2C2F reviewed as defender guidance
+  items:
+  - 'Added S2C2F (Secure Supply Chain Consumption Framework) to the guidance
+    review and the watch list. Its 13-threat OSS-consumption table maps to
+    incidents the catalogue already carries — CCleaner (build compromise),
+    ua-parser-js (registry-account takeover), eslint and event-stream (repo
+    and dependency compromise), typosquats, dependency confusion, node-ipc
+    (license-change sabotage). No new attacker techniques: S2C2F is the
+    consumption-side control set (ingest, scan, inventory, update, audit,
+    enforce, rebuild, fix) for threats this corpus describes from the
+    attacker side. Three threat classes stay incident-free here (post-build
+    artifact tampering, upstream takedown, end-of-life components) — supply
+    risks, not attacker techniques.'
+- date: '2026-10-23'
   id: intake-pointer-pass
   title: Pointer-corpus pass; two gaps added, two links attached
   items:
