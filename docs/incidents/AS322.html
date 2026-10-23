@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docker Hub token transfer re-assigned personal access tokens without revoking them · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS322</p>
+
+        <p class="meta">AS322 · 2026-10</p>
+        <h1>Docker Hub token transfer re-assigned personal access tokens without revoking them</h1>
+        <p><a class="plat" href="../platforms/docker.html">Docker / containers</a><a class="plat" href="../platforms/pki.html">Certificates / trust stores</a></p>
+        <p>Docker&#x27;s advisory (CVE-2026-105445, CVSS 9.4, October 2026) describes an<br>identity-binding flaw in Docker Hub&#x27;s account-to-organization conversion:<br>when a personal account was converted to an organization, the account&#x27;s<br>personal access tokens were re-assigned to the named new owner without<br>being rotated or revoked, and without the token holder&#x27;s consent. For a<br>26-month window (26 August 2024 to 30 September 2026) a token issued to<br>the original user continued to authenticate as the victim at the<br>registry, with push, pull, and delete rights over their images. Docker<br>reviewed about 304,000 transferred-token pushes and found no evidence of<br>abuse, fixed the server-side behavior within four hours of the report,<br>and required no customer patch.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li></ul>
+        <h2><span class="stage">supply-chain</span> Docker Hub identity binding</h2><div class="card"><p class="meta"><a href="../techniques/T0112.html">T0112</a> · Initial Access · Compromised token</p><p>The token was never stolen: the platform re-pointed its identity.<br>Anyone holding a transferred token authenticated as the victim —<br>the same registry-power outcome as token theft, so it maps to the<br>compromised-token class with the caveat that no attacker action<br>was needed to create the exposure.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The corpus separates stolen credentials from platform-misassigned credentials only in the story text. T0112 is the nearest element; a dedicated &quot;token re-binding&quot; technique was not added for a single server-side fix with no observed abuse.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.docker.com/blog/docker-hub-security-advisory-cve-2026-105445/" rel="noopener">https://www.docker.com/blog/docker-hub-security-advisory-cve-2026-105445/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

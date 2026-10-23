@@ -195,6 +195,7 @@ gaps:
     public reports.
 
 links:
+  - https://securitylabs.datadoghq.com/articles/litellm-compromised-pypi-docker
   - https://www.litellm.ai/blog?post=security-incident-oct-21-2026
   - https://github.com/BerriAI/litellm/issues/47826
   - https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/

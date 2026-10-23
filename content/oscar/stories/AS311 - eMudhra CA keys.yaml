@@ -52,4 +52,5 @@ attacks:
 gaps: []
 
 links:
+  - https://blog.cloudflare.com/emudhra-certificate-compromise/
   - https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/

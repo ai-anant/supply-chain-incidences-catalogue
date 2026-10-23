@@ -1,4 +1,35 @@
 entries:
+- date: '2026-10-23'
+  id: intake-pointer-pass
+  title: Pointer-corpus pass; two gaps added, two links attached
+  items:
+  - 'Walked the internal pointer index (never cited) against the catalogue.
+    NEW: AS321 — 24 npm packages abusing trusted registry mirrors to host
+    ClickFix/fake-Cloudflare phishing redirect pages (BleepingComputer);
+    the mirror is the abused trusted asset, no install-script involved.
+    NEW: AS322 — Docker Hub CVE-2026-105445 (GhostPat): account→org
+    conversion re-assigned personal access tokens to the new owner without
+    revoking them, 26-month window, ~304k transfers reviewed, no abuse
+    found (Docker advisory).'
+  - 'ATTACH: AS313 LiteLLM gained the Datadog Security Labs primary;
+    AS311 eMudhra gained Cloudflare''s mitigation post.'
+  - 'Verified already covered: OVHcloud (AS310), LiteLLM (AS313), eMudhra
+    (AS311), MALFEX imgdecode (AS297), AUR yay (AS308), Apex Accelerator
+    (AS307), Docker GhostAction (AS304), TraderTraitor Terraform (AS305),
+    Graphalgo (AS40), WeaselBiscuit (AS32), llms.txt dependency confusion
+    (AS29), Virtualizor BGP (AS291), OpenInfra Artifactory (AS190),
+    Rust fake-job (AS18/AS305), TanStack + CrowdSec (AS16), Unit42 Web3 C2
+    (AS28), Mandiant assistant (AS27), PhantomRaven (AS26), sckit (AS39),
+    Brevo (AS19), Hades (AS30), GHAPPIER (AS34), Sonatype Q3 index
+    (AS65), rogue-AI publish (AS65), AI protestware (AS181).'
+  - 'SKIP as non-incidents per the corpus rules: defensive research
+    (Trail of Bits package-manager integrity study, arXiv model-signing
+    gap, Skill Constellations, Modelstamp, SBOM divergence, CASHEWS,
+    ImportMine, KEVGraph, DistillGuard, git-signing study, market-for-
+    lemons), platform defenses (npm recovery-code holds, GitHub package
+    firewall), and vuln-only advisories with no malicious publish
+    (VulnCheck TLS-verification-off wave, AWS IoT SDK, Bouncy Castle MLS,
+    fsspec jinja, Composer bin-escape).'
 - date: '2026-10-22'
   id: tls-trust-identity
   title: New technique T0218; historical TLS trust incidents backfilled

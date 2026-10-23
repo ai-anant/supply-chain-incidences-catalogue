@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>24 npm packages abused trusted mirrors to host phishing redirect pages · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / <a href="index.html">Incidents</a> / AS321</p>
+
+        <p class="meta">AS321 · 2026-09</p>
+        <h1>24 npm packages abused trusted mirrors to host phishing redirect pages</h1>
+        <p><a class="plat" href="../platforms/npm.html">npm</a><a class="plat" href="../platforms/cdn.html">CDN / web assets</a></p>
+        <p>BleepingComputer (25 August 2026) reported roughly 24 malicious npm<br>packages that abuse the trust placed in registry mirrors and CDNs to<br>host ClickFix and fake-Cloudflare phishing redirect pages. The packages<br>do not run anything on install: their published metadata and file<br>listings make the trusted mirror (and any site that proxies npm content)<br>serve attacker-controlled redirect pages from a domain security teams<br>already trust. The attack targets the mirror as a content channel, not<br>the installer as an execution boundary, so the usual install-script and<br>package-scanning controls see nothing.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0205.html">T0205</a> Compromise third-party CDN or hosted web asset</li></ul>
+        <h2><span class="stage">supply-chain</span> npm mirrors as phishing host</h2><div class="card"><p class="meta"><a href="../techniques/T0205.html">T0205</a> · Initial Access · Compromise third-party CDN or hosted web asset</p><p>The mirror/CDN is the trusted web asset being abused. Same class<br>as polyfill.io (AS8), but here the abuse rides npm&#x27;s own<br>distribution network rather than a hijacked domain.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>T0205 covers CDN/web-asset compromise. A registry mirror abused as a phishing host is close to that class; no separate technique was added.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-npm-mirrors-to-host-phishing-redirect-pages/" rel="noopener">https://www.bleepingcomputer.com/news/security/hackers-abuse-npm-mirrors-to-host-phishing-redirect-pages/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

@@ -42,7 +42,7 @@
         <h2><span class="stage">supply-chain</span> eMudhra CA keys</h2><div class="card"><p class="meta"><a href="../techniques/T0208.html">T0208</a> · Defense Evasion · Compromise code-signing identity</p><p>The two code-signing intermediates are real eMudhra identities<br>whose private keys anyone can recover. Malware signed with them<br>would verify as eMudhra. T0208 describes a stolen or issuer-trusted<br>signing certificate; here the identity is real and the key material<br>is effectively public.</p></div><div class="card"><p class="meta"><a href="../techniques/T0218.html">T0218</a> · Defense Evasion · Compromise TLS trust identity</p><p>The six TLS issuing intermediates have single-byte P-384 scalars.<br>Whoever recovers one (under a second of computation) can mint<br>browser-valid certificates for any domain until the root was<br>distrusted on 20 October 2026.</p></div>
         
         <h2>Sources</h2>
-        <ul class='refs'><li><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" rel="noopener">https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/</a></li></ul>
+        <ul class='refs'><li><a href="https://blog.cloudflare.com/emudhra-certificate-compromise/" rel="noopener">https://blog.cloudflare.com/emudhra-certificate-compromise/</a></li><li><a href="https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/" rel="noopener">https://scotthelme.co.uk/eight-bits-of-trust-emudhras-ca-keys-cracked-in-milliseconds/</a></li></ul>
         
 </main>
 

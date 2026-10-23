@@ -1,0 +1,45 @@
+id: AS322
+type: Attack Story
+date: 2026-10
+platforms:
+  - docker
+  - pki
+summary: Docker Hub token transfer re-assigned personal access tokens without revoking them
+description: |
+  Docker's advisory (CVE-2026-105445, CVSS 9.4, October 2026) describes an
+  identity-binding flaw in Docker Hub's account-to-organization conversion:
+  when a personal account was converted to an organization, the account's
+  personal access tokens were re-assigned to the named new owner without
+  being rotated or revoked, and without the token holder's consent. For a
+  26-month window (26 August 2024 to 30 September 2026) a token issued to
+  the original user continued to authenticate as the victim at the
+  registry, with push, pull, and delete rights over their images. Docker
+  reviewed about 304,000 transferred-token pushes and found no evidence of
+  abuse, fixed the server-side behavior within four hours of the report,
+  and required no customer patch.
+
+attacks:
+  - attack: Docker Hub identity binding
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0112
+        techName: Compromised token
+        tactic: Initial Access
+        comment: |
+          The token was never stolen: the platform re-pointed its identity.
+          Anyone holding a transferred token authenticated as the victim —
+          the same registry-power outcome as token theft, so it maps to the
+          compromised-token class with the caveat that no attacker action
+          was needed to create the exposure.
+
+gaps:
+  - The corpus separates stolen credentials from platform-misassigned
+    credentials only in the story text. T0112 is the nearest element; a
+    dedicated "token re-binding" technique was not added for a single
+    server-side fix with no observed abuse.
+
+links:
+  - https://www.docker.com/blog/docker-hub-security-advisory-cve-2026-105445/

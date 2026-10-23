@@ -1,0 +1,39 @@
+id: AS321
+type: Attack Story
+date: 2026-09
+platforms:
+  - npm
+  - cdn
+summary: 24 npm packages abused trusted mirrors to host phishing redirect pages
+description: |
+  BleepingComputer (25 August 2026) reported roughly 24 malicious npm
+  packages that abuse the trust placed in registry mirrors and CDNs to
+  host ClickFix and fake-Cloudflare phishing redirect pages. The packages
+  do not run anything on install: their published metadata and file
+  listings make the trusted mirror (and any site that proxies npm content)
+  serve attacker-controlled redirect pages from a domain security teams
+  already trust. The attack targets the mirror as a content channel, not
+  the installer as an execution boundary, so the usual install-script and
+  package-scanning controls see nothing.
+
+attacks:
+  - attack: npm mirrors as phishing host
+    index: 1
+    stage: supply-chain
+    customer: 1
+    supplier: 1
+    techniques:
+      - techniqueID: T0205
+        techName: Compromise third-party CDN or hosted web asset
+        tactic: Initial Access
+        comment: |
+          The mirror/CDN is the trusted web asset being abused. Same class
+          as polyfill.io (AS8), but here the abuse rides npm's own
+          distribution network rather than a hijacked domain.
+
+gaps:
+  - T0205 covers CDN/web-asset compromise. A registry mirror abused as a
+    phishing host is close to that class; no separate technique was added.
+
+links:
+  - https://www.bleepingcomputer.com/news/security/hackers-abuse-npm-mirrors-to-host-phishing-redirect-pages/
