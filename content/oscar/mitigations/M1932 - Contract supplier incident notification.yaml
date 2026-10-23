@@ -1,0 +1,37 @@
+id: M1932
+type: Mitigation
+summary: Contract a supplier incident-notification clause with a reporting template and SLA
+description: |
+  Make incident notification a contractual obligation rather than an expectation.
+  The clause should name who is told, in what format, and how fast, and it should
+  apply to incidents the supplier believes may affect your data or service even
+  before the supplier has confirmed scope.
+
+  Specify three things:
+
+  1. A named recipient (security contact plus business owner), not a general
+     support address.
+  2. A standard reporting template carrying: nature and sensitivity of any
+     affected data, which trusted connections the supplier holds into your
+     environment (VPN, data feed, IT and privileged accounts, OT vendor
+     connections), whether the service or product is affected with a return
+     estimate, whether the attacker is still active, the attack timeline, what
+     was done with compromised assets, indicators of compromise and TTPs, and
+     the remediation plan.
+  3. A notification SLA measured from the supplier's own detection, not from
+     public disclosure, with an early signal allowed to be provisional.
+
+  Also agree the reverse obligation: unilateral external reporting by either
+  party can harm the other, so agree what each side may say publicly and when.
+  Non-disclosure terms and TLP markings should be set at the same time so the
+  supplier can share sensitive detail without losing control of it.
+
+  Source: NCSC ICS Community of Interest Supply Chain Expert Group, "Developing
+  Incident Response and Management with your Supply Chain" (Colin Topping,
+  July 2023), contractual considerations and playbook sections.
+
+references:
+  - https://www.ncsc.gov.uk/collection/ics-supply-chain
+metadata:
+  version: 0.1
+  state: draft

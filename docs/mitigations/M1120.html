@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Store credentials in vault · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / Mitigations / M1120</p>
+
+        <p class="crumb-id">M1120</p>
+        <h1>Store credentials in vault</h1>
+        <p><p>Sensitive data like credentials and API tokens should not be stored directly in code. <br>Modern applications talk to many third-party APIs, SaaS solutions and other dependencies. <br>This integration usually requires an API token, username &amp; password credential or other similar variable.  <br>Sometimes these sensitive credentials include database host strings or hostnames.  <br>All of these credentials should not be stored directly in code.   <br>Software engineers often don&#x27;t understand the consequences of embedding these credentials in code.<br>This is especially true for Javascript applications that run client side as these credentials are often visible by inspecting the Javascript files running in the local browser</p></p>
+        <h2>Applies to</h2>
+        <ul><li><a href="../techniques/T0210.html">T0210</a> Poison AI coding-agent config or workspace</li><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li><li><a href="../techniques/T0183.html">T0183</a> Harvesting short-lived token</li><li><a href="../techniques/T0208.html">T0208</a> Compromise code-signing identity</li><li><a href="../techniques/T0147.html">T0147</a> Scan public CI/CD configurations for secrets and vulnerable actions</li><li><a href="../techniques/T0140.html">T0140</a> Harvest tokens from environment variables</li><li><a href="../techniques/T0202.html">T0202</a> Inadequate CI/CD workflow permissions</li><li><a href="../techniques/T0184.html">T0184</a> Harvesting sensitive information from files</li><li><a href="../techniques/T0189.html">T0189</a> Secrets in configuration files</li><li><a href="../techniques/T0163.html">T0163</a> Runtime leakage of password</li><li><a href="../techniques/T0130.html">T0130</a> Harvest secrets from logs</li><li><a href="../techniques/T0103.html">T0103</a> Scan public artifacts for secrets</li><li><a href="../techniques/T0162.html">T0162</a> Passwords in CI/CD logs</li><li><a href="../techniques/T0193.html">T0193</a> Sensitive information in environment variables</li><li><a href="../techniques/T0122.html">T0122</a> Vulnerability in third-party CI/CD actions</li><li><a href="../techniques/T0200.html">T0200</a> Proprietary data stolen</li><li><a href="../techniques/T0213.html">T0213</a> Orchestrate AI-agent fleet as the intrusion workforce</li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://support.google.com/googleapi/answer/6310037?hl=en" rel="noopener">https://support.google.com/googleapi/answer/6310037?hl=en</a></li><li><a href="https://learn.microsoft.com/en-us/azure/developer/github/github-key-vault" rel="noopener">https://learn.microsoft.com/en-us/azure/developer/github/github-key-vault</a></li><li><a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" rel="noopener">https://docs.github.com/en/actions/security-guides/encrypted-secrets</a></li><li><a href="https://aws.amazon.com/blogs/mt/use-parameter-store-to-securely-access-secrets-and-config-data-in-aws-codedeploy/" rel="noopener">https://aws.amazon.com/blogs/mt/use-parameter-store-to-securely-access-secrets-and-config-data-in-aws-codedeploy/</a></li><li><a href="https://support.atlassian.com/bitbucket-cloud/docs/variables-and-secrets/" rel="noopener">https://support.atlassian.com/bitbucket-cloud/docs/variables-and-secrets/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

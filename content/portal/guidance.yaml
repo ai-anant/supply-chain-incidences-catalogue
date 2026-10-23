@@ -99,6 +99,24 @@ documents:
       ShadowHammer, Copay/event-stream and dependency confusion. The document''s retire-stage
       point (end-of-life software increasing exposure) is a supply risk with no attacker-technique
       counterpart, consistent with the S2C2F review.'
+- id: ncsc-sceg-ir-2023
+  name: Developing Incident Response and Management with your Supply Chain
+  url: https://www.ncsc.gov.uk/collection/ics-supply-chain
+  publisher: NCSC ICS Community of Interest Supply Chain Expert Group (Colin Topping,
+    July 2023)
+  gaps_found:
+  - note: 'Process-side guidance, not attacker techniques, so no T-items. It exposed
+      a real gap in the mitigation set: all 123 existing mitigations were technical
+      or platform-side, and none covered living with a supplier compromise. Added
+      M1932 (contractual incident-notification clause with template, SLA and reciprocal
+      disclosure terms), M1933 (supplier-specific incident playbook holding risk profile,
+      stakeholders, standing connection inventory and the question set), M1934 (named
+      and tested fallback route per critical supplier service, including manual operation
+      and reconciliation). M1932/M1933 attached to T0112, T0209, T0205, T0109 and
+      T0135; M1934 kept unattached because the technique set is attacker-behaviour
+      only and has no availability element. Also newly surfaced: /mitigations/ now
+      renders every mitigation record with the techniques that reference it — previously
+      the count had no destination page.'
 new_techniques:
 - T0206
 - T0207

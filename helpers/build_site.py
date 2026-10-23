@@ -114,6 +114,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
           <a href="{root_prefix}matrix.html">Technique matrix</a>
           <a href="{root_prefix}cicd.html">CI/CD matrix</a>
           <a href="{root_prefix}techniques/index.html">Techniques</a>
+          <a href="{root_prefix}mitigations/index.html">Mitigations</a>
           <a href="{root_prefix}incidents/index.html">Incident mapping</a>
           <a href="{root_prefix}platforms/index.html">Platforms</a>
           <a href="{root_prefix}stories/index.html">Attack stories</a>
@@ -794,6 +795,48 @@ def build(dest):
     <div class="list">{''.join(rows)}</div>
     """
     write(os.path.join(dest, "techniques", "index.html"), page("Techniques", t_index, "../", "SCIC / Techniques"))
+
+    # Mitigations index + pages. These were rendered only as IDs inside
+    # technique pages, so the mitigation count had no destination.
+    mit_rows = []
+    for mid in sorted(mits):
+        m = mits[mid]
+        mit_rows.append(
+            f'<a class="row" href="{html.escape(mid)}.html">'
+            f'<span class="id">{html.escape(mid)}</span>'
+            f'<span>{html.escape(m.get("summary") or "")}</span></a>'
+        )
+    m_index = f"""
+    <h1>Mitigations</h1>
+    <p class="lede">{len(mits)} controls referenced from technique pages. Some are
+    technical (pinning, egress restriction, signing); some are process controls for
+    living with a supplier compromise (notification clauses, supplier playbooks,
+    tested fallback routes).</p>
+    <div class="list">{''.join(mit_rows)}</div>
+    """
+    write(os.path.join(dest, "mitigations", "index.html"), page("Mitigations", m_index, "../", "SCIC / Mitigations"))
+
+    for mid in sorted(mits):
+        m = mits[mid]
+        used_by = []
+        for tid, t in techs.items():
+            if mid in clean_list(t.get("mitigations")):
+                used_by.append(
+                    f'<li><a href="../techniques/{html.escape(tid)}.html">{html.escape(tid)}</a> '
+                    f'{html.escape(t.get("summary") or "")}</li>'
+                )
+        refs = refs_html(clean_list(m.get("references")))
+        m_body = f"""
+        <p class="crumb-id">{html.escape(mid)}</p>
+        <h1>{html.escape(m.get("summary") or "")}</h1>
+        <p>{md_lite(m.get("description") or "")}</p>
+        <h2>Applies to</h2>
+        <ul>{''.join(used_by) or '<li class="muted">No technique references this mitigation yet.</li>'}</ul>
+        <h2>References</h2>
+        {refs}
+        """
+        write(os.path.join(dest, "mitigations", f"{mid}.html"), page(m.get("summary") or mid, m_body, "../", f"SCIC / Mitigations / {mid}"))
+
 
     for tid, t in techs.items():
         m_links = []

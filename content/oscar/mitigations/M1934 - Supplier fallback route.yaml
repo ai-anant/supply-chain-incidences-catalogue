@@ -1,0 +1,32 @@
+id: M1934
+type: Mitigation
+summary: Plan and test a fallback route for each critical supplier service
+description: |
+  Availability of a supplier is a supply-chain risk that no amount of secure
+  development removes. For each service where loss of the supplier would stop a
+  core process, decide in advance how the business continues without it:
+
+  1. Name the processes that stop if the supplier is unavailable, and the
+     recovery-time objective for the core platform and for each connected
+     integration. Restoring a platform does not restore the ordering, payment
+     and reporting systems wired to it, which usually recover later.
+  2. Confirm the process can run manually, for how long, and who does it —
+     including how queued transactions are reconciled afterwards without
+     duplication.
+  3. Identify whether a second provider or alternate route exists, whether it is
+     contracted, and how quickly it can be switched on.
+  4. Hold spares for components that cannot be sourced quickly, and check them.
+
+  Rehearse the fallback, not just the invocation: an untested manual route is a
+  plan on paper. This is the control that distinguishes organisations that
+  continued operating during a platform outage from those that did not.
+
+  Source: NCSC ICS Community of Interest Supply Chain Expert Group, "Developing
+  Incident Response and Management with your Supply Chain" (Colin Topping,
+  July 2023), supply chain resilience section.
+
+references:
+  - https://www.ncsc.gov.uk/collection/ics-supply-chain
+metadata:
+  version: 0.1
+  state: draft

@@ -18,6 +18,7 @@
           <a href="../matrix.html">Technique matrix</a>
           <a href="../cicd.html">CI/CD matrix</a>
           <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
           <a href="../incidents/index.html">Incident mapping</a>
           <a href="../platforms/index.html">Platforms</a>
           <a href="../stories/index.html">Attack stories</a>
@@ -40,7 +41,7 @@
         <h2>Where this idea came from</h2><p class="meta">Standard or guidance</p><p>Recorded from defender guidance (OWASP, NIST, SLSA, CISA, or vendor secure-development docs) as an attacker-side behavior.</p><ul class='refs'><li><a href="https://www.paloaltonetworks.com/blog/prisma-cloud/shift-left-ci-cd-security-for-your-software-supply-chain/" rel="noopener">https://www.paloaltonetworks.com/blog/prisma-cloud/shift-left-ci-cd-security-for-your-software-supply-chain/</a></li><li><a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" rel="noopener">https://owasp.org/www-project-top-10-ci-cd-security-risks/</a></li></ul>
         
         <h2>Mitigations</h2>
-        <ul><li><span class="id">M1720</span> Implement regular patches and updates</li><li><span class="id">M1860</span> Implement strong authentication mechanisms</li><li><span class="id">M1861</span> Implement strong authorization mechanisms</li></ul>
+        <ul><li><span class="id">M1720</span> Implement regular patches and updates</li><li><span class="id">M1860</span> Implement strong authentication mechanisms</li><li><span class="id">M1861</span> Implement strong authorization mechanisms</li><li><span class="id">M1932</span> Contract a supplier incident-notification clause with a reporting template and SLA</li><li><span class="id">M1933</span> Keep a supplier-specific incident playbook with standing risk and access detail</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1260</span> Implement regular security audit and review</li><li><span class="id">D1261</span> Implement penetration testing</li><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1590</span> Implement continuous monitoring and logging of the CI/CD process</li></ul>
         <h2>Observed in incidents (3)</h2><ul><li><a href="../incidents/AS299.html">North Korean actors exploited TeamCity CVE-2023-42793</a></li><li><a href="../incidents/AS6.html">SolarWinds</a></li><li><a href="../incidents/AS1.html">Webmin 1.890–1.920 build-server backdoor</a></li></ul>

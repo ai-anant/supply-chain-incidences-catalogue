@@ -1,37 +1,37 @@
 id: T0205
 type: Technique
-
 tactic: Initial Access
-
 realm:
-  - Open Source Security
-  - Artifact Security
-  - Cloud Security
-
+- Open Source Security
+- Artifact Security
+- Cloud Security
 summary: Compromise third-party CDN or hosted web asset
+description: 'Instead of poisoning a package registry or source repository, the attacker
 
-description: |
-  Instead of poisoning a package registry or source repository, the attacker
   takes over a widely embedded CDN hostname, tag manager, or hosted JavaScript
+
   asset (domain expiry, registrar hijack, or operator acquisition) and serves
+
   malicious content to every site that loads it. Polyfill.io (2024) is the
+
   reference case: a trusted script URL became a drive-by supply-chain implant
+
   for hundreds of thousands of properties. This catalogue previously had no technique
+
   that named this web-asset supply chain.
 
+  '
 mitigations:
-  - M1200
-  - M1291
-  - M1501
-
+- M1200
+- M1291
+- M1501
+- M1932
 detections:
-  - D1262
-  - D1510
-
+- D1262
+- D1510
 references:
-  - https://sansec.io/research/polyfill-supply-chain-attack
-  - https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack
-
+- https://sansec.io/research/polyfill-supply-chain-attack
+- https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack
 metadata:
   version: 0.1
   state: draft

@@ -1,5 +1,30 @@
 entries:
 - date: '2026-10-23'
+  id: sceg-ir-guidance
+  title: NCSC SCEG supply-chain incident-response guidance; mitigations page added
+  items:
+  - 'Reviewed "Developing Incident Response and Management with your Supply
+    Chain" (NCSC ICS Community of Interest Supply Chain Expert Group, Colin
+    Topping, July 2023). It is process guidance, so no new attacker
+    techniques — but it exposed a real gap: all 123 mitigations in the corpus
+    were technical or platform-side, and none addressed living with a supplier
+    compromise.'
+  - 'Added M1932 contractual incident-notification clause (named recipient,
+    reporting template, SLA from the supplier''s own detection, reciprocal
+    public-disclosure terms, NDA/TLP set at the same time); M1933
+    supplier-specific incident playbook (risk profile, stakeholders, standing
+    connection inventory including OT paths, the question set, joint
+    exercises); M1934 named and tested fallback route per critical supplier
+    service (manual operation, queued-transaction reconciliation, second
+    source, spares).'
+  - 'M1932 and M1933 attached to T0112, T0209, T0205, T0109 and T0135. M1934
+    is left unattached: the technique set is attacker behaviour only and has
+    no availability element, which is recorded as a gap rather than forced.'
+  - 'New /mitigations/ index and a page per mitigation, listed in the nav.
+    Every mitigation record now has a destination and shows the techniques
+    that reference it; previously they rendered only as IDs inside technique
+    pages.'
+- date: '2026-10-23'
   id: lifecycle-docs-pass
   title: MITRE supply-chain framework and 2021 lifecycle casebook reviewed; five gaps filled
   items:

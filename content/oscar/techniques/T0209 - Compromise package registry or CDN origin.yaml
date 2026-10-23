@@ -1,36 +1,37 @@
 id: T0209
 type: Technique
-
 tactic: Initial Access
-
 realm:
-  - Artifact Security
-  - Cloud Security
-  - CI/CD Posture
-
+- Artifact Security
+- Cloud Security
+- CI/CD Posture
 summary: Compromise package registry or CDN origin
+description: 'Instead of publishing a malicious version under a stolen maintainer
 
-description: |
-  Instead of publishing a malicious version under a stolen maintainer
   account, the attacker tampers with the registry or the CDN origin pool
-  that serves it. Consumers still resolve the real hostname. Coder's
+
+  that serves it. Consumers still resolve the real hostname. Coder''s
+
   registry.coder.com incident (GHSA-vx42-ghc9-gw65) is the type case:
+
   rogue origin IPs were added to a Cloudflare pool so a legitimate CDN
+
   served stolen-credential Terraform modules. Distinct from T0205 (third-party
+
   web asset) and T0109 (publish to the registry as a user).
 
+  '
 mitigations:
-  - M1200
-  - M1291
-  - M1090
-
+- M1200
+- M1291
+- M1090
+- M1932
+- M1933
 detections:
-  - D1090
-  - D1500
-
+- D1090
+- D1500
 references:
-  - https://github.com/coder/coder/security/advisories/GHSA-vx42-ghc9-gw65
-
+- https://github.com/coder/coder/security/advisories/GHSA-vx42-ghc9-gw65
 metadata:
   version: 0.1
   state: draft

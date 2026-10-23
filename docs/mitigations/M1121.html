@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enable git hooks to find source code related issues early · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / Mitigations / M1121</p>
+
+        <p class="crumb-id">M1121</p>
+        <h1>Enable git hooks to find source code related issues early</h1>
+        <p><p>Enable git hooks to automate the scanning of source code before it is published via git commits.  <br>All Git implementations include a hooks directory in the .git base directory.  <br>In that directory are several git automations called &quot;hooks&quot;.  <br>These hooks will automatically run scripts when certain actions happen.  <br>The best example of this is the pre-commit hook that runs before a git commit is successful. <br> If the script has actions inside it to run things like software composition (SCA) or static analysis tooling (SAST), then those tests must pass before the commit will succeed.</p></p>
+        <h2>Applies to</h2>
+        <ul><li><a href="../techniques/T0112.html">T0112</a> Compromised token</li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks" rel="noopener">https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks</a></li><li><a href="https://pre-commit.com/" rel="noopener">https://pre-commit.com/</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

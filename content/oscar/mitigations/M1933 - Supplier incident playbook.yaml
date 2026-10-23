@@ -1,0 +1,36 @@
+id: M1933
+type: Mitigation
+summary: Keep a supplier-specific incident playbook with standing risk and access detail
+description: |
+  Generic incident response plans do not carry the facts you need in the first
+  hour of a supplier compromise. Maintain a per-supplier playbook that a
+  responder can open before contacting anyone, holding:
+
+  1. The supplier's risk profile as assessed by risk management with the
+     business owner: safety or environmental impact, what network/system/data
+     access they hold, criticality of the service or component, data categories
+     hosted (IP, personal data, operational configuration), and depth in your
+     supply chain.
+  2. The business stakeholders who must be told, and the supplier's security
+     and commercial points of contact.
+  3. The standing answer to "what connections do they have into us" — VPN with
+     or without MFA and proxy, ingress/egress data feeds, IT and privileged
+     accounts, and vendor paths into OT environments including how updates
+     reach them.
+  4. The question set to work through with the supplier, and the pre-agreed
+     escalation path when answers are generic or slow.
+
+  Review the access section whenever a contract changes or a supplier is
+  onboarded or offboarded: the connections drift, and an incident is the worst
+  time to discover that. Rehearse the playbook in a joint desktop exercise with
+  the supplier, sized to their criticality and access.
+
+  Source: NCSC ICS Community of Interest Supply Chain Expert Group, "Developing
+  Incident Response and Management with your Supply Chain" (Colin Topping,
+  July 2023).
+
+references:
+  - https://www.ncsc.gov.uk/collection/ics-supply-chain
+metadata:
+  version: 0.1
+  state: draft

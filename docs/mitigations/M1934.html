@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan and test a fallback route for each critical supplier service · SCIC</title>
+<link rel="stylesheet" href="../assets/style.css">
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
+      <div class="bar">
+        <a class="brand" href="../index.html">SCIC</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">SCIC / Mitigations / M1934</p>
+
+        <p class="crumb-id">M1934</p>
+        <h1>Plan and test a fallback route for each critical supplier service</h1>
+        <p><p>Availability of a supplier is a supply-chain risk that no amount of secure<br>development removes. For each service where loss of the supplier would stop a<br>core process, decide in advance how the business continues without it:</p><p>1. Name the processes that stop if the supplier is unavailable, and the<br>   recovery-time objective for the core platform and for each connected<br>   integration. Restoring a platform does not restore the ordering, payment<br>   and reporting systems wired to it, which usually recover later.<br>2. Confirm the process can run manually, for how long, and who does it —<br>   including how queued transactions are reconciled afterwards without<br>   duplication.<br>3. Identify whether a second provider or alternate route exists, whether it is<br>   contracted, and how quickly it can be switched on.<br>4. Hold spares for components that cannot be sourced quickly, and check them.</p><p>Rehearse the fallback, not just the invocation: an untested manual route is a<br>plan on paper. This is the control that distinguishes organisations that<br>continued operating during a platform outage from those that did not.</p><p>Source: NCSC ICS Community of Interest Supply Chain Expert Group, &quot;Developing<br>Incident Response and Management with your Supply Chain&quot; (Colin Topping,<br>July 2023), supply chain resilience section.</p></p>
+        <h2>Applies to</h2>
+        <ul><li class="muted">No technique references this mitigation yet.</li></ul>
+        <h2>References</h2>
+        <ul class='refs'><li><a href="https://www.ncsc.gov.uk/collection/ics-supply-chain" rel="noopener">https://www.ncsc.gov.uk/collection/ics-supply-chain</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <a href="../about.html">About</a>.</p>
+    </footer>
+</body>
+</html>

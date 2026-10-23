@@ -18,6 +18,7 @@
           <a href="../matrix.html">Technique matrix</a>
           <a href="../cicd.html">CI/CD matrix</a>
           <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
           <a href="../incidents/index.html">Incident mapping</a>
           <a href="../platforms/index.html">Platforms</a>
           <a href="../stories/index.html">Attack stories</a>
@@ -40,7 +41,7 @@
         <h2>Where this idea came from</h2><p class="meta">Public incident / advisory</p><p>This catalogue, after Polyfill.io (Sansec) showed CDN/web-asset takeover was unnamed. DEF CON 33: abandoned S3 buckets still referenced by software (Shudrak).</p><ul class='refs'><li><a href="https://sansec.io/research/polyfill-supply-chain-attack" rel="noopener">https://sansec.io/research/polyfill-supply-chain-attack</a></li><li><a href="https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack" rel="noopener">https://www.cisa.gov/news-events/alerts/2024/06/27/widespread-security-compromise-polyfillio-supply-chain-attack</a></li><li><a href="https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312" rel="noopener">https://defcon.org/html/defcon-33/dc-33-speakers.html#content_60312</a></li></ul>
         
         <h2>Mitigations</h2>
-        <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li></ul>
+        <ul><li><span class="id">M1200</span> Verify package authenticity</li><li><span class="id">M1291</span> Verify package or container sources</li><li><span class="id">M1501</span> Require SBOM from all third-party suppliers</li><li><span class="id">M1932</span> Contract a supplier incident-notification clause with a reporting template and SLA</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li></ul>
         <h2>Observed in incidents (10)</h2><ul><li><a href="../incidents/AS323.html">Operation SignSight trojanized VGCA installers on a government CA&#x27;s download site</a></li><li><a href="../incidents/AS321.html">24 npm packages abused trusted mirrors to host phishing redirect pages</a></li><li><a href="../incidents/AS296.html">MacSync via signed fake Claude Desktop installers on a lookalike download site</a></li><li><a href="../incidents/AS8.html">Polyfill.io CDN takeover</a></li><li><a href="../incidents/AS324.html">Operation StealthyTrident compromised Able Desktop&#x27;s update server</a></li><li><a href="../incidents/AS119.html">OptinMonster / TrustPulse / PushEngage plugin supply chain</a></li><li><a href="../incidents/AS289.html">Placeholder domain third-party.com turned live ClickFix server</a></li><li><a href="../incidents/AS31.html">Coder registry CDN origin pool compromise</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS19.html">Brevo Cloudflare Worker ClickFix</a></li></ul>
