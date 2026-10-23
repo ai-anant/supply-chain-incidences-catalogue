@@ -10,7 +10,6 @@
 <body>
 
     <header class="top">
-      <div class="ai-banner">This catalogue is <strong>AI-generated</strong>.</div>
       <div class="bar">
         <a class="brand" href="index.html">SCIC</a>
         <nav>
@@ -35,22 +34,30 @@
 <p class="crumb">SCIC / About</p>
 
     <h1>About</h1>
-    <div class="notice"><strong>AI-generated.</strong> Supply Chain Incidences Catalogue.</div>
     <h2>What this catalogue is</h2>
     <p>Incidents, the platforms they hit, conference talks, the sources those came from,
     and the technique matrix those incidents are mapped onto.</p>
+    <h2>How it is maintained</h2>
+    <p>Most of the updates are handled by automated processes. A scheduled job polls the
+    tracked research feeds daily, maps new write-ups onto techniques, adds the incident
+    records and rebuilds this site. A second job retries if a run fails or the catalogue
+    goes more than a day without a change. Human review happens on top of that — the
+    guidance reviews, corrections and structural changes are made by a person, not
+    generated unattended.</p>
+    <p>Every entry cites its primary source. Where a record is thin, or the source does
+    not support a mapping, the gap is stated on the page rather than filled.</p>
     <h2>This catalogue</h2>
     <ul>
       <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>
       <li>Site: <a href="https://ai-anant.github.io/supply-chain-incidences-catalogue/">ai-anant.github.io/supply-chain-incidences-catalogue</a></li>
       <li>License: Apache-2.0. See NOTICE.</li>
     </ul>
-    <p class="muted">Generated 2026-10-23 17:39 UTC.</p>
+    <p class="muted">Generated 2026-10-23 17:49 UTC.</p>
     
 </main>
 
     <footer>
-      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <p>Software supply-chain incidents. Apache-2.0.
       <a href="about.html">About</a>.</p>
     </footer>
 </body>

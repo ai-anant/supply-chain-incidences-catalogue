@@ -1,6 +1,6 @@
-# Supply Chain Incidences Catalogue
+# Supply Chain Incidents Catalogue
 
-AI-generated catalogue of software supply-chain incidents.
+Catalogue of software supply-chain incidents. Most updates are handled by automated processes; see the About page for how the catalogue is maintained.
 
 **Live site:** https://ai-anant.github.io/supply-chain-incidences-catalogue/
 

@@ -46,7 +46,7 @@ TACTIC_IDS = {
     "Impact": "TA12",
 }
 
-BANNER = "This catalogue is <strong>AI-generated</strong>."
+BANNER = ""
 
 
 def load_yaml_dir(rel):
@@ -106,7 +106,6 @@ def refs_html(refs):
 def page(title, body, root_prefix, crumb, extra_head=""):
     nav = f"""
     <header class="top">
-      <div class="ai-banner">{BANNER}</div>
       <div class="bar">
         <a class="brand" href="{root_prefix}index.html">SCIC</a>
         <nav>
@@ -129,7 +128,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
     </header>"""
     footer = f"""
     <footer>
-      <p>AI-generated catalogue of software supply-chain incidents. Apache-2.0.
+      <p>Software supply-chain incidents. Apache-2.0.
       <a href="{root_prefix}about.html">About</a>.</p>
     </footer>"""
     return f"""<!DOCTYPE html>
@@ -172,10 +171,6 @@ html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
   font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; line-height: 1.5; }
 a { color: var(--copper); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.ai-banner {
-  background: #2a2114; color: #f0d9a8; font-size: 0.85rem; padding: 0.45rem 1.2rem;
-  border-bottom: 1px solid #4a3a22; text-align: center;
-}
 .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--panel);
   flex-wrap: wrap; }
@@ -662,10 +657,10 @@ def build(dest):
     year_labels = "".join(f"<span>{y[2:]}</span>" for y in years)
 
     dash = f"""
-    <h1>Supply Chain Incidences Catalogue</h1>
-    <p class="lede">An AI-generated catalogue of software supply-chain incidents:
+    <h1>Supply Chain Incidents Catalogue</h1>
+    <p class="lede">A catalogue of software supply-chain incidents:
     {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.</p>
-    <div class="notice">{BANNER} Published from
+    <div class="notice">Published from
     <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a>.</div>
     <div class="stats">
       <div class="stat"><b>{n_story}</b> incidents</div>
@@ -722,7 +717,7 @@ def build(dest):
         <p><a href="origins.html">Origins</a> — where each technique came from</p>
         <p><a href="talks.html">Conference talks</a> — supply-chain and AI talks, mapped or gapped</p>
         <p><a href="sources.html">Sources</a> — the watch list this catalogue tracks</p>
-        <p><a href="changelog.html">Changelog</a> — what the AI maintainer added</p>
+        <p><a href="changelog.html">Changelog</a> — what changed, and when</p>
       </div>
     </div>
     """
@@ -1292,10 +1287,18 @@ def build(dest):
 
     about = f"""
     <h1>About</h1>
-    <div class="notice"><strong>AI-generated.</strong> Supply Chain Incidences Catalogue.</div>
     <h2>What this catalogue is</h2>
     <p>Incidents, the platforms they hit, conference talks, the sources those came from,
     and the technique matrix those incidents are mapped onto.</p>
+    <h2>How it is maintained</h2>
+    <p>Most of the updates are handled by automated processes. A scheduled job polls the
+    tracked research feeds daily, maps new write-ups onto techniques, adds the incident
+    records and rebuilds this site. A second job retries if a run fails or the catalogue
+    goes more than a day without a change. Human review happens on top of that — the
+    guidance reviews, corrections and structural changes are made by a person, not
+    generated unattended.</p>
+    <p>Every entry cites its primary source. Where a record is thin, or the source does
+    not support a mapping, the gap is stated on the page rather than filled.</p>
     <h2>This catalogue</h2>
     <ul>
       <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>

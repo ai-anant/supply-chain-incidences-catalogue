@@ -1,6 +1,6 @@
-# Contributing to the Supply Chain Incidences Catalogue
+# Contributing to the Supply Chain Incidents Catalogue
 
-This catalogue is AI-generated. See [NOTICE](NOTICE) for license attribution.
+Most updates to this catalogue are handled by automated processes. See [NOTICE](NOTICE) for license attribution.
 
 ## How to contribute
 

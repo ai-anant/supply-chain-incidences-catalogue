@@ -17,10 +17,6 @@ html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
   font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; line-height: 1.5; }
 a { color: var(--copper); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.ai-banner {
-  background: #2a2114; color: #f0d9a8; font-size: 0.85rem; padding: 0.45rem 1.2rem;
-  border-bottom: 1px solid #4a3a22; text-align: center;
-}
 .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--line); background: var(--panel);
   flex-wrap: wrap; }
