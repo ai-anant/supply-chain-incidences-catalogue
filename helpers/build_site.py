@@ -48,6 +48,18 @@ TACTIC_IDS = {
 
 BANNER = ""
 
+# Plausible analytics. Cookieless, no consent banner needed, no personal data.
+# Set PLAUSIBLE_DOMAIN to the site's host; empty disables the script entirely.
+PLAUSIBLE_DOMAIN = os.environ.get(
+    "PLAUSIBLE_DOMAIN", "ai-anant.github.io"
+)
+ANALYTICS = (
+    f'<script defer data-domain="{PLAUSIBLE_DOMAIN}" '
+    f'src="https://plausible.io/js/script.js"></script>'
+    if PLAUSIBLE_DOMAIN
+    else ""
+)
+
 
 def load_yaml_dir(rel):
     items = {}
@@ -138,6 +150,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} · SCIC</title>
 <link rel="stylesheet" href="{root_prefix}assets/style.css">
+{ANALYTICS}
 {extra_head}
 </head>
 <body>
@@ -1298,6 +1311,11 @@ def build(dest):
     generated unattended.</p>
     <p>Every entry cites its primary source. Where a record is thin, or the source does
     not support a mapping, the gap is stated on the page rather than filled.</p>
+    <h2>Analytics</h2>
+    <p>The site uses Plausible analytics: aggregate page views only. No cookies are set,
+    no personal data is collected, nothing is stored in your browser, and no cross-site
+    or cross-session tracking is performed. Which pages are read is the whole of what is
+    measured.</p>
     <h2>This catalogue</h2>
     <ul>
       <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>
