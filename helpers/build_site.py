@@ -661,8 +661,6 @@ def build(dest):
     <h1>Supply Chain Incidents Catalogue</h1>
     <p class="lede">A catalogue of software supply-chain incidents:
     {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.</p>
-    <div class="notice">Published from
-    <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a>.</div>
     <div class="stats">
       <div class="stat"><b>{n_story}</b> incidents</div>
       <div class="stat"><b>{n_tech}</b> techniques</div>
