@@ -48,11 +48,17 @@ TACTIC_IDS = {
 
 BANNER = ""
 
+# Single place for the public site address. When the custom domain lands, set
+# SITE_BASE (e.g. https://oscar.example.com) and PLAUSIBLE_DOMAIN (the bare
+# host) at build time; nothing else needs editing.
+SITE_BASE = os.environ.get(
+    "SITE_BASE", "https://ai-anant.github.io/supply-chain-incidences-catalogue"
+).rstrip("/")
+SITE_HOST = SITE_BASE.split("://", 1)[-1].split("/", 1)[0]
+
 # Plausible analytics. Cookieless, no consent banner needed, no personal data.
 # Set PLAUSIBLE_DOMAIN to the site's host; empty disables the script entirely.
-PLAUSIBLE_DOMAIN = os.environ.get(
-    "PLAUSIBLE_DOMAIN", "ai-anant.github.io"
-)
+PLAUSIBLE_DOMAIN = os.environ.get("PLAUSIBLE_DOMAIN", SITE_HOST)
 ANALYTICS = (
     f'<script defer data-domain="{PLAUSIBLE_DOMAIN}" '
     f'src="https://plausible.io/js/script.js"></script>'
@@ -140,8 +146,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
     </header>"""
     footer = f"""
     <footer>
-      <p>Software supply-chain incidents. Apache-2.0.
-      <a href="{root_prefix}about.html">About</a>.</p>
+      <p>Powered by <a href="https://cyfinoid.com">Cyfinoid Research</a></p>
     </footer>"""
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1319,7 +1324,8 @@ def build(dest):
     <h2>This catalogue</h2>
     <ul>
       <li>Repo: <a href="https://github.com/ai-anant/supply-chain-incidences-catalogue">ai-anant/supply-chain-incidences-catalogue</a></li>
-      <li>Site: <a href="https://ai-anant.github.io/supply-chain-incidences-catalogue/">ai-anant.github.io/supply-chain-incidences-catalogue</a></li>
+      <li>Site: <a href="{SITE_BASE}/">{html.escape(SITE_HOST)}</a></li>
+      <li>Maintained by <a href="https://cyfinoid.com">Cyfinoid Research</a>.</li>
       <li>License: Apache-2.0. See NOTICE.</li>
     </ul>
     <p class="muted">Generated {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}.</p>

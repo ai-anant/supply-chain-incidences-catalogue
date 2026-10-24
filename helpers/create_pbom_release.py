@@ -7,6 +7,11 @@ import os
 import yaml
 
 logger = logging.getLogger(__name__)
+
+# Public site address; override with SITE_BASE when the custom domain lands.
+SITE_BASE = os.environ.get(
+    "SITE_BASE", "https://ai-anant.github.io/supply-chain-incidences-catalogue"
+).rstrip("/")
 formatter = logging.Formatter('%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s')
 ch = logging.StreamHandler()
 logger.setLevel(logging.INFO)
@@ -255,7 +260,7 @@ def generate_matrix(oscar_source_path, pbom_data_path):
                     "id": y['id'],
                     "name": y['summary'],
                     "tooltip": y['summary'],
-                    "url": f"https://ai-anant.github.io/supply-chain-incidences-catalogue/techniques/{y['id']}.html",
+                    "url": f"{SITE_BASE}/techniques/{y['id']}.html",
                     "description": y['description'],
                     # "subTechniques": [] if y['subTechniques']==[None] else y['subTechniques'],
                     # "subTechniquesAmount": len([] if y['subTechniques']==[None] else y['subTechniques']),
