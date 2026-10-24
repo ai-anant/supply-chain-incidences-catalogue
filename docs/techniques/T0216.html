@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0216 Wipe developer profile if a stolen token is revoked · SCIC</title>
+<title>T0216 Wipe developer profile if a stolen token is revoked · Poisoned Pipeline</title>
 <link rel="stylesheet" href="../assets/style.css">
-<script defer data-domain="ai-anant.github.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="poisonedpipeline.com" src="https://plausible.io/js/script.js"></script>
 
 </head>
 <body>
 
     <header class="top">
       <div class="bar">
-        <a class="brand" href="../index.html">SCIC</a>
+        <a class="brand" href="../index.html">Poisoned Pipeline</a>
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
@@ -32,9 +32,9 @@
       </div>
     </header>
 <main>
-<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0216</p>
+<p class="crumb">Poisoned Pipeline / <a href="index.html">Techniques</a> / T0216</p>
 
-        <p class="meta">T0216 · Impact · TA12 · observed in 1 incident(s)</p>
+        <p class="meta">T0216 · Impact · TA12 · observed in 2 incident(s)</p>
         <h1>Wipe developer profile if a stolen token is revoked</h1>
         <div class="chips"><span class="chip">Secrets Hygiene</span> <span class="chip">Open Source Security</span></div>
         <p>After stealing a credential, the attacker installs a local background<br>service that keeps a copy of that credential and polls the identity<br>provider. If the provider rejects the credential — the ordinary result<br>of revocation — the service deletes the developer&#x27;s home directory or<br>user profile. The first remediation step is what triggers the wipe.<br>Distinct from T0149 (delete repositories): the target is the workstation<br>profile, not the remote repository. Uninstalling the package that<br>planted the service does not stop a copy that already landed under<br>the user config directory.</p>
@@ -44,7 +44,7 @@
         <p class='muted'>None linked yet.</p>
         <h2>Detections</h2>
         <p class='muted'>None linked yet.</p>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS302.html">tensorlake 0.5.144 steals tokens, then wipes the home directory if they are revoked</a></li></ul>
+        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS302.html">tensorlake 0.5.144 steals tokens, then wipes the home directory if they are revoked</a></li><li><a href="../incidents/AS328.html">testmetest npm names ship a Miasma-family worm that wipes the home directory if a stolen GitHub token is revoked</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm" rel="noopener">https://www.stepsecurity.io/blog/tensorlake-npm-compromised-hostage-token-worm</a></li></ul>
         

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stolen ConnectWise Cloud Backup application identities signed in to customer Microsoft 365 tenants · Poisoned Pipeline</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script defer data-domain="poisonedpipeline.com" src="https://plausible.io/js/script.js"></script>
+
+</head>
+<body>
+
+    <header class="top">
+      <div class="bar">
+        <a class="brand" href="../index.html">Poisoned Pipeline</a>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="../matrix.html">Technique matrix</a>
+          <a href="../cicd.html">CI/CD matrix</a>
+          <a href="../techniques/index.html">Techniques</a>
+          <a href="../mitigations/index.html">Mitigations</a>
+          <a href="../incidents/index.html">Incident mapping</a>
+          <a href="../platforms/index.html">Platforms</a>
+          <a href="../stories/index.html">Attack stories</a>
+          <a href="../guidance.html">Guidance</a>
+          <a href="../origins.html">Origins</a>
+          <a href="../talks.html">Talks</a>
+          <a href="../sources.html">Sources</a>
+          <a href="../changelog.html">Changelog</a>
+          <a href="../about.html">About</a>
+        </nav>
+      </div>
+    </header>
+<main>
+<p class="crumb">Poisoned Pipeline / <a href="index.html">Incidents</a> / AS329</p>
+
+        <p class="meta">AS329 · 2026-10</p>
+        <h1>Stolen ConnectWise Cloud Backup application identities signed in to customer Microsoft 365 tenants</h1>
+        <p><a class="plat" href="../platforms/azure.html">Azure</a></p>
+        <p>ConnectWise disclosed unauthorized access to application identities in<br>Cloud Backup, formerly SkyKick. At 07:00 UTC on 17 October 2026 it<br>disabled seven multi-tenant application identities and revoked the<br>certificates used for those connections. The Cloud Backup application<br>client id is 506e08f9-6e9a-4da4-942b-a099a03644ae. Older installs may<br>still show SkyKick Cloud Manager names; ConnectWise says to match the<br>application id. Vendor-side disablement does not change the enterprise<br>application inside a customer tenant, and tokens already issued can<br>remain usable until they expire. ConnectWise also suspended SaaS<br>Security and Cloud Management because they share that environment.<br>It reports no evidence that encrypted backup archives were accessed,<br>and it says the product design does not let it see whether a customer<br>Microsoft 365 tenant was touched. The investigation was still open in<br>the 18 October remediation guide. How the application identities were<br>taken is not in that guide.</p><p>On 21 October Microsoft Threat Intelligence assessed that Storm-0940,<br>a China-aligned actor, was responsible for the compromise, and that<br>the actor used the ARTEX agentic penetration-testing framework to<br>speed it up. Microsoft says the actor attempted to sign in to more<br>than 2,250 tenants with the stolen application credentials, from the<br>same 144.172.64.0/24 range ConnectWise published (144.172.64.128,<br>144.172.64.99, 144.172.64.60). The applications had already been<br>granted access, so the sign-in did not need an interactive user.<br>Microsoft observed follow-on Microsoft Graph activity in multiple<br>customer environments, including reconnaissance, application<br>credential changes, and attempts to change privileges. In some<br>environments the actor enumerated cloud resources and read secrets<br>across Azure Key Vaults, including a key-unwrapping operation.<br>Microsoft also says a successful sign-in does not by itself mean<br>customer data was read, and that this was not a compromise of<br>Microsoft&#x27;s own products. ConnectWise&#x27;s archive finding and<br>Microsoft&#x27;s Key Vault finding are different stores.</p><p>Huntress reported the same vendor-credential abuse against Microsoft<br>365 tenants. On 22 October Wiz described the same actor, overlapping<br>Storm-0940, using ARTEX against other IT and software vendors&#x27;<br>identity providers (Okta, Entra, Cognito) and Microsoft 365<br>integrations. That post is attempted expansion, not a second<br>completed vendor compromise.</p>
+        <h2>Mapped techniques</h2>
+        <ul><li><a href="../techniques/T0114.html">T0114</a> Compromised service account</li><li><a href="../techniques/T0165.html">T0165</a> Create access token</li><li><a href="../techniques/T0199.html">T0199</a> Secret leak</li></ul>
+        <h2><span class="stage">supply-chain</span> ConnectWise application identities</h2><div class="card"><p class="meta"><a href="../techniques/T0114.html">T0114</a> · Initial Access · Compromised service account</p><p>Unauthorized access to seven Cloud Backup application<br>identities. Customers who had already consented to those<br>apps could be signed into without an interactive user.<br>The vendor notice does not say how the identities were taken.</p></div><h2><span class="stage">post-supply-chain</span> Customer tenants that had granted the apps</h2><div class="card"><p class="meta"><a href="../techniques/T0165.html">T0165</a> · Persistence · Create access token</p><p>Microsoft observed application credential changes in multiple<br>customer environments after the stolen app signed in. The<br>ConnectWise guide tells tenants to look for added service<br>principal credentials. Not established for every tenant that<br>only saw a sign-in attempt.</p></div><div class="card"><p class="meta"><a href="../techniques/T0199.html">T0199</a> · Impact · Secret leak</p><p>Microsoft says that in some environments the actor read<br>secrets across Azure Key Vaults and performed a<br>key-unwrapping operation. ConnectWise separately reports no<br>evidence that backup archives were accessed.</p></div>
+        <div class="card gaps"><h3>Framework gaps noted</h3><ul><li>The initial access to the ConnectWise application identities is unpublished. Not mapped as a user-account takeover, a vulnerability, or a registry compromise.</li><li>ARTEX accelerated scanning, password spraying and the downstream sign-ins. T0213 is a coding-agent fleet (Claude Code, Codex and similar) tasked over a chat channel. ARTEX is a pentest framework. That is not the same technique.</li><li>Privilege-modification attempts are not a completed technique.</li><li>Wiz&#x27;s probes of other vendors&#x27; identity providers are attempts. They are not a second story and not evidence those vendors shipped a poisoned artifact.</li><li>No platform id for the ConnectWise product itself. The customer surface in the write-ups is Entra, Microsoft 365 and Azure Key Vault.</li></ul></div>
+        <h2>Sources</h2>
+        <ul class='refs'><li><a href="https://status.connectwise.com/pages/incident/619cf82551fec9053d612f09/6ad263692dc48705ab3da2cb" rel="noopener">https://status.connectwise.com/pages/incident/619cf82551fec9053d612f09/6ad263692dc48705ab3da2cb</a></li><li><a href="https://www.connectwise.com/contentassets/10777cd3364d440c86ed5270a94a5f24/connectwise-cloud-backup-technical-investigation-and-remediation-guide-1.pdf" rel="noopener">https://www.connectwise.com/contentassets/10777cd3364d440c86ed5270a94a5f24/connectwise-cloud-backup-technical-investigation-and-remediation-guide-1.pdf</a></li><li><a href="https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/</a></li><li><a href="https://www.huntress.com/blog/vendor-credential-enables-unauthorized-access" rel="noopener">https://www.huntress.com/blog/vendor-credential-enables-unauthorized-access</a></li><li><a href="https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors" rel="noopener">https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors</a></li></ul>
+        
+</main>
+
+    <footer>
+      <p>Powered by <a href="https://cyfinoid.com">Cyfinoid Research</a></p>
+    </footer>
+</body>
+</html>

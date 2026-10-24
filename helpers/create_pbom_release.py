@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 # Public site address; override with SITE_BASE when the custom domain lands.
 SITE_BASE = os.environ.get(
-    "SITE_BASE", "https://ai-anant.github.io/supply-chain-incidences-catalogue"
+    "SITE_BASE", "https://poisonedpipeline.com"
 ).rstrip("/")
 formatter = logging.Formatter('%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s')
 ch = logging.StreamHandler()

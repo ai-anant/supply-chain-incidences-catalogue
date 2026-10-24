@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0165 Create access token · SCIC</title>
+<title>T0165 Create access token · Poisoned Pipeline</title>
 <link rel="stylesheet" href="../assets/style.css">
-<script defer data-domain="ai-anant.github.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="poisonedpipeline.com" src="https://plausible.io/js/script.js"></script>
 
 </head>
 <body>
 
     <header class="top">
       <div class="bar">
-        <a class="brand" href="../index.html">SCIC</a>
+        <a class="brand" href="../index.html">Poisoned Pipeline</a>
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
@@ -32,9 +32,9 @@
       </div>
     </header>
 <main>
-<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0165</p>
+<p class="crumb">Poisoned Pipeline / <a href="index.html">Techniques</a> / T0165</p>
 
-        <p class="meta">T0165 · Persistence · TA05 · observed in 1 incident(s)</p>
+        <p class="meta">T0165 · Persistence · TA05 · observed in 2 incident(s)</p>
         <h1>Create access token</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">CI/CD Posture</span> <span class="chip">Cloud Security</span> <span class="chip">SCM Posture</span></div>
         <p>Following initial access, an attacker may attempt to create alternative means of access to the system that was infiltrated. <br>Since the initial access may use a temporary or temporary session token - a common adversary technique would be to create an access token which will persist the access to the system. For example, after getting an initial access by abusing a compromised 2FA backed session token an attacker created access tokens that allowed both persistence and lateral movement (Circle CI reference)</p>
@@ -44,7 +44,7 @@
         <ul><li><span class="id">M1310</span> Implement least privilege principle</li><li><span class="id">M1311</span> Implement multi-factor authentication</li><li><span class="id">M1450</span> Implement zero trust</li><li><span class="id">M1451</span> Use network segmentation</li><li><span class="id">M1830</span> Restrict token access</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1650</span> Audit rogue creation of API credentials</li></ul>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS14.html">CircleCI December 2022 / January 2023 incident</a></li></ul>
+        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS14.html">CircleCI December 2022 / January 2023 incident</a></li><li><a href="../incidents/AS329.html">Stolen ConnectWise Cloud Backup application identities signed in to customer Microsoft 365 tenants</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://circleci.com/blog/jan-4-2023-incident-report/" rel="noopener">https://circleci.com/blog/jan-4-2023-incident-report/</a></li></ul>
         

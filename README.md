@@ -2,7 +2,7 @@
 
 Catalogue of software supply-chain incidents. Most updates are handled by automated processes; see the About page for how the catalogue is maintained.
 
-**Live site:** https://ai-anant.github.io/supply-chain-incidences-catalogue/
+**Live site:** https://poisonedpipeline.com/
 
 ## What is in here
 

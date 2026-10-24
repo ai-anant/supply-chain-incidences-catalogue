@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0176 Disable or misconfigure security measures · SCIC</title>
+<title>T0176 Disable or misconfigure security measures · Poisoned Pipeline</title>
 <link rel="stylesheet" href="../assets/style.css">
-<script defer data-domain="ai-anant.github.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="poisonedpipeline.com" src="https://plausible.io/js/script.js"></script>
 
 </head>
 <body>
 
     <header class="top">
       <div class="bar">
-        <a class="brand" href="../index.html">SCIC</a>
+        <a class="brand" href="../index.html">Poisoned Pipeline</a>
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
@@ -32,9 +32,9 @@
       </div>
     </header>
 <main>
-<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0176</p>
+<p class="crumb">Poisoned Pipeline / <a href="index.html">Techniques</a> / T0176</p>
 
-        <p class="meta">T0176 · Defense Evasion · TA07 · observed in 11 incident(s)</p>
+        <p class="meta">T0176 · Defense Evasion · TA07 · observed in 12 incident(s)</p>
         <h1>Disable or misconfigure security measures</h1>
         <div class="chips"><span class="chip">Cloud Security</span> <span class="chip">CI/CD Posture</span></div>
         <p>Attackers disable or misconfigure security controls so that later activity is<br>not observed or blocked. In software supply chains this is more often a<br>complete disablement than a subtle misconfiguration: turning off a GitHub<br>Action required-review check, uninstalling an endpoint agent on a build<br>runner, skipping a signing gate, or emptying a security-group rule.<br>Misconfiguration (over-permissive logging, broken audit settings) remains<br>in scope as the quieter variant of the same Defense Evasion technique.</p>
@@ -44,7 +44,7 @@
         <ul><li><span class="id">M1530</span> Use multi-factor authentication</li><li><span class="id">M1550</span> Implement strict access control for clouds</li><li><span class="id">M1720</span> Implement regular patches and updates</li><li><span class="id">M1760</span> Regularly review and update security configurations</li><li><span class="id">M1761</span> Implement automated security tools</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1260</span> Implement regular security audit and review</li><li><span class="id">D1261</span> Implement penetration testing</li><li><span class="id">D1262</span> Implement vulnerability assessment</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li><li><span class="id">D1520</span> Implement endpoint detection and response system</li></ul>
-        <h2>Observed in incidents (11)</h2><ul><li><a href="../incidents/AS288.html">kilocode npm early supply-chain risk signals</a></li><li><a href="../incidents/AS5.html">CCleaner 5.33 signed ShadowPad backdoor</a></li><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS307.html">Apex Accelerator published a malicious npm coding agent and a fake audit MCP</a></li><li><a href="../incidents/AS25.html">indexed-btree runtime npm loader</a></li><li><a href="../incidents/AS293.html">Exposed operator staging host reveals autonomous AI-agent crypto-theft fleet</a></li><li><a href="../incidents/AS22.html">axios npm remote-access trojan</a></li><li><a href="../incidents/AS313.html">LiteLLM 1.107.0 built from a lookalike repository shipped a startup-hook stealer and hourly loader</a></li><li><a href="../incidents/AS2.html">3CX Desktop</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS292.html">Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</a></li></ul>
+        <h2>Observed in incidents (12)</h2><ul><li><a href="../incidents/AS288.html">kilocode npm early supply-chain risk signals</a></li><li><a href="../incidents/AS5.html">CCleaner 5.33 signed ShadowPad backdoor</a></li><li><a href="../incidents/AS197.html">actions-cool GitHub Action tags still serve Mini Shai-Hulud after re-enablement</a></li><li><a href="../incidents/AS307.html">Apex Accelerator published a malicious npm coding agent and a fake audit MCP</a></li><li><a href="../incidents/AS25.html">indexed-btree runtime npm loader</a></li><li><a href="../incidents/AS328.html">testmetest npm names ship a Miasma-family worm that wipes the home directory if a stolen GitHub token is revoked</a></li><li><a href="../incidents/AS293.html">Exposed operator staging host reveals autonomous AI-agent crypto-theft fleet</a></li><li><a href="../incidents/AS22.html">axios npm remote-access trojan</a></li><li><a href="../incidents/AS313.html">LiteLLM 1.107.0 built from a lookalike repository shipped a startup-hook stealer and hourly loader</a></li><li><a href="../incidents/AS2.html">3CX Desktop</a></li><li><a href="../incidents/AS295.html">DirtyBlanket fake Express/React packages spread a self-propagating Linux worm</a></li><li><a href="../incidents/AS292.html">Microsoft counterfeit-installer campaign — same-named archives regenerate server-side per download</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://www.upguard.com/blog/cloud-misconfiguration" rel="noopener">https://www.upguard.com/blog/cloud-misconfiguration</a></li></ul>
         

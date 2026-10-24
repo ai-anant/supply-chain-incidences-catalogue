@@ -24,7 +24,7 @@ TACTICS_ENUM = {
     "Impact": "TA12",
 }
 
-SITE_BASE = os.environ.get("OSCAR_SITE_BASE", "https://ai-anant.github.io/supply-chain-incidences-catalogue")
+SITE_BASE = os.environ.get("OSCAR_SITE_BASE", "https://poisonedpipeline.com")
 
 
 def main(path, dest="matrix.json"):

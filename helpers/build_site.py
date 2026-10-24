@@ -51,10 +51,9 @@ BANNER = ""
 # Single place for the public site address. When the custom domain lands, set
 # SITE_BASE (e.g. https://oscar.example.com) and PLAUSIBLE_DOMAIN (the bare
 # host) at build time; nothing else needs editing.
-SITE_BASE = os.environ.get(
-    "SITE_BASE", "https://ai-anant.github.io/supply-chain-incidences-catalogue"
-).rstrip("/")
+SITE_BASE = os.environ.get("SITE_BASE", "https://poisonedpipeline.com").rstrip("/")
 SITE_HOST = SITE_BASE.split("://", 1)[-1].split("/", 1)[0]
+SITE_NAME = "Poisoned Pipeline"
 
 # Plausible analytics. Cookieless, no consent banner needed, no personal data.
 # Set PLAUSIBLE_DOMAIN to the site's host; empty disables the script entirely.
@@ -125,7 +124,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
     nav = f"""
     <header class="top">
       <div class="bar">
-        <a class="brand" href="{root_prefix}index.html">SCIC</a>
+        <a class="brand" href="{root_prefix}index.html">{SITE_NAME}</a>
         <nav>
           <a href="{root_prefix}index.html">Home</a>
           <a href="{root_prefix}matrix.html">Technique matrix</a>
@@ -153,7 +152,7 @@ def page(title, body, root_prefix, crumb, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)} · SCIC</title>
+<title>{html.escape(title)} · {SITE_NAME}</title>
 <link rel="stylesheet" href="{root_prefix}assets/style.css">
 {ANALYTICS}
 {extra_head}
@@ -490,7 +489,7 @@ def write_cicd(dest, stories):
     q.addEventListener('input', applyFilter);
     applyFilter();
     </script>"""
-    write(os.path.join(dest, "cicd.html"), page("CI/CD matrix", body, "", "SCIC / CI/CD matrix"))
+    write(os.path.join(dest, "cicd.html"), page("CI/CD matrix", body, "", f"{SITE_NAME} / CI/CD matrix"))
 
 
 def build(dest):
@@ -524,6 +523,9 @@ def build(dest):
         shutil.rmtree(dest)
     os.makedirs(dest)
     write(os.path.join(dest, ".nojekyll"), "")
+    # GitHub Pages custom domain; must be regenerated because dest is wiped.
+    write(os.path.join(dest, "CNAME"), SITE_HOST + "\n")
+    write(os.path.join(dest, "robots.txt"), "User-agent: *\nAllow: /\n\nSitemap: " + SITE_BASE + "/sitemap.xml\n")
     write(os.path.join(dest, "assets", "style.css"), CSS)
 
     by_tactic = {t: [] for t in TACTIC_ORDER}
@@ -676,7 +678,7 @@ def build(dest):
     year_labels = "".join(f"<span>{y[2:]}</span>" for y in years)
 
     dash = f"""
-    <h1>Supply Chain Incidents Catalogue</h1>
+    <h1>{SITE_NAME}</h1>
     <p class="lede">A catalogue of software supply-chain incidents:
     {n_story} documented cases, {n_tech} techniques, and the ecosystems they hit.</p>
     <div class="stats">
@@ -738,7 +740,7 @@ def build(dest):
       </div>
     </div>
     """
-    write(os.path.join(dest, "index.html"), page("Home", dash, "", "SCIC / Home"))
+    write(os.path.join(dest, "index.html"), page("Home", dash, "", f"{SITE_NAME} / Home"))
 
     matrix_body = f"""
     <h1>OSC&R Matrix</h1>
@@ -788,7 +790,7 @@ def build(dest):
     applyFilter();
     </script>
     """
-    write(os.path.join(dest, "matrix.html"), page("OSC&R Matrix", matrix_body, "", "SCIC / OSC&R Matrix"))
+    write(os.path.join(dest, "matrix.html"), page("OSC&R Matrix", matrix_body, "", f"{SITE_NAME} / OSC&R Matrix"))
     write_cicd(dest, stories)
 
     # techniques index + pages
@@ -806,7 +808,7 @@ def build(dest):
     <p class="lede">{n_tech} techniques across {len(TACTIC_ORDER)} tactics.</p>
     <div class="list">{''.join(rows)}</div>
     """
-    write(os.path.join(dest, "techniques", "index.html"), page("Techniques", t_index, "../", "SCIC / Techniques"))
+    write(os.path.join(dest, "techniques", "index.html"), page("Techniques", t_index, "../", f"{SITE_NAME} / Techniques"))
 
     # Mitigations index + pages. These were rendered only as IDs inside
     # technique pages, so the mitigation count had no destination.
@@ -826,7 +828,7 @@ def build(dest):
     tested fallback routes).</p>
     <div class="list">{''.join(mit_rows)}</div>
     """
-    write(os.path.join(dest, "mitigations", "index.html"), page("Mitigations", m_index, "../", "SCIC / Mitigations"))
+    write(os.path.join(dest, "mitigations", "index.html"), page("Mitigations", m_index, "../", f"{SITE_NAME} / Mitigations"))
 
     for mid in sorted(mits):
         m = mits[mid]
@@ -847,7 +849,7 @@ def build(dest):
         <h2>References</h2>
         {refs}
         """
-        write(os.path.join(dest, "mitigations", f"{mid}.html"), page(m.get("summary") or mid, m_body, "../", f"SCIC / Mitigations / {mid}"))
+        write(os.path.join(dest, "mitigations", f"{mid}.html"), page(m.get("summary") or mid, m_body, "../", f"{SITE_NAME} / Mitigations / {mid}"))
 
 
     for tid, t in techs.items():
@@ -920,7 +922,7 @@ def build(dest):
         """
         write(
             os.path.join(dest, "techniques", f"{tid}.html"),
-            page(f"{tid} {t['summary']}", body, "../", f'SCIC / <a href="index.html">Techniques</a> / {html.escape(tid)}'),
+            page(f"{tid} {t['summary']}", body, "../", f'{SITE_NAME} / <a href="index.html">Techniques</a> / {html.escape(tid)}'),
         )
 
     # stories + incidents (same data; incidents page is the mapping view)
@@ -1010,7 +1012,7 @@ def build(dest):
     </script>
     {''.join(story_card(s, '', '../platforms/') for s in ordered_stories)}
     """
-    write(os.path.join(dest, "incidents", "index.html"), page("Incident mapping", inc_index, "../", "SCIC / Incident mapping"))
+    write(os.path.join(dest, "incidents", "index.html"), page("Incident mapping", inc_index, "../", f"{SITE_NAME} / Incident mapping"))
 
     st_index = f"""
     <h1>Attack stories</h1>
@@ -1033,7 +1035,7 @@ def build(dest):
     </script>
     {''.join(story_card(s, '', '../platforms/') for s in ordered_stories)}
     """
-    write(os.path.join(dest, "stories", "index.html"), page("Attack stories", st_index, "../", "SCIC / Attack stories"))
+    write(os.path.join(dest, "stories", "index.html"), page("Attack stories", st_index, "../", f"{SITE_NAME} / Attack stories"))
 
     by_plat = {p: [] for p in used_plats}
     for s in ordered_stories:
@@ -1053,7 +1055,7 @@ def build(dest):
     <p class="lede">Open a platform to see every mapped incident that hit it.</p>
     <div class="plat-grid">{''.join(agg_cards)}</div>
     """
-    write(os.path.join(dest, "platforms", "index.html"), page("Platforms", plat_index, "../", "SCIC / Platforms"))
+    write(os.path.join(dest, "platforms", "index.html"), page("Platforms", plat_index, "../", f"{SITE_NAME} / Platforms"))
     for p in used_plats:
         items = by_plat[p]
         other = "".join(
@@ -1072,7 +1074,7 @@ def build(dest):
         """
         write(
             os.path.join(dest, "platforms", f"{p}.html"),
-            page(plat_labels.get(p, p), body, "../", f'SCIC / <a href="index.html">Platforms</a> / {html.escape(plat_labels.get(p, p))}'),
+            page(plat_labels.get(p, p), body, "../", f'{SITE_NAME} / <a href="index.html">Platforms</a> / {html.escape(plat_labels.get(p, p))}'),
         )
 
     for s in stories.values():
@@ -1133,7 +1135,7 @@ def build(dest):
             s["summary"],
             body,
             "../",
-            f'SCIC / <a href="index.html">Incidents</a> / {html.escape(s["id"])}',
+            f'{SITE_NAME} / <a href="index.html">Incidents</a> / {html.escape(s["id"])}',
         )
         write(os.path.join(dest, "incidents", f"{s['id']}.html"), html_page)
         write(os.path.join(dest, "stories", f"{s['id']}.html"), html_page)
@@ -1163,7 +1165,7 @@ def build(dest):
     Git history remains the audit trail.</p>
     {''.join(cl_blocks) or '<p class="muted">No entries yet.</p>'}
     """
-    write(os.path.join(dest, "changelog.html"), page("Changelog", changelog_body, "", "SCIC / Changelog"))
+    write(os.path.join(dest, "changelog.html"), page("Changelog", changelog_body, "", f"{SITE_NAME} / Changelog"))
 
     origin_groups = {}
     for tid, o in origins.items():
@@ -1197,7 +1199,7 @@ def build(dest):
     ATT&amp;CK, OWASP, SLSA, or research analog that justifies them.</p>
     {''.join(og_html)}
     """
-    write(os.path.join(dest, "origins.html"), page("Origins", origins_body, "", "SCIC / Origins"))
+    write(os.path.join(dest, "origins.html"), page("Origins", origins_body, "", f"{SITE_NAME} / Origins"))
 
     src_doc = {}
     src_path = os.path.join(portal, "sources.yaml")
@@ -1223,7 +1225,7 @@ def build(dest):
     <h2>Guidance baselines (not polled daily)</h2>
     {''.join(reference) or '<p class="muted">None.</p>'}
     """
-    write(os.path.join(dest, "sources.html"), page("Sources", sources_body, "", "SCIC / Sources"))
+    write(os.path.join(dest, "sources.html"), page("Sources", sources_body, "", f"{SITE_NAME} / Sources"))
 
     talks_doc = {}
     talks_path = os.path.join(portal, "talks.yaml")
@@ -1259,7 +1261,7 @@ def build(dest):
     ID fits — a wrong mapping is worse than a gap.</p>
     <div class="talk-grid">{''.join(talk_cards) or '<p class="muted">No talks yet.</p>'}</div>
     """
-    write(os.path.join(dest, "talks.html"), page("Talks", talks_body, "", "SCIC / Talks"))
+    write(os.path.join(dest, "talks.html"), page("Talks", talks_body, "", f"{SITE_NAME} / Talks"))
 
     unused_n = sum(1 for tid in techs if usage[tid] == 0)
     doc_blocks = []
@@ -1300,11 +1302,11 @@ def build(dest):
     <h2>Techniques added from this review</h2>
     <ul>{new_lis or '<li class="muted">None</li>'}</ul>
     """
-    write(os.path.join(dest, "guidance.html"), page("Guidance", guidance_body, "", "SCIC / Guidance"))
+    write(os.path.join(dest, "guidance.html"), page("Guidance", guidance_body, "", f"{SITE_NAME} / Guidance"))
 
     about = f"""
     <h1>About</h1>
-    <h2>What this catalogue is</h2>
+    <h2>What Poisoned Pipeline is</h2>
     <p>Incidents, the platforms they hit, conference talks, the sources those came from,
     and the technique matrix those incidents are mapped onto.</p>
     <h2>How it is maintained</h2>
@@ -1330,7 +1332,7 @@ def build(dest):
     </ul>
     <p class="muted">Generated {datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}.</p>
     """
-    write(os.path.join(dest, "about.html"), page("About", about, "", "SCIC / About"))
+    write(os.path.join(dest, "about.html"), page("About", about, "", f"{SITE_NAME} / About"))
 
     # Preview cut: five pipeline stages. Not linked from the nav.
     stage_meta = [
@@ -1483,7 +1485,25 @@ def build(dest):
     <ul>{un_lis}</ul>
     <p class="muted">Application bugs inherited with the technique set. They are not a sixth stage.</p>
     """
-    write(os.path.join(dest, "pipeline.html"), page("Five-stage cut", pipeline, "", "SCIC / Preview"))
+    write(os.path.join(dest, "pipeline.html"), page("Five-stage cut", pipeline, "", f"{SITE_NAME} / Preview"))
+
+    # Sitemap from every HTML file actually written this run.
+    urls = []
+    for root_dir, _dirs, files in os.walk(dest):
+        for fn in sorted(files):
+            if not fn.endswith(".html"):
+                continue
+            rel = os.path.relpath(os.path.join(root_dir, fn), dest).replace(os.sep, "/")
+            if rel.startswith("preview/"):
+                continue
+            urls.append(f"{SITE_BASE}/{rel}")
+    urls.sort()
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for u in urls:
+        sm.append(f"  <url><loc>{u}</loc></url>")
+    sm.append("</urlset>")
+    write(os.path.join(dest, "sitemap.xml"), "\n".join(sm) + "\n")
 
     print(
         f"Built site → {dest} ({n_tech} techniques, {n_story} incidents)"

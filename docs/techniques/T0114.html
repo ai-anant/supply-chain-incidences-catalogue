@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>T0114 Compromised service account · SCIC</title>
+<title>T0114 Compromised service account · Poisoned Pipeline</title>
 <link rel="stylesheet" href="../assets/style.css">
-<script defer data-domain="ai-anant.github.io" src="https://plausible.io/js/script.js"></script>
+<script defer data-domain="poisonedpipeline.com" src="https://plausible.io/js/script.js"></script>
 
 </head>
 <body>
 
     <header class="top">
       <div class="bar">
-        <a class="brand" href="../index.html">SCIC</a>
+        <a class="brand" href="../index.html">Poisoned Pipeline</a>
         <nav>
           <a href="../index.html">Home</a>
           <a href="../matrix.html">Technique matrix</a>
@@ -32,9 +32,9 @@
       </div>
     </header>
 <main>
-<p class="crumb">SCIC / <a href="index.html">Techniques</a> / T0114</p>
+<p class="crumb">Poisoned Pipeline / <a href="index.html">Techniques</a> / T0114</p>
 
-        <p class="meta">T0114 · Initial Access · TA03 · observed in 1 incident(s)</p>
+        <p class="meta">T0114 · Initial Access · TA03 · observed in 2 incident(s)</p>
         <h1>Compromised service account</h1>
         <div class="chips"><span class="chip">Artifact Security</span> <span class="chip">Cloud Security</span> <span class="chip">Infrastructure as code</span> <span class="chip">SCM Posture</span></div>
         <p>In this type of attack, the attacker gains access to a legitimate service account, which is typically used by an application or service to access cloud resources or manage infrastructure. <br>The attacker can use the compromised service account to perform actions that are authorized for the service account, such as reading, modifying, or deleting data.<br>This can result in data theft, unauthorized access to sensitive resources, and the ability to launch further attacks on other resources within the cloud environment.</p>
@@ -44,7 +44,7 @@
         <ul><li><span class="id">M1130</span> Implement password rotation</li><li><span class="id">M1131</span> Disable or lock compromised accounts</li><li><span class="id">M1240</span> Enable data encryption at rest</li><li><span class="id">M1550</span> Implement strict access control for clouds</li><li><span class="id">M1661</span> Revoke user permissions</li></ul>
         <h2>Detections</h2>
         <ul><li><span class="id">D1130</span> Implement account activity monitoring</li><li><span class="id">D1131</span> Implement SIEM</li><li><span class="id">D1510</span> Implement Intrusion Detection System and anti-malware</li></ul>
-        <h2>Observed in incidents (1)</h2><ul><li><a href="../incidents/AS3.html">Codecov Breach</a></li></ul>
+        <h2>Observed in incidents (2)</h2><ul><li><a href="../incidents/AS3.html">Codecov Breach</a></li><li><a href="../incidents/AS329.html">Stolen ConnectWise Cloud Backup application identities signed in to customer Microsoft 365 tenants</a></li></ul>
         <h2>References</h2>
         <ul class='refs'><li><a href="https://stackoverflow.blog/2021/01/25/a-deeper-dive-into-our-may-2019-security-incident/" rel="noopener">https://stackoverflow.blog/2021/01/25/a-deeper-dive-into-our-may-2019-security-incident/</a></li></ul>
         
