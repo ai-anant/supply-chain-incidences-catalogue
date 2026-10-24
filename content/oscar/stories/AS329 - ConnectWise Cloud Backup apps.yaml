@@ -1,0 +1,110 @@
+id: AS329
+type: Attack Story
+date: 2026-10
+platforms:
+  - azure
+
+summary: Stolen ConnectWise Cloud Backup application identities signed in to customer Microsoft 365 tenants
+
+description: |
+  ConnectWise disclosed unauthorized access to application identities in
+  Cloud Backup, formerly SkyKick. At 07:00 UTC on 17 October 2026 it
+  disabled seven multi-tenant application identities and revoked the
+  certificates used for those connections. The Cloud Backup application
+  client id is 506e08f9-6e9a-4da4-942b-a099a03644ae. Older installs may
+  still show SkyKick Cloud Manager names; ConnectWise says to match the
+  application id. Vendor-side disablement does not change the enterprise
+  application inside a customer tenant, and tokens already issued can
+  remain usable until they expire. ConnectWise also suspended SaaS
+  Security and Cloud Management because they share that environment.
+  It reports no evidence that encrypted backup archives were accessed,
+  and it says the product design does not let it see whether a customer
+  Microsoft 365 tenant was touched. The investigation was still open in
+  the 18 October remediation guide. How the application identities were
+  taken is not in that guide.
+
+  On 21 October Microsoft Threat Intelligence assessed that Storm-0940,
+  a China-aligned actor, was responsible for the compromise, and that
+  the actor used the ARTEX agentic penetration-testing framework to
+  speed it up. Microsoft says the actor attempted to sign in to more
+  than 2,250 tenants with the stolen application credentials, from the
+  same 144.172.64.0/24 range ConnectWise published (144.172.64.128,
+  144.172.64.99, 144.172.64.60). The applications had already been
+  granted access, so the sign-in did not need an interactive user.
+  Microsoft observed follow-on Microsoft Graph activity in multiple
+  customer environments, including reconnaissance, application
+  credential changes, and attempts to change privileges. In some
+  environments the actor enumerated cloud resources and read secrets
+  across Azure Key Vaults, including a key-unwrapping operation.
+  Microsoft also says a successful sign-in does not by itself mean
+  customer data was read, and that this was not a compromise of
+  Microsoft's own products. ConnectWise's archive finding and
+  Microsoft's Key Vault finding are different stores.
+
+  Huntress reported the same vendor-credential abuse against Microsoft
+  365 tenants. On 22 October Wiz described the same actor, overlapping
+  Storm-0940, using ARTEX against other IT and software vendors'
+  identity providers (Okta, Entra, Cognito) and Microsoft 365
+  integrations. That post is attempted expansion, not a second
+  completed vendor compromise.
+
+attacks:
+  - attack: ConnectWise application identities
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0114
+        techName: Compromised service account
+        tactic: Initial Access
+        comment: |
+          Unauthorized access to seven Cloud Backup application
+          identities. Customers who had already consented to those
+          apps could be signed into without an interactive user.
+          The vendor notice does not say how the identities were taken.
+  - attack: Customer tenants that had granted the apps
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0165
+        techName: Create access token
+        tactic: Persistence
+        comment: |
+          Microsoft observed application credential changes in multiple
+          customer environments after the stolen app signed in. The
+          ConnectWise guide tells tenants to look for added service
+          principal credentials. Not established for every tenant that
+          only saw a sign-in attempt.
+      - techniqueID: T0199
+        techName: Secret leak
+        tactic: Impact
+        comment: |
+          Microsoft says that in some environments the actor read
+          secrets across Azure Key Vaults and performed a
+          key-unwrapping operation. ConnectWise separately reports no
+          evidence that backup archives were accessed.
+
+gaps:
+  - The initial access to the ConnectWise application identities is
+    unpublished. Not mapped as a user-account takeover, a vulnerability,
+    or a registry compromise.
+  - ARTEX accelerated scanning, password spraying and the downstream
+    sign-ins. T0213 is a coding-agent fleet (Claude Code, Codex and
+    similar) tasked over a chat channel. ARTEX is a pentest framework.
+    That is not the same technique.
+  - Privilege-modification attempts are not a completed technique.
+  - Wiz's probes of other vendors' identity providers are attempts.
+    They are not a second story and not evidence those vendors shipped
+    a poisoned artifact.
+  - No platform id for the ConnectWise product itself. The customer
+    surface in the write-ups is Entra, Microsoft 365 and Azure Key Vault.
+
+links:
+  - https://status.connectwise.com/pages/incident/619cf82551fec9053d612f09/6ad263692dc48705ab3da2cb
+  - https://www.connectwise.com/contentassets/10777cd3364d440c86ed5270a94a5f24/connectwise-cloud-backup-technical-investigation-and-remediation-guide-1.pdf
+  - https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/
+  - https://www.huntress.com/blog/vendor-credential-enables-unauthorized-access
+  - https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors

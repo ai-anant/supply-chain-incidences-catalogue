@@ -1,0 +1,193 @@
+id: AS328
+type: Attack Story
+date: 2026-10
+platforms:
+  - npm
+  - pypi
+  - rubygems
+  - git
+  - gitlab
+  - github-actions
+  - workstation
+  - ai-agents
+  - mcp
+  - vscode
+  - linux
+  - macos
+  - windows
+
+summary: testmetest npm names ship a Miasma-family worm that wipes the home directory if a stolen GitHub token is revoked
+
+description: |
+  On 22 October 2026 SafeDep reported an operator publishing npm packages
+  whose names end in testmetest. Between 19 and 22 October the registry
+  received 15 such names. Accounts alexjoipamiba and testnewtestme
+  published four of them. Each name followed the same ladder: a
+  0.0.0-stage stub, a harmless 1.0.0 decoy, then a malicious patch that
+  was tagged latest. SafeDep says event-bus-lite-testmetest 0.0.1,
+  published 10:59 UTC on 22 October by alexjoipamiba, carries the worm.
+  The other eleven names had already left the registry on 21 October.
+  SafeDep had found no compromised third-party packages and no victims.
+  All observed publishes belonged to the operator's own test accounts.
+
+  A registry read on 24 October shows event-bus-lite-testmetest and
+  retry-utils-testmetest unpublished at 20:21 UTC on 22 October, after
+  further versions of the first name (0.0.2, 0.0.3, 0.0.5, 0.0.6, 0.0.8)
+  that SafeDep's table did not list. sdk-utils-testmetest and
+  kvarzo8f3atestmetest now resolve only to a 0.0.0-stage plus a
+  0.0.1-security version created at 20:36 UTC the same day. Those
+  tarballs were not fetched. data-pipeline-testmetest was unpublished
+  at 15:07 UTC on 21 October, matching SafeDep.
+
+  The packages have no install scripts. npm runs node-gyp rebuild when
+  binding.gyp is present, and the sources field is what starts the
+  loader. index.js decrypts a Bun bootstrap and a 320 KB payload file,
+  writes the payload under /tmp, runs it with bun, and deletes it.
+
+  SafeDep's decode of the payload: it exits on Russian and other CIS
+  locales and on known sandboxes. In GitHub Actions it tries to kill
+  StepSecurity Harden-Runner through the Docker socket and to point
+  stepsecurity.io at localhost, and it exits if that fails. It collects
+  SSH keys, npm, PyPI and Git credentials, .env files, browser logins,
+  Claude, Codex, Gemini and Copilot credentials, cloud, Vault and
+  Kubernetes secrets, and GitHub Actions secrets from the runner worker
+  process. It commits the encrypted haul to a new public repository on
+  the victim's GitHub account. The commit message starts with
+  AutoSyncComplete: and carries the victim's GitHub token, encrypted.
+  Other infections search for those commits. A fallback endpoint is
+  aiarmor.website.
+
+  It adds the loader to the victim's npm packages and publishes a patch,
+  and it republishes to PyPI, RubyGems and JFrog. It commits a fake
+  CodeQL workflow, AI-agent files (.claude/settings.json,
+  .cursor/mcp.json, CLAUDE.md, AGENTS.md, .vscode/tasks.json) and a
+  Windows loader at .github/init.ps1 into GitHub and GitLab repositories,
+  copying the author and message of the latest real commit. It copies
+  itself over SSH to hosts in known_hosts.
+
+  Persistence is two user services, net-health-checker and pkg-runtime,
+  including a macOS LaunchAgent. net-health-checker polls the stolen
+  GitHub token every 45 seconds for 48 hours and, on 401 or 403, deletes
+  the home directory. pkg-runtime hourly searches GitHub commits for
+  msync-3f7a and runs a Python script from a URL signed by the
+  attacker's key.
+
+  SafeDep does not attribute this build to the June 2026 Miasma
+  operators. Loader layout, strings and infrastructure differ, and the
+  token-revocation wiper is the Mini Shai-Hulud behavior. That family
+  read is not a reason to merge this publish into AS50.
+
+attacks:
+  - attack: Operator-owned npm publishes
+    index: 1
+    stage: supply-chain
+    customer: 0
+    supplier: 2
+    techniques:
+      - techniqueID: T0108
+        techName: Accounts in public registry
+        tactic: Resource Development
+        comment: |
+          npm accounts alexjoipamiba and testnewtestme published the
+          names SafeDep still saw on 22 October. No third-party
+          maintainer account is named.
+      - techniqueID: T0109
+        techName: Publish malicious artifact
+        tactic: Resource Development
+        comment: |
+          Fifteen testmetest names. SafeDep identifies
+          event-bus-lite-testmetest 0.0.1, published 10:59 UTC on
+          22 October, as the armed latest. The registry record for
+          that name was unpublished at 20:21 UTC the same day.
+  - attack: Payload on a machine that installs the package
+    index: 2
+    stage: post-supply-chain
+    customer: 1
+    supplier: 0
+    techniques:
+      - techniqueID: T0159
+        techName: Malicious artifact execution
+        tactic: Execution
+        comment: |
+          The loader decrypts a Bun bootstrap and runs the payload
+          with bun. SafeDep decoded it. No install script. No named
+          downstream install.
+      - techniqueID: T0176
+        techName: Disable or misconfigure security measures
+        tactic: Defense Evasion
+        comment: |
+          In GitHub Actions the payload tries to kill Harden-Runner
+          through the Docker socket and to sinkhole stepsecurity.io.
+          It exits if that fails.
+      - techniqueID: T0184
+        techName: Harvesting sensitive information from files
+        tactic: Credential Access
+        comment: |
+          SSH keys, npm, PyPI and Git credentials, .env files, browser
+          logins, and Claude, Codex, Gemini and Copilot credential
+          files. Capabilities in the decode, not a named theft.
+      - techniqueID: T0168
+        techName: Exfiltration to code repositories
+        tactic: Exfiltration
+        comment: |
+          Encrypted collection is committed to a new public repository
+          on the victim's GitHub account. The commit message starts
+          with AutoSyncComplete: and carries the encrypted GitHub token
+          for other infections to reuse.
+      - techniqueID: T0169
+        techName: Push implants across repositories
+        tactic: Lateral Movement
+        comment: |
+          The payload adds itself to the victim's npm packages and
+          publishes a patch, republishes to PyPI and RubyGems, and
+          commits workflow and agent files into GitHub and GitLab
+          repositories the stolen token can write.
+      - techniqueID: T0195
+        techName: Spoofed Commits
+        tactic: Defense Evasion
+        comment: |
+          Injected commits copy the author and message of the most
+          recent real commit on the branch, with github-actions as a
+          fallback.
+      - techniqueID: T0210
+        techName: Poison AI coding-agent config or workspace
+        tactic: Persistence
+        comment: |
+          Stolen tokens are used to commit .claude/settings.json,
+          .cursor/mcp.json, CLAUDE.md, AGENTS.md and
+          .vscode/tasks.json.
+      - techniqueID: T0216
+        techName: Wipe developer profile if a stolen token is revoked
+        tactic: Impact
+        comment: |
+          net-health-checker polls the stolen GitHub token every 45
+          seconds for 48 hours. On 401 or 403 it deletes the home
+          directory. Revocation is what starts the wipe.
+
+gaps:
+  - The install trigger is a binding.gyp sources field that node-gyp
+    expands, not an npm lifecycle script. That is not T0151, and it is
+    not T0118 (command injection into a victim application).
+  - GitHub Actions secrets taken from the runner worker process are not
+    T0140 (environment variables) or T0183 (tokens in CI logs and
+    variable groups).
+  - The hourly command channel is a search for GitHub commits marked
+    msync-3f7a, plus a signed URL. That is not T0156 (webhooks). The
+    aiarmor.website fallback is the same gap.
+  - Copying the payload over SSH to hosts in known_hosts has no
+    technique.
+  - Republish to JFrog is in the payload. There is no platform id for
+    that registry.
+  - SafeDep does not attribute the operator. Do not merge with AS50.
+    No confirmed downstream install. No OSV or GHSA id in the write-up.
+  - Later versions of event-bus-lite-testmetest that appear only in the
+    registry time record were not in SafeDep's table and were not
+    fetched here.
+
+links:
+  - https://safedep.io/testmetest-npm-worm-miasma-variant
+  - https://registry.npmjs.org/event-bus-lite-testmetest
+  - https://registry.npmjs.org/retry-utils-testmetest
+  - https://registry.npmjs.org/sdk-utils-testmetest
+  - https://registry.npmjs.org/kvarzo8f3atestmetest
+  - https://registry.npmjs.org/data-pipeline-testmetest

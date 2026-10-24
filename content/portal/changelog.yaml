@@ -1,4 +1,22 @@
 entries:
+- date: '2026-10-24'
+  id: intake-2026-10-24
+  title: testmetest npm worm; ConnectWise Cloud Backup application identities
+  items:
+  - 'AS328: fifteen npm names ending in testmetest, published 19-22 October
+    from the operator''s own accounts. SafeDep says event-bus-lite-testmetest
+    0.0.1 carried a Miasma-family worm (no install script; node-gyp starts
+    it) that steals credentials, republishes, plants AI-agent files, and
+    deletes the home directory if the stolen GitHub token is revoked. No
+    third-party victim in the write-up. Registry reads on 24 October show
+    the armed name unpublished later the same day. Not merged with AS50.'
+  - 'AS329: ConnectWise disabled seven Cloud Backup (formerly SkyKick)
+    application identities at 07:00 UTC on 17 October after unauthorized
+    access. Microsoft assesses Storm-0940 used those credentials, sped up
+    with ARTEX, to attempt sign-in to more than 2,250 customer tenants
+    that had already granted the apps, with Key Vault secret reads in some
+    environments. How the vendor identities were taken is unpublished.
+    Backup archives are a separate negative finding from ConnectWise.'
 - date: '2026-10-23'
   id: sceg-ir-guidance
   title: NCSC SCEG supply-chain incident-response guidance; mitigations page added
